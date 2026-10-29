@@ -1,0 +1,42 @@
+{
+ "object_lifted_vs_h_at_cut_ge_5cm": {
+  "truth_False_pred_False": 59,
+  "truth_False_pred_True": 38,
+  "truth_True_pred_False": 5,
+  "truth_True_pred_True": 125
+ },
+ "object_lifted_vs_ever_lifted_by_cut": {
+  "truth_False_pred_False": 52,
+  "truth_False_pred_True": 23,
+  "truth_True_pred_False": 12,
+  "truth_True_pred_True": 140
+ },
+ "gripper_closed_vs_finger_contact_last_3_steps": {
+  "truth_False_pred_False": 44,
+  "truth_False_pred_True": 51,
+  "truth_True_pred_True": 132
+ },
+ "high_conf_false_abort_trace_can_s1_e0020_seed200004": {
+  "first_success_step": 266,
+  "first_contact_step": 46,
+  "max_h_before_cut_m": 0.069,
+  "h_at_cut80": 0.0,
+  "contact_at_cut80": false,
+  "h_at_160": -0.0,
+  "contact_at_160": false,
+  "calls": [
+   {
+    "cut": 80,
+    "will_succeed": false,
+    "confidence": "high",
+    "reason": "The gripper is open and not touching the red can, so it has not grasped or lifted the object."
+   },
+   {
+    "cut": 160,
+    "will_succeed": true,
+    "confidence": "high",
+    "reason": "The robot has securely grasped the red can and lifted it clear of the table, positioning it to move toward the target compartment."
+   }
+  ]
+ }
+}

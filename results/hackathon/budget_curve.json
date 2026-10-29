@@ -1,0 +1,149 @@
+{
+  "generated_utc": "2026-10-29T02:09:57+00:00",
+  "rows": [
+    {
+      "K": 1,
+      "pick_regret_mean": 0.07126666666666667,
+      "source": "sim_instrumented",
+      "spearman_mean": 0.32818566246843695,
+      "spearman_p10": 0.15537666160647082,
+      "spearman_p90": 0.5081039449726792
+    },
+    {
+      "K": 1,
+      "pick_regret_mean": 0.08226666666666667,
+      "source": "vlm_local",
+      "spearman_mean": 0.2830718281129035,
+      "spearman_p10": 0.06973245873783425,
+      "spearman_p90": 0.49880934783657277
+    },
+    {
+      "K": 1,
+      "pick_regret_mean": 0.07146666666666666,
+      "source": "vlm_nebius",
+      "spearman_mean": 0.3591311865542764,
+      "spearman_p10": 0.16302557557777944,
+      "spearman_p90": 0.5401439428954908
+    },
+    {
+      "K": 2,
+      "pick_regret_mean": 0.05633333333333334,
+      "source": "sim_instrumented",
+      "spearman_mean": 0.42396147859029126,
+      "spearman_p10": 0.25420176276552114,
+      "spearman_p90": 0.5898489332831117
+    },
+    {
+      "K": 2,
+      "pick_regret_mean": 0.060966666666666676,
+      "source": "vlm_local",
+      "spearman_mean": 0.3685244025960783,
+      "spearman_p10": 0.18257657109666678,
+      "spearman_p90": 0.5718594434451865
+    },
+    {
+      "K": 2,
+      "pick_regret_mean": 0.04950000000000001,
+      "source": "vlm_nebius",
+      "spearman_mean": 0.43396881019559896,
+      "spearman_p10": 0.26180878718704004,
+      "spearman_p90": 0.6002882106654044
+    },
+    {
+      "K": 4,
+      "pick_regret_mean": 0.05026666666666668,
+      "source": "sim_instrumented",
+      "spearman_mean": 0.4769311774280742,
+      "spearman_p10": 0.35551701666504504,
+      "spearman_p90": 0.6015175747537601
+    },
+    {
+      "K": 4,
+      "pick_regret_mean": 0.05223333333333335,
+      "source": "vlm_local",
+      "spearman_mean": 0.43129034514027664,
+      "spearman_p10": 0.272203131006165,
+      "spearman_p90": 0.5909345240959468
+    },
+    {
+      "K": 4,
+      "pick_regret_mean": 0.042433333333333344,
+      "source": "vlm_nebius",
+      "spearman_mean": 0.5328073304601179,
+      "spearman_p10": 0.4174660215333718,
+      "spearman_p90": 0.6546961240829644
+    },
+    {
+      "K": 6,
+      "pick_regret_mean": 0.05290000000000001,
+      "source": "sim_instrumented",
+      "spearman_mean": 0.5142563828179018,
+      "spearman_p10": 0.4084582322960299,
+      "spearman_p90": 0.6187372300652845
+    },
+    {
+      "K": 6,
+      "pick_regret_mean": 0.04630000000000001,
+      "source": "vlm_local",
+      "spearman_mean": 0.47992861884571214,
+      "spearman_p10": 0.3234936934836844,
+      "spearman_p90": 0.6273584084079482
+    },
+    {
+      "K": 6,
+      "pick_regret_mean": 0.03726666666666668,
+      "source": "vlm_nebius",
+      "spearman_mean": 0.5704716288821821,
+      "spearman_p10": 0.464071815560689,
+      "spearman_p90": 0.6787913805439779
+    },
+    {
+      "K": 8,
+      "pick_regret_mean": 0.055866666666666676,
+      "source": "sim_instrumented",
+      "spearman_mean": 0.5432535026804843,
+      "spearman_p10": 0.4583700724617804,
+      "spearman_p90": 0.6214759962701694
+    },
+    {
+      "K": 8,
+      "pick_regret_mean": 0.046033333333333336,
+      "source": "vlm_local",
+      "spearman_mean": 0.5000180442911327,
+      "spearman_p10": 0.37103059515775155,
+      "spearman_p90": 0.6169077328558386
+    },
+    {
+      "K": 8,
+      "pick_regret_mean": 0.03833333333333334,
+      "source": "vlm_nebius",
+      "spearman_mean": 0.612990042357858,
+      "spearman_p10": 0.4985903883168905,
+      "spearman_p90": 0.7129009846855235
+    },
+    {
+      "K": 10,
+      "pick_regret_mean": 0.05746666666666666,
+      "source": "sim_instrumented",
+      "spearman_mean": 0.5642212236094195,
+      "spearman_p10": 0.518596172550359,
+      "spearman_p90": 0.6191132933108913
+    },
+    {
+      "K": 10,
+      "pick_regret_mean": 0.04553333333333333,
+      "source": "vlm_local",
+      "spearman_mean": 0.5255187742767623,
+      "spearman_p10": 0.43123700963229,
+      "spearman_p90": 0.6280146332750413
+    },
+    {
+      "K": 10,
+      "pick_regret_mean": 0.0411,
+      "source": "vlm_nebius",
+      "spearman_mean": 0.6393984956341037,
+      "spearman_p10": 0.5676012061302802,
+      "spearman_p90": 0.706072220071327
+    }
+  ]
+}

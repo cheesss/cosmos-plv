@@ -1,0 +1,912 @@
+{
+  "episodes": 330,
+  "eval_success_overall": 0.796969696969697,
+  "generated_utc": "2026-10-28T22:24:26+00:00",
+  "git_commit": "b1a484b8c5198398cdfd04c65e097a71c8709148",
+  "n_checkpoints": 33,
+  "q": 0.3,
+  "ranking": [
+    {
+      "k@10": 2,
+      "k@30": 4,
+      "label": "Training epoch (free baseline)",
+      "metric": "epoch",
+      "n_checkpoints": 11,
+      "regret@10": 0.0,
+      "regret@30": 0.0,
+      "run_id": "can_seed1",
+      "spearman": 0.8507111474365273,
+      "spearman_ci_hi": 0.9929659150299244,
+      "spearman_ci_lo": 0.4622390618622731
+    },
+    {
+      "k@10": 2,
+      "k@30": 4,
+      "label": "Training epoch (free baseline)",
+      "metric": "epoch",
+      "n_checkpoints": 11,
+      "regret@10": 0.0,
+      "regret@30": 0.0,
+      "run_id": "can_seed2",
+      "spearman": 0.9606888205888261,
+      "spearman_ci_hi": 1.0,
+      "spearman_ci_lo": 0.8124299396572945
+    },
+    {
+      "k@10": 2,
+      "k@30": 4,
+      "label": "Training epoch (free baseline)",
+      "metric": "epoch",
+      "n_checkpoints": 11,
+      "regret@10": 0.020000000000000018,
+      "regret@30": 0.020000000000000018,
+      "run_id": "square_seed1",
+      "spearman": 0.7505897695110688,
+      "spearman_ci_hi": 0.9928655450368529,
+      "spearman_ci_lo": 0.17399910020216097
+    },
+    {
+      "label": "Training epoch (free baseline)",
+      "metric": "epoch",
+      "n_checkpoints": 33,
+      "regret@10": 0.006666666666666672,
+      "regret@30": 0.006666666666666672,
+      "run_id": "mean_over_runs",
+      "spearman": 0.8539965791788074
+    },
+    {
+      "label": "Training epoch (free baseline)",
+      "metric": "epoch",
+      "n_checkpoints": 11,
+      "pick_regret@1": 0.0,
+      "run_id": "can_seed1"
+    },
+    {
+      "label": "Training epoch (free baseline)",
+      "metric": "epoch",
+      "n_checkpoints": 11,
+      "pick_regret@1": 0.0,
+      "run_id": "can_seed2"
+    },
+    {
+      "label": "Training epoch (free baseline)",
+      "metric": "epoch",
+      "n_checkpoints": 11,
+      "pick_regret@1": 0.020000000000000018,
+      "run_id": "square_seed1"
+    },
+    {
+      "k@10": 2,
+      "k@30": 4,
+      "label": "K=10 instrumented sim success (privileged)",
+      "metric": "k_sim_success",
+      "n_checkpoints": 11,
+      "regret@10": 0.0,
+      "regret@30": 0.0,
+      "run_id": "can_seed1",
+      "spearman": 0.9406694839308274,
+      "spearman_ci_hi": 1.0,
+      "spearman_ci_lo": 0.7456011350793257
+    },
+    {
+      "k@10": 2,
+      "k@30": 4,
+      "label": "K=10 instrumented sim success (privileged)",
+      "metric": "k_sim_success",
+      "n_checkpoints": 11,
+      "regret@10": 0.040000000000000036,
+      "regret@30": 0.0,
+      "run_id": "can_seed2",
+      "spearman": 0.7050604936263458,
+      "spearman_ci_hi": 0.9755858940627684,
+      "spearman_ci_lo": 0.164677279084989
+    },
+    {
+      "k@10": 2,
+      "k@30": 4,
+      "label": "K=10 instrumented sim success (privileged)",
+      "metric": "k_sim_success",
+      "n_checkpoints": 11,
+      "regret@10": 0.09999999999999998,
+      "regret@30": 0.06000000000000005,
+      "run_id": "square_seed1",
+      "spearman": 0.17442615164630507,
+      "spearman_ci_hi": 0.8174642927828686,
+      "spearman_ci_lo": -0.6901854937472192
+    },
+    {
+      "label": "K=10 instrumented sim success (privileged)",
+      "metric": "k_sim_success",
+      "n_checkpoints": 33,
+      "regret@10": 0.04666666666666667,
+      "regret@30": 0.020000000000000018,
+      "run_id": "mean_over_runs",
+      "spearman": 0.6067187097344927
+    },
+    {
+      "label": "K=10 instrumented sim success (privileged)",
+      "metric": "k_sim_success",
+      "n_checkpoints": 11,
+      "pick_regret@1": 0.0,
+      "run_id": "can_seed1"
+    },
+    {
+      "label": "K=10 instrumented sim success (privileged)",
+      "metric": "k_sim_success",
+      "n_checkpoints": 11,
+      "pick_regret@1": 0.040000000000000036,
+      "run_id": "can_seed2"
+    },
+    {
+      "label": "K=10 instrumented sim success (privileged)",
+      "metric": "k_sim_success",
+      "n_checkpoints": 11,
+      "pick_regret@1": 0.21999999999999997,
+      "run_id": "square_seed1"
+    },
+    {
+      "k@10": 2,
+      "k@30": 4,
+      "label": "Action L1",
+      "metric": "val_action_l1",
+      "n_checkpoints": 11,
+      "regret@10": 0.0,
+      "regret@30": 0.0,
+      "run_id": "can_seed1",
+      "spearman": 0.731229244706678,
+      "spearman_ci_hi": 0.9539168950022007,
+      "spearman_ci_lo": 0.1938006332446037
+    },
+    {
+      "k@10": 2,
+      "k@30": 4,
+      "label": "Action L1",
+      "metric": "val_action_l1",
+      "n_checkpoints": 11,
+      "regret@10": 0.0,
+      "regret@30": 0.0,
+      "run_id": "can_seed2",
+      "spearman": 0.8674180613083575,
+      "spearman_ci_hi": 0.9906101206907556,
+      "spearman_ci_lo": 0.460519509578332
+    },
+    {
+      "k@10": 2,
+      "k@30": 4,
+      "label": "Action L1",
+      "metric": "val_action_l1",
+      "n_checkpoints": 11,
+      "regret@10": 0.020000000000000018,
+      "regret@30": 0.020000000000000018,
+      "run_id": "square_seed1",
+      "spearman": 0.59497969534414,
+      "spearman_ci_hi": 0.9975941141361391,
+      "spearman_ci_lo": -0.13485907547827955
+    },
+    {
+      "label": "Action L1",
+      "metric": "val_action_l1",
+      "n_checkpoints": 33,
+      "regret@10": 0.006666666666666672,
+      "regret@30": 0.006666666666666672,
+      "run_id": "mean_over_runs",
+      "spearman": 0.7312090004530586
+    },
+    {
+      "label": "Action L1",
+      "metric": "val_action_l1",
+      "n_checkpoints": 11,
+      "pick_regret@1": 0.020000000000000018,
+      "run_id": "can_seed1"
+    },
+    {
+      "label": "Action L1",
+      "metric": "val_action_l1",
+      "n_checkpoints": 11,
+      "pick_regret@1": 0.0,
+      "run_id": "can_seed2"
+    },
+    {
+      "label": "Action L1",
+      "metric": "val_action_l1",
+      "n_checkpoints": 11,
+      "pick_regret@1": 0.020000000000000018,
+      "run_id": "square_seed1"
+    },
+    {
+      "k@10": 2,
+      "k@30": 4,
+      "label": "Open-loop smoothness",
+      "metric": "open_loop_smoothness",
+      "n_checkpoints": 11,
+      "regret@10": 0.0,
+      "regret@30": 0.0,
+      "run_id": "can_seed1",
+      "spearman": 0.8220354907813635,
+      "spearman_ci_hi": 0.9764782658793721,
+      "spearman_ci_lo": 0.45753332541221203
+    },
+    {
+      "k@10": 2,
+      "k@30": 4,
+      "label": "Open-loop smoothness",
+      "metric": "open_loop_smoothness",
+      "n_checkpoints": 11,
+      "regret@10": 0.0,
+      "regret@30": 0.0,
+      "run_id": "can_seed2",
+      "spearman": 0.9606888205888261,
+      "spearman_ci_hi": 1.0,
+      "spearman_ci_lo": 0.8124299396572945
+    },
+    {
+      "k@10": 2,
+      "k@30": 4,
+      "label": "Open-loop smoothness",
+      "metric": "open_loop_smoothness",
+      "n_checkpoints": 11,
+      "regret@10": 0.020000000000000018,
+      "regret@30": 0.020000000000000018,
+      "run_id": "square_seed1",
+      "spearman": 0.7048221006384428,
+      "spearman_ci_hi": 0.9756654533819863,
+      "spearman_ci_lo": 0.12460979764840728
+    },
+    {
+      "label": "Open-loop smoothness",
+      "metric": "open_loop_smoothness",
+      "n_checkpoints": 33,
+      "regret@10": 0.006666666666666672,
+      "regret@30": 0.006666666666666672,
+      "run_id": "mean_over_runs",
+      "spearman": 0.8291821373362108
+    },
+    {
+      "label": "Open-loop smoothness",
+      "metric": "open_loop_smoothness",
+      "n_checkpoints": 11,
+      "pick_regret@1": 0.0,
+      "run_id": "can_seed1"
+    },
+    {
+      "label": "Open-loop smoothness",
+      "metric": "open_loop_smoothness",
+      "n_checkpoints": 11,
+      "pick_regret@1": 0.0,
+      "run_id": "can_seed2"
+    },
+    {
+      "label": "Open-loop smoothness",
+      "metric": "open_loop_smoothness",
+      "n_checkpoints": 11,
+      "pick_regret@1": 0.06000000000000005,
+      "run_id": "square_seed1"
+    },
+    {
+      "k@10": 2,
+      "k@30": 4,
+      "label": "PLV-1 smoothness",
+      "metric": "plv1_smoothness",
+      "n_checkpoints": 11,
+      "regret@10": 0.0,
+      "regret@30": 0.0,
+      "run_id": "can_seed1",
+      "spearman": 0.8029183863445876,
+      "spearman_ci_hi": 0.9789450103725609,
+      "spearman_ci_lo": 0.3497795163415052
+    },
+    {
+      "k@10": 2,
+      "k@30": 4,
+      "label": "PLV-1 smoothness",
+      "metric": "plv1_smoothness",
+      "n_checkpoints": 11,
+      "regret@10": 0.0,
+      "regret@30": 0.0,
+      "run_id": "can_seed2",
+      "spearman": 0.7648202260998421,
+      "spearman_ci_hi": 0.9853363152254149,
+      "spearman_ci_lo": 0.2660818328267255
+    },
+    {
+      "k@10": 2,
+      "k@30": 4,
+      "label": "PLV-1 smoothness",
+      "metric": "plv1_smoothness",
+      "n_checkpoints": 11,
+      "regret@10": 0.020000000000000018,
+      "regret@30": 0.020000000000000018,
+      "run_id": "square_seed1",
+      "spearman": 0.7505897695110688,
+      "spearman_ci_hi": 0.9928655450368529,
+      "spearman_ci_lo": 0.17399910020216097
+    },
+    {
+      "label": "PLV-1 smoothness",
+      "metric": "plv1_smoothness",
+      "n_checkpoints": 33,
+      "regret@10": 0.006666666666666672,
+      "regret@30": 0.006666666666666672,
+      "run_id": "mean_over_runs",
+      "spearman": 0.7727761273184995
+    },
+    {
+      "label": "PLV-1 smoothness",
+      "metric": "plv1_smoothness",
+      "n_checkpoints": 11,
+      "pick_regret@1": 0.0,
+      "run_id": "can_seed1"
+    },
+    {
+      "label": "PLV-1 smoothness",
+      "metric": "plv1_smoothness",
+      "n_checkpoints": 11,
+      "pick_regret@1": 0.0,
+      "run_id": "can_seed2"
+    },
+    {
+      "label": "PLV-1 smoothness",
+      "metric": "plv1_smoothness",
+      "n_checkpoints": 11,
+      "pick_regret@1": 0.020000000000000018,
+      "run_id": "square_seed1"
+    },
+    {
+      "k@10": 2,
+      "k@30": 4,
+      "label": "Replan overlap (model, H=16)",
+      "metric": "replan_overlap_h16",
+      "n_checkpoints": 11,
+      "regret@10": 0.0,
+      "regret@30": 0.0,
+      "run_id": "can_seed1",
+      "spearman": 0.8507111474365273,
+      "spearman_ci_hi": 0.9929659150299244,
+      "spearman_ci_lo": 0.4622390618622731
+    },
+    {
+      "k@10": 2,
+      "k@30": 4,
+      "label": "Replan overlap (model, H=16)",
+      "metric": "replan_overlap_h16",
+      "n_checkpoints": 11,
+      "regret@10": 0.0,
+      "regret@30": 0.0,
+      "run_id": "can_seed2",
+      "spearman": 0.9606888205888261,
+      "spearman_ci_hi": 1.0,
+      "spearman_ci_lo": 0.8124299396572945
+    },
+    {
+      "k@10": 2,
+      "k@30": 4,
+      "label": "Replan overlap (model, H=16)",
+      "metric": "replan_overlap_h16",
+      "n_checkpoints": 11,
+      "regret@10": 0.040000000000000036,
+      "regret@30": 0.020000000000000018,
+      "run_id": "square_seed1",
+      "spearman": 0.7231291681874932,
+      "spearman_ci_hi": 0.9832769629600082,
+      "spearman_ci_lo": 0.12292775416574972
+    },
+    {
+      "label": "Replan overlap (model, H=16)",
+      "metric": "replan_overlap_h16",
+      "n_checkpoints": 33,
+      "regret@10": 0.013333333333333345,
+      "regret@30": 0.006666666666666672,
+      "run_id": "mean_over_runs",
+      "spearman": 0.8448430454042821
+    },
+    {
+      "label": "Replan overlap (model, H=16)",
+      "metric": "replan_overlap_h16",
+      "n_checkpoints": 11,
+      "pick_regret@1": 0.0,
+      "run_id": "can_seed1"
+    },
+    {
+      "label": "Replan overlap (model, H=16)",
+      "metric": "replan_overlap_h16",
+      "n_checkpoints": 11,
+      "pick_regret@1": 0.0,
+      "run_id": "can_seed2"
+    },
+    {
+      "label": "Replan overlap (model, H=16)",
+      "metric": "replan_overlap_h16",
+      "n_checkpoints": 11,
+      "pick_regret@1": 0.040000000000000036,
+      "run_id": "square_seed1"
+    },
+    {
+      "k@10": 2,
+      "k@30": 4,
+      "label": "Replan overlap on real sim feedback (K=10)",
+      "metric": "sim_replan_overlap",
+      "n_checkpoints": 11,
+      "regret@10": 0.0,
+      "regret@30": 0.0,
+      "run_id": "can_seed1",
+      "spearman": 0.8507111474365273,
+      "spearman_ci_hi": 0.9929659150299244,
+      "spearman_ci_lo": 0.4622390618622731
+    },
+    {
+      "k@10": 2,
+      "k@30": 4,
+      "label": "Replan overlap on real sim feedback (K=10)",
+      "metric": "sim_replan_overlap",
+      "n_checkpoints": 11,
+      "regret@10": 0.0,
+      "regret@30": 0.0,
+      "run_id": "can_seed2",
+      "spearman": 0.9606888205888261,
+      "spearman_ci_hi": 1.0,
+      "spearman_ci_lo": 0.8124299396572945
+    },
+    {
+      "k@10": 2,
+      "k@30": 4,
+      "label": "Replan overlap on real sim feedback (K=10)",
+      "metric": "sim_replan_overlap",
+      "n_checkpoints": 11,
+      "regret@10": 0.020000000000000018,
+      "regret@30": 0.020000000000000018,
+      "run_id": "square_seed1",
+      "spearman": 0.7505897695110688,
+      "spearman_ci_hi": 0.9928655450368529,
+      "spearman_ci_lo": 0.17399910020216097
+    },
+    {
+      "label": "Replan overlap on real sim feedback (K=10)",
+      "metric": "sim_replan_overlap",
+      "n_checkpoints": 33,
+      "regret@10": 0.006666666666666672,
+      "regret@30": 0.006666666666666672,
+      "run_id": "mean_over_runs",
+      "spearman": 0.8539965791788074
+    },
+    {
+      "label": "Replan overlap on real sim feedback (K=10)",
+      "metric": "sim_replan_overlap",
+      "n_checkpoints": 11,
+      "pick_regret@1": 0.0,
+      "run_id": "can_seed1"
+    },
+    {
+      "label": "Replan overlap on real sim feedback (K=10)",
+      "metric": "sim_replan_overlap",
+      "n_checkpoints": 11,
+      "pick_regret@1": 0.0,
+      "run_id": "can_seed2"
+    },
+    {
+      "label": "Replan overlap on real sim feedback (K=10)",
+      "metric": "sim_replan_overlap",
+      "n_checkpoints": 11,
+      "pick_regret@1": 0.020000000000000018,
+      "run_id": "square_seed1"
+    },
+    {
+      "k@10": 2,
+      "k@30": 4,
+      "label": "VLM-judged success, K=10 (local)",
+      "metric": "vlm_success_local",
+      "n_checkpoints": 11,
+      "regret@10": 0.020000000000000018,
+      "regret@30": 0.0,
+      "run_id": "can_seed1",
+      "spearman": 0.8236455304310192,
+      "spearman_ci_hi": 0.9757506847466286,
+      "spearman_ci_lo": 0.5380275868489703
+    },
+    {
+      "k@10": 2,
+      "k@30": 4,
+      "label": "VLM-judged success, K=10 (local)",
+      "metric": "vlm_success_local",
+      "n_checkpoints": 11,
+      "regret@10": 0.040000000000000036,
+      "regret@30": 0.020000000000000018,
+      "run_id": "can_seed2",
+      "spearman": 0.8066707527543578,
+      "spearman_ci_hi": 0.9636241116594315,
+      "spearman_ci_lo": 0.5179697702828122
+    },
+    {
+      "k@10": 2,
+      "k@30": 4,
+      "label": "VLM-judged success, K=10 (local)",
+      "metric": "vlm_success_local",
+      "n_checkpoints": 11,
+      "regret@10": 0.09999999999999998,
+      "regret@30": 0.040000000000000036,
+      "run_id": "square_seed1",
+      "spearman": 0.32257791655406737,
+      "spearman_ci_hi": 0.8900138343862818,
+      "spearman_ci_lo": -0.3663889402858473
+    },
+    {
+      "label": "VLM-judged success, K=10 (local)",
+      "metric": "vlm_success_local",
+      "n_checkpoints": 33,
+      "regret@10": 0.053333333333333344,
+      "regret@30": 0.020000000000000018,
+      "run_id": "mean_over_runs",
+      "spearman": 0.6509647332464815
+    },
+    {
+      "label": "VLM-judged success, K=10 (local)",
+      "metric": "vlm_success_local",
+      "n_checkpoints": 11,
+      "pick_regret@1": 0.040000000000000036,
+      "run_id": "can_seed1"
+    },
+    {
+      "label": "VLM-judged success, K=10 (local)",
+      "metric": "vlm_success_local",
+      "n_checkpoints": 11,
+      "pick_regret@1": 0.09999999999999998,
+      "run_id": "can_seed2"
+    },
+    {
+      "label": "VLM-judged success, K=10 (local)",
+      "metric": "vlm_success_local",
+      "n_checkpoints": 11,
+      "pick_regret@1": 0.09999999999999998,
+      "run_id": "square_seed1"
+    },
+    {
+      "k@10": 2,
+      "k@30": 4,
+      "label": "VLM-judged success, K=10 (nebius)",
+      "metric": "vlm_success_nebius",
+      "n_checkpoints": 11,
+      "regret@10": 0.020000000000000018,
+      "regret@30": 0.0,
+      "run_id": "can_seed1",
+      "spearman": 0.8266904411127152,
+      "spearman_ci_hi": 1.0,
+      "spearman_ci_lo": 0.5380275868489703
+    },
+    {
+      "k@10": 2,
+      "k@30": 4,
+      "label": "VLM-judged success, K=10 (nebius)",
+      "metric": "vlm_success_nebius",
+      "n_checkpoints": 11,
+      "regret@10": 0.020000000000000018,
+      "regret@30": 0.0,
+      "run_id": "can_seed2",
+      "spearman": 0.8831219090364,
+      "spearman_ci_hi": 0.9907548092361399,
+      "spearman_ci_lo": 0.5808814964202557
+    },
+    {
+      "k@10": 2,
+      "k@30": 4,
+      "label": "VLM-judged success, K=10 (nebius)",
+      "metric": "vlm_success_nebius",
+      "n_checkpoints": 11,
+      "regret@10": 0.06000000000000005,
+      "regret@30": 0.040000000000000036,
+      "run_id": "square_seed1",
+      "spearman": 0.5179056418488678,
+      "spearman_ci_hi": 0.8991926135888781,
+      "spearman_ci_lo": -0.20883438705737273
+    },
+    {
+      "label": "VLM-judged success, K=10 (nebius)",
+      "metric": "vlm_success_nebius",
+      "n_checkpoints": 33,
+      "regret@10": 0.03333333333333336,
+      "regret@30": 0.013333333333333345,
+      "run_id": "mean_over_runs",
+      "spearman": 0.7425726639993276
+    },
+    {
+      "label": "VLM-judged success, K=10 (nebius)",
+      "metric": "vlm_success_nebius",
+      "n_checkpoints": 11,
+      "pick_regret@1": 0.040000000000000036,
+      "run_id": "can_seed1"
+    },
+    {
+      "label": "VLM-judged success, K=10 (nebius)",
+      "metric": "vlm_success_nebius",
+      "n_checkpoints": 11,
+      "pick_regret@1": 0.040000000000000036,
+      "run_id": "can_seed2"
+    },
+    {
+      "label": "VLM-judged success, K=10 (nebius)",
+      "metric": "vlm_success_nebius",
+      "n_checkpoints": 11,
+      "pick_regret@1": 0.09999999999999998,
+      "run_id": "square_seed1"
+    },
+    {
+      "k@10": 2,
+      "k@30": 4,
+      "label": "Hybrid rank-average(Action L1, VLM local)",
+      "metric": "hybrid_rankavg_l1_local",
+      "n_checkpoints": 11,
+      "regret@10": 0.0,
+      "regret@30": 0.0,
+      "run_id": "can_seed1",
+      "spearman": 0.7838012819078117,
+      "spearman_ci_hi": 0.9929327736346234,
+      "spearman_ci_lo": 0.19762339922512245
+    },
+    {
+      "k@10": 2,
+      "k@30": 4,
+      "label": "Hybrid rank-average(Action L1, VLM local)",
+      "metric": "hybrid_rankavg_l1_local",
+      "n_checkpoints": 11,
+      "regret@10": 0.0,
+      "regret@30": 0.0,
+      "run_id": "can_seed2",
+      "spearman": 0.9047263650205449,
+      "spearman_ci_hi": 0.9906974722292782,
+      "spearman_ci_lo": 0.5784349499048137
+    },
+    {
+      "k@10": 2,
+      "k@30": 4,
+      "label": "Hybrid rank-average(Action L1, VLM local)",
+      "metric": "hybrid_rankavg_l1_local",
+      "n_checkpoints": 11,
+      "regret@10": 0.020000000000000018,
+      "regret@30": 0.020000000000000018,
+      "run_id": "square_seed1",
+      "spearman": 0.5171746582606755,
+      "spearman_ci_hi": 0.9812723106434503,
+      "spearman_ci_lo": -0.23372932385149994
+    },
+    {
+      "label": "Hybrid rank-average(Action L1, VLM local)",
+      "metric": "hybrid_rankavg_l1_local",
+      "n_checkpoints": 33,
+      "regret@10": 0.006666666666666672,
+      "regret@30": 0.006666666666666672,
+      "run_id": "mean_over_runs",
+      "spearman": 0.7352341017296774
+    },
+    {
+      "label": "Hybrid rank-average(Action L1, VLM local)",
+      "metric": "hybrid_rankavg_l1_local",
+      "n_checkpoints": 11,
+      "pick_regret@1": 0.020000000000000018,
+      "run_id": "can_seed1"
+    },
+    {
+      "label": "Hybrid rank-average(Action L1, VLM local)",
+      "metric": "hybrid_rankavg_l1_local",
+      "n_checkpoints": 11,
+      "pick_regret@1": 0.0,
+      "run_id": "can_seed2"
+    },
+    {
+      "label": "Hybrid rank-average(Action L1, VLM local)",
+      "metric": "hybrid_rankavg_l1_local",
+      "n_checkpoints": 11,
+      "pick_regret@1": 0.020000000000000018,
+      "run_id": "square_seed1"
+    },
+    {
+      "k@10": 2,
+      "k@30": 4,
+      "label": "Two-stage: top-30% Action L1 -> VLM local",
+      "metric": "hybrid_twostage_l1_local",
+      "n_checkpoints": 11,
+      "regret@10": 0.0,
+      "regret@30": 0.0,
+      "run_id": "can_seed1",
+      "spearman": 0.459440874750862,
+      "spearman_ci_hi": 0.798460339805782,
+      "spearman_ci_lo": -0.0488985309074164
+    },
+    {
+      "k@10": 2,
+      "k@30": 4,
+      "label": "Two-stage: top-30% Action L1 -> VLM local",
+      "metric": "hybrid_twostage_l1_local",
+      "n_checkpoints": 11,
+      "regret@10": 0.0,
+      "regret@30": 0.0,
+      "run_id": "can_seed2",
+      "spearman": 0.8318129048053836,
+      "spearman_ci_hi": 0.8864052604279183,
+      "spearman_ci_lo": 0.5124083173889535
+    },
+    {
+      "k@10": 2,
+      "k@30": 4,
+      "label": "Two-stage: top-30% Action L1 -> VLM local",
+      "metric": "hybrid_twostage_l1_local",
+      "n_checkpoints": 11,
+      "regret@10": 0.020000000000000018,
+      "regret@30": 0.020000000000000018,
+      "run_id": "square_seed1",
+      "spearman": 0.33395562160121794,
+      "spearman_ci_hi": 0.833272431212297,
+      "spearman_ci_lo": -0.20294833717087093
+    },
+    {
+      "label": "Two-stage: top-30% Action L1 -> VLM local",
+      "metric": "hybrid_twostage_l1_local",
+      "n_checkpoints": 33,
+      "regret@10": 0.006666666666666672,
+      "regret@30": 0.006666666666666672,
+      "run_id": "mean_over_runs",
+      "spearman": 0.5417364670524879
+    },
+    {
+      "label": "Two-stage: top-30% Action L1 -> VLM local",
+      "metric": "hybrid_twostage_l1_local",
+      "n_checkpoints": 11,
+      "pick_regret@1": 0.020000000000000018,
+      "run_id": "can_seed1"
+    },
+    {
+      "label": "Two-stage: top-30% Action L1 -> VLM local",
+      "metric": "hybrid_twostage_l1_local",
+      "n_checkpoints": 11,
+      "pick_regret@1": 0.0,
+      "run_id": "can_seed2"
+    },
+    {
+      "label": "Two-stage: top-30% Action L1 -> VLM local",
+      "metric": "hybrid_twostage_l1_local",
+      "n_checkpoints": 11,
+      "pick_regret@1": 0.09999999999999998,
+      "run_id": "square_seed1"
+    },
+    {
+      "k@10": 2,
+      "k@30": 4,
+      "label": "Hybrid rank-average(Action L1, VLM nebius)",
+      "metric": "hybrid_rankavg_l1_nebius",
+      "n_checkpoints": 11,
+      "regret@10": 0.0,
+      "regret@30": 0.0,
+      "run_id": "can_seed1",
+      "spearman": 0.7838012819078117,
+      "spearman_ci_hi": 0.9929327736346234,
+      "spearman_ci_lo": 0.19762339922512245
+    },
+    {
+      "k@10": 2,
+      "k@30": 4,
+      "label": "Hybrid rank-average(Action L1, VLM nebius)",
+      "metric": "hybrid_rankavg_l1_nebius",
+      "n_checkpoints": 11,
+      "regret@10": 0.0,
+      "regret@30": 0.0,
+      "run_id": "can_seed2",
+      "spearman": 0.9466982066967559,
+      "spearman_ci_hi": 0.9930312739844155,
+      "spearman_ci_lo": 0.7466251722808791
+    },
+    {
+      "k@10": 2,
+      "k@30": 4,
+      "label": "Hybrid rank-average(Action L1, VLM nebius)",
+      "metric": "hybrid_rankavg_l1_nebius",
+      "n_checkpoints": 11,
+      "regret@10": 0.020000000000000018,
+      "regret@30": 0.020000000000000018,
+      "run_id": "square_seed1",
+      "spearman": 0.550464507063829,
+      "spearman_ci_hi": 0.9555370254931016,
+      "spearman_ci_lo": -0.1542713598018952
+    },
+    {
+      "label": "Hybrid rank-average(Action L1, VLM nebius)",
+      "metric": "hybrid_rankavg_l1_nebius",
+      "n_checkpoints": 33,
+      "regret@10": 0.006666666666666672,
+      "regret@30": 0.006666666666666672,
+      "run_id": "mean_over_runs",
+      "spearman": 0.7603213318894655
+    },
+    {
+      "label": "Hybrid rank-average(Action L1, VLM nebius)",
+      "metric": "hybrid_rankavg_l1_nebius",
+      "n_checkpoints": 11,
+      "pick_regret@1": 0.020000000000000018,
+      "run_id": "can_seed1"
+    },
+    {
+      "label": "Hybrid rank-average(Action L1, VLM nebius)",
+      "metric": "hybrid_rankavg_l1_nebius",
+      "n_checkpoints": 11,
+      "pick_regret@1": 0.0,
+      "run_id": "can_seed2"
+    },
+    {
+      "label": "Hybrid rank-average(Action L1, VLM nebius)",
+      "metric": "hybrid_rankavg_l1_nebius",
+      "n_checkpoints": 11,
+      "pick_regret@1": 0.020000000000000018,
+      "run_id": "square_seed1"
+    },
+    {
+      "k@10": 2,
+      "k@30": 4,
+      "label": "Two-stage: top-30% Action L1 -> VLM nebius",
+      "metric": "hybrid_twostage_l1_nebius",
+      "n_checkpoints": 11,
+      "regret@10": 0.0,
+      "regret@30": 0.0,
+      "run_id": "can_seed1",
+      "spearman": 0.459440874750862,
+      "spearman_ci_hi": 0.798460339805782,
+      "spearman_ci_lo": -0.0488985309074164
+    },
+    {
+      "k@10": 2,
+      "k@30": 4,
+      "label": "Two-stage: top-30% Action L1 -> VLM nebius",
+      "metric": "hybrid_twostage_l1_nebius",
+      "n_checkpoints": 11,
+      "regret@10": 0.0,
+      "regret@30": 0.0,
+      "run_id": "can_seed2",
+      "spearman": 0.8318129048053836,
+      "spearman_ci_hi": 0.8864052604279183,
+      "spearman_ci_lo": 0.5124083173889535
+    },
+    {
+      "k@10": 2,
+      "k@30": 4,
+      "label": "Two-stage: top-30% Action L1 -> VLM nebius",
+      "metric": "hybrid_twostage_l1_nebius",
+      "n_checkpoints": 11,
+      "regret@10": 0.020000000000000018,
+      "regret@30": 0.020000000000000018,
+      "run_id": "square_seed1",
+      "spearman": 0.33395562160121794,
+      "spearman_ci_hi": 0.833272431212297,
+      "spearman_ci_lo": -0.20294833717087093
+    },
+    {
+      "label": "Two-stage: top-30% Action L1 -> VLM nebius",
+      "metric": "hybrid_twostage_l1_nebius",
+      "n_checkpoints": 33,
+      "regret@10": 0.006666666666666672,
+      "regret@30": 0.006666666666666672,
+      "run_id": "mean_over_runs",
+      "spearman": 0.5417364670524879
+    },
+    {
+      "label": "Two-stage: top-30% Action L1 -> VLM nebius",
+      "metric": "hybrid_twostage_l1_nebius",
+      "n_checkpoints": 11,
+      "pick_regret@1": 0.020000000000000018,
+      "run_id": "can_seed1"
+    },
+    {
+      "label": "Two-stage: top-30% Action L1 -> VLM nebius",
+      "metric": "hybrid_twostage_l1_nebius",
+      "n_checkpoints": 11,
+      "pick_regret@1": 0.0,
+      "run_id": "can_seed2"
+    },
+    {
+      "label": "Two-stage: top-30% Action L1 -> VLM nebius",
+      "metric": "hybrid_twostage_l1_nebius",
+      "n_checkpoints": 11,
+      "pick_regret@1": 0.09999999999999998,
+      "run_id": "square_seed1"
+    }
+  ],
+  "runs": [
+    "can_seed1",
+    "can_seed2",
+    "square_seed1"
+  ]
+}

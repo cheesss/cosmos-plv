@@ -1,0 +1,27 @@
+{
+ "name": "x1_adaptive_budget_verification_cliplen",
+ "exploratory": true,
+ "prompt_reproduction_sha_ok": true,
+ "n_new_nebius_calls_this_invocation": 15,
+ "n_records": 30,
+ "max_calls": 30,
+ "selection": "all eval failures with truth_failure_type=='dropped' (current labels) + 13 successes drawn with default_rng(20261029) from the sorted success list",
+ "summary": {
+  "dropped_failure_no_duration": {
+   "n_planned": 17,
+   "n_scored": 17,
+   "n_unparsed_or_error": 0,
+   "judged_success_orig_prompt_with_duration": 4,
+   "judged_success_probe_no_duration": 4,
+   "flips": []
+  },
+  "success_padded_no_duration": {
+   "n_planned": 13,
+   "n_scored": 13,
+   "n_unparsed_or_error": 0,
+   "judged_success_orig_prompt_with_duration": 12,
+   "judged_success_probe_no_duration": 12,
+   "flips": []
+  }
+ }
+}

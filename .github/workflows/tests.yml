@@ -1,0 +1,30 @@
+# CPU-only unit tests for the Cosmos-PLV package (tests/hackathon). No GPU, model
+# weights, simulator, dataset or Nebius key is needed: the Nebius client tests use a
+# fake OpenAI client, and test_dataset.py skips (h5py and the robomimic files are absent).
+name: tests
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  hackathon-unit-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      # pins match requirements-cosmos.txt (Environment B); omegaconf matches Environment A
+      # and un-skips test_checkpoint_adapter.py. torch/transformers are not needed.
+      - name: Install minimal test dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install numpy==2.4.6 pandas==3.1.0 scipy==1.17.1 openai==3.40.0 omegaconf==2.3.0 pytest==9.2.0
+      - name: pytest tests/hackathon
+        run: python -m pytest -q -p no:cacheprovider -rs tests/hackathon

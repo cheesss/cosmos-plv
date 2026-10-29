@@ -1,0 +1,85 @@
+{
+  "generated_utc": "2026-10-28T22:24:10+00:00",
+  "git_commit": "b1a484b8c5198398cdfd04c65e097a71c8709148",
+  "gpu_utilization": "not recorded per run; 1x RTX 3090 shared by 3 concurrent runs and rollout jobs",
+  "n_checkpoints": 93,
+  "pool": "data/outputs/hackathon_pool",
+  "runs": [
+    {
+      "config": {
+        "abs_action": true,
+        "dataset_type": "ph",
+        "horizon": 16,
+        "n_action_steps": 8,
+        "n_latency_steps": 0,
+        "n_obs_steps": 2,
+        "n_test": 50,
+        "num_epochs": 201,
+        "num_inference_steps": 100,
+        "policy_target": "diffusion_policy.policy.diffusion_unet_lowdim_policy.DiffusionUnetLowdimPolicy",
+        "seed": 1,
+        "task_name": "can",
+        "test_start_seed": 100000
+      },
+      "finished_utc": "2026-10-28T21:40:42+00:00",
+      "n_parameters": 65883660.0,
+      "run_dir": "data/outputs/hackathon_pool/paper_dp_can_abs_ph_seed1_e200_s200_r5_inf100",
+      "run_name": "paper_dp_can_abs_ph_seed1_e200_s200_r5_inf100",
+      "seed": 1,
+      "started_utc": "2026-10-28T17:47:45+00:00",
+      "task": "can",
+      "wall_hours": 3.882
+    },
+    {
+      "config": {
+        "abs_action": true,
+        "dataset_type": "ph",
+        "horizon": 16,
+        "n_action_steps": 8,
+        "n_latency_steps": 0,
+        "n_obs_steps": 2,
+        "n_test": 50,
+        "num_epochs": 201,
+        "num_inference_steps": 100,
+        "policy_target": "diffusion_policy.policy.diffusion_unet_lowdim_policy.DiffusionUnetLowdimPolicy",
+        "seed": 2,
+        "task_name": "can",
+        "test_start_seed": 100000
+      },
+      "finished_utc": "2026-10-28T20:25:07+00:00",
+      "n_parameters": 65883660.0,
+      "run_dir": "data/outputs/hackathon_pool/paper_dp_can_abs_ph_seed2_e200_s200_r10_inf100",
+      "run_name": "paper_dp_can_abs_ph_seed2_e200_s200_r10_inf100",
+      "seed": 2,
+      "started_utc": "2026-10-28T17:47:45+00:00",
+      "task": "can",
+      "wall_hours": 2.623
+    },
+    {
+      "config": {
+        "abs_action": true,
+        "dataset_type": "ph",
+        "horizon": 16,
+        "n_action_steps": 8,
+        "n_latency_steps": 0,
+        "n_obs_steps": 2,
+        "n_test": 50,
+        "num_epochs": 301,
+        "num_inference_steps": 100,
+        "policy_target": "diffusion_policy.policy.diffusion_unet_lowdim_policy.DiffusionUnetLowdimPolicy",
+        "seed": 1,
+        "task_name": "square",
+        "test_start_seed": 100000
+      },
+      "finished_utc": "2026-10-28T21:48:17+00:00",
+      "n_parameters": 65883660.0,
+      "run_dir": "data/outputs/hackathon_pool/paper_dp_square_abs_ph_seed1_e300_s200_r10_inf100",
+      "run_name": "paper_dp_square_abs_ph_seed1_e300_s200_r10_inf100",
+      "seed": 1,
+      "started_utc": "2026-10-28T17:47:45+00:00",
+      "task": "square",
+      "wall_hours": 4.009
+    }
+  ],
+  "validation_problems": []
+}

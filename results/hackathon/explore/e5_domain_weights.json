@@ -1,0 +1,337 @@
+{
+  "model": "nvidia/Cosmos3-Edge@344d602b",
+  "trained_slots": [
+    1,
+    2,
+    3,
+    6,
+    7,
+    8,
+    12,
+    13,
+    15,
+    20
+  ],
+  "slots": [
+    {
+      "slot": 0,
+      "name": "no_action",
+      "bias_in_nonzero": 0,
+      "bias_out_nonzero": 0,
+      "out_cols_norm_gt_0.8": 0,
+      "max_abs_w_in": 0.2265625,
+      "max_abs_w_out": 0.040283203125,
+      "trained": false
+    },
+    {
+      "slot": 1,
+      "name": "av",
+      "bias_in_nonzero": 2048,
+      "bias_out_nonzero": 9,
+      "out_cols_norm_gt_0.8": 9,
+      "max_abs_w_in": 0.34765625,
+      "max_abs_w_out": 0.11669921875,
+      "trained": true
+    },
+    {
+      "slot": 2,
+      "name": "camera_pose",
+      "bias_in_nonzero": 2048,
+      "bias_out_nonzero": 9,
+      "out_cols_norm_gt_0.8": 9,
+      "max_abs_w_in": 0.92578125,
+      "max_abs_w_out": 0.10498046875,
+      "trained": true
+    },
+    {
+      "slot": 3,
+      "name": "hand_pose",
+      "bias_in_nonzero": 2048,
+      "bias_out_nonzero": 57,
+      "out_cols_norm_gt_0.8": 57,
+      "max_abs_w_in": 0.63671875,
+      "max_abs_w_out": 0.1875,
+      "trained": true
+    },
+    {
+      "slot": 4,
+      "name": "pusht",
+      "bias_in_nonzero": 0,
+      "bias_out_nonzero": 0,
+      "out_cols_norm_gt_0.8": 0,
+      "max_abs_w_in": 0.2265625,
+      "max_abs_w_out": 0.040283203125,
+      "trained": false
+    },
+    {
+      "slot": 5,
+      "name": "libero",
+      "bias_in_nonzero": 0,
+      "bias_out_nonzero": 0,
+      "out_cols_norm_gt_0.8": 0,
+      "max_abs_w_in": 0.2265625,
+      "max_abs_w_out": 0.040283203125,
+      "trained": false
+    },
+    {
+      "slot": 6,
+      "name": "umi",
+      "bias_in_nonzero": 2048,
+      "bias_out_nonzero": 10,
+      "out_cols_norm_gt_0.8": 10,
+      "max_abs_w_in": 0.345703125,
+      "max_abs_w_out": 0.17578125,
+      "trained": true
+    },
+    {
+      "slot": 7,
+      "name": "bridge_orig_lerobot",
+      "bias_in_nonzero": 2048,
+      "bias_out_nonzero": 10,
+      "out_cols_norm_gt_0.8": 10,
+      "max_abs_w_in": 0.3203125,
+      "max_abs_w_out": 0.1591796875,
+      "trained": true
+    },
+    {
+      "slot": 8,
+      "name": "droid_lerobot / robomind-franka",
+      "bias_in_nonzero": 2048,
+      "bias_out_nonzero": 10,
+      "out_cols_norm_gt_0.8": 10,
+      "max_abs_w_in": 0.349609375,
+      "max_abs_w_out": 0.1279296875,
+      "trained": true
+    },
+    {
+      "slot": 9,
+      "name": "galbot",
+      "bias_in_nonzero": 0,
+      "bias_out_nonzero": 0,
+      "out_cols_norm_gt_0.8": 0,
+      "max_abs_w_in": 0.2265625,
+      "max_abs_w_out": 0.040283203125,
+      "trained": false
+    },
+    {
+      "slot": 10,
+      "name": "",
+      "bias_in_nonzero": 0,
+      "bias_out_nonzero": 0,
+      "out_cols_norm_gt_0.8": 0,
+      "max_abs_w_in": 0.2265625,
+      "max_abs_w_out": 0.040283203125,
+      "trained": false
+    },
+    {
+      "slot": 11,
+      "name": "",
+      "bias_in_nonzero": 0,
+      "bias_out_nonzero": 0,
+      "out_cols_norm_gt_0.8": 0,
+      "max_abs_w_in": 0.2265625,
+      "max_abs_w_out": 0.040283203125,
+      "trained": false
+    },
+    {
+      "slot": 12,
+      "name": "robomind-franka-dual",
+      "bias_in_nonzero": 2048,
+      "bias_out_nonzero": 20,
+      "out_cols_norm_gt_0.8": 20,
+      "max_abs_w_in": 0.34375,
+      "max_abs_w_out": 0.201171875,
+      "trained": true
+    },
+    {
+      "slot": 13,
+      "name": "robomind-ur",
+      "bias_in_nonzero": 2048,
+      "bias_out_nonzero": 10,
+      "out_cols_norm_gt_0.8": 10,
+      "max_abs_w_in": 0.291015625,
+      "max_abs_w_out": 0.1640625,
+      "trained": true
+    },
+    {
+      "slot": 14,
+      "name": "",
+      "bias_in_nonzero": 0,
+      "bias_out_nonzero": 0,
+      "out_cols_norm_gt_0.8": 0,
+      "max_abs_w_in": 0.2265625,
+      "max_abs_w_out": 0.040283203125,
+      "trained": false
+    },
+    {
+      "slot": 15,
+      "name": "agibotworld",
+      "bias_in_nonzero": 2048,
+      "bias_out_nonzero": 29,
+      "out_cols_norm_gt_0.8": 29,
+      "max_abs_w_in": 0.333984375,
+      "max_abs_w_out": 0.1689453125,
+      "trained": true
+    },
+    {
+      "slot": 16,
+      "name": "",
+      "bias_in_nonzero": 0,
+      "bias_out_nonzero": 0,
+      "out_cols_norm_gt_0.8": 0,
+      "max_abs_w_in": 0.2265625,
+      "max_abs_w_out": 0.040283203125,
+      "trained": false
+    },
+    {
+      "slot": 17,
+      "name": "",
+      "bias_in_nonzero": 0,
+      "bias_out_nonzero": 0,
+      "out_cols_norm_gt_0.8": 0,
+      "max_abs_w_in": 0.2265625,
+      "max_abs_w_out": 0.040283203125,
+      "trained": false
+    },
+    {
+      "slot": 18,
+      "name": "",
+      "bias_in_nonzero": 0,
+      "bias_out_nonzero": 0,
+      "out_cols_norm_gt_0.8": 0,
+      "max_abs_w_in": 0.2265625,
+      "max_abs_w_out": 0.040283203125,
+      "trained": false
+    },
+    {
+      "slot": 19,
+      "name": "",
+      "bias_in_nonzero": 0,
+      "bias_out_nonzero": 0,
+      "out_cols_norm_gt_0.8": 0,
+      "max_abs_w_in": 0.2265625,
+      "max_abs_w_out": 0.040283203125,
+      "trained": false
+    },
+    {
+      "slot": 20,
+      "name": "fractal",
+      "bias_in_nonzero": 2048,
+      "bias_out_nonzero": 10,
+      "out_cols_norm_gt_0.8": 10,
+      "max_abs_w_in": 0.314453125,
+      "max_abs_w_out": 0.1435546875,
+      "trained": true
+    },
+    {
+      "slot": 21,
+      "name": "",
+      "bias_in_nonzero": 0,
+      "bias_out_nonzero": 0,
+      "out_cols_norm_gt_0.8": 0,
+      "max_abs_w_in": 0.2265625,
+      "max_abs_w_out": 0.040283203125,
+      "trained": false
+    },
+    {
+      "slot": 22,
+      "name": "",
+      "bias_in_nonzero": 0,
+      "bias_out_nonzero": 0,
+      "out_cols_norm_gt_0.8": 0,
+      "max_abs_w_in": 0.2265625,
+      "max_abs_w_out": 0.040283203125,
+      "trained": false
+    },
+    {
+      "slot": 23,
+      "name": "",
+      "bias_in_nonzero": 0,
+      "bias_out_nonzero": 0,
+      "out_cols_norm_gt_0.8": 0,
+      "max_abs_w_in": 0.2265625,
+      "max_abs_w_out": 0.040283203125,
+      "trained": false
+    },
+    {
+      "slot": 24,
+      "name": "",
+      "bias_in_nonzero": 0,
+      "bias_out_nonzero": 0,
+      "out_cols_norm_gt_0.8": 0,
+      "max_abs_w_in": 0.2265625,
+      "max_abs_w_out": 0.040283203125,
+      "trained": false
+    },
+    {
+      "slot": 25,
+      "name": "",
+      "bias_in_nonzero": 0,
+      "bias_out_nonzero": 0,
+      "out_cols_norm_gt_0.8": 0,
+      "max_abs_w_in": 0.2265625,
+      "max_abs_w_out": 0.040283203125,
+      "trained": false
+    },
+    {
+      "slot": 26,
+      "name": "",
+      "bias_in_nonzero": 0,
+      "bias_out_nonzero": 0,
+      "out_cols_norm_gt_0.8": 0,
+      "max_abs_w_in": 0.2265625,
+      "max_abs_w_out": 0.040283203125,
+      "trained": false
+    },
+    {
+      "slot": 27,
+      "name": "",
+      "bias_in_nonzero": 0,
+      "bias_out_nonzero": 0,
+      "out_cols_norm_gt_0.8": 0,
+      "max_abs_w_in": 0.2265625,
+      "max_abs_w_out": 0.040283203125,
+      "trained": false
+    },
+    {
+      "slot": 28,
+      "name": "",
+      "bias_in_nonzero": 0,
+      "bias_out_nonzero": 0,
+      "out_cols_norm_gt_0.8": 0,
+      "max_abs_w_in": 0.2265625,
+      "max_abs_w_out": 0.040283203125,
+      "trained": false
+    },
+    {
+      "slot": 29,
+      "name": "",
+      "bias_in_nonzero": 0,
+      "bias_out_nonzero": 0,
+      "out_cols_norm_gt_0.8": 0,
+      "max_abs_w_in": 0.2265625,
+      "max_abs_w_out": 0.040283203125,
+      "trained": false
+    },
+    {
+      "slot": 30,
+      "name": "robocasa (framework only)",
+      "bias_in_nonzero": 0,
+      "bias_out_nonzero": 0,
+      "out_cols_norm_gt_0.8": 0,
+      "max_abs_w_in": 0.2265625,
+      "max_abs_w_out": 0.040283203125,
+      "trained": false
+    },
+    {
+      "slot": 31,
+      "name": "",
+      "bias_in_nonzero": 0,
+      "bias_out_nonzero": 0,
+      "out_cols_norm_gt_0.8": 0,
+      "max_abs_w_in": 0.2265625,
+      "max_abs_w_out": 0.040283203125,
+      "trained": false
+    }
+  ]
+}

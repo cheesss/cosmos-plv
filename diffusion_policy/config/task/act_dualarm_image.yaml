@@ -1,0 +1,33 @@
+name: act_dualarm_image
+
+image_shape: [3, 240, 320]
+dataset_path: data/act_dualarm_dp.hdf5
+
+shape_meta: &shape_meta
+  obs:
+    cam_front:
+      shape: [3, 240, 320]
+      type: rgb
+    cam_head:
+      shape: [3, 240, 320]
+      type: rgb
+    qpos:
+      shape: [12]
+      type: low_dim
+  action:
+    shape: [12]
+
+env_runner:
+  _target_: diffusion_policy.env_runner.real_pusht_image_runner.RealPushTImageRunner
+
+dataset:
+  _target_: diffusion_policy.dataset.act_replay_image_dataset.ACTReplayImageDataset
+  shape_meta: *shape_meta
+  dataset_path: ${task.dataset_path}
+  horizon: ${horizon}
+  pad_before: ${eval:'${n_obs_steps}-1'}
+  pad_after: ${eval:'${n_action_steps}-1'}
+  n_obs_steps: ${dataset_obs_steps}
+  use_cache: False
+  seed: 42
+  val_ratio: 0.1

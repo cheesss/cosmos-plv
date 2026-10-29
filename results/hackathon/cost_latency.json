@@ -1,0 +1,42 @@
+{
+  "generated_utc": "2026-10-29T02:09:57+00:00",
+  "hardware": "1x RTX 3090 24 GB shared by up to 3 training runs and 3 rollout recorders (timings are upper bounds)",
+  "nebius_tokens": {
+    "completion": 96224,
+    "prompt": 2593864
+  },
+  "nebius_usd_estimate": 0.8648,
+  "notes": "cheap-metric times are whole-pool wall-clock divided by the number of checkpoints, the three scripts ran concurrently on the same GPU.",
+  "per_checkpoint_seconds": {
+    "10 recorded rollouts with video (robosuite)": 146.6,
+    "Action L1 + PLV-1 (original script, incl. f_psi training)": 63.7,
+    "Cosmos3-Edge 8-keyframe track, 10 episodes (local)": 144.0,
+    "Cosmos3-Edge last-frame judge, 10 episodes (local)": 20.8,
+    "Nemotron VL on Nebius, 10 episodes": 30.9,
+    "Open-loop smoothness (original script)": 38.4,
+    "Replanning, 2 horizons x 4 seeds (original script)": 55.5
+  },
+  "per_episode_latency_s": {
+    "Cosmos3-Edge 8 keyframes (local GPU)": {
+      "mean": 14.403778787878789,
+      "n": 330,
+      "p10": 12.0911,
+      "p50": 14.154,
+      "p90": 17.0184
+    },
+    "Cosmos3-Edge last frame (local GPU)": {
+      "mean": 2.0812060606060605,
+      "n": 330,
+      "p10": 1.6616,
+      "p50": 2.0515,
+      "p90": 2.5301
+    },
+    "Nemotron-3.5-Super-VL (video, Nebius)": {
+      "mean": 3.088348484848485,
+      "n": 330,
+      "p10": 2.6729,
+      "p50": 2.919,
+      "p90": 3.9105000000000003
+    }
+  }
+}

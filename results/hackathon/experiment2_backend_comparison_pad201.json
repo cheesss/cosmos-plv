@@ -1,0 +1,336 @@
+{
+  "files": {
+    "local_success": "data/outputs/hackathon_cosmos/eval_local_v6.jsonl",
+    "local_failure": "data/outputs/hackathon_cosmos/eval_local_v7.jsonl",
+    "nebius": "data/outputs/hackathon_cosmos/eval_nebius_v2_pad201.jsonl"
+  },
+  "overall": {
+    "local_success": [
+      {
+        "backend": "local",
+        "variant": "v6_perception_last",
+        "reasoning": false,
+        "episodes": 330,
+        "scored": 330,
+        "unparsed": 0,
+        "success_acc": 0.918,
+        "success_acc_ci95": [
+          0.884,
+          0.943
+        ],
+        "tp": 257,
+        "tn": 46,
+        "fp": 21,
+        "fn": 6,
+        "balanced_acc": 0.832,
+        "balanced_acc_all": 0.832,
+        "success_acc_all": 0.918,
+        "failure_type_acc": null,
+        "failure_type_acc_on_failures": null,
+        "n_failures_scored": 0,
+        "mean_latency_s": 2.08,
+        "tasks": [
+          "can",
+          "square"
+        ]
+      }
+    ],
+    "local_failure": [
+      {
+        "backend": "local",
+        "variant": "v7_perception_track",
+        "reasoning": false,
+        "episodes": 330,
+        "scored": 330,
+        "unparsed": 0,
+        "success_acc": 0.918,
+        "success_acc_ci95": [
+          0.884,
+          0.943
+        ],
+        "tp": 257,
+        "tn": 46,
+        "fp": 21,
+        "fn": 6,
+        "balanced_acc": 0.832,
+        "balanced_acc_all": 0.832,
+        "success_acc_all": 0.918,
+        "failure_type_acc": 0.821,
+        "failure_type_acc_on_failures": 0.209,
+        "n_failures_scored": 67,
+        "mean_latency_s": 14.4,
+        "tasks": [
+          "can",
+          "square"
+        ]
+      }
+    ],
+    "nebius": [
+      {
+        "backend": "nebius",
+        "variant": "v2_evidence_first_pad201",
+        "reasoning": false,
+        "episodes": 330,
+        "scored": 330,
+        "unparsed": 0,
+        "success_acc": 0.961,
+        "success_acc_ci95": [
+          0.934,
+          0.977
+        ],
+        "tp": 262,
+        "tn": 55,
+        "fp": 12,
+        "fn": 1,
+        "balanced_acc": 0.909,
+        "balanced_acc_all": 0.909,
+        "success_acc_all": 0.961,
+        "failure_type_acc": 0.867,
+        "failure_type_acc_on_failures": 0.358,
+        "n_failures_scored": 67,
+        "mean_latency_s": 3.58,
+        "tasks": [
+          "can",
+          "square"
+        ]
+      }
+    ]
+  },
+  "by_task": {
+    "local_success": {
+      "can": [
+        {
+          "backend": "local",
+          "variant": "v6_perception_last",
+          "reasoning": false,
+          "episodes": 220,
+          "scored": 220,
+          "unparsed": 0,
+          "success_acc": 0.964,
+          "success_acc_ci95": [
+            0.93,
+            0.981
+          ],
+          "tp": 182,
+          "tn": 30,
+          "fp": 8,
+          "fn": 0,
+          "balanced_acc": 0.895,
+          "balanced_acc_all": 0.895,
+          "success_acc_all": 0.964,
+          "failure_type_acc": null,
+          "failure_type_acc_on_failures": null,
+          "n_failures_scored": 0,
+          "mean_latency_s": 2.13,
+          "tasks": [
+            "can"
+          ]
+        }
+      ],
+      "square": [
+        {
+          "backend": "local",
+          "variant": "v6_perception_last",
+          "reasoning": false,
+          "episodes": 110,
+          "scored": 110,
+          "unparsed": 0,
+          "success_acc": 0.827,
+          "success_acc_ci95": [
+            0.746,
+            0.887
+          ],
+          "tp": 75,
+          "tn": 16,
+          "fp": 13,
+          "fn": 6,
+          "balanced_acc": 0.739,
+          "balanced_acc_all": 0.739,
+          "success_acc_all": 0.827,
+          "failure_type_acc": null,
+          "failure_type_acc_on_failures": null,
+          "n_failures_scored": 0,
+          "mean_latency_s": 1.99,
+          "tasks": [
+            "square"
+          ]
+        }
+      ]
+    },
+    "local_failure": {
+      "can": [
+        {
+          "backend": "local",
+          "variant": "v7_perception_track",
+          "reasoning": false,
+          "episodes": 220,
+          "scored": 220,
+          "unparsed": 0,
+          "success_acc": 0.964,
+          "success_acc_ci95": [
+            0.93,
+            0.981
+          ],
+          "tp": 182,
+          "tn": 30,
+          "fp": 8,
+          "fn": 0,
+          "balanced_acc": 0.895,
+          "balanced_acc_all": 0.895,
+          "success_acc_all": 0.964,
+          "failure_type_acc": 0.859,
+          "failure_type_acc_on_failures": 0.184,
+          "n_failures_scored": 38,
+          "mean_latency_s": 14.53,
+          "tasks": [
+            "can"
+          ]
+        }
+      ],
+      "square": [
+        {
+          "backend": "local",
+          "variant": "v7_perception_track",
+          "reasoning": false,
+          "episodes": 110,
+          "scored": 110,
+          "unparsed": 0,
+          "success_acc": 0.827,
+          "success_acc_ci95": [
+            0.746,
+            0.887
+          ],
+          "tp": 75,
+          "tn": 16,
+          "fp": 13,
+          "fn": 6,
+          "balanced_acc": 0.739,
+          "balanced_acc_all": 0.739,
+          "success_acc_all": 0.827,
+          "failure_type_acc": 0.745,
+          "failure_type_acc_on_failures": 0.241,
+          "n_failures_scored": 29,
+          "mean_latency_s": 14.16,
+          "tasks": [
+            "square"
+          ]
+        }
+      ]
+    },
+    "nebius": {
+      "can": [
+        {
+          "backend": "nebius",
+          "variant": "v2_evidence_first_pad201",
+          "reasoning": false,
+          "episodes": 220,
+          "scored": 220,
+          "unparsed": 0,
+          "success_acc": 0.973,
+          "success_acc_ci95": [
+            0.942,
+            0.987
+          ],
+          "tp": 182,
+          "tn": 32,
+          "fp": 6,
+          "fn": 0,
+          "balanced_acc": 0.921,
+          "balanced_acc_all": 0.921,
+          "success_acc_all": 0.973,
+          "failure_type_acc": 0.927,
+          "failure_type_acc_on_failures": 0.579,
+          "n_failures_scored": 38,
+          "mean_latency_s": 3.53,
+          "tasks": [
+            "can"
+          ]
+        }
+      ],
+      "square": [
+        {
+          "backend": "nebius",
+          "variant": "v2_evidence_first_pad201",
+          "reasoning": false,
+          "episodes": 110,
+          "scored": 110,
+          "unparsed": 0,
+          "success_acc": 0.936,
+          "success_acc_ci95": [
+            0.874,
+            0.969
+          ],
+          "tp": 80,
+          "tn": 23,
+          "fp": 6,
+          "fn": 1,
+          "balanced_acc": 0.89,
+          "balanced_acc_all": 0.89,
+          "success_acc_all": 0.936,
+          "failure_type_acc": 0.745,
+          "failure_type_acc_on_failures": 0.069,
+          "n_failures_scored": 29,
+          "mean_latency_s": 3.68,
+          "tasks": [
+            "square"
+          ]
+        }
+      ]
+    }
+  },
+  "failure_type_confusion": {
+    "local_failure": {
+      "none": {
+        "none": 257,
+        "dropped": 6
+      },
+      "no_grasp": {
+        "dropped": 22,
+        "not_placed": 6,
+        "no_grasp": 6,
+        "none": 4
+      },
+      "dropped": {
+        "none": 16,
+        "dropped": 8,
+        "not_placed": 3,
+        "no_grasp": 1
+      },
+      "not_placed": {
+        "none": 1
+      }
+    },
+    "nebius": {
+      "none": {
+        "none": 262,
+        "not_placed": 1
+      },
+      "no_grasp": {
+        "no_grasp": 22,
+        "not_placed": 16
+      },
+      "dropped": {
+        "none": 11,
+        "not_placed": 10,
+        "no_grasp": 5,
+        "dropped": 2
+      },
+      "not_placed": {
+        "none": 1
+      }
+    }
+  },
+  "agreement": {
+    "episodes_scored_by_both": 330,
+    "agree": 308,
+    "agree_rate": 0.933,
+    "accuracy_when_agree": 0.971,
+    "ci95_when_agree": [
+      0.945,
+      0.985
+    ],
+    "disagree": 22,
+    "local_right_when_disagree": 4,
+    "nebius_right_when_disagree": 18
+  }
+}

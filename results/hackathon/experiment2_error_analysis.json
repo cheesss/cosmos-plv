@@ -1,0 +1,938 @@
+[
+  {
+    "backend": "nebius_v2",
+    "checkpoint_id": "can_s1_e0020",
+    "env_seed": 200000,
+    "task": "can",
+    "truth_success": false,
+    "truth_failure_type": "dropped",
+    "pred_success": true,
+    "pred_failure_type": "none",
+    "object_start_xyz": [
+      0.04899999871850014,
+      -0.30399999022483826,
+      0.8600000143051147
+    ],
+    "object_end_xyz": [
+      0.20000000298023224,
+      0.19099999964237213,
+      0.843999981880188
+    ],
+    "first_success_step": -1,
+    "n_steps": 401,
+    "explanation": "The robot arm closed its gripper around the red can, lifted it from the left bin, carried it over to the right bin, and placed it into the front-right compartment where it remained at the end of the clip.",
+    "video": "data/outputs/hackathon_rollouts_eval/can_s1_e0020/videos/seed200000.mp4"
+  },
+  {
+    "backend": "nebius_v2",
+    "checkpoint_id": "can_s1_e0060",
+    "env_seed": 200003,
+    "task": "can",
+    "truth_success": false,
+    "truth_failure_type": "dropped",
+    "pred_success": true,
+    "pred_failure_type": "none",
+    "object_start_xyz": [
+      0.164000004529953,
+      -0.0989999994635582,
+      0.8600000143051147
+    ],
+    "object_end_xyz": [
+      0.22599999606609344,
+      0.2029999941587448,
+      0.843999981880188
+    ],
+    "first_success_step": -1,
+    "n_steps": 401,
+    "explanation": "The robot arm descended onto the red can in the left bin, closed its gripper around it, lifted it into the air, and carried it over to the front-right compartment of the right bin where it was placed.",
+    "video": "data/outputs/hackathon_rollouts_eval/can_s1_e0060/videos/seed200003.mp4"
+  },
+  {
+    "backend": "nebius_v2",
+    "checkpoint_id": "can_s2_e0100",
+    "env_seed": 200000,
+    "task": "can",
+    "truth_success": false,
+    "truth_failure_type": "dropped",
+    "pred_success": true,
+    "pred_failure_type": "none",
+    "object_start_xyz": [
+      0.04899999871850014,
+      -0.30399999022483826,
+      0.8600000143051147
+    ],
+    "object_end_xyz": [
+      0.1940000057220459,
+      0.1899999976158142,
+      0.843999981880188
+    ],
+    "first_success_step": -1,
+    "n_steps": 401,
+    "explanation": "The robot arm grasps the red can from the left bin, lifts it into the air, and places it into the front-right compartment of the dark wooden bin on the right.",
+    "video": "data/outputs/hackathon_rollouts_eval/can_s2_e0100/videos/seed200000.mp4"
+  },
+  {
+    "backend": "nebius_v2",
+    "checkpoint_id": "square_s1_e0030",
+    "env_seed": 200007,
+    "task": "square",
+    "truth_success": false,
+    "truth_failure_type": "dropped",
+    "pred_success": true,
+    "pred_failure_type": "none",
+    "object_start_xyz": [
+      -0.11299999803304672,
+      0.12600000202655792,
+      0.8899999856948853
+    ],
+    "object_end_xyz": [
+      0.23399999737739563,
+      0.10199999809265137,
+      0.9110000133514404
+    ],
+    "first_success_step": -1,
+    "n_steps": 401,
+    "explanation": "The gripper closes around the square nut, lifts it, and slides it down onto the matching square peg so the peg passes through the nut's hole.",
+    "video": "data/outputs/hackathon_rollouts_eval/square_s1_e0030/videos/seed200007.mp4"
+  },
+  {
+    "backend": "nebius_v2",
+    "checkpoint_id": "square_s1_e0060",
+    "env_seed": 200004,
+    "task": "square",
+    "truth_success": true,
+    "truth_failure_type": "none",
+    "pred_success": false,
+    "pred_failure_type": "not_placed",
+    "object_start_xyz": [
+      -0.11100000143051147,
+      0.18299999833106995,
+      0.8899999856948853
+    ],
+    "object_end_xyz": [
+      0.22599999606609344,
+      0.0989999994635582,
+      0.8299999833106995
+    ],
+    "first_success_step": 171,
+    "n_steps": 188,
+    "explanation": "The gripper closed around the square nut and lifted it into the air, but the video ends before the nut is placed onto the peg.",
+    "video": "data/outputs/hackathon_rollouts_eval/square_s1_e0060/videos/seed200004.mp4"
+  },
+  {
+    "backend": "nebius_v2",
+    "checkpoint_id": "square_s1_e0060",
+    "env_seed": 200007,
+    "task": "square",
+    "truth_success": true,
+    "truth_failure_type": "none",
+    "pred_success": false,
+    "pred_failure_type": "not_placed",
+    "object_start_xyz": [
+      -0.11299999803304672,
+      0.12600000202655792,
+      0.8899999856948853
+    ],
+    "object_end_xyz": [
+      0.22699999809265137,
+      0.0949999988079071,
+      0.8299999833106995
+    ],
+    "first_success_step": 239,
+    "n_steps": 256,
+    "explanation": "The robot picked up the square nut and carried it over the peg, but the video ends before the nut is slid down onto the peg.",
+    "video": "data/outputs/hackathon_rollouts_eval/square_s1_e0060/videos/seed200007.mp4"
+  },
+  {
+    "backend": "nebius_v2",
+    "checkpoint_id": "can_s1_e0080",
+    "env_seed": 200000,
+    "task": "can",
+    "truth_success": false,
+    "truth_failure_type": "dropped",
+    "pred_success": true,
+    "pred_failure_type": "none",
+    "object_start_xyz": [
+      0.04899999871850014,
+      -0.30399999022483826,
+      0.8600000143051147
+    ],
+    "object_end_xyz": [
+      0.21299999952316284,
+      0.2070000022649765,
+      0.859000027179718
+    ],
+    "first_success_step": -1,
+    "n_steps": 401,
+    "explanation": "The robot arm picked up the red can from the left bin and placed it into the front-right compartment of the right bin, where it remained at the end of the clip.",
+    "video": "data/outputs/hackathon_rollouts_eval/can_s1_e0080/videos/seed200000.mp4"
+  },
+  {
+    "backend": "nebius_v2",
+    "checkpoint_id": "can_s2_e0180",
+    "env_seed": 200000,
+    "task": "can",
+    "truth_success": false,
+    "truth_failure_type": "dropped",
+    "pred_success": true,
+    "pred_failure_type": "none",
+    "object_start_xyz": [
+      0.04899999871850014,
+      -0.30399999022483826,
+      0.8600000143051147
+    ],
+    "object_end_xyz": [
+      0.1720000058412552,
+      0.22499999403953552,
+      0.8460000157356262
+    ],
+    "first_success_step": -1,
+    "n_steps": 401,
+    "explanation": "The robot arm grasps the red can from the left bin, lifts it into the air, and places it into the front-right compartment of the dark wooden bin on the right.",
+    "video": "data/outputs/hackathon_rollouts_eval/can_s2_e0180/videos/seed200000.mp4"
+  },
+  {
+    "backend": "nebius_v2",
+    "checkpoint_id": "square_s1_e0120",
+    "env_seed": 200004,
+    "task": "square",
+    "truth_success": false,
+    "truth_failure_type": "dropped",
+    "pred_success": true,
+    "pred_failure_type": "none",
+    "object_start_xyz": [
+      -0.11100000143051147,
+      0.18299999833106995,
+      0.8899999856948853
+    ],
+    "object_end_xyz": [
+      0.23199999332427979,
+      0.09399999678134918,
+      0.9359999895095825
+    ],
+    "first_success_step": -1,
+    "n_steps": 401,
+    "explanation": "The robot grasps the square nut, lifts it, and slides it down onto the square peg so the peg passes through the nut's hole.",
+    "video": "data/outputs/hackathon_rollouts_eval/square_s1_e0120/videos/seed200004.mp4"
+  },
+  {
+    "backend": "nebius_v2",
+    "checkpoint_id": "square_s1_e0120",
+    "env_seed": 200005,
+    "task": "square",
+    "truth_success": false,
+    "truth_failure_type": "dropped",
+    "pred_success": true,
+    "pred_failure_type": "none",
+    "object_start_xyz": [
+      -0.10999999940395355,
+      0.1860000044107437,
+      0.8899999856948853
+    ],
+    "object_end_xyz": [
+      0.21400000154972076,
+      0.10400000214576721,
+      0.9340000152587891
+    ],
+    "first_success_step": -1,
+    "n_steps": 401,
+    "explanation": "The gripper closed on the square nut, lifted it, and slid it down onto the square peg so the peg passed through the nut's hole.",
+    "video": "data/outputs/hackathon_rollouts_eval/square_s1_e0120/videos/seed200005.mp4"
+  },
+  {
+    "backend": "nebius_v2",
+    "checkpoint_id": "square_s1_e0120",
+    "env_seed": 200008,
+    "task": "square",
+    "truth_success": true,
+    "truth_failure_type": "none",
+    "pred_success": false,
+    "pred_failure_type": "not_placed",
+    "object_start_xyz": [
+      -0.10999999940395355,
+      0.11999999731779099,
+      0.8899999856948853
+    ],
+    "object_end_xyz": [
+      0.2370000034570694,
+      0.10100000351667404,
+      0.8299999833106995
+    ],
+    "first_success_step": 130,
+    "n_steps": 147,
+    "explanation": "The gripper closed around the square nut and lifted it into the air, but the video ends while the nut is still being held above the table and has not been placed onto the peg.",
+    "video": "data/outputs/hackathon_rollouts_eval/square_s1_e0120/videos/seed200008.mp4"
+  },
+  {
+    "backend": "nebius_v2",
+    "checkpoint_id": "square_s1_e0240",
+    "env_seed": 200002,
+    "task": "square",
+    "truth_success": false,
+    "truth_failure_type": "not_placed",
+    "pred_success": true,
+    "pred_failure_type": "none",
+    "object_start_xyz": [
+      -0.11400000005960464,
+      0.20600000023841858,
+      0.8899999856948853
+    ],
+    "object_end_xyz": [
+      0.17800000309944153,
+      0.12700000405311584,
+      0.9210000038146973
+    ],
+    "first_success_step": -1,
+    "n_steps": 401,
+    "explanation": "The robot gripper closed around the square nut, lifted it into the air, and slid it down onto the square peg so the peg passed through the nut's hole.",
+    "video": "data/outputs/hackathon_rollouts_eval/square_s1_e0240/videos/seed200002.mp4"
+  },
+  {
+    "backend": "local_v6",
+    "checkpoint_id": "can_s1_e0020",
+    "env_seed": 200000,
+    "task": "can",
+    "truth_success": false,
+    "truth_failure_type": "dropped",
+    "pred_success": true,
+    "pred_failure_type": null,
+    "object_start_xyz": [
+      0.04899999871850014,
+      -0.30399999022483826,
+      0.8600000143051147
+    ],
+    "object_end_xyz": [
+      0.20000000298023224,
+      0.19099999964237213,
+      0.843999981880188
+    ],
+    "first_success_step": -1,
+    "n_steps": 401,
+    "explanation": "The robot arm is positioned above a dark wooden bin with four compartments, one of which contains a red soda can.",
+    "video": "data/outputs/hackathon_rollouts_eval/can_s1_e0020/videos/seed200000.mp4"
+  },
+  {
+    "backend": "local_v6",
+    "checkpoint_id": "can_s1_e0020",
+    "env_seed": 200003,
+    "task": "can",
+    "truth_success": false,
+    "truth_failure_type": "dropped",
+    "pred_success": true,
+    "pred_failure_type": null,
+    "object_start_xyz": [
+      0.164000004529953,
+      -0.0989999994635582,
+      0.8600000143051147
+    ],
+    "object_end_xyz": [
+      0.12999999523162842,
+      0.0430000014603138,
+      0.925000011920929
+    ],
+    "first_success_step": -1,
+    "n_steps": 401,
+    "explanation": "The robot arm is holding a red can above the dark wooden bin with compartments.",
+    "video": "data/outputs/hackathon_rollouts_eval/can_s1_e0020/videos/seed200003.mp4"
+  },
+  {
+    "backend": "local_v6",
+    "checkpoint_id": "can_s1_e0060",
+    "env_seed": 200003,
+    "task": "can",
+    "truth_success": false,
+    "truth_failure_type": "dropped",
+    "pred_success": true,
+    "pred_failure_type": null,
+    "object_start_xyz": [
+      0.164000004529953,
+      -0.0989999994635582,
+      0.8600000143051147
+    ],
+    "object_end_xyz": [
+      0.22599999606609344,
+      0.2029999941587448,
+      0.843999981880188
+    ],
+    "first_success_step": -1,
+    "n_steps": 401,
+    "explanation": "The robot arm is positioned above the dark wooden bin with compartments, and the gripper appears to be holding a red can.",
+    "video": "data/outputs/hackathon_rollouts_eval/can_s1_e0060/videos/seed200003.mp4"
+  },
+  {
+    "backend": "local_v6",
+    "checkpoint_id": "can_s2_e0020",
+    "env_seed": 200006,
+    "task": "can",
+    "truth_success": false,
+    "truth_failure_type": "dropped",
+    "pred_success": true,
+    "pred_failure_type": null,
+    "object_start_xyz": [
+      0.03400000184774399,
+      -0.09799999743700027,
+      0.8600000143051147
+    ],
+    "object_end_xyz": [
+      0.041999999433755875,
+      0.027000000700354576,
+      0.925000011920929
+    ],
+    "first_success_step": -1,
+    "n_steps": 401,
+    "explanation": "The red can is visible inside the dark wooden bin on the right, and the robot arm is positioned above it, indicating that the gripper is likely about to pick up or has just picked up the red can.",
+    "video": "data/outputs/hackathon_rollouts_eval/can_s2_e0020/videos/seed200006.mp4"
+  },
+  {
+    "backend": "local_v6",
+    "checkpoint_id": "can_s2_e0060",
+    "env_seed": 200003,
+    "task": "can",
+    "truth_success": false,
+    "truth_failure_type": "dropped",
+    "pred_success": true,
+    "pred_failure_type": null,
+    "object_start_xyz": [
+      0.164000004529953,
+      -0.0989999994635582,
+      0.8600000143051147
+    ],
+    "object_end_xyz": [
+      0.16500000655651093,
+      0.007000000216066837,
+      0.925000011920929
+    ],
+    "first_success_step": -1,
+    "n_steps": 401,
+    "explanation": "The red can is visible inside the dark wooden bin on the right, and the robot arm is positioned above it, indicating that the gripper is likely grasping the can.",
+    "video": "data/outputs/hackathon_rollouts_eval/can_s2_e0060/videos/seed200003.mp4"
+  },
+  {
+    "backend": "local_v6",
+    "checkpoint_id": "can_s2_e0100",
+    "env_seed": 200000,
+    "task": "can",
+    "truth_success": false,
+    "truth_failure_type": "dropped",
+    "pred_success": true,
+    "pred_failure_type": null,
+    "object_start_xyz": [
+      0.04899999871850014,
+      -0.30399999022483826,
+      0.8600000143051147
+    ],
+    "object_end_xyz": [
+      0.1940000057220459,
+      0.1899999976158142,
+      0.843999981880188
+    ],
+    "first_success_step": -1,
+    "n_steps": 401,
+    "explanation": "The red can is visible inside the dark wooden bin on the right, not in the gripper.",
+    "video": "data/outputs/hackathon_rollouts_eval/can_s2_e0100/videos/seed200000.mp4"
+  },
+  {
+    "backend": "local_v6",
+    "checkpoint_id": "square_s1_e0000",
+    "env_seed": 200001,
+    "task": "square",
+    "truth_success": false,
+    "truth_failure_type": "no_grasp",
+    "pred_success": true,
+    "pred_failure_type": null,
+    "object_start_xyz": [
+      -0.1120000034570694,
+      0.19900000095367432,
+      0.8899999856948853
+    ],
+    "object_end_xyz": [
+      -0.08799999952316284,
+      0.20100000500679016,
+      0.8299999833106995
+    ],
+    "first_success_step": -1,
+    "n_steps": 401,
+    "explanation": "The square nut is positioned on the square peg, ready to be grasped by the robot arm.",
+    "video": "data/outputs/hackathon_rollouts_eval/square_s1_e0000/videos/seed200001.mp4"
+  },
+  {
+    "backend": "local_v6",
+    "checkpoint_id": "square_s1_e0000",
+    "env_seed": 200002,
+    "task": "square",
+    "truth_success": false,
+    "truth_failure_type": "no_grasp",
+    "pred_success": true,
+    "pred_failure_type": null,
+    "object_start_xyz": [
+      -0.11400000005960464,
+      0.20600000023841858,
+      0.8899999856948853
+    ],
+    "object_end_xyz": [
+      -0.08399999886751175,
+      0.23000000417232513,
+      0.8299999833106995
+    ],
+    "first_success_step": -1,
+    "n_steps": 401,
+    "explanation": "The square nut is visible on the right peg, being held by the robot arm's gripper.",
+    "video": "data/outputs/hackathon_rollouts_eval/square_s1_e0000/videos/seed200002.mp4"
+  },
+  {
+    "backend": "local_v6",
+    "checkpoint_id": "square_s1_e0030",
+    "env_seed": 200001,
+    "task": "square",
+    "truth_success": false,
+    "truth_failure_type": "dropped",
+    "pred_success": true,
+    "pred_failure_type": null,
+    "object_start_xyz": [
+      -0.1120000034570694,
+      0.19900000095367432,
+      0.8899999856948853
+    ],
+    "object_end_xyz": [
+      -0.01600000075995922,
+      0.2070000022649765,
+      0.8299999833106995
+    ],
+    "first_success_step": -1,
+    "n_steps": 401,
+    "explanation": "The square nut lies on the table, not around the square peg.",
+    "video": "data/outputs/hackathon_rollouts_eval/square_s1_e0030/videos/seed200001.mp4"
+  },
+  {
+    "backend": "local_v6",
+    "checkpoint_id": "square_s1_e0030",
+    "env_seed": 200002,
+    "task": "square",
+    "truth_success": false,
+    "truth_failure_type": "no_grasp",
+    "pred_success": true,
+    "pred_failure_type": null,
+    "object_start_xyz": [
+      -0.11400000005960464,
+      0.20600000023841858,
+      0.8899999856948853
+    ],
+    "object_end_xyz": [
+      -0.08100000023841858,
+      0.20999999344348907,
+      0.8299999833106995
+    ],
+    "first_success_step": -1,
+    "n_steps": 401,
+    "explanation": "The square nut is visible on the table, lying next to the vertical pegs, not around either of them.",
+    "video": "data/outputs/hackathon_rollouts_eval/square_s1_e0030/videos/seed200002.mp4"
+  },
+  {
+    "backend": "local_v6",
+    "checkpoint_id": "square_s1_e0030",
+    "env_seed": 200007,
+    "task": "square",
+    "truth_success": false,
+    "truth_failure_type": "dropped",
+    "pred_success": true,
+    "pred_failure_type": null,
+    "object_start_xyz": [
+      -0.11299999803304672,
+      0.12600000202655792,
+      0.8899999856948853
+    ],
+    "object_end_xyz": [
+      0.23399999737739563,
+      0.10199999809265137,
+      0.9110000133514404
+    ],
+    "first_success_step": -1,
+    "n_steps": 401,
+    "explanation": "The square nut is positioned on top of the square peg.",
+    "video": "data/outputs/hackathon_rollouts_eval/square_s1_e0030/videos/seed200007.mp4"
+  },
+  {
+    "backend": "local_v6",
+    "checkpoint_id": "square_s1_e0030",
+    "env_seed": 200008,
+    "task": "square",
+    "truth_success": false,
+    "truth_failure_type": "no_grasp",
+    "pred_success": true,
+    "pred_failure_type": null,
+    "object_start_xyz": [
+      -0.10999999940395355,
+      0.11999999731779099,
+      0.8899999856948853
+    ],
+    "object_end_xyz": [
+      -0.10100000351667404,
+      0.13199999928474426,
+      0.8299999833106995
+    ],
+    "first_success_step": -1,
+    "n_steps": 401,
+    "explanation": "The square nut is visible on the square peg held by the gripper.",
+    "video": "data/outputs/hackathon_rollouts_eval/square_s1_e0030/videos/seed200008.mp4"
+  },
+  {
+    "backend": "local_v6",
+    "checkpoint_id": "square_s1_e0060",
+    "env_seed": 200007,
+    "task": "square",
+    "truth_success": true,
+    "truth_failure_type": "none",
+    "pred_success": false,
+    "pred_failure_type": null,
+    "object_start_xyz": [
+      -0.11299999803304672,
+      0.12600000202655792,
+      0.8899999856948853
+    ],
+    "object_end_xyz": [
+      0.22699999809265137,
+      0.0949999988079071,
+      0.8299999833106995
+    ],
+    "first_success_step": 239,
+    "n_steps": 256,
+    "explanation": "The square nut is not visible in the image, so its location cannot be determined.",
+    "video": "data/outputs/hackathon_rollouts_eval/square_s1_e0060/videos/seed200007.mp4"
+  },
+  {
+    "backend": "local_v6",
+    "checkpoint_id": "square_s1_e0090",
+    "env_seed": 200009,
+    "task": "square",
+    "truth_success": false,
+    "truth_failure_type": "dropped",
+    "pred_success": true,
+    "pred_failure_type": null,
+    "object_start_xyz": [
+      -0.11100000143051147,
+      0.22300000488758087,
+      0.8899999856948853
+    ],
+    "object_end_xyz": [
+      0.05299999937415123,
+      0.08100000023841858,
+      0.8299999833106995
+    ],
+    "first_success_step": -1,
+    "n_steps": 401,
+    "explanation": "The square nut is positioned on the square peg, ready to be grasped by the robot arm.",
+    "video": "data/outputs/hackathon_rollouts_eval/square_s1_e0090/videos/seed200009.mp4"
+  },
+  {
+    "backend": "local_v6",
+    "checkpoint_id": "can_s1_e0080",
+    "env_seed": 200000,
+    "task": "can",
+    "truth_success": false,
+    "truth_failure_type": "dropped",
+    "pred_success": true,
+    "pred_failure_type": null,
+    "object_start_xyz": [
+      0.04899999871850014,
+      -0.30399999022483826,
+      0.8600000143051147
+    ],
+    "object_end_xyz": [
+      0.21299999952316284,
+      0.2070000022649765,
+      0.859000027179718
+    ],
+    "first_success_step": -1,
+    "n_steps": 401,
+    "explanation": "A robotic arm is positioned above two bins, with the dark wooden bin on the right containing a red soda can in one of its compartments.",
+    "video": "data/outputs/hackathon_rollouts_eval/can_s1_e0080/videos/seed200000.mp4"
+  },
+  {
+    "backend": "local_v6",
+    "checkpoint_id": "can_s2_e0180",
+    "env_seed": 200000,
+    "task": "can",
+    "truth_success": false,
+    "truth_failure_type": "dropped",
+    "pred_success": true,
+    "pred_failure_type": null,
+    "object_start_xyz": [
+      0.04899999871850014,
+      -0.30399999022483826,
+      0.8600000143051147
+    ],
+    "object_end_xyz": [
+      0.1720000058412552,
+      0.22499999403953552,
+      0.8460000157356262
+    ],
+    "first_success_step": -1,
+    "n_steps": 401,
+    "explanation": "The robot arm is positioned over the dark wooden bin with compartments, and the gripper is holding a red can above it.",
+    "video": "data/outputs/hackathon_rollouts_eval/can_s2_e0180/videos/seed200000.mp4"
+  },
+  {
+    "backend": "local_v6",
+    "checkpoint_id": "square_s1_e0120",
+    "env_seed": 200001,
+    "task": "square",
+    "truth_success": true,
+    "truth_failure_type": "none",
+    "pred_success": false,
+    "pred_failure_type": null,
+    "object_start_xyz": [
+      -0.1120000034570694,
+      0.19900000095367432,
+      0.8899999856948853
+    ],
+    "object_end_xyz": [
+      0.2370000034570694,
+      0.10599999874830246,
+      0.8299999833106995
+    ],
+    "first_success_step": 151,
+    "n_steps": 168,
+    "explanation": "The square nut is not visible in the image, so its location cannot be determined.",
+    "video": "data/outputs/hackathon_rollouts_eval/square_s1_e0120/videos/seed200001.mp4"
+  },
+  {
+    "backend": "local_v6",
+    "checkpoint_id": "square_s1_e0120",
+    "env_seed": 200004,
+    "task": "square",
+    "truth_success": false,
+    "truth_failure_type": "dropped",
+    "pred_success": true,
+    "pred_failure_type": null,
+    "object_start_xyz": [
+      -0.11100000143051147,
+      0.18299999833106995,
+      0.8899999856948853
+    ],
+    "object_end_xyz": [
+      0.23199999332427979,
+      0.09399999678134918,
+      0.9359999895095825
+    ],
+    "first_success_step": -1,
+    "n_steps": 401,
+    "explanation": "The square nut is positioned on top of the square peg.",
+    "video": "data/outputs/hackathon_rollouts_eval/square_s1_e0120/videos/seed200004.mp4"
+  },
+  {
+    "backend": "local_v6",
+    "checkpoint_id": "square_s1_e0120",
+    "env_seed": 200007,
+    "task": "square",
+    "truth_success": false,
+    "truth_failure_type": "dropped",
+    "pred_success": true,
+    "pred_failure_type": null,
+    "object_start_xyz": [
+      -0.11299999803304672,
+      0.12600000202655792,
+      0.8899999856948853
+    ],
+    "object_end_xyz": [
+      0.16899999976158142,
+      0.05700000002980232,
+      0.8389999866485596
+    ],
+    "first_success_step": -1,
+    "n_steps": 401,
+    "explanation": "The square nut is positioned on top of the square peg, not being held by the gripper.",
+    "video": "data/outputs/hackathon_rollouts_eval/square_s1_e0120/videos/seed200007.mp4"
+  },
+  {
+    "backend": "local_v6",
+    "checkpoint_id": "square_s1_e0150",
+    "env_seed": 200000,
+    "task": "square",
+    "truth_success": true,
+    "truth_failure_type": "none",
+    "pred_success": false,
+    "pred_failure_type": null,
+    "object_start_xyz": [
+      -0.11400000005960464,
+      0.20200000703334808,
+      0.8899999856948853
+    ],
+    "object_end_xyz": [
+      0.23499999940395355,
+      0.10000000149011612,
+      0.8299999833106995
+    ],
+    "first_success_step": 104,
+    "n_steps": 121,
+    "explanation": "The square nut is not visible in the image, so its location cannot be determined.",
+    "video": "data/outputs/hackathon_rollouts_eval/square_s1_e0150/videos/seed200000.mp4"
+  },
+  {
+    "backend": "local_v6",
+    "checkpoint_id": "square_s1_e0210",
+    "env_seed": 200008,
+    "task": "square",
+    "truth_success": false,
+    "truth_failure_type": "dropped",
+    "pred_success": true,
+    "pred_failure_type": null,
+    "object_start_xyz": [
+      -0.10999999940395355,
+      0.11999999731779099,
+      0.8899999856948853
+    ],
+    "object_end_xyz": [
+      0.004999999888241291,
+      0.2409999966621399,
+      0.8299999833106995
+    ],
+    "first_success_step": -1,
+    "n_steps": 401,
+    "explanation": "The square nut with a handle is positioned on top of the square peg.",
+    "video": "data/outputs/hackathon_rollouts_eval/square_s1_e0210/videos/seed200008.mp4"
+  },
+  {
+    "backend": "local_v6",
+    "checkpoint_id": "square_s1_e0240",
+    "env_seed": 200002,
+    "task": "square",
+    "truth_success": false,
+    "truth_failure_type": "not_placed",
+    "pred_success": true,
+    "pred_failure_type": null,
+    "object_start_xyz": [
+      -0.11400000005960464,
+      0.20600000023841858,
+      0.8899999856948853
+    ],
+    "object_end_xyz": [
+      0.17800000309944153,
+      0.12700000405311584,
+      0.9210000038146973
+    ],
+    "first_success_step": -1,
+    "n_steps": 401,
+    "explanation": "The square nut is positioned on the square peg, ready to be grasped by the robot gripper.",
+    "video": "data/outputs/hackathon_rollouts_eval/square_s1_e0240/videos/seed200002.mp4"
+  },
+  {
+    "backend": "local_v6",
+    "checkpoint_id": "square_s1_e0270",
+    "env_seed": 200000,
+    "task": "square",
+    "truth_success": true,
+    "truth_failure_type": "none",
+    "pred_success": false,
+    "pred_failure_type": null,
+    "object_start_xyz": [
+      -0.11400000005960464,
+      0.20200000703334808,
+      0.8899999856948853
+    ],
+    "object_end_xyz": [
+      0.23600000143051147,
+      0.10599999874830246,
+      0.8299999833106995
+    ],
+    "first_success_step": 122,
+    "n_steps": 139,
+    "explanation": "The square nut is not visible in the image, so its location cannot be determined.",
+    "video": "data/outputs/hackathon_rollouts_eval/square_s1_e0270/videos/seed200000.mp4"
+  },
+  {
+    "backend": "local_v6",
+    "checkpoint_id": "square_s1_e0270",
+    "env_seed": 200002,
+    "task": "square",
+    "truth_success": true,
+    "truth_failure_type": "none",
+    "pred_success": false,
+    "pred_failure_type": null,
+    "object_start_xyz": [
+      -0.11400000005960464,
+      0.20600000023841858,
+      0.8899999856948853
+    ],
+    "object_end_xyz": [
+      0.23600000143051147,
+      0.10400000214576721,
+      0.8299999833106995
+    ],
+    "first_success_step": 120,
+    "n_steps": 137,
+    "explanation": "The flat square nut with a handle is not visible in the image.",
+    "video": "data/outputs/hackathon_rollouts_eval/square_s1_e0270/videos/seed200002.mp4"
+  },
+  {
+    "backend": "local_v6",
+    "checkpoint_id": "square_s1_e0270",
+    "env_seed": 200009,
+    "task": "square",
+    "truth_success": false,
+    "truth_failure_type": "dropped",
+    "pred_success": true,
+    "pred_failure_type": null,
+    "object_start_xyz": [
+      -0.11100000143051147,
+      0.22300000488758087,
+      0.8899999856948853
+    ],
+    "object_end_xyz": [
+      0.23000000417232513,
+      0.10000000149011612,
+      0.9049999713897705
+    ],
+    "first_success_step": -1,
+    "n_steps": 401,
+    "explanation": "The square nut is on the table, not around the square peg.",
+    "video": "data/outputs/hackathon_rollouts_eval/square_s1_e0270/videos/seed200009.mp4"
+  },
+  {
+    "backend": "local_v6",
+    "checkpoint_id": "square_s1_e0300",
+    "env_seed": 200000,
+    "task": "square",
+    "truth_success": true,
+    "truth_failure_type": "none",
+    "pred_success": false,
+    "pred_failure_type": null,
+    "object_start_xyz": [
+      -0.11400000005960464,
+      0.20200000703334808,
+      0.8899999856948853
+    ],
+    "object_end_xyz": [
+      0.23600000143051147,
+      0.10599999874830246,
+      0.8299999833106995
+    ],
+    "first_success_step": 145,
+    "n_steps": 162,
+    "explanation": "The square nut is not visible in the image.",
+    "video": "data/outputs/hackathon_rollouts_eval/square_s1_e0300/videos/seed200000.mp4"
+  },
+  {
+    "backend": "local_v6",
+    "checkpoint_id": "square_s1_e0300",
+    "env_seed": 200009,
+    "task": "square",
+    "truth_success": false,
+    "truth_failure_type": "dropped",
+    "pred_success": true,
+    "pred_failure_type": null,
+    "object_start_xyz": [
+      -0.11100000143051147,
+      0.22300000488758087,
+      0.8899999856948853
+    ],
+    "object_end_xyz": [
+      0.23000000417232513,
+      0.10000000149011612,
+      0.9049999713897705
+    ],
+    "first_success_step": -1,
+    "n_steps": 401,
+    "explanation": "The square nut is positioned on top of the square peg on the table.",
+    "video": "data/outputs/hackathon_rollouts_eval/square_s1_e0300/videos/seed200009.mp4"
+  }
+]

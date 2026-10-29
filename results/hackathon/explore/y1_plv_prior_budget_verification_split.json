@@ -1,0 +1,157 @@
+{
+ "name": "y1_plv_prior_budget_verification_split",
+ "exploratory": true,
+ "half_success": {
+  "can_seed1": {
+   "pool_half_all": 0.84,
+   "heldout_half_all": 0.8702,
+   "pool_half_late": 0.9619,
+   "heldout_half_late": 0.9924
+  },
+  "can_seed2": {
+   "pool_half_all": 0.8305,
+   "heldout_half_all": 0.8667,
+   "pool_half_late": 0.9818,
+   "heldout_half_late": 0.9964
+  },
+  "square_seed1": {
+   "pool_half_all": 0.7355,
+   "heldout_half_all": 0.76,
+   "pool_half_late": 0.8125,
+   "heldout_half_late": 0.865
+  }
+ },
+ "reference_pool_best_25N": {
+  "original": 0.0333,
+  "original_per_run": [
+   0.02,
+   0.0,
+   0.08
+  ],
+  "resplit_mean": 0.0645,
+  "resplit_median": 0.0623,
+  "resplit_p2.5_p97.5": [
+   0.032,
+   0.1073
+  ],
+  "percentile_of_original": 0.0326,
+  "swapped_halves": 0.0812,
+  "note": "pool-best with ties averaged = expected regret of y1's perfect/no-prior/uniform 25N pick"
+ },
+ "zero_rollout_latest_epoch_vs_pool_best": {
+  "original_last_per_run": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "original_last_mean": 0.0,
+  "resplit_last_mean": 0.0268,
+  "resplit_last_p2.5_p97.5": [
+   0.0,
+   0.0667
+  ],
+  "resplit_last_per_run_mean": [
+   0.0195,
+   0.0,
+   0.0608
+  ],
+  "resplit_last_per_run_share_zero": [
+   0.512,
+   1.0,
+   0.232
+  ],
+  "resplit_poolbest_mean": 0.0644,
+  "resplit_diff_last_minus_poolbest_mean": -0.0377,
+  "resplit_diff_p2.5_p97.5": [
+   -0.0881,
+   -0.0013
+  ],
+  "share_last_better": 0.9845,
+  "share_last_worse": 0.014,
+  "runs": [
+   "can_seed1",
+   "can_seed2",
+   "square_seed1"
+  ]
+ },
+ "plv_vs_epoch": {
+  "can_seed1": {
+   "val_action_l1": {
+    "spearman_oriented_vs_epoch": 0.908,
+    "rank_partial_vs_success_given_epoch": 0.172
+   },
+   "open_loop_smoothness": {
+    "spearman_oriented_vs_epoch": 0.982,
+    "rank_partial_vs_success_given_epoch": -0.052
+   },
+   "plv1_smoothness": {
+    "spearman_oriented_vs_epoch": 0.946,
+    "rank_partial_vs_success_given_epoch": -0.018
+   },
+   "replan_overlap_h16": {
+    "spearman_oriented_vs_epoch": 1.0,
+    "rank_partial_vs_success_given_epoch": null
+   },
+   "boundary_jump_h16": {
+    "spearman_oriented_vs_epoch": 0.991,
+    "rank_partial_vs_success_given_epoch": -0.065
+   },
+   "val_loss_logged": {
+    "spearman_oriented_vs_epoch": -0.694,
+    "rank_partial_vs_success_given_epoch": 0.184
+   }
+  },
+  "can_seed2": {
+   "val_action_l1": {
+    "spearman_oriented_vs_epoch": 0.906,
+    "rank_partial_vs_success_given_epoch": 0.168
+   },
+   "open_loop_smoothness": {
+    "spearman_oriented_vs_epoch": 0.977,
+    "rank_partial_vs_success_given_epoch": -0.08
+   },
+   "plv1_smoothness": {
+    "spearman_oriented_vs_epoch": 0.862,
+    "rank_partial_vs_success_given_epoch": -0.013
+   },
+   "replan_overlap_h16": {
+    "spearman_oriented_vs_epoch": 0.988,
+    "rank_partial_vs_success_given_epoch": -0.136
+   },
+   "boundary_jump_h16": {
+    "spearman_oriented_vs_epoch": 0.977,
+    "rank_partial_vs_success_given_epoch": -0.094
+   },
+   "val_loss_logged": {
+    "spearman_oriented_vs_epoch": -0.618,
+    "rank_partial_vs_success_given_epoch": 0.188
+   }
+  },
+  "square_seed1": {
+   "val_action_l1": {
+    "spearman_oriented_vs_epoch": 0.942,
+    "rank_partial_vs_success_given_epoch": -0.043
+   },
+   "open_loop_smoothness": {
+    "spearman_oriented_vs_epoch": 0.977,
+    "rank_partial_vs_success_given_epoch": -0.111
+   },
+   "plv1_smoothness": {
+    "spearman_oriented_vs_epoch": 1.0,
+    "rank_partial_vs_success_given_epoch": null
+   },
+   "replan_overlap_h16": {
+    "spearman_oriented_vs_epoch": 0.969,
+    "rank_partial_vs_success_given_epoch": 0.01
+   },
+   "boundary_jump_h16": {
+    "spearman_oriented_vs_epoch": 0.956,
+    "rank_partial_vs_success_given_epoch": -0.134
+   },
+   "val_loss_logged": {
+    "spearman_oriented_vs_epoch": -0.741,
+    "rank_partial_vs_success_given_epoch": 0.177
+   }
+  }
+ }
+}

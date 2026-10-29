@@ -1,0 +1,384 @@
+{
+ "name": "y2_plateau_noise_ceiling_trend",
+ "exploratory": true,
+ "post_hoc": true,
+ "n_boot": 2000,
+ "seed": 7,
+ "subsets": {
+  "all": {
+   "can_seed1": {
+    "n": 41,
+    "epoch_range": [
+     0,
+     200
+    ],
+    "slope_S50_pp_per_100ep": 29.12195121951221,
+    "slope_ci_block": [
+     4.380808557208457,
+     48.68749111692756
+    ],
+    "slope_ci_seed": [
+     26.522299651567952,
+     31.512195121951226
+    ],
+    "slope_A_pp_per_100ep": 28.850174216027874,
+    "slope_B_pp_per_100ep": 29.393728222996522,
+    "implied_trend_span_pp": 58.24390243902442,
+    "spearman_epoch_A": 0.625677339866471,
+    "spearman_epoch_B": 0.8531837358266534,
+    "spearman_epoch_S50": 0.7796025184781451,
+    "residual_sd_S50_pp": 19.619574531969587,
+    "binomial_noise_sd_S50_pp": 3.3938250957419434,
+    "binomial_noise_sd_25_pp": 4.799593478720424,
+    "mean_S50": 0.8551219512195121,
+    "max_S50": 1.0,
+    "trend_anova": {
+     "MSe_interaction": 0.05343006470881035,
+     "F_trend": 1138.8778472345155,
+     "F_trend_p": 3.1865582331709776e-197,
+     "F_dev": 36.021639400339055,
+     "F_dev_p": 8.982498637988225e-199,
+     "var_dev_true_pp2": 374.2416918737475,
+     "noise_sd_25_shared_seed_pp": 4.622988847436703,
+     "trend_sd_pp": 17.228778685416938,
+     "rel_dev_25": 0.9459775409086373,
+     "ceiling_partial_given_epoch_vs_25": 0.9726137675915539,
+     "sim_spearman_trend_follower_vs_25": 0.9685247386759581,
+     "sim_spearman_oracle_trend_plus_dev_vs_25": 0.9772148954703832
+    }
+   },
+   "can_seed2": {
+    "n": 21,
+    "epoch_range": [
+     0,
+     200
+    ],
+    "slope_S50_pp_per_100ep": 32.389610389610404,
+    "slope_ci_block": [
+     4.065010113145238,
+     56.588878966891066
+    ],
+    "slope_ci_seed": [
+     29.480519480519483,
+     35.22142857142859
+    ],
+    "slope_A_pp_per_100ep": 34.181818181818194,
+    "slope_B_pp_per_100ep": 30.597402597402606,
+    "implied_trend_span_pp": 64.77922077922081,
+    "spearman_epoch_A": 0.8496049608664829,
+    "spearman_epoch_B": 0.8378971234475396,
+    "spearman_epoch_S50": 0.8813358037236503,
+    "residual_sd_S50_pp": 20.050728556657692,
+    "binomial_noise_sd_S50_pp": 3.2758859216139644,
+    "binomial_noise_sd_25_pp": 4.632802299133553,
+    "mean_S50": 0.8485714285714285,
+    "max_S50": 1.0,
+    "trend_anova": {
+     "MSe_interaction": 0.05217492711370261,
+     "F_trend": 774.1236335189183,
+     "F_trend_p": 4.949510240356644e-126,
+     "F_dev": 38.527290586974615,
+     "F_dev_p": 9.572476031988435e-105,
+     "var_dev_true_pp2": 391.59673023002773,
+     "noise_sd_25_shared_seed_pp": 4.568366321288283,
+     "trend_sd_pp": 19.61288307303675,
+     "rel_dev_25": 0.9494020467808371,
+     "ceiling_partial_given_epoch_vs_25": 0.9743726426685209,
+     "sim_spearman_trend_follower_vs_25": 0.9766759740259741,
+     "sim_spearman_oracle_trend_plus_dev_vs_25": 0.9752873376623377
+    }
+   },
+   "square_seed1": {
+    "n": 31,
+    "epoch_range": [
+     0,
+     300
+    ],
+    "slope_S50_pp_per_100ep": 15.193548387096772,
+    "slope_ci_block": [
+     2.0079544642760916,
+     25.932529024154032
+    ],
+    "slope_ci_seed": [
+     11.725403225806454,
+     18.548991935483865
+    ],
+    "slope_A_pp_per_100ep": 13.80645161290322,
+    "slope_B_pp_per_100ep": 16.580645161290327,
+    "implied_trend_span_pp": 45.58064516129031,
+    "spearman_epoch_A": 0.5940243476033735,
+    "spearman_epoch_B": 0.7842851746775376,
+    "spearman_epoch_S50": 0.7851381860967293,
+    "residual_sd_S50_pp": 15.88806787430879,
+    "binomial_noise_sd_S50_pp": 5.413722111151827,
+    "binomial_noise_sd_25_pp": 7.656159232510018,
+    "mean_S50": 0.7477419354838708,
+    "max_S50": 0.9,
+    "trend_anova": {
+     "MSe_interaction": 0.14215404871626072,
+     "F_trend": 201.36355889817156,
+     "F_trend_p": 6.262288047925371e-43,
+     "F_dev": 8.878772819284743,
+     "F_dev_p": 5.693489903333976e-35,
+     "var_dev_true_pp2": 223.99989103539085,
+     "noise_sd_25_shared_seed_pp": 7.540664392910235,
+     "trend_sd_pp": 13.589522805192269,
+     "rel_dev_25": 0.7975457036428938,
+     "ceiling_partial_given_epoch_vs_25": 0.8930541437353582,
+     "sim_spearman_trend_follower_vs_25": 0.8830724798387097,
+     "sim_spearman_oracle_trend_plus_dev_vs_25": 0.9219204637096774
+    }
+   }
+  },
+  "late_median": {
+   "can_seed1": {
+    "n": 21,
+    "epoch_range": [
+     100,
+     200
+    ],
+    "slope_S50_pp_per_100ep": -0.31168831168831224,
+    "slope_ci_block": [
+     -3.268944252146115,
+     1.0461136790852676
+    ],
+    "slope_ci_seed": [
+     -5.038961038961043,
+     3.168831168831164
+    ],
+    "slope_A_pp_per_100ep": -3.116883116883127,
+    "slope_B_pp_per_100ep": 2.493506493506482,
+    "implied_trend_span_pp": -0.31168831168831224,
+    "spearman_epoch_A": -0.3670958434643057,
+    "spearman_epoch_B": 0.4806412828510974,
+    "spearman_epoch_S50": -0.09608905826599336,
+    "residual_sd_S50_pp": 1.1720135911440555,
+    "binomial_noise_sd_S50_pp": 2.107582682104018,
+    "binomial_noise_sd_25_pp": 2.9805720128541653,
+    "mean_S50": 0.9771428571428571,
+    "max_S50": 1.0,
+    "trend_anova": {
+     "MSe_interaction": 0.013860058309037901,
+     "F_trend": 0.06746471870577936,
+     "F_trend_p": 0.7951191122337044,
+     "F_dev": 0.4955303315465398,
+     "F_dev_p": 0.9652114378395175,
+     "var_dev_true_pp2": -1.3983958039811952,
+     "noise_sd_25_shared_seed_pp": 2.354574977276188,
+     "trend_sd_pp": 0.09436832272511697,
+     "rel_dev_25": 0.0,
+     "ceiling_partial_given_epoch_vs_25": 0.0,
+     "sim_spearman_trend_follower_vs_25": 0.038958766233766234,
+     "sim_spearman_oracle_trend_plus_dev_vs_25": null
+    }
+   },
+   "can_seed2": {
+    "n": 11,
+    "epoch_range": [
+     100,
+     200
+    ],
+    "slope_S50_pp_per_100ep": 2.000000000000034,
+    "slope_ci_block": [
+     -2.8108108108107803,
+     7.0796460176991
+    ],
+    "slope_ci_seed": [
+     -0.1818181818181664,
+     4.7318181818182135
+    ],
+    "slope_A_pp_per_100ep": 2.9090909090909416,
+    "slope_B_pp_per_100ep": 1.0909090909091188,
+    "implied_trend_span_pp": 2.000000000000034,
+    "spearman_epoch_A": 0.49036164761790396,
+    "spearman_epoch_B": 0.3,
+    "spearman_epoch_S50": 0.4979193521615871,
+    "residual_sd_S50_pp": 1.5814582198117353,
+    "binomial_noise_sd_S50_pp": 1.4522709489247903,
+    "binomial_noise_sd_25_pp": 2.0538212722098828,
+    "mean_S50": 0.989090909090909,
+    "max_S50": 1.0,
+    "trend_anova": {
+     "MSe_interaction": 0.010486085343228202,
+     "F_trend": 2.098018400566251,
+     "F_trend_p": 0.14812975988244553,
+     "F_dev": 1.1925375481638758,
+     "F_dev_p": 0.2973738248410267,
+     "var_dev_true_pp2": 0.40379303236446235,
+     "noise_sd_25_shared_seed_pp": 2.0480317715531857,
+     "trend_sd_pp": 0.632455532033688,
+     "rel_dev_25": 0.0878149376849281,
+     "ceiling_partial_given_epoch_vs_25": 0.2963358528509976,
+     "sim_spearman_trend_follower_vs_25": 0.28422499999999995,
+     "sim_spearman_oracle_trend_plus_dev_vs_25": 0.3724386363636364
+    }
+   },
+   "square_seed1": {
+    "n": 16,
+    "epoch_range": [
+     150,
+     300
+    ],
+    "slope_S50_pp_per_100ep": 3.6764705882353073,
+    "slope_ci_block": [
+     1.132337255045873,
+     6.511768249834882
+    ],
+    "slope_ci_seed": [
+     -2.5588235294117445,
+     9.79485294117648
+    ],
+    "slope_A_pp_per_100ep": 4.058823529411783,
+    "slope_B_pp_per_100ep": 3.294117647058829,
+    "implied_trend_span_pp": 5.514705882352961,
+    "spearman_epoch_A": 0.33443445580376163,
+    "spearman_epoch_B": 0.3200833461602683,
+    "spearman_epoch_S50": 0.5981885851855431,
+    "residual_sd_S50_pp": 2.475510303049493,
+    "binomial_noise_sd_S50_pp": 5.185074734273364,
+    "binomial_noise_sd_25_pp": 7.332803011127463,
+    "mean_S50": 0.8387500000000001,
+    "max_S50": 0.88,
+    "trend_anova": {
+     "MSe_interaction": 0.11364455782312924,
+     "F_trend": 2.0219130257194093,
+     "F_trend_p": 0.15546789883052056,
+     "F_dev": 0.2696192135325012,
+     "F_dev_p": 0.9965749416906742,
+     "var_dev_true_pp2": -16.600760304121657,
+     "noise_sd_25_shared_seed_pp": 6.742241699112521,
+     "trend_sd_pp": 1.6947692017082578,
+     "rel_dev_25": 0.0,
+     "ceiling_partial_given_epoch_vs_25": 0.0,
+     "sim_spearman_trend_follower_vs_25": 0.24568529411764706,
+     "sim_spearman_oracle_trend_plus_dev_vs_25": null
+    }
+   }
+  },
+  "plateau_posthoc": {
+   "can_seed1": {
+    "n": 29,
+    "epoch_range": [
+     60,
+     200
+    ],
+    "slope_S50_pp_per_100ep": 2.1083743842364506,
+    "slope_ci_block": [
+     -0.16768793654304487,
+     3.6644896297537914
+    ],
+    "slope_ci_seed": [
+     -2.4448275862069093,
+     5.419211822660095
+    ],
+    "slope_A_pp_per_100ep": 0.27586206896551896,
+    "slope_B_pp_per_100ep": 3.9408866995073892,
+    "implied_trend_span_pp": 2.951724137931031,
+    "spearman_epoch_A": -0.02864258993388408,
+    "spearman_epoch_B": 0.5392499808733618,
+    "spearman_epoch_S50": 0.36412400760876845,
+    "residual_sd_S50_pp": 2.231142468765218,
+    "binomial_noise_sd_S50_pp": 2.403445802205229,
+    "binomial_noise_sd_25_pp": 3.398985649907318,
+    "mean_S50": 0.9696551724137933,
+    "max_S50": 1.0,
+    "trend_anova": {
+     "MSe_interaction": 0.02476223987131798,
+     "F_trend": 4.5552433924728915,
+     "F_trend_p": 0.03299494401727744,
+     "F_dev": 1.005158810712788,
+     "F_dev_p": 0.4574220209459078,
+     "var_dev_true_pp2": 0.025548741664156716,
+     "noise_sd_25_shared_seed_pp": 3.1472044656372726,
+     "trend_sd_pp": 0.8819962841295171,
+     "rel_dev_25": 0.0025727691418886926,
+     "ceiling_partial_given_epoch_vs_25": 0.05072247176438361,
+     "sim_spearman_trend_follower_vs_25": 0.2691433497536946,
+     "sim_spearman_oracle_trend_plus_dev_vs_25": 0.27195923645320197
+    }
+   },
+   "can_seed2": {
+    "n": 15,
+    "epoch_range": [
+     60,
+     200
+    ],
+    "slope_S50_pp_per_100ep": 4.428571428571438,
+    "slope_ci_block": [
+     0.46728330081136277,
+     7.7094827586207115
+    ],
+    "slope_ci_seed": [
+     1.8571428571428579,
+     7.285714285714291
+    ],
+    "slope_A_pp_per_100ep": 6.28571428571431,
+    "slope_B_pp_per_100ep": 2.571428571428575,
+    "implied_trend_span_pp": 6.200000000000013,
+    "spearman_epoch_A": 0.5778384230109395,
+    "spearman_epoch_B": 0.475704880611909,
+    "spearman_epoch_S50": 0.663972224077465,
+    "residual_sd_S50_pp": 2.300820048107389,
+    "binomial_noise_sd_S50_pp": 2.0026648912553164,
+    "binomial_noise_sd_25_pp": 2.832195850101708,
+    "mean_S50": 0.9786666666666667,
+    "max_S50": 1.0,
+    "trend_anova": {
+     "MSe_interaction": 0.020478134110787173,
+     "F_trend": 13.408029612756375,
+     "F_trend_p": 0.0002698279916870694,
+     "F_dev": 1.2925427837159031,
+     "F_dev_p": 0.21179169792415722,
+     "var_dev_true_pp2": 1.1981460716154537,
+     "noise_sd_25_shared_seed_pp": 2.8620366252574176,
+     "trend_sd_pp": 1.9133615395299477,
+     "rel_dev_25": 0.12760624830814743,
+     "ceiling_partial_given_epoch_vs_25": 0.35722016783511457,
+     "sim_spearman_trend_follower_vs_25": 0.5551598214285713,
+     "sim_spearman_oracle_trend_plus_dev_vs_25": 0.5865651785714285
+    }
+   },
+   "square_seed1": {
+    "n": 22,
+    "epoch_range": [
+     90,
+     300
+    ],
+    "slope_S50_pp_per_100ep": 2.247317899491831,
+    "slope_ci_block": [
+     -1.3088272733581512,
+     4.807265187097392
+    ],
+    "slope_ci_seed": [
+     -2.6318464144550795,
+     6.5392433653303295
+    ],
+    "slope_A_pp_per_100ep": 0.6775832862789438,
+    "slope_B_pp_per_100ep": 3.8170525127047035,
+    "implied_trend_span_pp": 4.719367588932845,
+    "spearman_epoch_A": 0.10400907621257263,
+    "spearman_epoch_B": 0.49811003671666626,
+    "spearman_epoch_S50": 0.4236758783832107,
+    "residual_sd_S50_pp": 3.1838099759145337,
+    "binomial_noise_sd_S50_pp": 5.221981511753073,
+    "binomial_noise_sd_25_pp": 7.384997076382755,
+    "mean_S50": 0.8354545454545454,
+    "max_S50": 0.9,
+    "trend_anova": {
+     "MSe_interaction": 0.12376446682569132,
+     "F_trend": 1.806723179394994,
+     "F_trend_p": 0.17919807874381077,
+     "F_dev": 0.40951357941085226,
+     "F_dev_p": 0.9902408462794724,
+     "var_dev_true_pp2": -14.616247402405358,
+     "noise_sd_25_shared_seed_pp": 7.036034872730275,
+     "trend_sd_pp": 1.425763371287113,
+     "rel_dev_25": 0.0,
+     "ceiling_partial_given_epoch_vs_25": 0.0,
+     "sim_spearman_trend_follower_vs_25": 0.1959390175042349,
+     "sim_spearman_oracle_trend_plus_dev_vs_25": null
+    }
+   }
+  }
+ }
+}

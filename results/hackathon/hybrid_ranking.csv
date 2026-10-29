@@ -1,0 +1,92 @@
+metric,run_id,n_checkpoints,spearman,spearman_ci_lo,spearman_ci_hi,regret@10,k@10,regret@30,k@30,label,pick_regret@1
+epoch,can_seed1,11,0.8507111474365273,0.4622390618622731,0.9929659150299244,0.0,2.0,0.0,4.0,Training epoch (free baseline),
+epoch,can_seed2,11,0.9606888205888261,0.8124299396572945,1.0,0.0,2.0,0.0,4.0,Training epoch (free baseline),
+epoch,square_seed1,11,0.7505897695110688,0.17399910020216097,0.9928655450368529,0.020000000000000018,2.0,0.020000000000000018,4.0,Training epoch (free baseline),
+epoch,mean_over_runs,33,0.8539965791788074,,,0.006666666666666672,,0.006666666666666672,,Training epoch (free baseline),
+epoch,can_seed1,11,,,,,,,,Training epoch (free baseline),0.0
+epoch,can_seed2,11,,,,,,,,Training epoch (free baseline),0.0
+epoch,square_seed1,11,,,,,,,,Training epoch (free baseline),0.020000000000000018
+k_sim_success,can_seed1,11,0.9406694839308274,0.7456011350793257,1.0,0.0,2.0,0.0,4.0,K=10 instrumented sim success (privileged),
+k_sim_success,can_seed2,11,0.7050604936263458,0.164677279084989,0.9755858940627684,0.040000000000000036,2.0,0.0,4.0,K=10 instrumented sim success (privileged),
+k_sim_success,square_seed1,11,0.17442615164630507,-0.6901854937472192,0.8174642927828686,0.09999999999999998,2.0,0.06000000000000005,4.0,K=10 instrumented sim success (privileged),
+k_sim_success,mean_over_runs,33,0.6067187097344927,,,0.04666666666666667,,0.020000000000000018,,K=10 instrumented sim success (privileged),
+k_sim_success,can_seed1,11,,,,,,,,K=10 instrumented sim success (privileged),0.0
+k_sim_success,can_seed2,11,,,,,,,,K=10 instrumented sim success (privileged),0.040000000000000036
+k_sim_success,square_seed1,11,,,,,,,,K=10 instrumented sim success (privileged),0.21999999999999997
+val_action_l1,can_seed1,11,0.731229244706678,0.1938006332446037,0.9539168950022007,0.0,2.0,0.0,4.0,Action L1,
+val_action_l1,can_seed2,11,0.8674180613083575,0.460519509578332,0.9906101206907556,0.0,2.0,0.0,4.0,Action L1,
+val_action_l1,square_seed1,11,0.59497969534414,-0.13485907547827955,0.9975941141361391,0.020000000000000018,2.0,0.020000000000000018,4.0,Action L1,
+val_action_l1,mean_over_runs,33,0.7312090004530586,,,0.006666666666666672,,0.006666666666666672,,Action L1,
+val_action_l1,can_seed1,11,,,,,,,,Action L1,0.020000000000000018
+val_action_l1,can_seed2,11,,,,,,,,Action L1,0.0
+val_action_l1,square_seed1,11,,,,,,,,Action L1,0.020000000000000018
+open_loop_smoothness,can_seed1,11,0.8220354907813635,0.45753332541221203,0.9764782658793721,0.0,2.0,0.0,4.0,Open-loop smoothness,
+open_loop_smoothness,can_seed2,11,0.9606888205888261,0.8124299396572945,1.0,0.0,2.0,0.0,4.0,Open-loop smoothness,
+open_loop_smoothness,square_seed1,11,0.7048221006384428,0.12460979764840728,0.9756654533819863,0.020000000000000018,2.0,0.020000000000000018,4.0,Open-loop smoothness,
+open_loop_smoothness,mean_over_runs,33,0.8291821373362108,,,0.006666666666666672,,0.006666666666666672,,Open-loop smoothness,
+open_loop_smoothness,can_seed1,11,,,,,,,,Open-loop smoothness,0.0
+open_loop_smoothness,can_seed2,11,,,,,,,,Open-loop smoothness,0.0
+open_loop_smoothness,square_seed1,11,,,,,,,,Open-loop smoothness,0.06000000000000005
+plv1_smoothness,can_seed1,11,0.8029183863445876,0.3497795163415052,0.9789450103725609,0.0,2.0,0.0,4.0,PLV-1 smoothness,
+plv1_smoothness,can_seed2,11,0.7648202260998421,0.2660818328267255,0.9853363152254149,0.0,2.0,0.0,4.0,PLV-1 smoothness,
+plv1_smoothness,square_seed1,11,0.7505897695110688,0.17399910020216097,0.9928655450368529,0.020000000000000018,2.0,0.020000000000000018,4.0,PLV-1 smoothness,
+plv1_smoothness,mean_over_runs,33,0.7727761273184995,,,0.006666666666666672,,0.006666666666666672,,PLV-1 smoothness,
+plv1_smoothness,can_seed1,11,,,,,,,,PLV-1 smoothness,0.0
+plv1_smoothness,can_seed2,11,,,,,,,,PLV-1 smoothness,0.0
+plv1_smoothness,square_seed1,11,,,,,,,,PLV-1 smoothness,0.020000000000000018
+replan_overlap_h16,can_seed1,11,0.8507111474365273,0.4622390618622731,0.9929659150299244,0.0,2.0,0.0,4.0,"Replan overlap (model, H=16)",
+replan_overlap_h16,can_seed2,11,0.9606888205888261,0.8124299396572945,1.0,0.0,2.0,0.0,4.0,"Replan overlap (model, H=16)",
+replan_overlap_h16,square_seed1,11,0.7231291681874932,0.12292775416574972,0.9832769629600082,0.040000000000000036,2.0,0.020000000000000018,4.0,"Replan overlap (model, H=16)",
+replan_overlap_h16,mean_over_runs,33,0.8448430454042821,,,0.013333333333333345,,0.006666666666666672,,"Replan overlap (model, H=16)",
+replan_overlap_h16,can_seed1,11,,,,,,,,"Replan overlap (model, H=16)",0.0
+replan_overlap_h16,can_seed2,11,,,,,,,,"Replan overlap (model, H=16)",0.0
+replan_overlap_h16,square_seed1,11,,,,,,,,"Replan overlap (model, H=16)",0.040000000000000036
+sim_replan_overlap,can_seed1,11,0.8507111474365273,0.4622390618622731,0.9929659150299244,0.0,2.0,0.0,4.0,Replan overlap on real sim feedback (K=10),
+sim_replan_overlap,can_seed2,11,0.9606888205888261,0.8124299396572945,1.0,0.0,2.0,0.0,4.0,Replan overlap on real sim feedback (K=10),
+sim_replan_overlap,square_seed1,11,0.7505897695110688,0.17399910020216097,0.9928655450368529,0.020000000000000018,2.0,0.020000000000000018,4.0,Replan overlap on real sim feedback (K=10),
+sim_replan_overlap,mean_over_runs,33,0.8539965791788074,,,0.006666666666666672,,0.006666666666666672,,Replan overlap on real sim feedback (K=10),
+sim_replan_overlap,can_seed1,11,,,,,,,,Replan overlap on real sim feedback (K=10),0.0
+sim_replan_overlap,can_seed2,11,,,,,,,,Replan overlap on real sim feedback (K=10),0.0
+sim_replan_overlap,square_seed1,11,,,,,,,,Replan overlap on real sim feedback (K=10),0.020000000000000018
+vlm_success_local,can_seed1,11,0.8236455304310192,0.5380275868489703,0.9757506847466286,0.020000000000000018,2.0,0.0,4.0,"VLM-judged success, K=10 (local)",
+vlm_success_local,can_seed2,11,0.8066707527543578,0.5179697702828122,0.9636241116594315,0.040000000000000036,2.0,0.020000000000000018,4.0,"VLM-judged success, K=10 (local)",
+vlm_success_local,square_seed1,11,0.32257791655406737,-0.3663889402858473,0.8900138343862818,0.09999999999999998,2.0,0.040000000000000036,4.0,"VLM-judged success, K=10 (local)",
+vlm_success_local,mean_over_runs,33,0.6509647332464815,,,0.053333333333333344,,0.020000000000000018,,"VLM-judged success, K=10 (local)",
+vlm_success_local,can_seed1,11,,,,,,,,"VLM-judged success, K=10 (local)",0.040000000000000036
+vlm_success_local,can_seed2,11,,,,,,,,"VLM-judged success, K=10 (local)",0.09999999999999998
+vlm_success_local,square_seed1,11,,,,,,,,"VLM-judged success, K=10 (local)",0.09999999999999998
+vlm_success_nebius,can_seed1,11,0.8266904411127152,0.5380275868489703,1.0,0.020000000000000018,2.0,0.0,4.0,"VLM-judged success, K=10 (nebius)",
+vlm_success_nebius,can_seed2,11,0.8831219090364,0.5808814964202557,0.9907548092361399,0.020000000000000018,2.0,0.0,4.0,"VLM-judged success, K=10 (nebius)",
+vlm_success_nebius,square_seed1,11,0.5179056418488678,-0.20883438705737273,0.8991926135888781,0.06000000000000005,2.0,0.040000000000000036,4.0,"VLM-judged success, K=10 (nebius)",
+vlm_success_nebius,mean_over_runs,33,0.7425726639993276,,,0.03333333333333336,,0.013333333333333345,,"VLM-judged success, K=10 (nebius)",
+vlm_success_nebius,can_seed1,11,,,,,,,,"VLM-judged success, K=10 (nebius)",0.040000000000000036
+vlm_success_nebius,can_seed2,11,,,,,,,,"VLM-judged success, K=10 (nebius)",0.040000000000000036
+vlm_success_nebius,square_seed1,11,,,,,,,,"VLM-judged success, K=10 (nebius)",0.09999999999999998
+hybrid_rankavg_l1_local,can_seed1,11,0.7838012819078117,0.19762339922512245,0.9929327736346234,0.0,2.0,0.0,4.0,"Hybrid rank-average(Action L1, VLM local)",
+hybrid_rankavg_l1_local,can_seed2,11,0.9047263650205449,0.5784349499048137,0.9906974722292782,0.0,2.0,0.0,4.0,"Hybrid rank-average(Action L1, VLM local)",
+hybrid_rankavg_l1_local,square_seed1,11,0.5171746582606755,-0.23372932385149994,0.9812723106434503,0.020000000000000018,2.0,0.020000000000000018,4.0,"Hybrid rank-average(Action L1, VLM local)",
+hybrid_rankavg_l1_local,mean_over_runs,33,0.7352341017296774,,,0.006666666666666672,,0.006666666666666672,,"Hybrid rank-average(Action L1, VLM local)",
+hybrid_rankavg_l1_local,can_seed1,11,,,,,,,,"Hybrid rank-average(Action L1, VLM local)",0.020000000000000018
+hybrid_rankavg_l1_local,can_seed2,11,,,,,,,,"Hybrid rank-average(Action L1, VLM local)",0.0
+hybrid_rankavg_l1_local,square_seed1,11,,,,,,,,"Hybrid rank-average(Action L1, VLM local)",0.020000000000000018
+hybrid_twostage_l1_local,can_seed1,11,0.459440874750862,-0.0488985309074164,0.798460339805782,0.0,2.0,0.0,4.0,Two-stage: top-30% Action L1 -> VLM local,
+hybrid_twostage_l1_local,can_seed2,11,0.8318129048053836,0.5124083173889535,0.8864052604279183,0.0,2.0,0.0,4.0,Two-stage: top-30% Action L1 -> VLM local,
+hybrid_twostage_l1_local,square_seed1,11,0.33395562160121794,-0.20294833717087093,0.833272431212297,0.020000000000000018,2.0,0.020000000000000018,4.0,Two-stage: top-30% Action L1 -> VLM local,
+hybrid_twostage_l1_local,mean_over_runs,33,0.5417364670524879,,,0.006666666666666672,,0.006666666666666672,,Two-stage: top-30% Action L1 -> VLM local,
+hybrid_twostage_l1_local,can_seed1,11,,,,,,,,Two-stage: top-30% Action L1 -> VLM local,0.020000000000000018
+hybrid_twostage_l1_local,can_seed2,11,,,,,,,,Two-stage: top-30% Action L1 -> VLM local,0.0
+hybrid_twostage_l1_local,square_seed1,11,,,,,,,,Two-stage: top-30% Action L1 -> VLM local,0.09999999999999998
+hybrid_rankavg_l1_nebius,can_seed1,11,0.7838012819078117,0.19762339922512245,0.9929327736346234,0.0,2.0,0.0,4.0,"Hybrid rank-average(Action L1, VLM nebius)",
+hybrid_rankavg_l1_nebius,can_seed2,11,0.9466982066967559,0.7466251722808791,0.9930312739844155,0.0,2.0,0.0,4.0,"Hybrid rank-average(Action L1, VLM nebius)",
+hybrid_rankavg_l1_nebius,square_seed1,11,0.550464507063829,-0.1542713598018952,0.9555370254931016,0.020000000000000018,2.0,0.020000000000000018,4.0,"Hybrid rank-average(Action L1, VLM nebius)",
+hybrid_rankavg_l1_nebius,mean_over_runs,33,0.7603213318894655,,,0.006666666666666672,,0.006666666666666672,,"Hybrid rank-average(Action L1, VLM nebius)",
+hybrid_rankavg_l1_nebius,can_seed1,11,,,,,,,,"Hybrid rank-average(Action L1, VLM nebius)",0.020000000000000018
+hybrid_rankavg_l1_nebius,can_seed2,11,,,,,,,,"Hybrid rank-average(Action L1, VLM nebius)",0.0
+hybrid_rankavg_l1_nebius,square_seed1,11,,,,,,,,"Hybrid rank-average(Action L1, VLM nebius)",0.020000000000000018
+hybrid_twostage_l1_nebius,can_seed1,11,0.459440874750862,-0.0488985309074164,0.798460339805782,0.0,2.0,0.0,4.0,Two-stage: top-30% Action L1 -> VLM nebius,
+hybrid_twostage_l1_nebius,can_seed2,11,0.8318129048053836,0.5124083173889535,0.8864052604279183,0.0,2.0,0.0,4.0,Two-stage: top-30% Action L1 -> VLM nebius,
+hybrid_twostage_l1_nebius,square_seed1,11,0.33395562160121794,-0.20294833717087093,0.833272431212297,0.020000000000000018,2.0,0.020000000000000018,4.0,Two-stage: top-30% Action L1 -> VLM nebius,
+hybrid_twostage_l1_nebius,mean_over_runs,33,0.5417364670524879,,,0.006666666666666672,,0.006666666666666672,,Two-stage: top-30% Action L1 -> VLM nebius,
+hybrid_twostage_l1_nebius,can_seed1,11,,,,,,,,Two-stage: top-30% Action L1 -> VLM nebius,0.020000000000000018
+hybrid_twostage_l1_nebius,can_seed2,11,,,,,,,,Two-stage: top-30% Action L1 -> VLM nebius,0.0
+hybrid_twostage_l1_nebius,square_seed1,11,,,,,,,,Two-stage: top-30% Action L1 -> VLM nebius,0.09999999999999998

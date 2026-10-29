@@ -1,0 +1,3271 @@
+{
+  "name": "x5_cosmos_modes",
+  "label": "EXPLORATORY / post-hoc; dev split (36 episodes) used for variant choice, eval split for reporting",
+  "model": {
+    "id": "nvidia/Cosmos3-Edge",
+    "revision": "344d602b128d1bbdacb43b08d0a3626f46343e29",
+    "load_s": 8.4
+  },
+  "roi_box_xyxy_448": {
+    "can": [
+      0,
+      40,
+      448,
+      336
+    ],
+    "square": [
+      16,
+      96,
+      432,
+      448
+    ]
+  },
+  "roi_upsample": 2,
+  "selection_in_run": {
+    "rule": "Dev split only, episodes where all four variants completed. success_choice = argmax over ['a_roi_track8', 'c_pairwise8', 'd_reason_last'] of balanced_acc_all (unparsed = wrong), ties -> lower mean latency; ftype_choice = argmax over ['a_roi_track8', 'b_track15', 'c_pairwise8'] of failure_type_acc_on_failures_all (unscored = wrong), ties -> lower mean latency. Both choices are applied unchanged to eval. Amended during the dev phase (before selection, never using eval): c_pairwise8_fmtrepair (same raw outputs, post-hoc format repair) added to both candidate sets after Cosmos3-Edge answered the pair prompt in a bracketed-list format on many dev calls.",
+    "n_dev_episodes": 25,
+    "dev_scores": {
+      "a_roi_track8": {
+        "balanced_acc_all": 0.938,
+        "success_acc_all": 0.92,
+        "fp": 2,
+        "fn": 0,
+        "failure_type_acc_on_failures_all": 0.312,
+        "mean_latency_s_per_episode": 17.28
+      },
+      "b_track15": {
+        "balanced_acc_all": 0.875,
+        "success_acc_all": 0.84,
+        "fp": 4,
+        "fn": 0,
+        "failure_type_acc_on_failures_all": 0.188,
+        "mean_latency_s_per_episode": 31.33
+      },
+      "c_pairwise8": {
+        "balanced_acc_all": 0.236,
+        "success_acc_all": 0.24,
+        "fp": 1,
+        "fn": 1,
+        "failure_type_acc_on_failures_all": 0.188,
+        "mean_latency_s_per_episode": 15.85
+      },
+      "d_reason_last": {
+        "balanced_acc_all": 0.559,
+        "success_acc_all": 0.56,
+        "fp": 1,
+        "fn": 1,
+        "failure_type_acc_on_failures_all": null,
+        "mean_latency_s_per_episode": 18.17
+      },
+      "c_pairwise8_fmtrepair": {
+        "balanced_acc_all": 0.653,
+        "success_acc_all": 0.68,
+        "fp": 4,
+        "fn": 4,
+        "failure_type_acc_on_failures_all": 0.625,
+        "mean_latency_s_per_episode": 15.85
+      }
+    },
+    "candidates_success": [
+      "a_roi_track8",
+      "c_pairwise8",
+      "d_reason_last",
+      "c_pairwise8_fmtrepair"
+    ],
+    "candidates_ftype": [
+      "a_roi_track8",
+      "b_track15",
+      "c_pairwise8",
+      "c_pairwise8_fmtrepair"
+    ],
+    "success_choice": "a_roi_track8",
+    "ftype_choice": "c_pairwise8_fmtrepair",
+    "chosen": [
+      "a_roi_track8",
+      "c_pairwise8"
+    ]
+  },
+  "selection_recomputed": {
+    "rule": "Dev split only, episodes where all four variants completed. success_choice = argmax over ['a_roi_track8', 'c_pairwise8', 'd_reason_last'] of balanced_acc_all (unparsed = wrong), ties -> lower mean latency; ftype_choice = argmax over ['a_roi_track8', 'b_track15', 'c_pairwise8'] of failure_type_acc_on_failures_all (unscored = wrong), ties -> lower mean latency. Both choices are applied unchanged to eval. Amended during the dev phase (before selection, never using eval): c_pairwise8_fmtrepair (same raw outputs, post-hoc format repair) added to both candidate sets after Cosmos3-Edge answered the pair prompt in a bracketed-list format on many dev calls.",
+    "n_dev_episodes": 25,
+    "dev_scores": {
+      "a_roi_track8": {
+        "balanced_acc_all": 0.938,
+        "success_acc_all": 0.92,
+        "fp": 2,
+        "fn": 0,
+        "failure_type_acc_on_failures_all": 0.312,
+        "mean_latency_s_per_episode": 17.28
+      },
+      "b_track15": {
+        "balanced_acc_all": 0.875,
+        "success_acc_all": 0.84,
+        "fp": 4,
+        "fn": 0,
+        "failure_type_acc_on_failures_all": 0.188,
+        "mean_latency_s_per_episode": 31.33
+      },
+      "c_pairwise8": {
+        "balanced_acc_all": 0.236,
+        "success_acc_all": 0.24,
+        "fp": 1,
+        "fn": 1,
+        "failure_type_acc_on_failures_all": 0.188,
+        "mean_latency_s_per_episode": 15.85
+      },
+      "d_reason_last": {
+        "balanced_acc_all": 0.559,
+        "success_acc_all": 0.56,
+        "fp": 1,
+        "fn": 1,
+        "failure_type_acc_on_failures_all": null,
+        "mean_latency_s_per_episode": 18.17
+      },
+      "c_pairwise8_fmtrepair": {
+        "balanced_acc_all": 0.653,
+        "success_acc_all": 0.68,
+        "fp": 4,
+        "fn": 4,
+        "failure_type_acc_on_failures_all": 0.625,
+        "mean_latency_s_per_episode": 15.85
+      }
+    },
+    "candidates_success": [
+      "a_roi_track8",
+      "c_pairwise8",
+      "d_reason_last",
+      "c_pairwise8_fmtrepair"
+    ],
+    "candidates_ftype": [
+      "a_roi_track8",
+      "b_track15",
+      "c_pairwise8",
+      "c_pairwise8_fmtrepair"
+    ],
+    "success_choice": "a_roi_track8",
+    "ftype_choice": "c_pairwise8_fmtrepair",
+    "chosen": [
+      "a_roi_track8",
+      "c_pairwise8"
+    ]
+  },
+  "dev": {
+    "a_roi_track8": {
+      "own_episodes": {
+        "episodes": 25,
+        "scored": 25,
+        "unparsed": 0,
+        "n_true_success": 9,
+        "n_true_failure": 16,
+        "tp": 9,
+        "tn": 14,
+        "fp": 2,
+        "fn": 0,
+        "success_acc": 0.92,
+        "success_acc_ci95": [
+          0.75,
+          0.978
+        ],
+        "success_acc_all": 0.92,
+        "success_acc_all_ci95": [
+          0.75,
+          0.978
+        ],
+        "balanced_acc_all": 0.938,
+        "fp_rate_on_failures_all": 0.125,
+        "fp_rate_ci95": [
+          0.035,
+          0.36
+        ],
+        "fn_rate_on_successes_all": 0.0,
+        "fn_rate_ci95": [
+          0.0,
+          0.299
+        ],
+        "mean_latency_s_per_episode": 17.28,
+        "failure_type_acc_on_failures_all": 0.312,
+        "failure_type_acc_ci95": [
+          0.142,
+          0.556
+        ],
+        "failure_type_acc_square_other_as_no_grasp": 0.312,
+        "failure_type_merged_ci95": [
+          0.142,
+          0.556
+        ],
+        "lifted_acc_scored": 0.64,
+        "lifted_acc_ci95": [
+          0.445,
+          0.798
+        ],
+        "failure_confusion": {
+          "dropped->dropped": 3,
+          "dropped->none": 1,
+          "dropped->not_placed": 1,
+          "no_grasp->dropped": 6,
+          "no_grasp->no_grasp": 2,
+          "no_grasp->none": 1,
+          "no_grasp->not_placed": 2
+        }
+      },
+      "vs_v6_same_episodes": {
+        "n": 25,
+        "variant": {
+          "episodes": 25,
+          "scored": 25,
+          "unparsed": 0,
+          "n_true_success": 9,
+          "n_true_failure": 16,
+          "tp": 9,
+          "tn": 14,
+          "fp": 2,
+          "fn": 0,
+          "success_acc": 0.92,
+          "success_acc_ci95": [
+            0.75,
+            0.978
+          ],
+          "success_acc_all": 0.92,
+          "success_acc_all_ci95": [
+            0.75,
+            0.978
+          ],
+          "balanced_acc_all": 0.938,
+          "fp_rate_on_failures_all": 0.125,
+          "fp_rate_ci95": [
+            0.035,
+            0.36
+          ],
+          "fn_rate_on_successes_all": 0.0,
+          "fn_rate_ci95": [
+            0.0,
+            0.299
+          ],
+          "mean_latency_s_per_episode": 17.28,
+          "failure_type_acc_on_failures_all": 0.312,
+          "failure_type_acc_ci95": [
+            0.142,
+            0.556
+          ],
+          "failure_type_acc_square_other_as_no_grasp": 0.312,
+          "failure_type_merged_ci95": [
+            0.142,
+            0.556
+          ],
+          "lifted_acc_scored": 0.64,
+          "lifted_acc_ci95": [
+            0.445,
+            0.798
+          ],
+          "failure_confusion": {
+            "dropped->dropped": 3,
+            "dropped->none": 1,
+            "dropped->not_placed": 1,
+            "no_grasp->dropped": 6,
+            "no_grasp->no_grasp": 2,
+            "no_grasp->none": 1,
+            "no_grasp->not_placed": 2
+          }
+        },
+        "v6": {
+          "episodes": 25,
+          "scored": 25,
+          "unparsed": 0,
+          "n_true_success": 9,
+          "n_true_failure": 16,
+          "tp": 9,
+          "tn": 12,
+          "fp": 4,
+          "fn": 0,
+          "success_acc": 0.84,
+          "success_acc_ci95": [
+            0.653,
+            0.936
+          ],
+          "success_acc_all": 0.84,
+          "success_acc_all_ci95": [
+            0.653,
+            0.936
+          ],
+          "balanced_acc_all": 0.875,
+          "fp_rate_on_failures_all": 0.25,
+          "fp_rate_ci95": [
+            0.102,
+            0.495
+          ],
+          "fn_rate_on_successes_all": 0.0,
+          "fn_rate_ci95": [
+            0.0,
+            0.299
+          ],
+          "mean_latency_s_per_episode": 1.82
+        },
+        "paired_success_diff_variant_minus_v6": {
+          "n": 25,
+          "acc_a": 0.92,
+          "acc_b": 0.84,
+          "diff": 0.08,
+          "diff_ci95_boot": [
+            0.0,
+            0.2
+          ],
+          "a_right_b_wrong": 2,
+          "a_wrong_b_right": 0
+        }
+      },
+      "vs_v7_same_episodes": {
+        "n": 25,
+        "variant": {
+          "episodes": 25,
+          "scored": 25,
+          "unparsed": 0,
+          "n_true_success": 9,
+          "n_true_failure": 16,
+          "tp": 9,
+          "tn": 14,
+          "fp": 2,
+          "fn": 0,
+          "success_acc": 0.92,
+          "success_acc_ci95": [
+            0.75,
+            0.978
+          ],
+          "success_acc_all": 0.92,
+          "success_acc_all_ci95": [
+            0.75,
+            0.978
+          ],
+          "balanced_acc_all": 0.938,
+          "fp_rate_on_failures_all": 0.125,
+          "fp_rate_ci95": [
+            0.035,
+            0.36
+          ],
+          "fn_rate_on_successes_all": 0.0,
+          "fn_rate_ci95": [
+            0.0,
+            0.299
+          ],
+          "mean_latency_s_per_episode": 17.28,
+          "failure_type_acc_on_failures_all": 0.312,
+          "failure_type_acc_ci95": [
+            0.142,
+            0.556
+          ],
+          "failure_type_acc_square_other_as_no_grasp": 0.312,
+          "failure_type_merged_ci95": [
+            0.142,
+            0.556
+          ],
+          "lifted_acc_scored": 0.64,
+          "lifted_acc_ci95": [
+            0.445,
+            0.798
+          ],
+          "failure_confusion": {
+            "dropped->dropped": 3,
+            "dropped->none": 1,
+            "dropped->not_placed": 1,
+            "no_grasp->dropped": 6,
+            "no_grasp->no_grasp": 2,
+            "no_grasp->none": 1,
+            "no_grasp->not_placed": 2
+          }
+        },
+        "v7": {
+          "episodes": 25,
+          "scored": 25,
+          "unparsed": 0,
+          "n_true_success": 9,
+          "n_true_failure": 16,
+          "tp": 9,
+          "tn": 12,
+          "fp": 4,
+          "fn": 0,
+          "success_acc": 0.84,
+          "success_acc_ci95": [
+            0.653,
+            0.936
+          ],
+          "success_acc_all": 0.84,
+          "success_acc_all_ci95": [
+            0.653,
+            0.936
+          ],
+          "balanced_acc_all": 0.875,
+          "fp_rate_on_failures_all": 0.25,
+          "fp_rate_ci95": [
+            0.102,
+            0.495
+          ],
+          "fn_rate_on_successes_all": 0.0,
+          "fn_rate_ci95": [
+            0.0,
+            0.299
+          ],
+          "mean_latency_s_per_episode": 16.91,
+          "failure_type_acc_on_failures_all": 0.25,
+          "failure_type_acc_ci95": [
+            0.102,
+            0.495
+          ],
+          "failure_type_acc_square_other_as_no_grasp": 0.25,
+          "failure_type_merged_ci95": [
+            0.102,
+            0.495
+          ],
+          "lifted_acc_scored": 0.6,
+          "lifted_acc_ci95": [
+            0.407,
+            0.766
+          ],
+          "failure_confusion": {
+            "dropped->dropped": 3,
+            "dropped->none": 2,
+            "no_grasp->dropped": 6,
+            "no_grasp->no_grasp": 1,
+            "no_grasp->none": 2,
+            "no_grasp->not_placed": 2
+          }
+        },
+        "paired_ftype_diff_variant_minus_v7": {
+          "n": 16,
+          "acc_a": 0.312,
+          "acc_b": 0.25,
+          "diff": 0.062,
+          "diff_ci95_boot": [
+            0.0,
+            0.188
+          ],
+          "a_right_b_wrong": 1,
+          "a_wrong_b_right": 0
+        },
+        "paired_success_diff_variant_minus_v7": {
+          "n": 25,
+          "acc_a": 0.92,
+          "acc_b": 0.84,
+          "diff": 0.08,
+          "diff_ci95_boot": [
+            0.0,
+            0.2
+          ],
+          "a_right_b_wrong": 2,
+          "a_wrong_b_right": 0
+        }
+      }
+    },
+    "b_track15": {
+      "own_episodes": {
+        "episodes": 25,
+        "scored": 25,
+        "unparsed": 0,
+        "n_true_success": 9,
+        "n_true_failure": 16,
+        "tp": 9,
+        "tn": 12,
+        "fp": 4,
+        "fn": 0,
+        "success_acc": 0.84,
+        "success_acc_ci95": [
+          0.653,
+          0.936
+        ],
+        "success_acc_all": 0.84,
+        "success_acc_all_ci95": [
+          0.653,
+          0.936
+        ],
+        "balanced_acc_all": 0.875,
+        "fp_rate_on_failures_all": 0.25,
+        "fp_rate_ci95": [
+          0.102,
+          0.495
+        ],
+        "fn_rate_on_successes_all": 0.0,
+        "fn_rate_ci95": [
+          0.0,
+          0.299
+        ],
+        "mean_latency_s_per_episode": 31.33,
+        "failure_type_acc_on_failures_all": 0.188,
+        "failure_type_acc_ci95": [
+          0.066,
+          0.43
+        ],
+        "failure_type_acc_square_other_as_no_grasp": 0.188,
+        "failure_type_merged_ci95": [
+          0.066,
+          0.43
+        ],
+        "lifted_acc_scored": 0.56,
+        "lifted_acc_ci95": [
+          0.371,
+          0.733
+        ],
+        "failure_confusion": {
+          "dropped->dropped": 3,
+          "dropped->none": 2,
+          "no_grasp->dropped": 7,
+          "no_grasp->none": 2,
+          "no_grasp->not_placed": 2
+        }
+      },
+      "vs_v6_same_episodes": {
+        "n": 25,
+        "variant": {
+          "episodes": 25,
+          "scored": 25,
+          "unparsed": 0,
+          "n_true_success": 9,
+          "n_true_failure": 16,
+          "tp": 9,
+          "tn": 12,
+          "fp": 4,
+          "fn": 0,
+          "success_acc": 0.84,
+          "success_acc_ci95": [
+            0.653,
+            0.936
+          ],
+          "success_acc_all": 0.84,
+          "success_acc_all_ci95": [
+            0.653,
+            0.936
+          ],
+          "balanced_acc_all": 0.875,
+          "fp_rate_on_failures_all": 0.25,
+          "fp_rate_ci95": [
+            0.102,
+            0.495
+          ],
+          "fn_rate_on_successes_all": 0.0,
+          "fn_rate_ci95": [
+            0.0,
+            0.299
+          ],
+          "mean_latency_s_per_episode": 31.33,
+          "failure_type_acc_on_failures_all": 0.188,
+          "failure_type_acc_ci95": [
+            0.066,
+            0.43
+          ],
+          "failure_type_acc_square_other_as_no_grasp": 0.188,
+          "failure_type_merged_ci95": [
+            0.066,
+            0.43
+          ],
+          "lifted_acc_scored": 0.56,
+          "lifted_acc_ci95": [
+            0.371,
+            0.733
+          ],
+          "failure_confusion": {
+            "dropped->dropped": 3,
+            "dropped->none": 2,
+            "no_grasp->dropped": 7,
+            "no_grasp->none": 2,
+            "no_grasp->not_placed": 2
+          }
+        },
+        "v6": {
+          "episodes": 25,
+          "scored": 25,
+          "unparsed": 0,
+          "n_true_success": 9,
+          "n_true_failure": 16,
+          "tp": 9,
+          "tn": 12,
+          "fp": 4,
+          "fn": 0,
+          "success_acc": 0.84,
+          "success_acc_ci95": [
+            0.653,
+            0.936
+          ],
+          "success_acc_all": 0.84,
+          "success_acc_all_ci95": [
+            0.653,
+            0.936
+          ],
+          "balanced_acc_all": 0.875,
+          "fp_rate_on_failures_all": 0.25,
+          "fp_rate_ci95": [
+            0.102,
+            0.495
+          ],
+          "fn_rate_on_successes_all": 0.0,
+          "fn_rate_ci95": [
+            0.0,
+            0.299
+          ],
+          "mean_latency_s_per_episode": 1.82
+        },
+        "paired_success_diff_variant_minus_v6": {
+          "n": 25,
+          "acc_a": 0.84,
+          "acc_b": 0.84,
+          "diff": 0.0,
+          "diff_ci95_boot": [
+            0.0,
+            0.0
+          ],
+          "a_right_b_wrong": 0,
+          "a_wrong_b_right": 0
+        }
+      },
+      "vs_v7_same_episodes": {
+        "n": 25,
+        "variant": {
+          "episodes": 25,
+          "scored": 25,
+          "unparsed": 0,
+          "n_true_success": 9,
+          "n_true_failure": 16,
+          "tp": 9,
+          "tn": 12,
+          "fp": 4,
+          "fn": 0,
+          "success_acc": 0.84,
+          "success_acc_ci95": [
+            0.653,
+            0.936
+          ],
+          "success_acc_all": 0.84,
+          "success_acc_all_ci95": [
+            0.653,
+            0.936
+          ],
+          "balanced_acc_all": 0.875,
+          "fp_rate_on_failures_all": 0.25,
+          "fp_rate_ci95": [
+            0.102,
+            0.495
+          ],
+          "fn_rate_on_successes_all": 0.0,
+          "fn_rate_ci95": [
+            0.0,
+            0.299
+          ],
+          "mean_latency_s_per_episode": 31.33,
+          "failure_type_acc_on_failures_all": 0.188,
+          "failure_type_acc_ci95": [
+            0.066,
+            0.43
+          ],
+          "failure_type_acc_square_other_as_no_grasp": 0.188,
+          "failure_type_merged_ci95": [
+            0.066,
+            0.43
+          ],
+          "lifted_acc_scored": 0.56,
+          "lifted_acc_ci95": [
+            0.371,
+            0.733
+          ],
+          "failure_confusion": {
+            "dropped->dropped": 3,
+            "dropped->none": 2,
+            "no_grasp->dropped": 7,
+            "no_grasp->none": 2,
+            "no_grasp->not_placed": 2
+          }
+        },
+        "v7": {
+          "episodes": 25,
+          "scored": 25,
+          "unparsed": 0,
+          "n_true_success": 9,
+          "n_true_failure": 16,
+          "tp": 9,
+          "tn": 12,
+          "fp": 4,
+          "fn": 0,
+          "success_acc": 0.84,
+          "success_acc_ci95": [
+            0.653,
+            0.936
+          ],
+          "success_acc_all": 0.84,
+          "success_acc_all_ci95": [
+            0.653,
+            0.936
+          ],
+          "balanced_acc_all": 0.875,
+          "fp_rate_on_failures_all": 0.25,
+          "fp_rate_ci95": [
+            0.102,
+            0.495
+          ],
+          "fn_rate_on_successes_all": 0.0,
+          "fn_rate_ci95": [
+            0.0,
+            0.299
+          ],
+          "mean_latency_s_per_episode": 16.91,
+          "failure_type_acc_on_failures_all": 0.25,
+          "failure_type_acc_ci95": [
+            0.102,
+            0.495
+          ],
+          "failure_type_acc_square_other_as_no_grasp": 0.25,
+          "failure_type_merged_ci95": [
+            0.102,
+            0.495
+          ],
+          "lifted_acc_scored": 0.6,
+          "lifted_acc_ci95": [
+            0.407,
+            0.766
+          ],
+          "failure_confusion": {
+            "dropped->dropped": 3,
+            "dropped->none": 2,
+            "no_grasp->dropped": 6,
+            "no_grasp->no_grasp": 1,
+            "no_grasp->none": 2,
+            "no_grasp->not_placed": 2
+          }
+        },
+        "paired_ftype_diff_variant_minus_v7": {
+          "n": 16,
+          "acc_a": 0.188,
+          "acc_b": 0.25,
+          "diff": -0.062,
+          "diff_ci95_boot": [
+            -0.188,
+            0.0
+          ],
+          "a_right_b_wrong": 0,
+          "a_wrong_b_right": 1
+        },
+        "paired_success_diff_variant_minus_v7": {
+          "n": 25,
+          "acc_a": 0.84,
+          "acc_b": 0.84,
+          "diff": 0.0,
+          "diff_ci95_boot": [
+            0.0,
+            0.0
+          ],
+          "a_right_b_wrong": 0,
+          "a_wrong_b_right": 0
+        }
+      }
+    },
+    "c_pairwise8": {
+      "own_episodes": {
+        "episodes": 25,
+        "scored": 8,
+        "unparsed": 17,
+        "n_true_success": 9,
+        "n_true_failure": 16,
+        "tp": 2,
+        "tn": 4,
+        "fp": 1,
+        "fn": 1,
+        "success_acc": 0.75,
+        "success_acc_ci95": [
+          0.409,
+          0.929
+        ],
+        "success_acc_all": 0.24,
+        "success_acc_all_ci95": [
+          0.115,
+          0.434
+        ],
+        "balanced_acc_all": 0.236,
+        "fp_rate_on_failures_all": 0.75,
+        "fp_rate_ci95": [
+          0.505,
+          0.898
+        ],
+        "fn_rate_on_successes_all": 0.778,
+        "fn_rate_ci95": [
+          0.453,
+          0.937
+        ],
+        "mean_latency_s_per_episode": 15.85,
+        "failure_type_acc_on_failures_all": 0.188,
+        "failure_type_acc_ci95": [
+          0.066,
+          0.43
+        ],
+        "failure_type_acc_square_other_as_no_grasp": 0.188,
+        "failure_type_merged_ci95": [
+          0.066,
+          0.43
+        ],
+        "lifted_acc_scored": 0.625,
+        "lifted_acc_ci95": [
+          0.306,
+          0.863
+        ],
+        "failure_confusion": {
+          "dropped->no_grasp": 1,
+          "dropped->unscored": 4,
+          "no_grasp->no_grasp": 3,
+          "no_grasp->none": 1,
+          "no_grasp->unscored": 7
+        }
+      },
+      "vs_v6_same_episodes": {
+        "n": 25,
+        "variant": {
+          "episodes": 25,
+          "scored": 8,
+          "unparsed": 17,
+          "n_true_success": 9,
+          "n_true_failure": 16,
+          "tp": 2,
+          "tn": 4,
+          "fp": 1,
+          "fn": 1,
+          "success_acc": 0.75,
+          "success_acc_ci95": [
+            0.409,
+            0.929
+          ],
+          "success_acc_all": 0.24,
+          "success_acc_all_ci95": [
+            0.115,
+            0.434
+          ],
+          "balanced_acc_all": 0.236,
+          "fp_rate_on_failures_all": 0.75,
+          "fp_rate_ci95": [
+            0.505,
+            0.898
+          ],
+          "fn_rate_on_successes_all": 0.778,
+          "fn_rate_ci95": [
+            0.453,
+            0.937
+          ],
+          "mean_latency_s_per_episode": 15.85,
+          "failure_type_acc_on_failures_all": 0.188,
+          "failure_type_acc_ci95": [
+            0.066,
+            0.43
+          ],
+          "failure_type_acc_square_other_as_no_grasp": 0.188,
+          "failure_type_merged_ci95": [
+            0.066,
+            0.43
+          ],
+          "lifted_acc_scored": 0.625,
+          "lifted_acc_ci95": [
+            0.306,
+            0.863
+          ],
+          "failure_confusion": {
+            "dropped->no_grasp": 1,
+            "dropped->unscored": 4,
+            "no_grasp->no_grasp": 3,
+            "no_grasp->none": 1,
+            "no_grasp->unscored": 7
+          }
+        },
+        "v6": {
+          "episodes": 25,
+          "scored": 25,
+          "unparsed": 0,
+          "n_true_success": 9,
+          "n_true_failure": 16,
+          "tp": 9,
+          "tn": 12,
+          "fp": 4,
+          "fn": 0,
+          "success_acc": 0.84,
+          "success_acc_ci95": [
+            0.653,
+            0.936
+          ],
+          "success_acc_all": 0.84,
+          "success_acc_all_ci95": [
+            0.653,
+            0.936
+          ],
+          "balanced_acc_all": 0.875,
+          "fp_rate_on_failures_all": 0.25,
+          "fp_rate_ci95": [
+            0.102,
+            0.495
+          ],
+          "fn_rate_on_successes_all": 0.0,
+          "fn_rate_ci95": [
+            0.0,
+            0.299
+          ],
+          "mean_latency_s_per_episode": 1.82
+        },
+        "paired_success_diff_variant_minus_v6": {
+          "n": 25,
+          "acc_a": 0.24,
+          "acc_b": 0.84,
+          "diff": -0.6,
+          "diff_ci95_boot": [
+            -0.8,
+            -0.4
+          ],
+          "a_right_b_wrong": 0,
+          "a_wrong_b_right": 15
+        }
+      },
+      "vs_v7_same_episodes": {
+        "n": 25,
+        "variant": {
+          "episodes": 25,
+          "scored": 8,
+          "unparsed": 17,
+          "n_true_success": 9,
+          "n_true_failure": 16,
+          "tp": 2,
+          "tn": 4,
+          "fp": 1,
+          "fn": 1,
+          "success_acc": 0.75,
+          "success_acc_ci95": [
+            0.409,
+            0.929
+          ],
+          "success_acc_all": 0.24,
+          "success_acc_all_ci95": [
+            0.115,
+            0.434
+          ],
+          "balanced_acc_all": 0.236,
+          "fp_rate_on_failures_all": 0.75,
+          "fp_rate_ci95": [
+            0.505,
+            0.898
+          ],
+          "fn_rate_on_successes_all": 0.778,
+          "fn_rate_ci95": [
+            0.453,
+            0.937
+          ],
+          "mean_latency_s_per_episode": 15.85,
+          "failure_type_acc_on_failures_all": 0.188,
+          "failure_type_acc_ci95": [
+            0.066,
+            0.43
+          ],
+          "failure_type_acc_square_other_as_no_grasp": 0.188,
+          "failure_type_merged_ci95": [
+            0.066,
+            0.43
+          ],
+          "lifted_acc_scored": 0.625,
+          "lifted_acc_ci95": [
+            0.306,
+            0.863
+          ],
+          "failure_confusion": {
+            "dropped->no_grasp": 1,
+            "dropped->unscored": 4,
+            "no_grasp->no_grasp": 3,
+            "no_grasp->none": 1,
+            "no_grasp->unscored": 7
+          }
+        },
+        "v7": {
+          "episodes": 25,
+          "scored": 25,
+          "unparsed": 0,
+          "n_true_success": 9,
+          "n_true_failure": 16,
+          "tp": 9,
+          "tn": 12,
+          "fp": 4,
+          "fn": 0,
+          "success_acc": 0.84,
+          "success_acc_ci95": [
+            0.653,
+            0.936
+          ],
+          "success_acc_all": 0.84,
+          "success_acc_all_ci95": [
+            0.653,
+            0.936
+          ],
+          "balanced_acc_all": 0.875,
+          "fp_rate_on_failures_all": 0.25,
+          "fp_rate_ci95": [
+            0.102,
+            0.495
+          ],
+          "fn_rate_on_successes_all": 0.0,
+          "fn_rate_ci95": [
+            0.0,
+            0.299
+          ],
+          "mean_latency_s_per_episode": 16.91,
+          "failure_type_acc_on_failures_all": 0.25,
+          "failure_type_acc_ci95": [
+            0.102,
+            0.495
+          ],
+          "failure_type_acc_square_other_as_no_grasp": 0.25,
+          "failure_type_merged_ci95": [
+            0.102,
+            0.495
+          ],
+          "lifted_acc_scored": 0.6,
+          "lifted_acc_ci95": [
+            0.407,
+            0.766
+          ],
+          "failure_confusion": {
+            "dropped->dropped": 3,
+            "dropped->none": 2,
+            "no_grasp->dropped": 6,
+            "no_grasp->no_grasp": 1,
+            "no_grasp->none": 2,
+            "no_grasp->not_placed": 2
+          }
+        },
+        "paired_ftype_diff_variant_minus_v7": {
+          "n": 16,
+          "acc_a": 0.188,
+          "acc_b": 0.25,
+          "diff": -0.062,
+          "diff_ci95_boot": [
+            -0.375,
+            0.25
+          ],
+          "a_right_b_wrong": 3,
+          "a_wrong_b_right": 4
+        },
+        "paired_success_diff_variant_minus_v7": {
+          "n": 25,
+          "acc_a": 0.24,
+          "acc_b": 0.84,
+          "diff": -0.6,
+          "diff_ci95_boot": [
+            -0.8,
+            -0.4
+          ],
+          "a_right_b_wrong": 0,
+          "a_wrong_b_right": 15
+        }
+      }
+    },
+    "d_reason_last": {
+      "own_episodes": {
+        "episodes": 25,
+        "scored": 16,
+        "unparsed": 9,
+        "n_true_success": 9,
+        "n_true_failure": 16,
+        "tp": 5,
+        "tn": 9,
+        "fp": 1,
+        "fn": 1,
+        "success_acc": 0.875,
+        "success_acc_ci95": [
+          0.64,
+          0.965
+        ],
+        "success_acc_all": 0.56,
+        "success_acc_all_ci95": [
+          0.371,
+          0.733
+        ],
+        "balanced_acc_all": 0.559,
+        "fp_rate_on_failures_all": 0.438,
+        "fp_rate_ci95": [
+          0.231,
+          0.668
+        ],
+        "fn_rate_on_successes_all": 0.444,
+        "fn_rate_ci95": [
+          0.189,
+          0.733
+        ],
+        "mean_latency_s_per_episode": 18.17
+      },
+      "vs_v6_same_episodes": {
+        "n": 25,
+        "variant": {
+          "episodes": 25,
+          "scored": 16,
+          "unparsed": 9,
+          "n_true_success": 9,
+          "n_true_failure": 16,
+          "tp": 5,
+          "tn": 9,
+          "fp": 1,
+          "fn": 1,
+          "success_acc": 0.875,
+          "success_acc_ci95": [
+            0.64,
+            0.965
+          ],
+          "success_acc_all": 0.56,
+          "success_acc_all_ci95": [
+            0.371,
+            0.733
+          ],
+          "balanced_acc_all": 0.559,
+          "fp_rate_on_failures_all": 0.438,
+          "fp_rate_ci95": [
+            0.231,
+            0.668
+          ],
+          "fn_rate_on_successes_all": 0.444,
+          "fn_rate_ci95": [
+            0.189,
+            0.733
+          ],
+          "mean_latency_s_per_episode": 18.17
+        },
+        "v6": {
+          "episodes": 25,
+          "scored": 25,
+          "unparsed": 0,
+          "n_true_success": 9,
+          "n_true_failure": 16,
+          "tp": 9,
+          "tn": 12,
+          "fp": 4,
+          "fn": 0,
+          "success_acc": 0.84,
+          "success_acc_ci95": [
+            0.653,
+            0.936
+          ],
+          "success_acc_all": 0.84,
+          "success_acc_all_ci95": [
+            0.653,
+            0.936
+          ],
+          "balanced_acc_all": 0.875,
+          "fp_rate_on_failures_all": 0.25,
+          "fp_rate_ci95": [
+            0.102,
+            0.495
+          ],
+          "fn_rate_on_successes_all": 0.0,
+          "fn_rate_ci95": [
+            0.0,
+            0.299
+          ],
+          "mean_latency_s_per_episode": 1.82
+        },
+        "paired_success_diff_variant_minus_v6": {
+          "n": 25,
+          "acc_a": 0.56,
+          "acc_b": 0.84,
+          "diff": -0.28,
+          "diff_ci95_boot": [
+            -0.48,
+            -0.12
+          ],
+          "a_right_b_wrong": 0,
+          "a_wrong_b_right": 7
+        }
+      }
+    },
+    "c_pairwise8_fmtrepair": {
+      "own_episodes": {
+        "episodes": 25,
+        "scored": 25,
+        "unparsed": 0,
+        "n_true_success": 9,
+        "n_true_failure": 16,
+        "tp": 5,
+        "tn": 12,
+        "fp": 4,
+        "fn": 4,
+        "success_acc": 0.68,
+        "success_acc_ci95": [
+          0.484,
+          0.828
+        ],
+        "success_acc_all": 0.68,
+        "success_acc_all_ci95": [
+          0.484,
+          0.828
+        ],
+        "balanced_acc_all": 0.653,
+        "fp_rate_on_failures_all": 0.25,
+        "fp_rate_ci95": [
+          0.102,
+          0.495
+        ],
+        "fn_rate_on_successes_all": 0.444,
+        "fn_rate_ci95": [
+          0.189,
+          0.733
+        ],
+        "mean_latency_s_per_episode": 15.85,
+        "failure_type_acc_on_failures_all": 0.625,
+        "failure_type_acc_ci95": [
+          0.386,
+          0.815
+        ],
+        "failure_type_acc_square_other_as_no_grasp": 0.625,
+        "failure_type_merged_ci95": [
+          0.386,
+          0.815
+        ],
+        "lifted_acc_scored": 0.48,
+        "lifted_acc_ci95": [
+          0.3,
+          0.665
+        ],
+        "failure_confusion": {
+          "dropped->no_grasp": 2,
+          "dropped->none": 3,
+          "no_grasp->no_grasp": 10,
+          "no_grasp->none": 1
+        }
+      },
+      "vs_v6_same_episodes": {
+        "n": 25,
+        "variant": {
+          "episodes": 25,
+          "scored": 25,
+          "unparsed": 0,
+          "n_true_success": 9,
+          "n_true_failure": 16,
+          "tp": 5,
+          "tn": 12,
+          "fp": 4,
+          "fn": 4,
+          "success_acc": 0.68,
+          "success_acc_ci95": [
+            0.484,
+            0.828
+          ],
+          "success_acc_all": 0.68,
+          "success_acc_all_ci95": [
+            0.484,
+            0.828
+          ],
+          "balanced_acc_all": 0.653,
+          "fp_rate_on_failures_all": 0.25,
+          "fp_rate_ci95": [
+            0.102,
+            0.495
+          ],
+          "fn_rate_on_successes_all": 0.444,
+          "fn_rate_ci95": [
+            0.189,
+            0.733
+          ],
+          "mean_latency_s_per_episode": 15.85,
+          "failure_type_acc_on_failures_all": 0.625,
+          "failure_type_acc_ci95": [
+            0.386,
+            0.815
+          ],
+          "failure_type_acc_square_other_as_no_grasp": 0.625,
+          "failure_type_merged_ci95": [
+            0.386,
+            0.815
+          ],
+          "lifted_acc_scored": 0.48,
+          "lifted_acc_ci95": [
+            0.3,
+            0.665
+          ],
+          "failure_confusion": {
+            "dropped->no_grasp": 2,
+            "dropped->none": 3,
+            "no_grasp->no_grasp": 10,
+            "no_grasp->none": 1
+          }
+        },
+        "v6": {
+          "episodes": 25,
+          "scored": 25,
+          "unparsed": 0,
+          "n_true_success": 9,
+          "n_true_failure": 16,
+          "tp": 9,
+          "tn": 12,
+          "fp": 4,
+          "fn": 0,
+          "success_acc": 0.84,
+          "success_acc_ci95": [
+            0.653,
+            0.936
+          ],
+          "success_acc_all": 0.84,
+          "success_acc_all_ci95": [
+            0.653,
+            0.936
+          ],
+          "balanced_acc_all": 0.875,
+          "fp_rate_on_failures_all": 0.25,
+          "fp_rate_ci95": [
+            0.102,
+            0.495
+          ],
+          "fn_rate_on_successes_all": 0.0,
+          "fn_rate_ci95": [
+            0.0,
+            0.299
+          ],
+          "mean_latency_s_per_episode": 1.82
+        },
+        "paired_success_diff_variant_minus_v6": {
+          "n": 25,
+          "acc_a": 0.68,
+          "acc_b": 0.84,
+          "diff": -0.16,
+          "diff_ci95_boot": [
+            -0.4,
+            0.04
+          ],
+          "a_right_b_wrong": 2,
+          "a_wrong_b_right": 6
+        }
+      },
+      "vs_v7_same_episodes": {
+        "n": 25,
+        "variant": {
+          "episodes": 25,
+          "scored": 25,
+          "unparsed": 0,
+          "n_true_success": 9,
+          "n_true_failure": 16,
+          "tp": 5,
+          "tn": 12,
+          "fp": 4,
+          "fn": 4,
+          "success_acc": 0.68,
+          "success_acc_ci95": [
+            0.484,
+            0.828
+          ],
+          "success_acc_all": 0.68,
+          "success_acc_all_ci95": [
+            0.484,
+            0.828
+          ],
+          "balanced_acc_all": 0.653,
+          "fp_rate_on_failures_all": 0.25,
+          "fp_rate_ci95": [
+            0.102,
+            0.495
+          ],
+          "fn_rate_on_successes_all": 0.444,
+          "fn_rate_ci95": [
+            0.189,
+            0.733
+          ],
+          "mean_latency_s_per_episode": 15.85,
+          "failure_type_acc_on_failures_all": 0.625,
+          "failure_type_acc_ci95": [
+            0.386,
+            0.815
+          ],
+          "failure_type_acc_square_other_as_no_grasp": 0.625,
+          "failure_type_merged_ci95": [
+            0.386,
+            0.815
+          ],
+          "lifted_acc_scored": 0.48,
+          "lifted_acc_ci95": [
+            0.3,
+            0.665
+          ],
+          "failure_confusion": {
+            "dropped->no_grasp": 2,
+            "dropped->none": 3,
+            "no_grasp->no_grasp": 10,
+            "no_grasp->none": 1
+          }
+        },
+        "v7": {
+          "episodes": 25,
+          "scored": 25,
+          "unparsed": 0,
+          "n_true_success": 9,
+          "n_true_failure": 16,
+          "tp": 9,
+          "tn": 12,
+          "fp": 4,
+          "fn": 0,
+          "success_acc": 0.84,
+          "success_acc_ci95": [
+            0.653,
+            0.936
+          ],
+          "success_acc_all": 0.84,
+          "success_acc_all_ci95": [
+            0.653,
+            0.936
+          ],
+          "balanced_acc_all": 0.875,
+          "fp_rate_on_failures_all": 0.25,
+          "fp_rate_ci95": [
+            0.102,
+            0.495
+          ],
+          "fn_rate_on_successes_all": 0.0,
+          "fn_rate_ci95": [
+            0.0,
+            0.299
+          ],
+          "mean_latency_s_per_episode": 16.91,
+          "failure_type_acc_on_failures_all": 0.25,
+          "failure_type_acc_ci95": [
+            0.102,
+            0.495
+          ],
+          "failure_type_acc_square_other_as_no_grasp": 0.25,
+          "failure_type_merged_ci95": [
+            0.102,
+            0.495
+          ],
+          "lifted_acc_scored": 0.6,
+          "lifted_acc_ci95": [
+            0.407,
+            0.766
+          ],
+          "failure_confusion": {
+            "dropped->dropped": 3,
+            "dropped->none": 2,
+            "no_grasp->dropped": 6,
+            "no_grasp->no_grasp": 1,
+            "no_grasp->none": 2,
+            "no_grasp->not_placed": 2
+          }
+        },
+        "paired_ftype_diff_variant_minus_v7": {
+          "n": 16,
+          "acc_a": 0.625,
+          "acc_b": 0.25,
+          "diff": 0.375,
+          "diff_ci95_boot": [
+            0.0,
+            0.75
+          ],
+          "a_right_b_wrong": 9,
+          "a_wrong_b_right": 3
+        },
+        "paired_success_diff_variant_minus_v7": {
+          "n": 25,
+          "acc_a": 0.68,
+          "acc_b": 0.84,
+          "diff": -0.16,
+          "diff_ci95_boot": [
+            -0.4,
+            0.04
+          ],
+          "a_right_b_wrong": 2,
+          "a_wrong_b_right": 6
+        }
+      }
+    },
+    "v6_baseline": {
+      "own_episodes": {
+        "episodes": 25,
+        "scored": 25,
+        "unparsed": 0,
+        "n_true_success": 9,
+        "n_true_failure": 16,
+        "tp": 9,
+        "tn": 12,
+        "fp": 4,
+        "fn": 0,
+        "success_acc": 0.84,
+        "success_acc_ci95": [
+          0.653,
+          0.936
+        ],
+        "success_acc_all": 0.84,
+        "success_acc_all_ci95": [
+          0.653,
+          0.936
+        ],
+        "balanced_acc_all": 0.875,
+        "fp_rate_on_failures_all": 0.25,
+        "fp_rate_ci95": [
+          0.102,
+          0.495
+        ],
+        "fn_rate_on_successes_all": 0.0,
+        "fn_rate_ci95": [
+          0.0,
+          0.299
+        ],
+        "mean_latency_s_per_episode": 1.82
+      }
+    },
+    "v7_baseline": {
+      "own_episodes": {
+        "episodes": 25,
+        "scored": 25,
+        "unparsed": 0,
+        "n_true_success": 9,
+        "n_true_failure": 16,
+        "tp": 9,
+        "tn": 12,
+        "fp": 4,
+        "fn": 0,
+        "success_acc": 0.84,
+        "success_acc_ci95": [
+          0.653,
+          0.936
+        ],
+        "success_acc_all": 0.84,
+        "success_acc_all_ci95": [
+          0.653,
+          0.936
+        ],
+        "balanced_acc_all": 0.875,
+        "fp_rate_on_failures_all": 0.25,
+        "fp_rate_ci95": [
+          0.102,
+          0.495
+        ],
+        "fn_rate_on_successes_all": 0.0,
+        "fn_rate_ci95": [
+          0.0,
+          0.299
+        ],
+        "mean_latency_s_per_episode": 16.91,
+        "failure_type_acc_on_failures_all": 0.25,
+        "failure_type_acc_ci95": [
+          0.102,
+          0.495
+        ],
+        "failure_type_acc_square_other_as_no_grasp": 0.25,
+        "failure_type_merged_ci95": [
+          0.102,
+          0.495
+        ],
+        "lifted_acc_scored": 0.6,
+        "lifted_acc_ci95": [
+          0.407,
+          0.766
+        ],
+        "failure_confusion": {
+          "dropped->dropped": 3,
+          "dropped->none": 2,
+          "no_grasp->dropped": 6,
+          "no_grasp->no_grasp": 1,
+          "no_grasp->none": 2,
+          "no_grasp->not_placed": 2
+        }
+      },
+      "vs_v6_same_episodes": {
+        "n": 25,
+        "variant": {
+          "episodes": 25,
+          "scored": 25,
+          "unparsed": 0,
+          "n_true_success": 9,
+          "n_true_failure": 16,
+          "tp": 9,
+          "tn": 12,
+          "fp": 4,
+          "fn": 0,
+          "success_acc": 0.84,
+          "success_acc_ci95": [
+            0.653,
+            0.936
+          ],
+          "success_acc_all": 0.84,
+          "success_acc_all_ci95": [
+            0.653,
+            0.936
+          ],
+          "balanced_acc_all": 0.875,
+          "fp_rate_on_failures_all": 0.25,
+          "fp_rate_ci95": [
+            0.102,
+            0.495
+          ],
+          "fn_rate_on_successes_all": 0.0,
+          "fn_rate_ci95": [
+            0.0,
+            0.299
+          ],
+          "mean_latency_s_per_episode": 16.91,
+          "failure_type_acc_on_failures_all": 0.25,
+          "failure_type_acc_ci95": [
+            0.102,
+            0.495
+          ],
+          "failure_type_acc_square_other_as_no_grasp": 0.25,
+          "failure_type_merged_ci95": [
+            0.102,
+            0.495
+          ],
+          "lifted_acc_scored": 0.6,
+          "lifted_acc_ci95": [
+            0.407,
+            0.766
+          ],
+          "failure_confusion": {
+            "dropped->dropped": 3,
+            "dropped->none": 2,
+            "no_grasp->dropped": 6,
+            "no_grasp->no_grasp": 1,
+            "no_grasp->none": 2,
+            "no_grasp->not_placed": 2
+          }
+        },
+        "v6": {
+          "episodes": 25,
+          "scored": 25,
+          "unparsed": 0,
+          "n_true_success": 9,
+          "n_true_failure": 16,
+          "tp": 9,
+          "tn": 12,
+          "fp": 4,
+          "fn": 0,
+          "success_acc": 0.84,
+          "success_acc_ci95": [
+            0.653,
+            0.936
+          ],
+          "success_acc_all": 0.84,
+          "success_acc_all_ci95": [
+            0.653,
+            0.936
+          ],
+          "balanced_acc_all": 0.875,
+          "fp_rate_on_failures_all": 0.25,
+          "fp_rate_ci95": [
+            0.102,
+            0.495
+          ],
+          "fn_rate_on_successes_all": 0.0,
+          "fn_rate_ci95": [
+            0.0,
+            0.299
+          ],
+          "mean_latency_s_per_episode": 1.82
+        },
+        "paired_success_diff_variant_minus_v6": {
+          "n": 25,
+          "acc_a": 0.84,
+          "acc_b": 0.84,
+          "diff": 0.0,
+          "diff_ci95_boot": [
+            0.0,
+            0.0
+          ],
+          "a_right_b_wrong": 0,
+          "a_wrong_b_right": 0
+        }
+      }
+    }
+  },
+  "eval": {
+    "a_roi_track8": {
+      "own_episodes": {
+        "episodes": 26,
+        "scored": 26,
+        "unparsed": 0,
+        "n_true_success": 18,
+        "n_true_failure": 8,
+        "tp": 15,
+        "tn": 4,
+        "fp": 4,
+        "fn": 3,
+        "success_acc": 0.731,
+        "success_acc_ci95": [
+          0.539,
+          0.863
+        ],
+        "success_acc_all": 0.731,
+        "success_acc_all_ci95": [
+          0.539,
+          0.863
+        ],
+        "balanced_acc_all": 0.667,
+        "fp_rate_on_failures_all": 0.5,
+        "fp_rate_ci95": [
+          0.215,
+          0.785
+        ],
+        "fn_rate_on_successes_all": 0.167,
+        "fn_rate_ci95": [
+          0.058,
+          0.392
+        ],
+        "mean_latency_s_per_episode": 16.49,
+        "failure_type_acc_on_failures_all": 0.125,
+        "failure_type_acc_ci95": [
+          0.022,
+          0.471
+        ],
+        "failure_type_acc_square_other_as_no_grasp": 0.125,
+        "failure_type_merged_ci95": [
+          0.022,
+          0.471
+        ],
+        "lifted_acc_scored": 0.885,
+        "lifted_acc_ci95": [
+          0.71,
+          0.96
+        ],
+        "failure_confusion": {
+          "dropped->none": 4,
+          "no_grasp->dropped": 1,
+          "no_grasp->no_grasp": 1,
+          "no_grasp->not_placed": 2
+        }
+      },
+      "vs_v6_same_episodes": {
+        "n": 26,
+        "variant": {
+          "episodes": 26,
+          "scored": 26,
+          "unparsed": 0,
+          "n_true_success": 18,
+          "n_true_failure": 8,
+          "tp": 15,
+          "tn": 4,
+          "fp": 4,
+          "fn": 3,
+          "success_acc": 0.731,
+          "success_acc_ci95": [
+            0.539,
+            0.863
+          ],
+          "success_acc_all": 0.731,
+          "success_acc_all_ci95": [
+            0.539,
+            0.863
+          ],
+          "balanced_acc_all": 0.667,
+          "fp_rate_on_failures_all": 0.5,
+          "fp_rate_ci95": [
+            0.215,
+            0.785
+          ],
+          "fn_rate_on_successes_all": 0.167,
+          "fn_rate_ci95": [
+            0.058,
+            0.392
+          ],
+          "mean_latency_s_per_episode": 16.49,
+          "failure_type_acc_on_failures_all": 0.125,
+          "failure_type_acc_ci95": [
+            0.022,
+            0.471
+          ],
+          "failure_type_acc_square_other_as_no_grasp": 0.125,
+          "failure_type_merged_ci95": [
+            0.022,
+            0.471
+          ],
+          "lifted_acc_scored": 0.885,
+          "lifted_acc_ci95": [
+            0.71,
+            0.96
+          ],
+          "failure_confusion": {
+            "dropped->none": 4,
+            "no_grasp->dropped": 1,
+            "no_grasp->no_grasp": 1,
+            "no_grasp->not_placed": 2
+          }
+        },
+        "v6": {
+          "episodes": 26,
+          "scored": 26,
+          "unparsed": 0,
+          "n_true_success": 18,
+          "n_true_failure": 8,
+          "tp": 17,
+          "tn": 4,
+          "fp": 4,
+          "fn": 1,
+          "success_acc": 0.808,
+          "success_acc_ci95": [
+            0.621,
+            0.915
+          ],
+          "success_acc_all": 0.808,
+          "success_acc_all_ci95": [
+            0.621,
+            0.915
+          ],
+          "balanced_acc_all": 0.722,
+          "fp_rate_on_failures_all": 0.5,
+          "fp_rate_ci95": [
+            0.215,
+            0.785
+          ],
+          "fn_rate_on_successes_all": 0.056,
+          "fn_rate_ci95": [
+            0.01,
+            0.258
+          ],
+          "mean_latency_s_per_episode": 2.15
+        },
+        "paired_success_diff_variant_minus_v6": {
+          "n": 26,
+          "acc_a": 0.731,
+          "acc_b": 0.808,
+          "diff": -0.077,
+          "diff_ci95_boot": [
+            -0.192,
+            0.0
+          ],
+          "a_right_b_wrong": 0,
+          "a_wrong_b_right": 2
+        }
+      },
+      "vs_v7_same_episodes": {
+        "n": 18,
+        "variant": {
+          "episodes": 18,
+          "scored": 18,
+          "unparsed": 0,
+          "n_true_success": 11,
+          "n_true_failure": 7,
+          "tp": 9,
+          "tn": 4,
+          "fp": 3,
+          "fn": 2,
+          "success_acc": 0.722,
+          "success_acc_ci95": [
+            0.491,
+            0.875
+          ],
+          "success_acc_all": 0.722,
+          "success_acc_all_ci95": [
+            0.491,
+            0.875
+          ],
+          "balanced_acc_all": 0.695,
+          "fp_rate_on_failures_all": 0.429,
+          "fp_rate_ci95": [
+            0.158,
+            0.75
+          ],
+          "fn_rate_on_successes_all": 0.182,
+          "fn_rate_ci95": [
+            0.051,
+            0.477
+          ],
+          "mean_latency_s_per_episode": 16.87,
+          "failure_type_acc_on_failures_all": 0.143,
+          "failure_type_acc_ci95": [
+            0.026,
+            0.513
+          ],
+          "failure_type_acc_square_other_as_no_grasp": 0.143,
+          "failure_type_merged_ci95": [
+            0.026,
+            0.513
+          ],
+          "lifted_acc_scored": 0.833,
+          "lifted_acc_ci95": [
+            0.608,
+            0.942
+          ],
+          "failure_confusion": {
+            "dropped->none": 3,
+            "no_grasp->dropped": 1,
+            "no_grasp->no_grasp": 1,
+            "no_grasp->not_placed": 2
+          }
+        },
+        "v7": {
+          "episodes": 18,
+          "scored": 18,
+          "unparsed": 0,
+          "n_true_success": 11,
+          "n_true_failure": 7,
+          "tp": 11,
+          "tn": 4,
+          "fp": 3,
+          "fn": 0,
+          "success_acc": 0.833,
+          "success_acc_ci95": [
+            0.608,
+            0.942
+          ],
+          "success_acc_all": 0.833,
+          "success_acc_all_ci95": [
+            0.608,
+            0.942
+          ],
+          "balanced_acc_all": 0.786,
+          "fp_rate_on_failures_all": 0.429,
+          "fp_rate_ci95": [
+            0.158,
+            0.75
+          ],
+          "fn_rate_on_successes_all": 0.0,
+          "fn_rate_ci95": [
+            0.0,
+            0.259
+          ],
+          "mean_latency_s_per_episode": 15.16,
+          "failure_type_acc_on_failures_all": 0.0,
+          "failure_type_acc_ci95": [
+            0.0,
+            0.354
+          ],
+          "failure_type_acc_square_other_as_no_grasp": 0.0,
+          "failure_type_merged_ci95": [
+            0.0,
+            0.354
+          ],
+          "lifted_acc_scored": 0.778,
+          "lifted_acc_ci95": [
+            0.548,
+            0.91
+          ],
+          "failure_confusion": {
+            "dropped->none": 3,
+            "no_grasp->dropped": 2,
+            "no_grasp->not_placed": 2
+          }
+        },
+        "paired_ftype_diff_variant_minus_v7": {
+          "n": 7,
+          "acc_a": 0.143,
+          "acc_b": 0.0,
+          "diff": 0.143,
+          "diff_ci95_boot": [
+            0.0,
+            0.429
+          ],
+          "a_right_b_wrong": 1,
+          "a_wrong_b_right": 0
+        },
+        "paired_success_diff_variant_minus_v7": {
+          "n": 18,
+          "acc_a": 0.722,
+          "acc_b": 0.833,
+          "diff": -0.111,
+          "diff_ci95_boot": [
+            -0.278,
+            0.0
+          ],
+          "a_right_b_wrong": 0,
+          "a_wrong_b_right": 2
+        }
+      }
+    },
+    "c_pairwise8": {
+      "own_episodes": {
+        "episodes": 26,
+        "scored": 6,
+        "unparsed": 20,
+        "n_true_success": 18,
+        "n_true_failure": 8,
+        "tp": 3,
+        "tn": 0,
+        "fp": 3,
+        "fn": 0,
+        "success_acc": 0.5,
+        "success_acc_ci95": [
+          0.188,
+          0.812
+        ],
+        "success_acc_all": 0.115,
+        "success_acc_all_ci95": [
+          0.04,
+          0.29
+        ],
+        "balanced_acc_all": 0.083,
+        "fp_rate_on_failures_all": 1.0,
+        "fp_rate_ci95": [
+          0.676,
+          1.0
+        ],
+        "fn_rate_on_successes_all": 0.833,
+        "fn_rate_ci95": [
+          0.608,
+          0.942
+        ],
+        "mean_latency_s_per_episode": 14.52,
+        "failure_type_acc_on_failures_all": 0.0,
+        "failure_type_acc_ci95": [
+          0.0,
+          0.324
+        ],
+        "failure_type_acc_square_other_as_no_grasp": 0.0,
+        "failure_type_merged_ci95": [
+          0.0,
+          0.324
+        ],
+        "lifted_acc_scored": 0.0,
+        "lifted_acc_ci95": [
+          0.0,
+          0.39
+        ],
+        "failure_confusion": {
+          "dropped->none": 3,
+          "dropped->unscored": 1,
+          "no_grasp->unscored": 4
+        }
+      },
+      "vs_v6_same_episodes": {
+        "n": 26,
+        "variant": {
+          "episodes": 26,
+          "scored": 6,
+          "unparsed": 20,
+          "n_true_success": 18,
+          "n_true_failure": 8,
+          "tp": 3,
+          "tn": 0,
+          "fp": 3,
+          "fn": 0,
+          "success_acc": 0.5,
+          "success_acc_ci95": [
+            0.188,
+            0.812
+          ],
+          "success_acc_all": 0.115,
+          "success_acc_all_ci95": [
+            0.04,
+            0.29
+          ],
+          "balanced_acc_all": 0.083,
+          "fp_rate_on_failures_all": 1.0,
+          "fp_rate_ci95": [
+            0.676,
+            1.0
+          ],
+          "fn_rate_on_successes_all": 0.833,
+          "fn_rate_ci95": [
+            0.608,
+            0.942
+          ],
+          "mean_latency_s_per_episode": 14.52,
+          "failure_type_acc_on_failures_all": 0.0,
+          "failure_type_acc_ci95": [
+            0.0,
+            0.324
+          ],
+          "failure_type_acc_square_other_as_no_grasp": 0.0,
+          "failure_type_merged_ci95": [
+            0.0,
+            0.324
+          ],
+          "lifted_acc_scored": 0.0,
+          "lifted_acc_ci95": [
+            0.0,
+            0.39
+          ],
+          "failure_confusion": {
+            "dropped->none": 3,
+            "dropped->unscored": 1,
+            "no_grasp->unscored": 4
+          }
+        },
+        "v6": {
+          "episodes": 26,
+          "scored": 26,
+          "unparsed": 0,
+          "n_true_success": 18,
+          "n_true_failure": 8,
+          "tp": 17,
+          "tn": 4,
+          "fp": 4,
+          "fn": 1,
+          "success_acc": 0.808,
+          "success_acc_ci95": [
+            0.621,
+            0.915
+          ],
+          "success_acc_all": 0.808,
+          "success_acc_all_ci95": [
+            0.621,
+            0.915
+          ],
+          "balanced_acc_all": 0.722,
+          "fp_rate_on_failures_all": 0.5,
+          "fp_rate_ci95": [
+            0.215,
+            0.785
+          ],
+          "fn_rate_on_successes_all": 0.056,
+          "fn_rate_ci95": [
+            0.01,
+            0.258
+          ],
+          "mean_latency_s_per_episode": 2.15
+        },
+        "paired_success_diff_variant_minus_v6": {
+          "n": 26,
+          "acc_a": 0.115,
+          "acc_b": 0.808,
+          "diff": -0.692,
+          "diff_ci95_boot": [
+            -0.846,
+            -0.5
+          ],
+          "a_right_b_wrong": 0,
+          "a_wrong_b_right": 18
+        }
+      },
+      "vs_v7_same_episodes": {
+        "n": 18,
+        "variant": {
+          "episodes": 18,
+          "scored": 4,
+          "unparsed": 14,
+          "n_true_success": 11,
+          "n_true_failure": 7,
+          "tp": 2,
+          "tn": 0,
+          "fp": 2,
+          "fn": 0,
+          "success_acc": 0.5,
+          "success_acc_ci95": [
+            0.15,
+            0.85
+          ],
+          "success_acc_all": 0.111,
+          "success_acc_all_ci95": [
+            0.031,
+            0.328
+          ],
+          "balanced_acc_all": 0.091,
+          "fp_rate_on_failures_all": 1.0,
+          "fp_rate_ci95": [
+            0.646,
+            1.0
+          ],
+          "fn_rate_on_successes_all": 0.818,
+          "fn_rate_ci95": [
+            0.523,
+            0.949
+          ],
+          "mean_latency_s_per_episode": 14.7,
+          "failure_type_acc_on_failures_all": 0.0,
+          "failure_type_acc_ci95": [
+            0.0,
+            0.354
+          ],
+          "failure_type_acc_square_other_as_no_grasp": 0.0,
+          "failure_type_merged_ci95": [
+            0.0,
+            0.354
+          ],
+          "lifted_acc_scored": 0.0,
+          "lifted_acc_ci95": [
+            0.0,
+            0.49
+          ],
+          "failure_confusion": {
+            "dropped->none": 2,
+            "dropped->unscored": 1,
+            "no_grasp->unscored": 4
+          }
+        },
+        "v7": {
+          "episodes": 18,
+          "scored": 18,
+          "unparsed": 0,
+          "n_true_success": 11,
+          "n_true_failure": 7,
+          "tp": 11,
+          "tn": 4,
+          "fp": 3,
+          "fn": 0,
+          "success_acc": 0.833,
+          "success_acc_ci95": [
+            0.608,
+            0.942
+          ],
+          "success_acc_all": 0.833,
+          "success_acc_all_ci95": [
+            0.608,
+            0.942
+          ],
+          "balanced_acc_all": 0.786,
+          "fp_rate_on_failures_all": 0.429,
+          "fp_rate_ci95": [
+            0.158,
+            0.75
+          ],
+          "fn_rate_on_successes_all": 0.0,
+          "fn_rate_ci95": [
+            0.0,
+            0.259
+          ],
+          "mean_latency_s_per_episode": 15.16,
+          "failure_type_acc_on_failures_all": 0.0,
+          "failure_type_acc_ci95": [
+            0.0,
+            0.354
+          ],
+          "failure_type_acc_square_other_as_no_grasp": 0.0,
+          "failure_type_merged_ci95": [
+            0.0,
+            0.354
+          ],
+          "lifted_acc_scored": 0.778,
+          "lifted_acc_ci95": [
+            0.548,
+            0.91
+          ],
+          "failure_confusion": {
+            "dropped->none": 3,
+            "no_grasp->dropped": 2,
+            "no_grasp->not_placed": 2
+          }
+        },
+        "paired_ftype_diff_variant_minus_v7": {
+          "n": 7,
+          "acc_a": 0.0,
+          "acc_b": 0.0,
+          "diff": 0.0,
+          "diff_ci95_boot": [
+            0.0,
+            0.0
+          ],
+          "a_right_b_wrong": 0,
+          "a_wrong_b_right": 0
+        },
+        "paired_success_diff_variant_minus_v7": {
+          "n": 18,
+          "acc_a": 0.111,
+          "acc_b": 0.833,
+          "diff": -0.722,
+          "diff_ci95_boot": [
+            -0.889,
+            -0.5
+          ],
+          "a_right_b_wrong": 0,
+          "a_wrong_b_right": 13
+        }
+      }
+    },
+    "c_pairwise8_fmtrepair": {
+      "own_episodes": {
+        "episodes": 26,
+        "scored": 26,
+        "unparsed": 0,
+        "n_true_success": 18,
+        "n_true_failure": 8,
+        "tp": 10,
+        "tn": 4,
+        "fp": 4,
+        "fn": 8,
+        "success_acc": 0.538,
+        "success_acc_ci95": [
+          0.355,
+          0.712
+        ],
+        "success_acc_all": 0.538,
+        "success_acc_all_ci95": [
+          0.355,
+          0.712
+        ],
+        "balanced_acc_all": 0.528,
+        "fp_rate_on_failures_all": 0.5,
+        "fp_rate_ci95": [
+          0.215,
+          0.785
+        ],
+        "fn_rate_on_successes_all": 0.444,
+        "fn_rate_ci95": [
+          0.246,
+          0.663
+        ],
+        "mean_latency_s_per_episode": 14.52,
+        "failure_type_acc_on_failures_all": 0.5,
+        "failure_type_acc_ci95": [
+          0.215,
+          0.785
+        ],
+        "failure_type_acc_square_other_as_no_grasp": 0.5,
+        "failure_type_merged_ci95": [
+          0.215,
+          0.785
+        ],
+        "lifted_acc_scored": 0.231,
+        "lifted_acc_ci95": [
+          0.11,
+          0.421
+        ],
+        "failure_confusion": {
+          "dropped->none": 4,
+          "no_grasp->no_grasp": 4
+        }
+      },
+      "vs_v6_same_episodes": {
+        "n": 26,
+        "variant": {
+          "episodes": 26,
+          "scored": 26,
+          "unparsed": 0,
+          "n_true_success": 18,
+          "n_true_failure": 8,
+          "tp": 10,
+          "tn": 4,
+          "fp": 4,
+          "fn": 8,
+          "success_acc": 0.538,
+          "success_acc_ci95": [
+            0.355,
+            0.712
+          ],
+          "success_acc_all": 0.538,
+          "success_acc_all_ci95": [
+            0.355,
+            0.712
+          ],
+          "balanced_acc_all": 0.528,
+          "fp_rate_on_failures_all": 0.5,
+          "fp_rate_ci95": [
+            0.215,
+            0.785
+          ],
+          "fn_rate_on_successes_all": 0.444,
+          "fn_rate_ci95": [
+            0.246,
+            0.663
+          ],
+          "mean_latency_s_per_episode": 14.52,
+          "failure_type_acc_on_failures_all": 0.5,
+          "failure_type_acc_ci95": [
+            0.215,
+            0.785
+          ],
+          "failure_type_acc_square_other_as_no_grasp": 0.5,
+          "failure_type_merged_ci95": [
+            0.215,
+            0.785
+          ],
+          "lifted_acc_scored": 0.231,
+          "lifted_acc_ci95": [
+            0.11,
+            0.421
+          ],
+          "failure_confusion": {
+            "dropped->none": 4,
+            "no_grasp->no_grasp": 4
+          }
+        },
+        "v6": {
+          "episodes": 26,
+          "scored": 26,
+          "unparsed": 0,
+          "n_true_success": 18,
+          "n_true_failure": 8,
+          "tp": 17,
+          "tn": 4,
+          "fp": 4,
+          "fn": 1,
+          "success_acc": 0.808,
+          "success_acc_ci95": [
+            0.621,
+            0.915
+          ],
+          "success_acc_all": 0.808,
+          "success_acc_all_ci95": [
+            0.621,
+            0.915
+          ],
+          "balanced_acc_all": 0.722,
+          "fp_rate_on_failures_all": 0.5,
+          "fp_rate_ci95": [
+            0.215,
+            0.785
+          ],
+          "fn_rate_on_successes_all": 0.056,
+          "fn_rate_ci95": [
+            0.01,
+            0.258
+          ],
+          "mean_latency_s_per_episode": 2.15
+        },
+        "paired_success_diff_variant_minus_v6": {
+          "n": 26,
+          "acc_a": 0.538,
+          "acc_b": 0.808,
+          "diff": -0.269,
+          "diff_ci95_boot": [
+            -0.462,
+            -0.115
+          ],
+          "a_right_b_wrong": 0,
+          "a_wrong_b_right": 7
+        }
+      },
+      "vs_v7_same_episodes": {
+        "n": 18,
+        "variant": {
+          "episodes": 18,
+          "scored": 18,
+          "unparsed": 0,
+          "n_true_success": 11,
+          "n_true_failure": 7,
+          "tp": 6,
+          "tn": 4,
+          "fp": 3,
+          "fn": 5,
+          "success_acc": 0.556,
+          "success_acc_ci95": [
+            0.337,
+            0.754
+          ],
+          "success_acc_all": 0.556,
+          "success_acc_all_ci95": [
+            0.337,
+            0.754
+          ],
+          "balanced_acc_all": 0.558,
+          "fp_rate_on_failures_all": 0.429,
+          "fp_rate_ci95": [
+            0.158,
+            0.75
+          ],
+          "fn_rate_on_successes_all": 0.455,
+          "fn_rate_ci95": [
+            0.213,
+            0.72
+          ],
+          "mean_latency_s_per_episode": 14.7,
+          "failure_type_acc_on_failures_all": 0.571,
+          "failure_type_acc_ci95": [
+            0.25,
+            0.842
+          ],
+          "failure_type_acc_square_other_as_no_grasp": 0.571,
+          "failure_type_merged_ci95": [
+            0.25,
+            0.842
+          ],
+          "lifted_acc_scored": 0.333,
+          "lifted_acc_ci95": [
+            0.163,
+            0.563
+          ],
+          "failure_confusion": {
+            "dropped->none": 3,
+            "no_grasp->no_grasp": 4
+          }
+        },
+        "v7": {
+          "episodes": 18,
+          "scored": 18,
+          "unparsed": 0,
+          "n_true_success": 11,
+          "n_true_failure": 7,
+          "tp": 11,
+          "tn": 4,
+          "fp": 3,
+          "fn": 0,
+          "success_acc": 0.833,
+          "success_acc_ci95": [
+            0.608,
+            0.942
+          ],
+          "success_acc_all": 0.833,
+          "success_acc_all_ci95": [
+            0.608,
+            0.942
+          ],
+          "balanced_acc_all": 0.786,
+          "fp_rate_on_failures_all": 0.429,
+          "fp_rate_ci95": [
+            0.158,
+            0.75
+          ],
+          "fn_rate_on_successes_all": 0.0,
+          "fn_rate_ci95": [
+            0.0,
+            0.259
+          ],
+          "mean_latency_s_per_episode": 15.16,
+          "failure_type_acc_on_failures_all": 0.0,
+          "failure_type_acc_ci95": [
+            0.0,
+            0.354
+          ],
+          "failure_type_acc_square_other_as_no_grasp": 0.0,
+          "failure_type_merged_ci95": [
+            0.0,
+            0.354
+          ],
+          "lifted_acc_scored": 0.778,
+          "lifted_acc_ci95": [
+            0.548,
+            0.91
+          ],
+          "failure_confusion": {
+            "dropped->none": 3,
+            "no_grasp->dropped": 2,
+            "no_grasp->not_placed": 2
+          }
+        },
+        "paired_ftype_diff_variant_minus_v7": {
+          "n": 7,
+          "acc_a": 0.571,
+          "acc_b": 0.0,
+          "diff": 0.571,
+          "diff_ci95_boot": [
+            0.143,
+            0.857
+          ],
+          "a_right_b_wrong": 4,
+          "a_wrong_b_right": 0
+        },
+        "paired_success_diff_variant_minus_v7": {
+          "n": 18,
+          "acc_a": 0.556,
+          "acc_b": 0.833,
+          "diff": -0.278,
+          "diff_ci95_boot": [
+            -0.5,
+            -0.056
+          ],
+          "a_right_b_wrong": 0,
+          "a_wrong_b_right": 5
+        }
+      }
+    },
+    "v6_baseline": {
+      "own_episodes": {
+        "episodes": 26,
+        "scored": 26,
+        "unparsed": 0,
+        "n_true_success": 18,
+        "n_true_failure": 8,
+        "tp": 17,
+        "tn": 4,
+        "fp": 4,
+        "fn": 1,
+        "success_acc": 0.808,
+        "success_acc_ci95": [
+          0.621,
+          0.915
+        ],
+        "success_acc_all": 0.808,
+        "success_acc_all_ci95": [
+          0.621,
+          0.915
+        ],
+        "balanced_acc_all": 0.722,
+        "fp_rate_on_failures_all": 0.5,
+        "fp_rate_ci95": [
+          0.215,
+          0.785
+        ],
+        "fn_rate_on_successes_all": 0.056,
+        "fn_rate_ci95": [
+          0.01,
+          0.258
+        ],
+        "mean_latency_s_per_episode": 2.15
+      }
+    },
+    "v7_baseline": {
+      "own_episodes": {
+        "episodes": 18,
+        "scored": 18,
+        "unparsed": 0,
+        "n_true_success": 11,
+        "n_true_failure": 7,
+        "tp": 11,
+        "tn": 4,
+        "fp": 3,
+        "fn": 0,
+        "success_acc": 0.833,
+        "success_acc_ci95": [
+          0.608,
+          0.942
+        ],
+        "success_acc_all": 0.833,
+        "success_acc_all_ci95": [
+          0.608,
+          0.942
+        ],
+        "balanced_acc_all": 0.786,
+        "fp_rate_on_failures_all": 0.429,
+        "fp_rate_ci95": [
+          0.158,
+          0.75
+        ],
+        "fn_rate_on_successes_all": 0.0,
+        "fn_rate_ci95": [
+          0.0,
+          0.259
+        ],
+        "mean_latency_s_per_episode": 15.16,
+        "failure_type_acc_on_failures_all": 0.0,
+        "failure_type_acc_ci95": [
+          0.0,
+          0.354
+        ],
+        "failure_type_acc_square_other_as_no_grasp": 0.0,
+        "failure_type_merged_ci95": [
+          0.0,
+          0.354
+        ],
+        "lifted_acc_scored": 0.778,
+        "lifted_acc_ci95": [
+          0.548,
+          0.91
+        ],
+        "failure_confusion": {
+          "dropped->none": 3,
+          "no_grasp->dropped": 2,
+          "no_grasp->not_placed": 2
+        }
+      },
+      "vs_v6_same_episodes": {
+        "n": 18,
+        "variant": {
+          "episodes": 18,
+          "scored": 18,
+          "unparsed": 0,
+          "n_true_success": 11,
+          "n_true_failure": 7,
+          "tp": 11,
+          "tn": 4,
+          "fp": 3,
+          "fn": 0,
+          "success_acc": 0.833,
+          "success_acc_ci95": [
+            0.608,
+            0.942
+          ],
+          "success_acc_all": 0.833,
+          "success_acc_all_ci95": [
+            0.608,
+            0.942
+          ],
+          "balanced_acc_all": 0.786,
+          "fp_rate_on_failures_all": 0.429,
+          "fp_rate_ci95": [
+            0.158,
+            0.75
+          ],
+          "fn_rate_on_successes_all": 0.0,
+          "fn_rate_ci95": [
+            0.0,
+            0.259
+          ],
+          "mean_latency_s_per_episode": 15.16,
+          "failure_type_acc_on_failures_all": 0.0,
+          "failure_type_acc_ci95": [
+            0.0,
+            0.354
+          ],
+          "failure_type_acc_square_other_as_no_grasp": 0.0,
+          "failure_type_merged_ci95": [
+            0.0,
+            0.354
+          ],
+          "lifted_acc_scored": 0.778,
+          "lifted_acc_ci95": [
+            0.548,
+            0.91
+          ],
+          "failure_confusion": {
+            "dropped->none": 3,
+            "no_grasp->dropped": 2,
+            "no_grasp->not_placed": 2
+          }
+        },
+        "v6": {
+          "episodes": 18,
+          "scored": 18,
+          "unparsed": 0,
+          "n_true_success": 11,
+          "n_true_failure": 7,
+          "tp": 11,
+          "tn": 4,
+          "fp": 3,
+          "fn": 0,
+          "success_acc": 0.833,
+          "success_acc_ci95": [
+            0.608,
+            0.942
+          ],
+          "success_acc_all": 0.833,
+          "success_acc_all_ci95": [
+            0.608,
+            0.942
+          ],
+          "balanced_acc_all": 0.786,
+          "fp_rate_on_failures_all": 0.429,
+          "fp_rate_ci95": [
+            0.158,
+            0.75
+          ],
+          "fn_rate_on_successes_all": 0.0,
+          "fn_rate_ci95": [
+            0.0,
+            0.259
+          ],
+          "mean_latency_s_per_episode": 1.99
+        },
+        "paired_success_diff_variant_minus_v6": {
+          "n": 18,
+          "acc_a": 0.833,
+          "acc_b": 0.833,
+          "diff": 0.0,
+          "diff_ci95_boot": [
+            0.0,
+            0.0
+          ],
+          "a_right_b_wrong": 0,
+          "a_wrong_b_right": 0
+        }
+      }
+    }
+  },
+  "eval_episodes_done": [
+    [
+      "can_s1_e0000",
+      200000
+    ],
+    [
+      "can_s1_e0020",
+      200000
+    ],
+    [
+      "can_s1_e0040",
+      200000
+    ],
+    [
+      "can_s1_e0060",
+      200000
+    ],
+    [
+      "can_s1_e0080",
+      200000
+    ],
+    [
+      "can_s1_e0100",
+      200000
+    ],
+    [
+      "can_s1_e0120",
+      200000
+    ],
+    [
+      "can_s2_e0000",
+      200000
+    ],
+    [
+      "can_s2_e0020",
+      200000
+    ],
+    [
+      "can_s2_e0040",
+      200000
+    ],
+    [
+      "can_s2_e0060",
+      200000
+    ],
+    [
+      "can_s2_e0080",
+      200000
+    ],
+    [
+      "can_s2_e0100",
+      200000
+    ],
+    [
+      "can_s2_e0120",
+      200000
+    ],
+    [
+      "can_s2_e0140",
+      200000
+    ],
+    [
+      "can_s2_e0160",
+      200000
+    ],
+    [
+      "can_s2_e0180",
+      200000
+    ],
+    [
+      "can_s2_e0200",
+      200000
+    ],
+    [
+      "square_s1_e0000",
+      200000
+    ],
+    [
+      "square_s1_e0030",
+      200000
+    ],
+    [
+      "square_s1_e0060",
+      200000
+    ],
+    [
+      "square_s1_e0090",
+      200000
+    ],
+    [
+      "square_s1_e0120",
+      200000
+    ],
+    [
+      "square_s1_e0150",
+      200000
+    ],
+    [
+      "square_s1_e0180",
+      200000
+    ],
+    [
+      "can_s1_e0000",
+      200001
+    ]
+  ],
+  "eval_episodes_available_at_run": 250,
+  "dev_episodes_done": [
+    [
+      "dev_can_s2_e0010",
+      300000
+    ],
+    [
+      "dev_can_s2_e0030",
+      300100
+    ],
+    [
+      "dev_square_s1_e0020",
+      300200
+    ],
+    [
+      "dev_can_s2_e0010",
+      300001
+    ],
+    [
+      "dev_can_s2_e0030",
+      300101
+    ],
+    [
+      "dev_square_s1_e0020",
+      300201
+    ],
+    [
+      "dev_can_s2_e0010",
+      300002
+    ],
+    [
+      "dev_can_s2_e0030",
+      300102
+    ],
+    [
+      "dev_square_s1_e0020",
+      300202
+    ],
+    [
+      "dev_can_s2_e0010",
+      300003
+    ],
+    [
+      "dev_can_s2_e0030",
+      300103
+    ],
+    [
+      "dev_square_s1_e0020",
+      300203
+    ],
+    [
+      "dev_can_s2_e0010",
+      300004
+    ],
+    [
+      "dev_can_s2_e0030",
+      300104
+    ],
+    [
+      "dev_square_s1_e0020",
+      300204
+    ],
+    [
+      "dev_can_s2_e0010",
+      300005
+    ],
+    [
+      "dev_can_s2_e0030",
+      300105
+    ],
+    [
+      "dev_square_s1_e0020",
+      300205
+    ],
+    [
+      "dev_can_s2_e0010",
+      300006
+    ],
+    [
+      "dev_can_s2_e0030",
+      300106
+    ],
+    [
+      "dev_square_s1_e0020",
+      300206
+    ],
+    [
+      "dev_can_s2_e0010",
+      300007
+    ],
+    [
+      "dev_can_s2_e0030",
+      300107
+    ],
+    [
+      "dev_square_s1_e0020",
+      300207
+    ],
+    [
+      "dev_can_s2_e0010",
+      300008
+    ]
+  ],
+  "per_variant_call_stats": {
+    "d_reason_last": {
+      "calls": 25,
+      "unparsed": 9,
+      "latency_sum_s": 454.13,
+      "prompt_tokens_sum": 11509,
+      "completion_tokens_sum": 12429,
+      "errors": 0,
+      "mean_latency_per_call_s": 18.165,
+      "mean_prompt_tokens": 460.4,
+      "mean_completion_tokens": 497.2
+    },
+    "a_roi_track8": {
+      "calls": 408,
+      "unparsed": 0,
+      "latency_sum_s": 860.61,
+      "prompt_tokens_sum": 311328,
+      "completion_tokens_sum": 19697,
+      "errors": 0,
+      "mean_latency_per_call_s": 2.109,
+      "mean_prompt_tokens": 763.1,
+      "mean_completion_tokens": 48.3
+    },
+    "c_pairwise8": {
+      "calls": 357,
+      "unparsed": 260,
+      "latency_sum_s": 773.66,
+      "prompt_tokens_sum": 282198,
+      "completion_tokens_sum": 17839,
+      "errors": 0,
+      "mean_latency_per_call_s": 2.167,
+      "mean_prompt_tokens": 790.5,
+      "mean_completion_tokens": 50.0
+    },
+    "b_track15": {
+      "calls": 175,
+      "unparsed": 0,
+      "latency_sum_s": 360.53,
+      "prompt_tokens_sum": 76013,
+      "completion_tokens_sum": 8385,
+      "errors": 0,
+      "mean_latency_per_call_s": 2.06,
+      "mean_prompt_tokens": 434.4,
+      "mean_completion_tokens": 47.9
+    }
+  },
+  "run_state": {
+    "started_utc": "2026-10-28T20:08:08+00:00",
+    "finished_utc": "2026-10-28T20:50:58+00:00",
+    "dev_wall_s": 1701.4,
+    "eval_wall_s": 855.1,
+    "new_calls": 965,
+    "oom_events": 0,
+    "gpu_free_mib_checks": [
+      9609
+    ],
+    "env": {
+      "COSMOS_MAX_GPU_FRACTION": "0.25",
+      "PYTORCH_CUDA_ALLOC_CONF": "expandable_segments:True",
+      "HF_HUB_OFFLINE": "1"
+    }
+  },
+  "notes": [
+    "b_track15 reuses the existing v7 per-frame outputs for the 8 shared keyframes (identical frame indices, prompt, seed 0); only the 7 midpoint frames are new calls.",
+    "Latency per episode = sum of model-call latencies (b_track15 includes the reused v7 frame latencies).",
+    "failure_type metrics are on true failures; unscored episodes count as wrong (*_all).",
+    "failure_type_acc_square_other_as_no_grasp is a secondary view: square 'other' labels come from a below-start-height rule on never-grasped nuts; no variant can output 'other'."
+  ],
+  "frame_level": {
+    "truth_rule": "Per-video-frame simulator truth. video frame k = sim step 2k (clipped to the last step).\n\n    held(k)    finger-pad contact AND object >= 2 cm above its resting height (z at sim step 10;\n               the square nut spawns ~6 cm above the table and settles during the first steps)\n    success(k) simulator success flag at that step",
+    "dev": {
+      "v7_frames(8kf,full)": {
+        "frames": 200,
+        "held_tp": 20,
+        "held_fp": 78,
+        "held_fn": 5,
+        "held_tn": 97,
+        "succloc_correct": 146,
+        "held_precision": 0.204,
+        "held_precision_ci95": [
+          0.136,
+          0.294
+        ],
+        "held_recall": 0.8,
+        "held_recall_ci95": [
+          0.609,
+          0.911
+        ],
+        "held_fp_rate_on_not_held": 0.446,
+        "succloc_acc": 0.73
+      },
+      "v7_frames(8kf,full)[held:=location==in_gripper only]": {
+        "frames": 200,
+        "held_tp": 7,
+        "held_fp": 34,
+        "held_fn": 18,
+        "held_tn": 141,
+        "succloc_correct": 146,
+        "held_precision": 0.171,
+        "held_precision_ci95": [
+          0.085,
+          0.313
+        ],
+        "held_recall": 0.28,
+        "held_recall_ci95": [
+          0.143,
+          0.476
+        ],
+        "held_fp_rate_on_not_held": 0.194,
+        "succloc_acc": 0.73
+      },
+      "a_roi_frames(8kf,crop)": {
+        "frames": 200,
+        "held_tp": 21,
+        "held_fp": 68,
+        "held_fn": 4,
+        "held_tn": 107,
+        "succloc_correct": 177,
+        "held_precision": 0.236,
+        "held_precision_ci95": [
+          0.16,
+          0.334
+        ],
+        "held_recall": 0.84,
+        "held_recall_ci95": [
+          0.653,
+          0.936
+        ],
+        "held_fp_rate_on_not_held": 0.389,
+        "succloc_acc": 0.885
+      },
+      "a_roi_frames(8kf,crop)[held:=location==in_gripper only]": {
+        "frames": 200,
+        "held_tp": 12,
+        "held_fp": 50,
+        "held_fn": 13,
+        "held_tn": 125,
+        "succloc_correct": 177,
+        "held_precision": 0.194,
+        "held_precision_ci95": [
+          0.114,
+          0.309
+        ],
+        "held_recall": 0.48,
+        "held_recall_ci95": [
+          0.3,
+          0.665
+        ],
+        "held_fp_rate_on_not_held": 0.286,
+        "succloc_acc": 0.885
+      },
+      "b_midpoint_frames(full)": {
+        "frames": 175,
+        "held_tp": 17,
+        "held_fp": 81,
+        "held_fn": 4,
+        "held_tn": 73,
+        "succloc_correct": 124,
+        "held_precision": 0.173,
+        "held_precision_ci95": [
+          0.111,
+          0.26
+        ],
+        "held_recall": 0.81,
+        "held_recall_ci95": [
+          0.6,
+          0.923
+        ],
+        "held_fp_rate_on_not_held": 0.526,
+        "succloc_acc": 0.709
+      },
+      "c_pair_image2": {
+        "frames": 44,
+        "held_tp": 5,
+        "held_fp": 18,
+        "held_fn": 0,
+        "held_tn": 21,
+        "succloc_correct": 30,
+        "held_precision": 0.217,
+        "held_precision_ci95": [
+          0.097,
+          0.419
+        ],
+        "held_recall": 1.0,
+        "held_recall_ci95": [
+          0.566,
+          1.0
+        ],
+        "held_fp_rate_on_not_held": 0.462,
+        "succloc_acc": 0.682
+      },
+      "c_pair_motion_up": {
+        "pairs": 44,
+        "up_tp": 0,
+        "up_fp": 1,
+        "up_fn": 2,
+        "up_tn": 41,
+        "up_precision": 0.0,
+        "up_recall": 0.0
+      }
+    },
+    "eval": {
+      "v7_frames(8kf,full)": {
+        "frames": 144,
+        "held_tp": 34,
+        "held_fp": 46,
+        "held_fn": 1,
+        "held_tn": 63,
+        "succloc_correct": 83,
+        "held_precision": 0.425,
+        "held_precision_ci95": [
+          0.323,
+          0.534
+        ],
+        "held_recall": 0.971,
+        "held_recall_ci95": [
+          0.855,
+          0.995
+        ],
+        "held_fp_rate_on_not_held": 0.422,
+        "succloc_acc": 0.576
+      },
+      "v7_frames(8kf,full)[held:=location==in_gripper only]": {
+        "frames": 144,
+        "held_tp": 12,
+        "held_fp": 8,
+        "held_fn": 23,
+        "held_tn": 101,
+        "succloc_correct": 83,
+        "held_precision": 0.6,
+        "held_precision_ci95": [
+          0.387,
+          0.781
+        ],
+        "held_recall": 0.343,
+        "held_recall_ci95": [
+          0.208,
+          0.508
+        ],
+        "held_fp_rate_on_not_held": 0.073,
+        "succloc_acc": 0.576
+      },
+      "a_roi_frames(8kf,crop)": {
+        "frames": 208,
+        "held_tp": 41,
+        "held_fp": 60,
+        "held_fn": 11,
+        "held_tn": 96,
+        "succloc_correct": 160,
+        "held_precision": 0.406,
+        "held_precision_ci95": [
+          0.315,
+          0.503
+        ],
+        "held_recall": 0.788,
+        "held_recall_ci95": [
+          0.66,
+          0.878
+        ],
+        "held_fp_rate_on_not_held": 0.385,
+        "succloc_acc": 0.769
+      },
+      "a_roi_frames(8kf,crop)[held:=location==in_gripper only]": {
+        "frames": 208,
+        "held_tp": 29,
+        "held_fp": 41,
+        "held_fn": 23,
+        "held_tn": 115,
+        "succloc_correct": 160,
+        "held_precision": 0.414,
+        "held_precision_ci95": [
+          0.306,
+          0.531
+        ],
+        "held_recall": 0.558,
+        "held_recall_ci95": [
+          0.423,
+          0.684
+        ],
+        "held_fp_rate_on_not_held": 0.263,
+        "succloc_acc": 0.769
+      },
+      "c_pair_image2": {
+        "frames": 53,
+        "held_tp": 14,
+        "held_fp": 24,
+        "held_fn": 2,
+        "held_tn": 13,
+        "succloc_correct": 37,
+        "held_precision": 0.368,
+        "held_precision_ci95": [
+          0.234,
+          0.527
+        ],
+        "held_recall": 0.875,
+        "held_recall_ci95": [
+          0.64,
+          0.965
+        ],
+        "held_fp_rate_on_not_held": 0.649,
+        "succloc_acc": 0.698
+      },
+      "c_pair_motion_up": {
+        "pairs": 53,
+        "up_tp": 0,
+        "up_fp": 0,
+        "up_fn": 11,
+        "up_tn": 42,
+        "up_precision": null,
+        "up_recall": 0.0
+      }
+    }
+  },
+  "majority_failure_type_baseline": {
+    "note": "reference only: accuracy on true failures of always answering 'no_grasp' (majority type)",
+    "dev": {
+      "n_failures": 16,
+      "counts": {
+        "no_grasp": 11,
+        "dropped": 5
+      },
+      "always_no_grasp_acc": 0.688,
+      "ci95": [
+        0.444,
+        0.858
+      ]
+    },
+    "eval": {
+      "n_failures": 8,
+      "counts": {
+        "no_grasp": 4,
+        "dropped": 4
+      },
+      "always_no_grasp_acc": 0.5,
+      "ci95": [
+        0.215,
+        0.785
+      ]
+    }
+  }
+}

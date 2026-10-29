@@ -1,0 +1,1065 @@
+{
+  "label": "EXPLORATORY / post-hoc CPU rule ablation on existing v7 outputs; chosen on dev, reported on eval",
+  "dev_choice": "R2_two_consec",
+  "dev": {
+    "R0_v7": {
+      "episodes": 36,
+      "scored": 36,
+      "unparsed": 0,
+      "n_true_success": 15,
+      "n_true_failure": 21,
+      "tp": 14,
+      "tn": 15,
+      "fp": 6,
+      "fn": 1,
+      "success_acc": 0.806,
+      "success_acc_ci95": [
+        0.65,
+        0.902
+      ],
+      "success_acc_all": 0.806,
+      "success_acc_all_ci95": [
+        0.65,
+        0.902
+      ],
+      "balanced_acc_all": 0.824,
+      "fp_rate_on_failures_all": 0.286,
+      "fp_rate_ci95": [
+        0.138,
+        0.5
+      ],
+      "fn_rate_on_successes_all": 0.067,
+      "fn_rate_ci95": [
+        0.012,
+        0.298
+      ],
+      "mean_latency_s_per_episode": 16.99,
+      "failure_type_acc_on_failures_all": 0.238,
+      "failure_type_acc_ci95": [
+        0.106,
+        0.451
+      ],
+      "failure_type_acc_square_other_as_no_grasp": 0.238,
+      "failure_type_merged_ci95": [
+        0.106,
+        0.451
+      ],
+      "lifted_acc_scored": 0.639,
+      "lifted_acc_ci95": [
+        0.476,
+        0.775
+      ],
+      "failure_confusion": {
+        "dropped->dropped": 4,
+        "dropped->no_grasp": 1,
+        "dropped->none": 3,
+        "no_grasp->dropped": 7,
+        "no_grasp->no_grasp": 1,
+        "no_grasp->none": 3,
+        "no_grasp->not_placed": 2
+      }
+    },
+    "R1_loc_only": {
+      "episodes": 36,
+      "scored": 36,
+      "unparsed": 0,
+      "n_true_success": 15,
+      "n_true_failure": 21,
+      "tp": 14,
+      "tn": 15,
+      "fp": 6,
+      "fn": 1,
+      "success_acc": 0.806,
+      "success_acc_ci95": [
+        0.65,
+        0.902
+      ],
+      "success_acc_all": 0.806,
+      "success_acc_all_ci95": [
+        0.65,
+        0.902
+      ],
+      "balanced_acc_all": 0.824,
+      "fp_rate_on_failures_all": 0.286,
+      "fp_rate_ci95": [
+        0.138,
+        0.5
+      ],
+      "fn_rate_on_successes_all": 0.067,
+      "fn_rate_ci95": [
+        0.012,
+        0.298
+      ],
+      "mean_latency_s_per_episode": 16.99,
+      "failure_type_acc_on_failures_all": 0.286,
+      "failure_type_acc_ci95": [
+        0.138,
+        0.5
+      ],
+      "failure_type_acc_square_other_as_no_grasp": 0.286,
+      "failure_type_merged_ci95": [
+        0.138,
+        0.5
+      ],
+      "lifted_acc_scored": 0.722,
+      "lifted_acc_ci95": [
+        0.56,
+        0.842
+      ],
+      "failure_confusion": {
+        "dropped->dropped": 2,
+        "dropped->no_grasp": 3,
+        "dropped->none": 3,
+        "no_grasp->dropped": 5,
+        "no_grasp->no_grasp": 4,
+        "no_grasp->none": 3,
+        "no_grasp->not_placed": 1
+      }
+    },
+    "R2_two_consec": {
+      "episodes": 36,
+      "scored": 36,
+      "unparsed": 0,
+      "n_true_success": 15,
+      "n_true_failure": 21,
+      "tp": 14,
+      "tn": 15,
+      "fp": 6,
+      "fn": 1,
+      "success_acc": 0.806,
+      "success_acc_ci95": [
+        0.65,
+        0.902
+      ],
+      "success_acc_all": 0.806,
+      "success_acc_all_ci95": [
+        0.65,
+        0.902
+      ],
+      "balanced_acc_all": 0.824,
+      "fp_rate_on_failures_all": 0.286,
+      "fp_rate_ci95": [
+        0.138,
+        0.5
+      ],
+      "fn_rate_on_successes_all": 0.067,
+      "fn_rate_ci95": [
+        0.012,
+        0.298
+      ],
+      "mean_latency_s_per_episode": 16.99,
+      "failure_type_acc_on_failures_all": 0.381,
+      "failure_type_acc_ci95": [
+        0.208,
+        0.591
+      ],
+      "failure_type_acc_square_other_as_no_grasp": 0.381,
+      "failure_type_merged_ci95": [
+        0.208,
+        0.591
+      ],
+      "lifted_acc_scored": 0.722,
+      "lifted_acc_ci95": [
+        0.56,
+        0.842
+      ],
+      "failure_confusion": {
+        "dropped->dropped": 4,
+        "dropped->no_grasp": 1,
+        "dropped->none": 3,
+        "no_grasp->dropped": 4,
+        "no_grasp->no_grasp": 4,
+        "no_grasp->none": 3,
+        "no_grasp->not_placed": 2
+      }
+    }
+  },
+  "eval": {
+    "R0_v7": {
+      "episodes": 170,
+      "scored": 170,
+      "unparsed": 0,
+      "n_true_success": 111,
+      "n_true_failure": 59,
+      "tp": 109,
+      "tn": 43,
+      "fp": 16,
+      "fn": 2,
+      "success_acc": 0.894,
+      "success_acc_ci95": [
+        0.839,
+        0.932
+      ],
+      "success_acc_all": 0.894,
+      "success_acc_all_ci95": [
+        0.839,
+        0.932
+      ],
+      "balanced_acc_all": 0.855,
+      "fp_rate_on_failures_all": 0.271,
+      "fp_rate_ci95": [
+        0.174,
+        0.396
+      ],
+      "fn_rate_on_successes_all": 0.018,
+      "fn_rate_ci95": [
+        0.005,
+        0.063
+      ],
+      "mean_latency_s_per_episode": 15.52,
+      "failure_type_acc_on_failures_all": 0.186,
+      "failure_type_acc_ci95": [
+        0.107,
+        0.304
+      ],
+      "failure_type_acc_square_other_as_no_grasp": 0.186,
+      "failure_type_merged_ci95": [
+        0.107,
+        0.304
+      ],
+      "lifted_acc_scored": 0.818,
+      "lifted_acc_ci95": [
+        0.753,
+        0.868
+      ],
+      "failure_confusion": {
+        "dropped->dropped": 5,
+        "dropped->no_grasp": 1,
+        "dropped->none": 12,
+        "dropped->not_placed": 3,
+        "no_grasp->dropped": 22,
+        "no_grasp->no_grasp": 6,
+        "no_grasp->none": 4,
+        "no_grasp->not_placed": 6
+      }
+    },
+    "R1_loc_only": {
+      "episodes": 170,
+      "scored": 170,
+      "unparsed": 0,
+      "n_true_success": 111,
+      "n_true_failure": 59,
+      "tp": 109,
+      "tn": 43,
+      "fp": 16,
+      "fn": 2,
+      "success_acc": 0.894,
+      "success_acc_ci95": [
+        0.839,
+        0.932
+      ],
+      "success_acc_all": 0.894,
+      "success_acc_all_ci95": [
+        0.839,
+        0.932
+      ],
+      "balanced_acc_all": 0.855,
+      "fp_rate_on_failures_all": 0.271,
+      "fp_rate_ci95": [
+        0.174,
+        0.396
+      ],
+      "fn_rate_on_successes_all": 0.018,
+      "fn_rate_ci95": [
+        0.005,
+        0.063
+      ],
+      "mean_latency_s_per_episode": 15.52,
+      "failure_type_acc_on_failures_all": 0.288,
+      "failure_type_acc_ci95": [
+        0.188,
+        0.414
+      ],
+      "failure_type_acc_square_other_as_no_grasp": 0.288,
+      "failure_type_merged_ci95": [
+        0.188,
+        0.414
+      ],
+      "lifted_acc_scored": 0.794,
+      "lifted_acc_ci95": [
+        0.727,
+        0.848
+      ],
+      "failure_confusion": {
+        "dropped->dropped": 3,
+        "dropped->no_grasp": 3,
+        "dropped->none": 12,
+        "dropped->not_placed": 3,
+        "no_grasp->dropped": 15,
+        "no_grasp->no_grasp": 14,
+        "no_grasp->none": 4,
+        "no_grasp->not_placed": 5
+      }
+    },
+    "R2_two_consec": {
+      "episodes": 170,
+      "scored": 170,
+      "unparsed": 0,
+      "n_true_success": 111,
+      "n_true_failure": 59,
+      "tp": 109,
+      "tn": 43,
+      "fp": 16,
+      "fn": 2,
+      "success_acc": 0.894,
+      "success_acc_ci95": [
+        0.839,
+        0.932
+      ],
+      "success_acc_all": 0.894,
+      "success_acc_all_ci95": [
+        0.839,
+        0.932
+      ],
+      "balanced_acc_all": 0.855,
+      "fp_rate_on_failures_all": 0.271,
+      "fp_rate_ci95": [
+        0.174,
+        0.396
+      ],
+      "fn_rate_on_successes_all": 0.018,
+      "fn_rate_ci95": [
+        0.005,
+        0.063
+      ],
+      "mean_latency_s_per_episode": 15.52,
+      "failure_type_acc_on_failures_all": 0.305,
+      "failure_type_acc_ci95": [
+        0.203,
+        0.431
+      ],
+      "failure_type_acc_square_other_as_no_grasp": 0.305,
+      "failure_type_merged_ci95": [
+        0.203,
+        0.431
+      ],
+      "lifted_acc_scored": 0.853,
+      "lifted_acc_ci95": [
+        0.792,
+        0.898
+      ],
+      "failure_confusion": {
+        "dropped->dropped": 2,
+        "dropped->no_grasp": 4,
+        "dropped->none": 12,
+        "dropped->not_placed": 3,
+        "no_grasp->dropped": 14,
+        "no_grasp->no_grasp": 16,
+        "no_grasp->none": 4,
+        "no_grasp->not_placed": 4
+      }
+    }
+  },
+  "eval_paired_ftype_diff_choice_minus_R0": {
+    "n": 59,
+    "acc_a": 0.305,
+    "acc_b": 0.186,
+    "diff": 0.119,
+    "diff_ci95_boot": [
+      0.0,
+      0.237
+    ],
+    "a_right_b_wrong": 10,
+    "a_wrong_b_right": 3
+  },
+  "majority_always_no_grasp": {
+    "dev": {
+      "n_failures": 21,
+      "acc": 0.619,
+      "ci95": [
+        0.409,
+        0.792
+      ]
+    },
+    "eval": {
+      "n_failures": 59,
+      "acc": 0.644,
+      "ci95": [
+        0.517,
+        0.754
+      ]
+    }
+  },
+  "eval_episodes": [
+    [
+      "can_s1_e0000",
+      200000
+    ],
+    [
+      "can_s1_e0000",
+      200001
+    ],
+    [
+      "can_s1_e0000",
+      200002
+    ],
+    [
+      "can_s1_e0000",
+      200003
+    ],
+    [
+      "can_s1_e0000",
+      200004
+    ],
+    [
+      "can_s1_e0000",
+      200005
+    ],
+    [
+      "can_s1_e0000",
+      200006
+    ],
+    [
+      "can_s1_e0000",
+      200007
+    ],
+    [
+      "can_s1_e0000",
+      200008
+    ],
+    [
+      "can_s1_e0000",
+      200009
+    ],
+    [
+      "can_s1_e0020",
+      200000
+    ],
+    [
+      "can_s1_e0020",
+      200001
+    ],
+    [
+      "can_s1_e0020",
+      200002
+    ],
+    [
+      "can_s1_e0020",
+      200003
+    ],
+    [
+      "can_s1_e0020",
+      200004
+    ],
+    [
+      "can_s1_e0020",
+      200005
+    ],
+    [
+      "can_s1_e0020",
+      200006
+    ],
+    [
+      "can_s1_e0020",
+      200007
+    ],
+    [
+      "can_s1_e0020",
+      200008
+    ],
+    [
+      "can_s1_e0020",
+      200009
+    ],
+    [
+      "can_s1_e0040",
+      200000
+    ],
+    [
+      "can_s1_e0040",
+      200001
+    ],
+    [
+      "can_s1_e0040",
+      200002
+    ],
+    [
+      "can_s1_e0040",
+      200003
+    ],
+    [
+      "can_s1_e0040",
+      200004
+    ],
+    [
+      "can_s1_e0040",
+      200005
+    ],
+    [
+      "can_s1_e0040",
+      200006
+    ],
+    [
+      "can_s1_e0040",
+      200007
+    ],
+    [
+      "can_s1_e0040",
+      200008
+    ],
+    [
+      "can_s1_e0040",
+      200009
+    ],
+    [
+      "can_s1_e0060",
+      200000
+    ],
+    [
+      "can_s1_e0060",
+      200001
+    ],
+    [
+      "can_s1_e0060",
+      200002
+    ],
+    [
+      "can_s1_e0060",
+      200003
+    ],
+    [
+      "can_s1_e0060",
+      200004
+    ],
+    [
+      "can_s1_e0060",
+      200005
+    ],
+    [
+      "can_s1_e0060",
+      200006
+    ],
+    [
+      "can_s1_e0060",
+      200007
+    ],
+    [
+      "can_s1_e0060",
+      200008
+    ],
+    [
+      "can_s1_e0060",
+      200009
+    ],
+    [
+      "can_s1_e0080",
+      200000
+    ],
+    [
+      "can_s1_e0080",
+      200001
+    ],
+    [
+      "can_s1_e0080",
+      200002
+    ],
+    [
+      "can_s1_e0080",
+      200003
+    ],
+    [
+      "can_s1_e0080",
+      200004
+    ],
+    [
+      "can_s1_e0080",
+      200005
+    ],
+    [
+      "can_s1_e0080",
+      200006
+    ],
+    [
+      "can_s1_e0080",
+      200007
+    ],
+    [
+      "can_s1_e0080",
+      200008
+    ],
+    [
+      "can_s1_e0080",
+      200009
+    ],
+    [
+      "can_s2_e0000",
+      200000
+    ],
+    [
+      "can_s2_e0000",
+      200001
+    ],
+    [
+      "can_s2_e0000",
+      200002
+    ],
+    [
+      "can_s2_e0000",
+      200003
+    ],
+    [
+      "can_s2_e0000",
+      200004
+    ],
+    [
+      "can_s2_e0000",
+      200005
+    ],
+    [
+      "can_s2_e0000",
+      200006
+    ],
+    [
+      "can_s2_e0000",
+      200007
+    ],
+    [
+      "can_s2_e0000",
+      200008
+    ],
+    [
+      "can_s2_e0000",
+      200009
+    ],
+    [
+      "can_s2_e0020",
+      200000
+    ],
+    [
+      "can_s2_e0020",
+      200001
+    ],
+    [
+      "can_s2_e0020",
+      200002
+    ],
+    [
+      "can_s2_e0020",
+      200003
+    ],
+    [
+      "can_s2_e0020",
+      200004
+    ],
+    [
+      "can_s2_e0020",
+      200005
+    ],
+    [
+      "can_s2_e0020",
+      200006
+    ],
+    [
+      "can_s2_e0020",
+      200007
+    ],
+    [
+      "can_s2_e0020",
+      200008
+    ],
+    [
+      "can_s2_e0020",
+      200009
+    ],
+    [
+      "can_s2_e0040",
+      200000
+    ],
+    [
+      "can_s2_e0040",
+      200001
+    ],
+    [
+      "can_s2_e0040",
+      200002
+    ],
+    [
+      "can_s2_e0040",
+      200003
+    ],
+    [
+      "can_s2_e0040",
+      200004
+    ],
+    [
+      "can_s2_e0040",
+      200005
+    ],
+    [
+      "can_s2_e0040",
+      200006
+    ],
+    [
+      "can_s2_e0040",
+      200007
+    ],
+    [
+      "can_s2_e0040",
+      200008
+    ],
+    [
+      "can_s2_e0040",
+      200009
+    ],
+    [
+      "can_s2_e0060",
+      200000
+    ],
+    [
+      "can_s2_e0060",
+      200001
+    ],
+    [
+      "can_s2_e0060",
+      200002
+    ],
+    [
+      "can_s2_e0060",
+      200003
+    ],
+    [
+      "can_s2_e0060",
+      200004
+    ],
+    [
+      "can_s2_e0060",
+      200005
+    ],
+    [
+      "can_s2_e0060",
+      200006
+    ],
+    [
+      "can_s2_e0060",
+      200007
+    ],
+    [
+      "can_s2_e0060",
+      200008
+    ],
+    [
+      "can_s2_e0060",
+      200009
+    ],
+    [
+      "can_s2_e0080",
+      200000
+    ],
+    [
+      "can_s2_e0080",
+      200001
+    ],
+    [
+      "can_s2_e0080",
+      200002
+    ],
+    [
+      "can_s2_e0080",
+      200003
+    ],
+    [
+      "can_s2_e0080",
+      200004
+    ],
+    [
+      "can_s2_e0080",
+      200005
+    ],
+    [
+      "can_s2_e0080",
+      200006
+    ],
+    [
+      "can_s2_e0080",
+      200007
+    ],
+    [
+      "can_s2_e0080",
+      200008
+    ],
+    [
+      "can_s2_e0080",
+      200009
+    ],
+    [
+      "can_s2_e0100",
+      200000
+    ],
+    [
+      "can_s2_e0100",
+      200001
+    ],
+    [
+      "can_s2_e0100",
+      200002
+    ],
+    [
+      "can_s2_e0100",
+      200003
+    ],
+    [
+      "can_s2_e0100",
+      200004
+    ],
+    [
+      "can_s2_e0100",
+      200005
+    ],
+    [
+      "can_s2_e0100",
+      200006
+    ],
+    [
+      "can_s2_e0100",
+      200007
+    ],
+    [
+      "can_s2_e0100",
+      200008
+    ],
+    [
+      "can_s2_e0100",
+      200009
+    ],
+    [
+      "can_s2_e0120",
+      200000
+    ],
+    [
+      "can_s2_e0120",
+      200001
+    ],
+    [
+      "can_s2_e0120",
+      200002
+    ],
+    [
+      "can_s2_e0120",
+      200003
+    ],
+    [
+      "can_s2_e0120",
+      200004
+    ],
+    [
+      "can_s2_e0120",
+      200005
+    ],
+    [
+      "can_s2_e0120",
+      200006
+    ],
+    [
+      "can_s2_e0120",
+      200007
+    ],
+    [
+      "can_s2_e0120",
+      200008
+    ],
+    [
+      "can_s2_e0120",
+      200009
+    ],
+    [
+      "square_s1_e0000",
+      200000
+    ],
+    [
+      "square_s1_e0000",
+      200001
+    ],
+    [
+      "square_s1_e0000",
+      200002
+    ],
+    [
+      "square_s1_e0000",
+      200003
+    ],
+    [
+      "square_s1_e0000",
+      200004
+    ],
+    [
+      "square_s1_e0000",
+      200005
+    ],
+    [
+      "square_s1_e0000",
+      200006
+    ],
+    [
+      "square_s1_e0000",
+      200007
+    ],
+    [
+      "square_s1_e0000",
+      200008
+    ],
+    [
+      "square_s1_e0000",
+      200009
+    ],
+    [
+      "square_s1_e0030",
+      200000
+    ],
+    [
+      "square_s1_e0030",
+      200001
+    ],
+    [
+      "square_s1_e0030",
+      200002
+    ],
+    [
+      "square_s1_e0030",
+      200003
+    ],
+    [
+      "square_s1_e0030",
+      200004
+    ],
+    [
+      "square_s1_e0030",
+      200005
+    ],
+    [
+      "square_s1_e0030",
+      200006
+    ],
+    [
+      "square_s1_e0030",
+      200007
+    ],
+    [
+      "square_s1_e0030",
+      200008
+    ],
+    [
+      "square_s1_e0030",
+      200009
+    ],
+    [
+      "square_s1_e0060",
+      200000
+    ],
+    [
+      "square_s1_e0060",
+      200001
+    ],
+    [
+      "square_s1_e0060",
+      200002
+    ],
+    [
+      "square_s1_e0060",
+      200003
+    ],
+    [
+      "square_s1_e0060",
+      200004
+    ],
+    [
+      "square_s1_e0060",
+      200005
+    ],
+    [
+      "square_s1_e0060",
+      200006
+    ],
+    [
+      "square_s1_e0060",
+      200007
+    ],
+    [
+      "square_s1_e0060",
+      200008
+    ],
+    [
+      "square_s1_e0060",
+      200009
+    ],
+    [
+      "square_s1_e0090",
+      200000
+    ],
+    [
+      "square_s1_e0090",
+      200001
+    ],
+    [
+      "square_s1_e0090",
+      200002
+    ],
+    [
+      "square_s1_e0090",
+      200003
+    ],
+    [
+      "square_s1_e0090",
+      200004
+    ],
+    [
+      "square_s1_e0090",
+      200005
+    ],
+    [
+      "square_s1_e0090",
+      200006
+    ],
+    [
+      "square_s1_e0090",
+      200007
+    ],
+    [
+      "square_s1_e0090",
+      200008
+    ],
+    [
+      "square_s1_e0090",
+      200009
+    ],
+    [
+      "square_s1_e0120",
+      200000
+    ],
+    [
+      "square_s1_e0120",
+      200001
+    ],
+    [
+      "square_s1_e0120",
+      200002
+    ],
+    [
+      "square_s1_e0120",
+      200003
+    ],
+    [
+      "square_s1_e0120",
+      200004
+    ],
+    [
+      "square_s1_e0120",
+      200005
+    ],
+    [
+      "square_s1_e0120",
+      200006
+    ],
+    [
+      "square_s1_e0120",
+      200007
+    ],
+    [
+      "square_s1_e0120",
+      200008
+    ],
+    [
+      "square_s1_e0120",
+      200009
+    ]
+  ]
+}

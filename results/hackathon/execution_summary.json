@@ -1,0 +1,280 @@
+{
+  "artifacts": [
+    "results/hackathon/baseline_metrics.csv",
+    "results/hackathon/baseline_ranking.csv",
+    "results/hackathon/baseline_summary.json",
+    "results/hackathon/budget_curve.json",
+    "results/hackathon/checkpoint_manifest.csv",
+    "results/hackathon/checkpoint_manifest.json",
+    "results/hackathon/commands_log.jsonl",
+    "results/hackathon/cosmos_diagnostics.csv",
+    "results/hackathon/cost_latency.json",
+    "results/hackathon/execution_summary.json",
+    "results/hackathon/experiment2_backend_comparison.json",
+    "results/hackathon/experiment2_backend_comparison_pad201.json",
+    "results/hackathon/experiment2_error_analysis.json",
+    "results/hackathon/experiment2_summary.json",
+    "results/hackathon/experiment3_summary.json",
+    "results/hackathon/experiment_manifest.json",
+    "results/hackathon/hybrid_ranking.csv",
+    "results/hackathon/hybrid_screening.csv",
+    "results/hackathon/nebius_calls.jsonl"
+  ],
+  "commands": [
+    {
+      "command": "curl ... robomimic_datasets/resolve/74fa0184.../v1.5/{can,square,lift}/ph/{low_dim_v15,demo_v15}.hdf5 + sha256sum",
+      "end_utc": "2026-10-28T17:39:00Z",
+      "exit_code": 0,
+      "name": "download_datasets",
+      "start_utc": "2026-10-28T17:38:00Z"
+    },
+    {
+      "command": "LD_PRELOAD=libffi.so.7 python diffusion_policy/scripts/robomimic_dataset_conversion.py --input data/robomimic/datasets/{can,square}/ph/low_dim.hdf5 --output .../low_dim_abs.hdf5 --num_workers 8",
+      "end_utc": "2026-10-28T17:42:30Z",
+      "exit_code": 0,
+      "name": "abs_conversion_can_square",
+      "note": "first attempt without LD_PRELOAD failed: undefined symbol ffi_type_sint32, version LIBFFI_BASE_7.0",
+      "start_utc": "2026-10-28T17:42:00Z"
+    },
+    {
+      "command": "DATASET_TYPE=ph TASKS=can_lowdim_abs SEEDS=1 ... NUM_EPOCHS=1 MAX_TRAIN_STEPS=1 ... bash diffusion_policy/scripts/run_robomimic_paper_dp_lowdim.sh",
+      "end_utc": "2026-10-28T17:43:40Z",
+      "exit_code": 0,
+      "name": "readme_dp_smoke_test",
+      "start_utc": "2026-10-28T17:42:23Z"
+    },
+    {
+      "command": "bash scripts/hackathon/train_checkpoint_pool.sh",
+      "end_utc": null,
+      "exit_code": null,
+      "name": "train_checkpoint_pool",
+      "note": "first launch exited 1 (conda activate under set -u: PS1 unbound); fixed in env.sh and relaunched",
+      "start_utc": "2026-10-28T17:47:45Z"
+    },
+    {
+      "command": "CosmosReasonerLocal().generate(example_reasoning_prompt, images=[example_reasoning_input.png])",
+      "end_utc": "2026-10-28T18:06:00Z",
+      "exit_code": 0,
+      "name": "cosmos3_edge_first_inference",
+      "start_utc": "2026-10-28T18:05:00Z"
+    },
+    {
+      "command": "NebiusVLMClient().generate('Reply with the single word: ready')",
+      "end_utc": "2026-10-28T18:46:19Z",
+      "exit_code": 0,
+      "name": "nebius_first_call",
+      "request_id": "chatcmpl-8b2fbd1d0978caa3",
+      "start_utc": "2026-10-28T18:46:17Z"
+    },
+    {
+      "command": "bash scripts/hackathon/compute_baseline_metrics.sh",
+      "end_utc": "2026-10-28T20:53:06Z",
+      "exit_code": 0,
+      "name": "baseline_metrics_can_s2",
+      "start_utc": "2026-10-28T20:25:48Z"
+    },
+    {
+      "command": "env PYTHONNOUSERSITE=1 HF_HUB_OFFLINE=1 ~/.venvs/cosmos-plv/bin/python scripts/hackathon/run_cosmos_diagnostics.py --rollouts data/outputs/hackathon_rollouts_eval --variant v6_perception_last --no-reasoning --max-new-tokens 300 --out data/outputs/hackathon_cosmos/eval_local_v6.jsonl",
+      "end_utc": "2026-10-28T21:58:11Z",
+      "exit_code": 0,
+      "name": "diag_local_v6",
+      "start_utc": "2026-10-28T21:54:56Z"
+    },
+    {
+      "command": "env PYTHONNOUSERSITE=1 HF_HUB_OFFLINE=1 ~/.venvs/cosmos-plv/bin/python scripts/hackathon/run_cosmos_diagnostics.py --rollouts data/outputs/hackathon_rollouts_eval --backend nebius --variant v2_evidence_first --no-reasoning --max-new-tokens 700 --out data/outputs/hackathon_cosmos/eval_nebius_v2.jsonl",
+      "end_utc": "2026-10-28T22:02:44Z",
+      "exit_code": 0,
+      "name": "diag_nebius_v2",
+      "start_utc": "2026-10-28T21:58:11Z"
+    },
+    {
+      "command": "env PYTHONNOUSERSITE=1 HF_HUB_OFFLINE=1 ~/.venvs/cosmos-plv/bin/python scripts/hackathon/run_cosmos_diagnostics.py --rollouts data/outputs/hackathon_rollouts_eval --backend nebius --variant v2_evidence_first --no-reasoning --max-new-tokens 700 --pad-to-frames 201 --out data/outputs/hackathon_cosmos/eval_nebius_v2_pad201.jsonl",
+      "end_utc": "2026-10-28T22:03:31Z",
+      "exit_code": 0,
+      "name": "diag_nebius_v2_pad201",
+      "start_utc": "2026-10-28T21:58:11Z"
+    },
+    {
+      "command": "env PYTHONNOUSERSITE=1 HF_HUB_OFFLINE=1 ~/.venvs/cosmos-plv/bin/python scripts/hackathon/run_cosmos_diagnostics.py --rollouts data/outputs/hackathon_rollouts_eval --variant v7_perception_track --no-reasoning --keyframes 8 --max-new-tokens 300 --out data/outputs/hackathon_cosmos/eval_local_v7.jsonl",
+      "end_utc": "2026-10-28T22:13:17Z",
+      "exit_code": 0,
+      "name": "diag_local_v7",
+      "start_utc": "2026-10-28T21:58:11Z"
+    },
+    {
+      "command": "bash scripts/hackathon/compute_baseline_metrics.sh",
+      "end_utc": "2026-10-28T22:20:28Z",
+      "exit_code": 0,
+      "name": "baseline_metrics_square_s1",
+      "start_utc": "2026-10-28T21:48:56Z"
+    },
+    {
+      "command": "bash scripts/hackathon/compute_baseline_metrics.sh",
+      "end_utc": "2026-10-28T22:20:52Z",
+      "exit_code": 0,
+      "name": "baseline_metrics_can_s1",
+      "start_utc": "2026-10-28T21:40:56Z"
+    },
+    {
+      "command": "env PYTHONNOUSERSITE=1 HF_HUB_OFFLINE=1 ~/.venvs/cosmos-plv/bin/python scripts/hackathon/refresh_truth.py",
+      "end_utc": "2026-10-28T22:20:53Z",
+      "exit_code": 0,
+      "name": "refresh_truth",
+      "start_utc": "2026-10-28T22:20:52Z"
+    },
+    {
+      "command": "env PYTHONNOUSERSITE=1 HF_HUB_OFFLINE=1 ~/.venvs/cosmos-plv/bin/python scripts/hackathon/make_pool_manifest.py",
+      "end_utc": "2026-10-28T22:24:10Z",
+      "exit_code": 0,
+      "name": "pool_manifest",
+      "start_utc": "2026-10-28T22:20:53Z"
+    },
+    {
+      "command": "env PYTHONNOUSERSITE=1 HF_HUB_OFFLINE=1 ~/.venvs/cosmos-plv/bin/python scripts/hackathon/analyze_baseline.py",
+      "end_utc": "2026-10-28T22:24:18Z",
+      "exit_code": 0,
+      "name": "analyze_baseline",
+      "start_utc": "2026-10-28T22:24:11Z"
+    },
+    {
+      "command": "bash -lc source scripts/hackathon/env.sh && python scripts/hackathon/analyze_hybrid.py --diag data/outputs/hackathon_cosmos/eval_local_v6.jsonl data/outputs/hackathon_cosmos/eval_nebius_v2.jsonl",
+      "end_utc": "2026-10-28T22:24:26Z",
+      "exit_code": 0,
+      "name": "analyze_hybrid",
+      "start_utc": "2026-10-28T22:24:18Z"
+    },
+    {
+      "command": "env PYTHONNOUSERSITE=1 HF_HUB_OFFLINE=1 ~/.venvs/cosmos-plv/bin/python scripts/hackathon/compare_backends.py",
+      "end_utc": "2026-10-28T22:24:26Z",
+      "exit_code": 0,
+      "name": "compare_backends",
+      "start_utc": "2026-10-28T22:24:26Z"
+    },
+    {
+      "command": "env PYTHONNOUSERSITE=1 HF_HUB_OFFLINE=1 ~/.venvs/cosmos-plv/bin/python scripts/hackathon/compare_backends.py --nebius data/outputs/hackathon_cosmos/eval_nebius_v2_pad201.jsonl --out results/hackathon/experiment2_backend_comparison_pad201.json",
+      "end_utc": "2026-10-28T22:24:26Z",
+      "exit_code": 0,
+      "name": "compare_backends_pad201",
+      "start_utc": "2026-10-28T22:24:26Z"
+    },
+    {
+      "command": "env PYTHONNOUSERSITE=1 HF_HUB_OFFLINE=1 ~/.venvs/cosmos-plv/bin/python scripts/hackathon/error_analysis.py",
+      "end_utc": "2026-10-28T22:24:27Z",
+      "exit_code": 0,
+      "name": "error_analysis",
+      "start_utc": "2026-10-28T22:24:27Z"
+    },
+    {
+      "command": "env PYTHONNOUSERSITE=1 HF_HUB_OFFLINE=1 ~/.venvs/cosmos-plv/bin/python scripts/hackathon/explore/x0_cascade.py",
+      "end_utc": "2026-10-28T22:24:27Z",
+      "exit_code": 0,
+      "name": "cascade",
+      "start_utc": "2026-10-28T22:24:27Z"
+    },
+    {
+      "command": "env PYTHONNOUSERSITE=1 HF_HUB_OFFLINE=1 ~/.venvs/cosmos-plv/bin/python scripts/hackathon/finalize_results.py",
+      "end_utc": "2026-10-28T22:24:39Z",
+      "exit_code": 0,
+      "name": "finalize",
+      "start_utc": "2026-10-28T22:24:27Z"
+    },
+    {
+      "command": "env PYTHONNOUSERSITE=1 HF_HUB_OFFLINE=1 ~/.venvs/cosmos-plv/bin/python scripts/hackathon/make_figures.py",
+      "end_utc": "2026-10-28T22:24:44Z",
+      "exit_code": 0,
+      "name": "figures",
+      "start_utc": "2026-10-28T22:24:39Z"
+    }
+  ],
+  "environment": {
+    "cuda_available": true,
+    "gpu": "NVIDIA GeForce RTX 3090",
+    "hostname_hash": "50a66195d31a",
+    "platform": "Linux-5.15.0-139-generic-x86_64-with-glibc2.31",
+    "python": "3.11.18",
+    "torch": "2.8.0+cu128",
+    "torch_cuda": "12.8",
+    "transformers": "5.21.0"
+  },
+  "generated_utc": "2026-10-29T02:10:10+00:00",
+  "git_commit": "b1a484b8c5198398cdfd04c65e097a71c8709148",
+  "media": [
+    "media/hackathon/architecture.png",
+    "media/hackathon/checkpoint_comparison.png",
+    "media/hackathon/cosmos_example.png",
+    "media/hackathon/cost_latency.png",
+    "media/hackathon/robot_execution.png"
+  ],
+  "nebius": {
+    "base_urls": [
+      "https://api.tokenfactory.nebius.com/v1/"
+    ],
+    "calls_by_tag_prefix": {
+      "can_s1_e0000": 20,
+      "can_s1_e0020": 20,
+      "can_s1_e0040": 20,
+      "can_s1_e0060": 20,
+      "can_s1_e0080": 20,
+      "can_s1_e0100": 20,
+      "can_s1_e0120": 20,
+      "can_s1_e0140": 20,
+      "can_s1_e0160": 20,
+      "can_s1_e0180": 20,
+      "can_s1_e0200": 20,
+      "can_s2_e0000": 20,
+      "can_s2_e0020": 20,
+      "can_s2_e0040": 20,
+      "can_s2_e0060": 20,
+      "can_s2_e0080": 20,
+      "can_s2_e0100": 20,
+      "can_s2_e0120": 20,
+      "can_s2_e0140": 20,
+      "can_s2_e0160": 20,
+      "can_s2_e0180": 20,
+      "can_s2_e0200": 20,
+      "dev_can_s2_e0010": 36,
+      "dev_can_s2_e0030": 36,
+      "dev_square_s1_e0020": 36,
+      "probe": 3,
+      "square_s1_e0000": 20,
+      "square_s1_e0030": 20,
+      "square_s1_e0060": 20,
+      "square_s1_e0090": 20,
+      "square_s1_e0120": 20,
+      "square_s1_e0150": 20,
+      "square_s1_e0180": 20,
+      "square_s1_e0210": 20,
+      "square_s1_e0240": 20,
+      "square_s1_e0270": 20,
+      "square_s1_e0300": 20
+    },
+    "calls_failed": 0,
+    "calls_succeeded": 771,
+    "calls_total": 771,
+    "errors": [],
+    "example_request_ids": [
+      "chatcmpl-8b2fbd1d0978caa3",
+      "chatcmpl-a569ebdb1d447ca8",
+      "chatcmpl-af372c2ce3bfcf52"
+    ],
+    "first_call_utc": "2026-10-28T18:46:17+00:00",
+    "last_call_utc": "2026-10-28T22:03:28+00:00",
+    "latency_s": {
+      "max": 4.403,
+      "mean": 3.332844357976654,
+      "p50": 3.348,
+      "p90": 3.924
+    },
+    "requested_models": [
+      "nvidia/Nemotron-3.5-Super-VL"
+    ],
+    "served_models": [
+      "nvidia/Nemotron-3.5-Super-VL"
+    ],
+    "tokens": {
+      "completion": 96224,
+      "prompt": 2593864
+    },
+    "usd_estimate_at_catalog_price": 0.8648
+  }
+}

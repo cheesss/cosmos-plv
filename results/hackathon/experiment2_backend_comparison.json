@@ -1,0 +1,336 @@
+{
+  "files": {
+    "local_success": "data/outputs/hackathon_cosmos/eval_local_v6.jsonl",
+    "local_failure": "data/outputs/hackathon_cosmos/eval_local_v7.jsonl",
+    "nebius": "data/outputs/hackathon_cosmos/eval_nebius_v2.jsonl"
+  },
+  "overall": {
+    "local_success": [
+      {
+        "backend": "local",
+        "variant": "v6_perception_last",
+        "reasoning": false,
+        "episodes": 330,
+        "scored": 330,
+        "unparsed": 0,
+        "success_acc": 0.918,
+        "success_acc_ci95": [
+          0.884,
+          0.943
+        ],
+        "tp": 257,
+        "tn": 46,
+        "fp": 21,
+        "fn": 6,
+        "balanced_acc": 0.832,
+        "balanced_acc_all": 0.832,
+        "success_acc_all": 0.918,
+        "failure_type_acc": null,
+        "failure_type_acc_on_failures": null,
+        "n_failures_scored": 0,
+        "mean_latency_s": 2.08,
+        "tasks": [
+          "can",
+          "square"
+        ]
+      }
+    ],
+    "local_failure": [
+      {
+        "backend": "local",
+        "variant": "v7_perception_track",
+        "reasoning": false,
+        "episodes": 330,
+        "scored": 330,
+        "unparsed": 0,
+        "success_acc": 0.918,
+        "success_acc_ci95": [
+          0.884,
+          0.943
+        ],
+        "tp": 257,
+        "tn": 46,
+        "fp": 21,
+        "fn": 6,
+        "balanced_acc": 0.832,
+        "balanced_acc_all": 0.832,
+        "success_acc_all": 0.918,
+        "failure_type_acc": 0.821,
+        "failure_type_acc_on_failures": 0.209,
+        "n_failures_scored": 67,
+        "mean_latency_s": 14.4,
+        "tasks": [
+          "can",
+          "square"
+        ]
+      }
+    ],
+    "nebius": [
+      {
+        "backend": "nebius",
+        "variant": "v2_evidence_first",
+        "reasoning": false,
+        "episodes": 330,
+        "scored": 330,
+        "unparsed": 0,
+        "success_acc": 0.964,
+        "success_acc_ci95": [
+          0.938,
+          0.979
+        ],
+        "tp": 260,
+        "tn": 58,
+        "fp": 9,
+        "fn": 3,
+        "balanced_acc": 0.927,
+        "balanced_acc_all": 0.927,
+        "success_acc_all": 0.964,
+        "failure_type_acc": 0.852,
+        "failure_type_acc_on_failures": 0.313,
+        "n_failures_scored": 67,
+        "mean_latency_s": 3.09,
+        "tasks": [
+          "can",
+          "square"
+        ]
+      }
+    ]
+  },
+  "by_task": {
+    "local_success": {
+      "can": [
+        {
+          "backend": "local",
+          "variant": "v6_perception_last",
+          "reasoning": false,
+          "episodes": 220,
+          "scored": 220,
+          "unparsed": 0,
+          "success_acc": 0.964,
+          "success_acc_ci95": [
+            0.93,
+            0.981
+          ],
+          "tp": 182,
+          "tn": 30,
+          "fp": 8,
+          "fn": 0,
+          "balanced_acc": 0.895,
+          "balanced_acc_all": 0.895,
+          "success_acc_all": 0.964,
+          "failure_type_acc": null,
+          "failure_type_acc_on_failures": null,
+          "n_failures_scored": 0,
+          "mean_latency_s": 2.13,
+          "tasks": [
+            "can"
+          ]
+        }
+      ],
+      "square": [
+        {
+          "backend": "local",
+          "variant": "v6_perception_last",
+          "reasoning": false,
+          "episodes": 110,
+          "scored": 110,
+          "unparsed": 0,
+          "success_acc": 0.827,
+          "success_acc_ci95": [
+            0.746,
+            0.887
+          ],
+          "tp": 75,
+          "tn": 16,
+          "fp": 13,
+          "fn": 6,
+          "balanced_acc": 0.739,
+          "balanced_acc_all": 0.739,
+          "success_acc_all": 0.827,
+          "failure_type_acc": null,
+          "failure_type_acc_on_failures": null,
+          "n_failures_scored": 0,
+          "mean_latency_s": 1.99,
+          "tasks": [
+            "square"
+          ]
+        }
+      ]
+    },
+    "local_failure": {
+      "can": [
+        {
+          "backend": "local",
+          "variant": "v7_perception_track",
+          "reasoning": false,
+          "episodes": 220,
+          "scored": 220,
+          "unparsed": 0,
+          "success_acc": 0.964,
+          "success_acc_ci95": [
+            0.93,
+            0.981
+          ],
+          "tp": 182,
+          "tn": 30,
+          "fp": 8,
+          "fn": 0,
+          "balanced_acc": 0.895,
+          "balanced_acc_all": 0.895,
+          "success_acc_all": 0.964,
+          "failure_type_acc": 0.859,
+          "failure_type_acc_on_failures": 0.184,
+          "n_failures_scored": 38,
+          "mean_latency_s": 14.53,
+          "tasks": [
+            "can"
+          ]
+        }
+      ],
+      "square": [
+        {
+          "backend": "local",
+          "variant": "v7_perception_track",
+          "reasoning": false,
+          "episodes": 110,
+          "scored": 110,
+          "unparsed": 0,
+          "success_acc": 0.827,
+          "success_acc_ci95": [
+            0.746,
+            0.887
+          ],
+          "tp": 75,
+          "tn": 16,
+          "fp": 13,
+          "fn": 6,
+          "balanced_acc": 0.739,
+          "balanced_acc_all": 0.739,
+          "success_acc_all": 0.827,
+          "failure_type_acc": 0.745,
+          "failure_type_acc_on_failures": 0.241,
+          "n_failures_scored": 29,
+          "mean_latency_s": 14.16,
+          "tasks": [
+            "square"
+          ]
+        }
+      ]
+    },
+    "nebius": {
+      "can": [
+        {
+          "backend": "nebius",
+          "variant": "v2_evidence_first",
+          "reasoning": false,
+          "episodes": 220,
+          "scored": 220,
+          "unparsed": 0,
+          "success_acc": 0.977,
+          "success_acc_ci95": [
+            0.948,
+            0.99
+          ],
+          "tp": 182,
+          "tn": 33,
+          "fp": 5,
+          "fn": 0,
+          "balanced_acc": 0.934,
+          "balanced_acc_all": 0.934,
+          "success_acc_all": 0.977,
+          "failure_type_acc": 0.918,
+          "failure_type_acc_on_failures": 0.526,
+          "n_failures_scored": 38,
+          "mean_latency_s": 3.02,
+          "tasks": [
+            "can"
+          ]
+        }
+      ],
+      "square": [
+        {
+          "backend": "nebius",
+          "variant": "v2_evidence_first",
+          "reasoning": false,
+          "episodes": 110,
+          "scored": 110,
+          "unparsed": 0,
+          "success_acc": 0.936,
+          "success_acc_ci95": [
+            0.874,
+            0.969
+          ],
+          "tp": 78,
+          "tn": 25,
+          "fp": 4,
+          "fn": 3,
+          "balanced_acc": 0.913,
+          "balanced_acc_all": 0.913,
+          "success_acc_all": 0.936,
+          "failure_type_acc": 0.718,
+          "failure_type_acc_on_failures": 0.034,
+          "n_failures_scored": 29,
+          "mean_latency_s": 3.23,
+          "tasks": [
+            "square"
+          ]
+        }
+      ]
+    }
+  },
+  "failure_type_confusion": {
+    "local_failure": {
+      "none": {
+        "none": 257,
+        "dropped": 6
+      },
+      "no_grasp": {
+        "dropped": 22,
+        "not_placed": 6,
+        "no_grasp": 6,
+        "none": 4
+      },
+      "dropped": {
+        "none": 16,
+        "dropped": 8,
+        "not_placed": 3,
+        "no_grasp": 1
+      },
+      "not_placed": {
+        "none": 1
+      }
+    },
+    "nebius": {
+      "none": {
+        "none": 260,
+        "not_placed": 3
+      },
+      "no_grasp": {
+        "no_grasp": 20,
+        "not_placed": 18
+      },
+      "dropped": {
+        "none": 8,
+        "not_placed": 15,
+        "no_grasp": 4,
+        "dropped": 1
+      },
+      "not_placed": {
+        "none": 1
+      }
+    }
+  },
+  "agreement": {
+    "episodes_scored_by_both": 330,
+    "agree": 309,
+    "agree_rate": 0.936,
+    "accuracy_when_agree": 0.971,
+    "ci95_when_agree": [
+      0.946,
+      0.985
+    ],
+    "disagree": 21,
+    "local_right_when_disagree": 3,
+    "nebius_right_when_disagree": 18
+  }
+}

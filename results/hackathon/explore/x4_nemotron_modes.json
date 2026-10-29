@@ -1,0 +1,4458 @@
+{
+  "name": "x4_nemotron_modes",
+  "status": "EXPLORATORY / POST-HOC",
+  "created_utc": "2026-10-28T20:03:28+00:00",
+  "model": "nvidia/Nemotron-3.5-Super-VL via Nebius Token Factory",
+  "nebius_calls_used": 608,
+  "nebius_call_budget": 800,
+  "selection_on_dev": {
+    "rule": "Pre-declared dev rule: maximise failure-type accuracy on failures (unparsed = wrong) subject to\n    balanced success accuracy (unparsed = wrong) >= frozen v2 dev value - 0.05; keep the best 2.",
+    "floor_balanced_acc_all": 0.821,
+    "ranking": [
+      {
+        "variant": "A_track8_r2",
+        "eligible": true,
+        "ft_acc_on_failures_all": 0.524,
+        "balanced_acc_all": 0.976
+      },
+      {
+        "variant": "A_track8",
+        "eligible": true,
+        "ft_acc_on_failures_all": 0.333,
+        "balanced_acc_all": 0.976
+      },
+      {
+        "variant": "C_vidcomp",
+        "eligible": true,
+        "ft_acc_on_failures_all": 0.286,
+        "balanced_acc_all": 0.881
+      },
+      {
+        "variant": "D_grid8",
+        "eligible": true,
+        "ft_acc_on_failures_all": 0.19,
+        "balanced_acc_all": 0.905
+      },
+      {
+        "variant": "D_grid8_r2",
+        "eligible": true,
+        "ft_acc_on_failures_all": 0.19,
+        "balanced_acc_all": 0.905
+      },
+      {
+        "variant": "B_v2reason",
+        "eligible": false,
+        "ft_acc_on_failures_all": 0.048,
+        "balanced_acc_all": 0.81
+      }
+    ],
+    "chosen": [
+      "A_track8_r2",
+      "C_vidcomp"
+    ],
+    "selected_utc": "2026-10-28T19:55:19+00:00"
+  },
+  "dev": {
+    "frozen_v2": {
+      "all": {
+        "episodes": 36,
+        "scored": 36,
+        "unparsed": 0,
+        "success_acc": 0.861,
+        "success_acc_ci95": [
+          0.713,
+          0.939
+        ],
+        "success_acc_all": 0.861,
+        "success_acc_all_ci95": [
+          0.713,
+          0.939
+        ],
+        "tp": 14,
+        "tn": 17,
+        "fp": 4,
+        "fn": 1,
+        "balanced_acc": 0.871,
+        "balanced_acc_all": 0.871,
+        "n_failures": 21,
+        "n_failures_scored": 21,
+        "failure_type_acc_on_failures": 0.333,
+        "failure_type_acc_on_failures_ci95": [
+          0.172,
+          0.546
+        ],
+        "failure_type_acc_on_failures_all": 0.333,
+        "failure_type_acc_on_failures_all_ci95": [
+          0.172,
+          0.546
+        ],
+        "harmonized_failure_type_acc_on_failures_all": 0.333,
+        "harmonized_failure_type_acc_on_failures_all_ci95": [
+          0.172,
+          0.546
+        ],
+        "hard_cases_flagged_as_failure": {
+          "nut_high_on_peg": {
+            "n": 2,
+            "flagged": 1,
+            "ci95": [
+              0.095,
+              0.905
+            ]
+          },
+          "wrong_compartment": {
+            "n": 2,
+            "flagged": 0,
+            "ci95": [
+              0.0,
+              0.658
+            ]
+          }
+        },
+        "confusion_truth_to_pred": {
+          "dropped": {
+            "no_grasp": 1,
+            "none": 3,
+            "not_placed": 3
+          },
+          "no_grasp": {
+            "no_grasp": 7,
+            "not_placed": 2,
+            "none": 1
+          },
+          "none": {
+            "none": 14,
+            "not_placed": 1
+          },
+          "other": {
+            "not_placed": 3,
+            "no_grasp": 1
+          }
+        },
+        "mean_latency_s": 3.47,
+        "median_latency_s": 3.67,
+        "mean_prompt_tokens": 3532.6,
+        "mean_completion_tokens": 129.5,
+        "calls_per_episode": 1
+      },
+      "can": {
+        "episodes": 24,
+        "scored": 24,
+        "unparsed": 0,
+        "success_acc": 0.875,
+        "success_acc_ci95": [
+          0.69,
+          0.957
+        ],
+        "success_acc_all": 0.875,
+        "success_acc_all_ci95": [
+          0.69,
+          0.957
+        ],
+        "tp": 12,
+        "tn": 9,
+        "fp": 3,
+        "fn": 0,
+        "balanced_acc": 0.875,
+        "balanced_acc_all": 0.875,
+        "n_failures": 12,
+        "n_failures_scored": 12,
+        "failure_type_acc_on_failures": 0.5,
+        "failure_type_acc_on_failures_ci95": [
+          0.254,
+          0.746
+        ],
+        "failure_type_acc_on_failures_all": 0.5,
+        "failure_type_acc_on_failures_all_ci95": [
+          0.254,
+          0.746
+        ],
+        "harmonized_failure_type_acc_on_failures_all": 0.5,
+        "harmonized_failure_type_acc_on_failures_all_ci95": [
+          0.254,
+          0.746
+        ],
+        "hard_cases_flagged_as_failure": {
+          "wrong_compartment": {
+            "n": 2,
+            "flagged": 0,
+            "ci95": [
+              0.0,
+              0.658
+            ]
+          }
+        },
+        "confusion_truth_to_pred": {
+          "dropped": {
+            "no_grasp": 1,
+            "none": 2
+          },
+          "no_grasp": {
+            "no_grasp": 6,
+            "not_placed": 2,
+            "none": 1
+          },
+          "none": {
+            "none": 12
+          }
+        },
+        "mean_latency_s": 3.39,
+        "median_latency_s": 3.35,
+        "mean_prompt_tokens": 3362.4,
+        "mean_completion_tokens": 131.0,
+        "calls_per_episode": 1
+      },
+      "square": {
+        "episodes": 12,
+        "scored": 12,
+        "unparsed": 0,
+        "success_acc": 0.833,
+        "success_acc_ci95": [
+          0.552,
+          0.953
+        ],
+        "success_acc_all": 0.833,
+        "success_acc_all_ci95": [
+          0.552,
+          0.953
+        ],
+        "tp": 2,
+        "tn": 8,
+        "fp": 1,
+        "fn": 1,
+        "balanced_acc": 0.778,
+        "balanced_acc_all": 0.778,
+        "n_failures": 9,
+        "n_failures_scored": 9,
+        "failure_type_acc_on_failures": 0.111,
+        "failure_type_acc_on_failures_ci95": [
+          0.02,
+          0.435
+        ],
+        "failure_type_acc_on_failures_all": 0.111,
+        "failure_type_acc_on_failures_all_ci95": [
+          0.02,
+          0.435
+        ],
+        "harmonized_failure_type_acc_on_failures_all": 0.111,
+        "harmonized_failure_type_acc_on_failures_all_ci95": [
+          0.02,
+          0.435
+        ],
+        "hard_cases_flagged_as_failure": {
+          "nut_high_on_peg": {
+            "n": 2,
+            "flagged": 1,
+            "ci95": [
+              0.095,
+              0.905
+            ]
+          }
+        },
+        "confusion_truth_to_pred": {
+          "dropped": {
+            "none": 1,
+            "not_placed": 3
+          },
+          "no_grasp": {
+            "no_grasp": 1
+          },
+          "none": {
+            "none": 2,
+            "not_placed": 1
+          },
+          "other": {
+            "not_placed": 3,
+            "no_grasp": 1
+          }
+        },
+        "mean_latency_s": 3.61,
+        "median_latency_s": 3.75,
+        "mean_prompt_tokens": 3872.9,
+        "mean_completion_tokens": 126.6,
+        "calls_per_episode": 1
+      }
+    },
+    "A_track8": {
+      "all": {
+        "episodes": 36,
+        "scored": 36,
+        "unparsed": 0,
+        "success_acc": 0.972,
+        "success_acc_ci95": [
+          0.858,
+          0.995
+        ],
+        "success_acc_all": 0.972,
+        "success_acc_all_ci95": [
+          0.858,
+          0.995
+        ],
+        "tp": 15,
+        "tn": 20,
+        "fp": 1,
+        "fn": 0,
+        "balanced_acc": 0.976,
+        "balanced_acc_all": 0.976,
+        "n_failures": 21,
+        "n_failures_scored": 21,
+        "failure_type_acc_on_failures": 0.333,
+        "failure_type_acc_on_failures_ci95": [
+          0.172,
+          0.546
+        ],
+        "failure_type_acc_on_failures_all": 0.333,
+        "failure_type_acc_on_failures_all_ci95": [
+          0.172,
+          0.546
+        ],
+        "harmonized_failure_type_acc_on_failures_all": 0.333,
+        "harmonized_failure_type_acc_on_failures_all_ci95": [
+          0.172,
+          0.546
+        ],
+        "hard_cases_flagged_as_failure": {
+          "nut_high_on_peg": {
+            "n": 2,
+            "flagged": 1,
+            "ci95": [
+              0.095,
+              0.905
+            ]
+          },
+          "wrong_compartment": {
+            "n": 2,
+            "flagged": 2,
+            "ci95": [
+              0.342,
+              1.0
+            ]
+          }
+        },
+        "confusion_truth_to_pred": {
+          "dropped": {
+            "dropped": 5,
+            "none": 1,
+            "not_placed": 1
+          },
+          "no_grasp": {
+            "no_grasp": 2,
+            "dropped": 5,
+            "not_placed": 3
+          },
+          "none": {
+            "none": 15
+          },
+          "other": {
+            "not_placed": 1,
+            "dropped": 3
+          }
+        },
+        "mean_latency_s": 3.71,
+        "median_latency_s": 3.71,
+        "mean_prompt_tokens": 2863.9,
+        "mean_completion_tokens": 198.7,
+        "calls_per_episode": 1
+      },
+      "can": {
+        "episodes": 24,
+        "scored": 24,
+        "unparsed": 0,
+        "success_acc": 1.0,
+        "success_acc_ci95": [
+          0.862,
+          1.0
+        ],
+        "success_acc_all": 1.0,
+        "success_acc_all_ci95": [
+          0.862,
+          1.0
+        ],
+        "tp": 12,
+        "tn": 12,
+        "fp": 0,
+        "fn": 0,
+        "balanced_acc": 1.0,
+        "balanced_acc_all": 1.0,
+        "n_failures": 12,
+        "n_failures_scored": 12,
+        "failure_type_acc_on_failures": 0.417,
+        "failure_type_acc_on_failures_ci95": [
+          0.193,
+          0.68
+        ],
+        "failure_type_acc_on_failures_all": 0.417,
+        "failure_type_acc_on_failures_all_ci95": [
+          0.193,
+          0.68
+        ],
+        "harmonized_failure_type_acc_on_failures_all": 0.417,
+        "harmonized_failure_type_acc_on_failures_all_ci95": [
+          0.193,
+          0.68
+        ],
+        "hard_cases_flagged_as_failure": {
+          "wrong_compartment": {
+            "n": 2,
+            "flagged": 2,
+            "ci95": [
+              0.342,
+              1.0
+            ]
+          }
+        },
+        "confusion_truth_to_pred": {
+          "dropped": {
+            "dropped": 3
+          },
+          "no_grasp": {
+            "no_grasp": 2,
+            "dropped": 5,
+            "not_placed": 2
+          },
+          "none": {
+            "none": 12
+          }
+        },
+        "mean_latency_s": 3.92,
+        "median_latency_s": 3.89,
+        "mean_prompt_tokens": 2890.3,
+        "mean_completion_tokens": 194.8,
+        "calls_per_episode": 1
+      },
+      "square": {
+        "episodes": 12,
+        "scored": 12,
+        "unparsed": 0,
+        "success_acc": 0.917,
+        "success_acc_ci95": [
+          0.646,
+          0.985
+        ],
+        "success_acc_all": 0.917,
+        "success_acc_all_ci95": [
+          0.646,
+          0.985
+        ],
+        "tp": 3,
+        "tn": 8,
+        "fp": 1,
+        "fn": 0,
+        "balanced_acc": 0.944,
+        "balanced_acc_all": 0.944,
+        "n_failures": 9,
+        "n_failures_scored": 9,
+        "failure_type_acc_on_failures": 0.222,
+        "failure_type_acc_on_failures_ci95": [
+          0.063,
+          0.547
+        ],
+        "failure_type_acc_on_failures_all": 0.222,
+        "failure_type_acc_on_failures_all_ci95": [
+          0.063,
+          0.547
+        ],
+        "harmonized_failure_type_acc_on_failures_all": 0.222,
+        "harmonized_failure_type_acc_on_failures_all_ci95": [
+          0.063,
+          0.547
+        ],
+        "hard_cases_flagged_as_failure": {
+          "nut_high_on_peg": {
+            "n": 2,
+            "flagged": 1,
+            "ci95": [
+              0.095,
+              0.905
+            ]
+          }
+        },
+        "confusion_truth_to_pred": {
+          "dropped": {
+            "none": 1,
+            "dropped": 2,
+            "not_placed": 1
+          },
+          "no_grasp": {
+            "not_placed": 1
+          },
+          "none": {
+            "none": 3
+          },
+          "other": {
+            "not_placed": 1,
+            "dropped": 3
+          }
+        },
+        "mean_latency_s": 3.3,
+        "median_latency_s": 3.29,
+        "mean_prompt_tokens": 2811,
+        "mean_completion_tokens": 206.7,
+        "calls_per_episode": 1
+      },
+      "paired_vs_frozen_v2": {
+        "n_common": 36,
+        "success_ok": {
+          "n": 36,
+          "variant": 0.972,
+          "frozen_v2": 0.861,
+          "diff": 0.111,
+          "diff_ci95_bootstrap": [
+            0.028,
+            0.222
+          ],
+          "variant_only_correct": 4,
+          "v2_only_correct": 0,
+          "mcnemar_exact_p": 0.125
+        },
+        "ft_ok_on_failures": {
+          "n": 21,
+          "variant": 0.333,
+          "frozen_v2": 0.333,
+          "diff": 0.0,
+          "diff_ci95_bootstrap": [
+            -0.333,
+            0.333
+          ],
+          "variant_only_correct": 6,
+          "v2_only_correct": 6,
+          "mcnemar_exact_p": 1.0
+        },
+        "ft_harm_ok_on_failures": {
+          "n": 21,
+          "variant": 0.333,
+          "frozen_v2": 0.333,
+          "diff": 0.0,
+          "diff_ci95_bootstrap": [
+            -0.333,
+            0.333
+          ],
+          "variant_only_correct": 6,
+          "v2_only_correct": 6,
+          "mcnemar_exact_p": 1.0
+        }
+      }
+    },
+    "A_track8_r2": {
+      "all": {
+        "episodes": 36,
+        "scored": 36,
+        "unparsed": 0,
+        "success_acc": 0.972,
+        "success_acc_ci95": [
+          0.858,
+          0.995
+        ],
+        "success_acc_all": 0.972,
+        "success_acc_all_ci95": [
+          0.858,
+          0.995
+        ],
+        "tp": 15,
+        "tn": 20,
+        "fp": 1,
+        "fn": 0,
+        "balanced_acc": 0.976,
+        "balanced_acc_all": 0.976,
+        "n_failures": 21,
+        "n_failures_scored": 21,
+        "failure_type_acc_on_failures": 0.524,
+        "failure_type_acc_on_failures_ci95": [
+          0.324,
+          0.717
+        ],
+        "failure_type_acc_on_failures_all": 0.524,
+        "failure_type_acc_on_failures_all_ci95": [
+          0.324,
+          0.717
+        ],
+        "harmonized_failure_type_acc_on_failures_all": 0.524,
+        "harmonized_failure_type_acc_on_failures_all_ci95": [
+          0.324,
+          0.717
+        ],
+        "hard_cases_flagged_as_failure": {
+          "nut_high_on_peg": {
+            "n": 2,
+            "flagged": 1,
+            "ci95": [
+              0.095,
+              0.905
+            ]
+          },
+          "wrong_compartment": {
+            "n": 2,
+            "flagged": 2,
+            "ci95": [
+              0.342,
+              1.0
+            ]
+          }
+        },
+        "confusion_truth_to_pred": {
+          "dropped": {
+            "dropped": 5,
+            "none": 1,
+            "not_placed": 1
+          },
+          "no_grasp": {
+            "no_grasp": 6,
+            "dropped": 3,
+            "not_placed": 1
+          },
+          "none": {
+            "none": 15
+          },
+          "other": {
+            "not_placed": 1,
+            "dropped": 3
+          }
+        },
+        "mean_latency_s": 3.71,
+        "median_latency_s": 3.71,
+        "mean_prompt_tokens": 2863.9,
+        "mean_completion_tokens": 198.7,
+        "calls_per_episode": 1
+      },
+      "can": {
+        "episodes": 24,
+        "scored": 24,
+        "unparsed": 0,
+        "success_acc": 1.0,
+        "success_acc_ci95": [
+          0.862,
+          1.0
+        ],
+        "success_acc_all": 1.0,
+        "success_acc_all_ci95": [
+          0.862,
+          1.0
+        ],
+        "tp": 12,
+        "tn": 12,
+        "fp": 0,
+        "fn": 0,
+        "balanced_acc": 1.0,
+        "balanced_acc_all": 1.0,
+        "n_failures": 12,
+        "n_failures_scored": 12,
+        "failure_type_acc_on_failures": 0.75,
+        "failure_type_acc_on_failures_ci95": [
+          0.468,
+          0.911
+        ],
+        "failure_type_acc_on_failures_all": 0.75,
+        "failure_type_acc_on_failures_all_ci95": [
+          0.468,
+          0.911
+        ],
+        "harmonized_failure_type_acc_on_failures_all": 0.75,
+        "harmonized_failure_type_acc_on_failures_all_ci95": [
+          0.468,
+          0.911
+        ],
+        "hard_cases_flagged_as_failure": {
+          "wrong_compartment": {
+            "n": 2,
+            "flagged": 2,
+            "ci95": [
+              0.342,
+              1.0
+            ]
+          }
+        },
+        "confusion_truth_to_pred": {
+          "dropped": {
+            "dropped": 3
+          },
+          "no_grasp": {
+            "no_grasp": 6,
+            "dropped": 3
+          },
+          "none": {
+            "none": 12
+          }
+        },
+        "mean_latency_s": 3.92,
+        "median_latency_s": 3.89,
+        "mean_prompt_tokens": 2890.3,
+        "mean_completion_tokens": 194.8,
+        "calls_per_episode": 1
+      },
+      "square": {
+        "episodes": 12,
+        "scored": 12,
+        "unparsed": 0,
+        "success_acc": 0.917,
+        "success_acc_ci95": [
+          0.646,
+          0.985
+        ],
+        "success_acc_all": 0.917,
+        "success_acc_all_ci95": [
+          0.646,
+          0.985
+        ],
+        "tp": 3,
+        "tn": 8,
+        "fp": 1,
+        "fn": 0,
+        "balanced_acc": 0.944,
+        "balanced_acc_all": 0.944,
+        "n_failures": 9,
+        "n_failures_scored": 9,
+        "failure_type_acc_on_failures": 0.222,
+        "failure_type_acc_on_failures_ci95": [
+          0.063,
+          0.547
+        ],
+        "failure_type_acc_on_failures_all": 0.222,
+        "failure_type_acc_on_failures_all_ci95": [
+          0.063,
+          0.547
+        ],
+        "harmonized_failure_type_acc_on_failures_all": 0.222,
+        "harmonized_failure_type_acc_on_failures_all_ci95": [
+          0.063,
+          0.547
+        ],
+        "hard_cases_flagged_as_failure": {
+          "nut_high_on_peg": {
+            "n": 2,
+            "flagged": 1,
+            "ci95": [
+              0.095,
+              0.905
+            ]
+          }
+        },
+        "confusion_truth_to_pred": {
+          "dropped": {
+            "none": 1,
+            "dropped": 2,
+            "not_placed": 1
+          },
+          "no_grasp": {
+            "not_placed": 1
+          },
+          "none": {
+            "none": 3
+          },
+          "other": {
+            "not_placed": 1,
+            "dropped": 3
+          }
+        },
+        "mean_latency_s": 3.3,
+        "median_latency_s": 3.29,
+        "mean_prompt_tokens": 2811,
+        "mean_completion_tokens": 206.7,
+        "calls_per_episode": 1
+      },
+      "paired_vs_frozen_v2": {
+        "n_common": 36,
+        "success_ok": {
+          "n": 36,
+          "variant": 0.972,
+          "frozen_v2": 0.861,
+          "diff": 0.111,
+          "diff_ci95_bootstrap": [
+            0.028,
+            0.222
+          ],
+          "variant_only_correct": 4,
+          "v2_only_correct": 0,
+          "mcnemar_exact_p": 0.125
+        },
+        "ft_ok_on_failures": {
+          "n": 21,
+          "variant": 0.524,
+          "frozen_v2": 0.333,
+          "diff": 0.19,
+          "diff_ci95_bootstrap": [
+            -0.048,
+            0.429
+          ],
+          "variant_only_correct": 6,
+          "v2_only_correct": 2,
+          "mcnemar_exact_p": 0.2891
+        },
+        "ft_harm_ok_on_failures": {
+          "n": 21,
+          "variant": 0.524,
+          "frozen_v2": 0.333,
+          "diff": 0.19,
+          "diff_ci95_bootstrap": [
+            -0.048,
+            0.429
+          ],
+          "variant_only_correct": 6,
+          "v2_only_correct": 2,
+          "mcnemar_exact_p": 0.2891
+        }
+      }
+    },
+    "B_v2reason": {
+      "all": {
+        "episodes": 36,
+        "scored": 35,
+        "unparsed": 1,
+        "success_acc": 0.8,
+        "success_acc_ci95": [
+          0.641,
+          0.9
+        ],
+        "success_acc_all": 0.778,
+        "success_acc_all_ci95": [
+          0.619,
+          0.883
+        ],
+        "tp": 15,
+        "tn": 13,
+        "fp": 7,
+        "fn": 0,
+        "balanced_acc": 0.825,
+        "balanced_acc_all": 0.81,
+        "n_failures": 21,
+        "n_failures_scored": 20,
+        "failure_type_acc_on_failures": 0.05,
+        "failure_type_acc_on_failures_ci95": [
+          0.009,
+          0.236
+        ],
+        "failure_type_acc_on_failures_all": 0.048,
+        "failure_type_acc_on_failures_all_ci95": [
+          0.008,
+          0.227
+        ],
+        "harmonized_failure_type_acc_on_failures_all": 0.048,
+        "harmonized_failure_type_acc_on_failures_all_ci95": [
+          0.008,
+          0.227
+        ],
+        "hard_cases_flagged_as_failure": {
+          "nut_high_on_peg": {
+            "n": 2,
+            "flagged": 0,
+            "ci95": [
+              0.0,
+              0.658
+            ]
+          },
+          "wrong_compartment": {
+            "n": 2,
+            "flagged": 1,
+            "ci95": [
+              0.095,
+              0.905
+            ]
+          }
+        },
+        "confusion_truth_to_pred": {
+          "dropped": {
+            "none": 3,
+            "UNPARSED": 1,
+            "not_placed": 3
+          },
+          "no_grasp": {
+            "dropped": 3,
+            "not_placed": 3,
+            "no_grasp": 1,
+            "none": 3
+          },
+          "none": {
+            "none": 15
+          },
+          "other": {
+            "not_placed": 3,
+            "none": 1
+          }
+        },
+        "mean_latency_s": 8.04,
+        "median_latency_s": 7.88,
+        "mean_prompt_tokens": 3532.6,
+        "mean_completion_tokens": 1567.0,
+        "calls_per_episode": 1
+      },
+      "can": {
+        "episodes": 24,
+        "scored": 23,
+        "unparsed": 1,
+        "success_acc": 0.87,
+        "success_acc_ci95": [
+          0.679,
+          0.955
+        ],
+        "success_acc_all": 0.833,
+        "success_acc_all_ci95": [
+          0.641,
+          0.933
+        ],
+        "tp": 12,
+        "tn": 8,
+        "fp": 3,
+        "fn": 0,
+        "balanced_acc": 0.864,
+        "balanced_acc_all": 0.833,
+        "n_failures": 12,
+        "n_failures_scored": 11,
+        "failure_type_acc_on_failures": 0.091,
+        "failure_type_acc_on_failures_ci95": [
+          0.016,
+          0.377
+        ],
+        "failure_type_acc_on_failures_all": 0.083,
+        "failure_type_acc_on_failures_all_ci95": [
+          0.015,
+          0.354
+        ],
+        "harmonized_failure_type_acc_on_failures_all": 0.083,
+        "harmonized_failure_type_acc_on_failures_all_ci95": [
+          0.015,
+          0.354
+        ],
+        "hard_cases_flagged_as_failure": {
+          "wrong_compartment": {
+            "n": 2,
+            "flagged": 1,
+            "ci95": [
+              0.095,
+              0.905
+            ]
+          }
+        },
+        "confusion_truth_to_pred": {
+          "dropped": {
+            "none": 1,
+            "UNPARSED": 1,
+            "not_placed": 1
+          },
+          "no_grasp": {
+            "dropped": 3,
+            "not_placed": 3,
+            "no_grasp": 1,
+            "none": 2
+          },
+          "none": {
+            "none": 12
+          }
+        },
+        "mean_latency_s": 7.75,
+        "median_latency_s": 6.31,
+        "mean_prompt_tokens": 3362.4,
+        "mean_completion_tokens": 1552,
+        "calls_per_episode": 1
+      },
+      "square": {
+        "episodes": 12,
+        "scored": 12,
+        "unparsed": 0,
+        "success_acc": 0.667,
+        "success_acc_ci95": [
+          0.391,
+          0.862
+        ],
+        "success_acc_all": 0.667,
+        "success_acc_all_ci95": [
+          0.391,
+          0.862
+        ],
+        "tp": 3,
+        "tn": 5,
+        "fp": 4,
+        "fn": 0,
+        "balanced_acc": 0.778,
+        "balanced_acc_all": 0.778,
+        "n_failures": 9,
+        "n_failures_scored": 9,
+        "failure_type_acc_on_failures": 0.0,
+        "failure_type_acc_on_failures_ci95": [
+          0.0,
+          0.299
+        ],
+        "failure_type_acc_on_failures_all": 0.0,
+        "failure_type_acc_on_failures_all_ci95": [
+          0.0,
+          0.299
+        ],
+        "harmonized_failure_type_acc_on_failures_all": 0.0,
+        "harmonized_failure_type_acc_on_failures_all_ci95": [
+          0.0,
+          0.299
+        ],
+        "hard_cases_flagged_as_failure": {
+          "nut_high_on_peg": {
+            "n": 2,
+            "flagged": 0,
+            "ci95": [
+              0.0,
+              0.658
+            ]
+          }
+        },
+        "confusion_truth_to_pred": {
+          "dropped": {
+            "none": 2,
+            "not_placed": 2
+          },
+          "no_grasp": {
+            "none": 1
+          },
+          "none": {
+            "none": 3
+          },
+          "other": {
+            "not_placed": 3,
+            "none": 1
+          }
+        },
+        "mean_latency_s": 8.64,
+        "median_latency_s": 8.45,
+        "mean_prompt_tokens": 3872.9,
+        "mean_completion_tokens": 1596.9,
+        "calls_per_episode": 1
+      },
+      "paired_vs_frozen_v2": {
+        "n_common": 36,
+        "success_ok": {
+          "n": 36,
+          "variant": 0.778,
+          "frozen_v2": 0.861,
+          "diff": -0.083,
+          "diff_ci95_bootstrap": [
+            -0.222,
+            0.056
+          ],
+          "variant_only_correct": 2,
+          "v2_only_correct": 5,
+          "mcnemar_exact_p": 0.4531
+        },
+        "ft_ok_on_failures": {
+          "n": 21,
+          "variant": 0.048,
+          "frozen_v2": 0.333,
+          "diff": -0.286,
+          "diff_ci95_bootstrap": [
+            -0.476,
+            -0.095
+          ],
+          "variant_only_correct": 0,
+          "v2_only_correct": 6,
+          "mcnemar_exact_p": 0.0312
+        },
+        "ft_harm_ok_on_failures": {
+          "n": 21,
+          "variant": 0.048,
+          "frozen_v2": 0.333,
+          "diff": -0.286,
+          "diff_ci95_bootstrap": [
+            -0.476,
+            -0.095
+          ],
+          "variant_only_correct": 0,
+          "v2_only_correct": 6,
+          "mcnemar_exact_p": 0.0312
+        }
+      }
+    },
+    "C_vidcomp": {
+      "all": {
+        "episodes": 36,
+        "scored": 36,
+        "unparsed": 0,
+        "success_acc": 0.861,
+        "success_acc_ci95": [
+          0.713,
+          0.939
+        ],
+        "success_acc_all": 0.861,
+        "success_acc_all_ci95": [
+          0.713,
+          0.939
+        ],
+        "tp": 15,
+        "tn": 16,
+        "fp": 5,
+        "fn": 0,
+        "balanced_acc": 0.881,
+        "balanced_acc_all": 0.881,
+        "n_failures": 21,
+        "n_failures_scored": 21,
+        "failure_type_acc_on_failures": 0.286,
+        "failure_type_acc_on_failures_ci95": [
+          0.138,
+          0.5
+        ],
+        "failure_type_acc_on_failures_all": 0.286,
+        "failure_type_acc_on_failures_all_ci95": [
+          0.138,
+          0.5
+        ],
+        "harmonized_failure_type_acc_on_failures_all": 0.333,
+        "harmonized_failure_type_acc_on_failures_all_ci95": [
+          0.172,
+          0.546
+        ],
+        "hard_cases_flagged_as_failure": {
+          "nut_high_on_peg": {
+            "n": 2,
+            "flagged": 0,
+            "ci95": [
+              0.0,
+              0.658
+            ]
+          },
+          "wrong_compartment": {
+            "n": 2,
+            "flagged": 2,
+            "ci95": [
+              0.342,
+              1.0
+            ]
+          }
+        },
+        "confusion_truth_to_pred": {
+          "dropped": {
+            "no_grasp": 1,
+            "dropped": 3,
+            "none": 3
+          },
+          "no_grasp": {
+            "dropped": 5,
+            "not_placed": 1,
+            "no_grasp": 3,
+            "none": 1
+          },
+          "none": {
+            "none": 15
+          },
+          "other": {
+            "none": 1,
+            "not_placed": 2,
+            "no_grasp": 1
+          }
+        },
+        "mean_latency_s": 3.68,
+        "median_latency_s": 3.63,
+        "mean_prompt_tokens": 3879.2,
+        "mean_completion_tokens": 86,
+        "calls_per_episode": 1
+      },
+      "can": {
+        "episodes": 24,
+        "scored": 24,
+        "unparsed": 0,
+        "success_acc": 1.0,
+        "success_acc_ci95": [
+          0.862,
+          1.0
+        ],
+        "success_acc_all": 1.0,
+        "success_acc_all_ci95": [
+          0.862,
+          1.0
+        ],
+        "tp": 12,
+        "tn": 12,
+        "fp": 0,
+        "fn": 0,
+        "balanced_acc": 1.0,
+        "balanced_acc_all": 1.0,
+        "n_failures": 12,
+        "n_failures_scored": 12,
+        "failure_type_acc_on_failures": 0.417,
+        "failure_type_acc_on_failures_ci95": [
+          0.193,
+          0.68
+        ],
+        "failure_type_acc_on_failures_all": 0.417,
+        "failure_type_acc_on_failures_all_ci95": [
+          0.193,
+          0.68
+        ],
+        "harmonized_failure_type_acc_on_failures_all": 0.417,
+        "harmonized_failure_type_acc_on_failures_all_ci95": [
+          0.193,
+          0.68
+        ],
+        "hard_cases_flagged_as_failure": {
+          "wrong_compartment": {
+            "n": 2,
+            "flagged": 2,
+            "ci95": [
+              0.342,
+              1.0
+            ]
+          }
+        },
+        "confusion_truth_to_pred": {
+          "dropped": {
+            "no_grasp": 1,
+            "dropped": 2
+          },
+          "no_grasp": {
+            "dropped": 5,
+            "not_placed": 1,
+            "no_grasp": 3
+          },
+          "none": {
+            "none": 12
+          }
+        },
+        "mean_latency_s": 3.67,
+        "median_latency_s": 3.59,
+        "mean_prompt_tokens": 3730.4,
+        "mean_completion_tokens": 85.6,
+        "calls_per_episode": 1
+      },
+      "square": {
+        "episodes": 12,
+        "scored": 12,
+        "unparsed": 0,
+        "success_acc": 0.583,
+        "success_acc_ci95": [
+          0.32,
+          0.807
+        ],
+        "success_acc_all": 0.583,
+        "success_acc_all_ci95": [
+          0.32,
+          0.807
+        ],
+        "tp": 3,
+        "tn": 4,
+        "fp": 5,
+        "fn": 0,
+        "balanced_acc": 0.722,
+        "balanced_acc_all": 0.722,
+        "n_failures": 9,
+        "n_failures_scored": 9,
+        "failure_type_acc_on_failures": 0.111,
+        "failure_type_acc_on_failures_ci95": [
+          0.02,
+          0.435
+        ],
+        "failure_type_acc_on_failures_all": 0.111,
+        "failure_type_acc_on_failures_all_ci95": [
+          0.02,
+          0.435
+        ],
+        "harmonized_failure_type_acc_on_failures_all": 0.222,
+        "harmonized_failure_type_acc_on_failures_all_ci95": [
+          0.063,
+          0.547
+        ],
+        "hard_cases_flagged_as_failure": {
+          "nut_high_on_peg": {
+            "n": 2,
+            "flagged": 0,
+            "ci95": [
+              0.0,
+              0.658
+            ]
+          }
+        },
+        "confusion_truth_to_pred": {
+          "dropped": {
+            "none": 3,
+            "dropped": 1
+          },
+          "no_grasp": {
+            "none": 1
+          },
+          "none": {
+            "none": 3
+          },
+          "other": {
+            "none": 1,
+            "not_placed": 2,
+            "no_grasp": 1
+          }
+        },
+        "mean_latency_s": 3.7,
+        "median_latency_s": 3.69,
+        "mean_prompt_tokens": 4176.9,
+        "mean_completion_tokens": 86.8,
+        "calls_per_episode": 1
+      },
+      "paired_vs_frozen_v2": {
+        "n_common": 36,
+        "success_ok": {
+          "n": 36,
+          "variant": 0.861,
+          "frozen_v2": 0.861,
+          "diff": 0.0,
+          "diff_ci95_bootstrap": [
+            -0.167,
+            0.167
+          ],
+          "variant_only_correct": 4,
+          "v2_only_correct": 4,
+          "mcnemar_exact_p": 1.0
+        },
+        "ft_ok_on_failures": {
+          "n": 21,
+          "variant": 0.286,
+          "frozen_v2": 0.333,
+          "diff": -0.048,
+          "diff_ci95_bootstrap": [
+            -0.286,
+            0.19
+          ],
+          "variant_only_correct": 3,
+          "v2_only_correct": 4,
+          "mcnemar_exact_p": 1.0
+        },
+        "ft_harm_ok_on_failures": {
+          "n": 21,
+          "variant": 0.333,
+          "frozen_v2": 0.333,
+          "diff": 0.0,
+          "diff_ci95_bootstrap": [
+            -0.238,
+            0.238
+          ],
+          "variant_only_correct": 3,
+          "v2_only_correct": 3,
+          "mcnemar_exact_p": 1.0
+        }
+      }
+    },
+    "D_grid8": {
+      "all": {
+        "episodes": 36,
+        "scored": 36,
+        "unparsed": 0,
+        "success_acc": 0.889,
+        "success_acc_ci95": [
+          0.747,
+          0.956
+        ],
+        "success_acc_all": 0.889,
+        "success_acc_all_ci95": [
+          0.747,
+          0.956
+        ],
+        "tp": 15,
+        "tn": 17,
+        "fp": 4,
+        "fn": 0,
+        "balanced_acc": 0.905,
+        "balanced_acc_all": 0.905,
+        "n_failures": 21,
+        "n_failures_scored": 21,
+        "failure_type_acc_on_failures": 0.19,
+        "failure_type_acc_on_failures_ci95": [
+          0.077,
+          0.4
+        ],
+        "failure_type_acc_on_failures_all": 0.19,
+        "failure_type_acc_on_failures_all_ci95": [
+          0.077,
+          0.4
+        ],
+        "harmonized_failure_type_acc_on_failures_all": 0.19,
+        "harmonized_failure_type_acc_on_failures_all_ci95": [
+          0.077,
+          0.4
+        ],
+        "hard_cases_flagged_as_failure": {
+          "nut_high_on_peg": {
+            "n": 2,
+            "flagged": 0,
+            "ci95": [
+              0.0,
+              0.658
+            ]
+          },
+          "wrong_compartment": {
+            "n": 2,
+            "flagged": 1,
+            "ci95": [
+              0.095,
+              0.905
+            ]
+          }
+        },
+        "confusion_truth_to_pred": {
+          "dropped": {
+            "dropped": 3,
+            "none": 4
+          },
+          "no_grasp": {
+            "dropped": 6,
+            "not_placed": 3,
+            "no_grasp": 1
+          },
+          "none": {
+            "none": 15
+          },
+          "other": {
+            "dropped": 2,
+            "not_placed": 2
+          }
+        },
+        "mean_latency_s": 3.75,
+        "median_latency_s": 3.77,
+        "mean_prompt_tokens": 1953.3,
+        "mean_completion_tokens": 202.9,
+        "calls_per_episode": 1
+      },
+      "can": {
+        "episodes": 24,
+        "scored": 24,
+        "unparsed": 0,
+        "success_acc": 0.958,
+        "success_acc_ci95": [
+          0.798,
+          0.993
+        ],
+        "success_acc_all": 0.958,
+        "success_acc_all_ci95": [
+          0.798,
+          0.993
+        ],
+        "tp": 12,
+        "tn": 11,
+        "fp": 1,
+        "fn": 0,
+        "balanced_acc": 0.958,
+        "balanced_acc_all": 0.958,
+        "n_failures": 12,
+        "n_failures_scored": 12,
+        "failure_type_acc_on_failures": 0.25,
+        "failure_type_acc_on_failures_ci95": [
+          0.089,
+          0.532
+        ],
+        "failure_type_acc_on_failures_all": 0.25,
+        "failure_type_acc_on_failures_all_ci95": [
+          0.089,
+          0.532
+        ],
+        "harmonized_failure_type_acc_on_failures_all": 0.25,
+        "harmonized_failure_type_acc_on_failures_all_ci95": [
+          0.089,
+          0.532
+        ],
+        "hard_cases_flagged_as_failure": {
+          "wrong_compartment": {
+            "n": 2,
+            "flagged": 1,
+            "ci95": [
+              0.095,
+              0.905
+            ]
+          }
+        },
+        "confusion_truth_to_pred": {
+          "dropped": {
+            "dropped": 2,
+            "none": 1
+          },
+          "no_grasp": {
+            "dropped": 6,
+            "not_placed": 2,
+            "no_grasp": 1
+          },
+          "none": {
+            "none": 12
+          }
+        },
+        "mean_latency_s": 3.89,
+        "median_latency_s": 3.86,
+        "mean_prompt_tokens": 1980,
+        "mean_completion_tokens": 199.3,
+        "calls_per_episode": 1
+      },
+      "square": {
+        "episodes": 12,
+        "scored": 12,
+        "unparsed": 0,
+        "success_acc": 0.75,
+        "success_acc_ci95": [
+          0.468,
+          0.911
+        ],
+        "success_acc_all": 0.75,
+        "success_acc_all_ci95": [
+          0.468,
+          0.911
+        ],
+        "tp": 3,
+        "tn": 6,
+        "fp": 3,
+        "fn": 0,
+        "balanced_acc": 0.833,
+        "balanced_acc_all": 0.833,
+        "n_failures": 9,
+        "n_failures_scored": 9,
+        "failure_type_acc_on_failures": 0.111,
+        "failure_type_acc_on_failures_ci95": [
+          0.02,
+          0.435
+        ],
+        "failure_type_acc_on_failures_all": 0.111,
+        "failure_type_acc_on_failures_all_ci95": [
+          0.02,
+          0.435
+        ],
+        "harmonized_failure_type_acc_on_failures_all": 0.111,
+        "harmonized_failure_type_acc_on_failures_all_ci95": [
+          0.02,
+          0.435
+        ],
+        "hard_cases_flagged_as_failure": {
+          "nut_high_on_peg": {
+            "n": 2,
+            "flagged": 0,
+            "ci95": [
+              0.0,
+              0.658
+            ]
+          }
+        },
+        "confusion_truth_to_pred": {
+          "dropped": {
+            "none": 3,
+            "dropped": 1
+          },
+          "no_grasp": {
+            "not_placed": 1
+          },
+          "none": {
+            "none": 3
+          },
+          "other": {
+            "dropped": 2,
+            "not_placed": 2
+          }
+        },
+        "mean_latency_s": 3.45,
+        "median_latency_s": 3.42,
+        "mean_prompt_tokens": 1900,
+        "mean_completion_tokens": 210,
+        "calls_per_episode": 1
+      },
+      "paired_vs_frozen_v2": {
+        "n_common": 36,
+        "success_ok": {
+          "n": 36,
+          "variant": 0.889,
+          "frozen_v2": 0.861,
+          "diff": 0.028,
+          "diff_ci95_bootstrap": [
+            -0.083,
+            0.139
+          ],
+          "variant_only_correct": 3,
+          "v2_only_correct": 2,
+          "mcnemar_exact_p": 1.0
+        },
+        "ft_ok_on_failures": {
+          "n": 21,
+          "variant": 0.19,
+          "frozen_v2": 0.333,
+          "diff": -0.143,
+          "diff_ci95_bootstrap": [
+            -0.429,
+            0.143
+          ],
+          "variant_only_correct": 4,
+          "v2_only_correct": 7,
+          "mcnemar_exact_p": 0.5488
+        },
+        "ft_harm_ok_on_failures": {
+          "n": 21,
+          "variant": 0.19,
+          "frozen_v2": 0.333,
+          "diff": -0.143,
+          "diff_ci95_bootstrap": [
+            -0.429,
+            0.143
+          ],
+          "variant_only_correct": 4,
+          "v2_only_correct": 7,
+          "mcnemar_exact_p": 0.5488
+        }
+      }
+    },
+    "D_grid8_r2": {
+      "all": {
+        "episodes": 36,
+        "scored": 36,
+        "unparsed": 0,
+        "success_acc": 0.889,
+        "success_acc_ci95": [
+          0.747,
+          0.956
+        ],
+        "success_acc_all": 0.889,
+        "success_acc_all_ci95": [
+          0.747,
+          0.956
+        ],
+        "tp": 15,
+        "tn": 17,
+        "fp": 4,
+        "fn": 0,
+        "balanced_acc": 0.905,
+        "balanced_acc_all": 0.905,
+        "n_failures": 21,
+        "n_failures_scored": 21,
+        "failure_type_acc_on_failures": 0.19,
+        "failure_type_acc_on_failures_ci95": [
+          0.077,
+          0.4
+        ],
+        "failure_type_acc_on_failures_all": 0.19,
+        "failure_type_acc_on_failures_all_ci95": [
+          0.077,
+          0.4
+        ],
+        "harmonized_failure_type_acc_on_failures_all": 0.19,
+        "harmonized_failure_type_acc_on_failures_all_ci95": [
+          0.077,
+          0.4
+        ],
+        "hard_cases_flagged_as_failure": {
+          "nut_high_on_peg": {
+            "n": 2,
+            "flagged": 0,
+            "ci95": [
+              0.0,
+              0.658
+            ]
+          },
+          "wrong_compartment": {
+            "n": 2,
+            "flagged": 1,
+            "ci95": [
+              0.095,
+              0.905
+            ]
+          }
+        },
+        "confusion_truth_to_pred": {
+          "dropped": {
+            "dropped": 3,
+            "none": 4
+          },
+          "no_grasp": {
+            "dropped": 6,
+            "not_placed": 3,
+            "no_grasp": 1
+          },
+          "none": {
+            "none": 15
+          },
+          "other": {
+            "dropped": 2,
+            "not_placed": 2
+          }
+        },
+        "mean_latency_s": 3.75,
+        "median_latency_s": 3.77,
+        "mean_prompt_tokens": 1953.3,
+        "mean_completion_tokens": 202.9,
+        "calls_per_episode": 1
+      },
+      "can": {
+        "episodes": 24,
+        "scored": 24,
+        "unparsed": 0,
+        "success_acc": 0.958,
+        "success_acc_ci95": [
+          0.798,
+          0.993
+        ],
+        "success_acc_all": 0.958,
+        "success_acc_all_ci95": [
+          0.798,
+          0.993
+        ],
+        "tp": 12,
+        "tn": 11,
+        "fp": 1,
+        "fn": 0,
+        "balanced_acc": 0.958,
+        "balanced_acc_all": 0.958,
+        "n_failures": 12,
+        "n_failures_scored": 12,
+        "failure_type_acc_on_failures": 0.25,
+        "failure_type_acc_on_failures_ci95": [
+          0.089,
+          0.532
+        ],
+        "failure_type_acc_on_failures_all": 0.25,
+        "failure_type_acc_on_failures_all_ci95": [
+          0.089,
+          0.532
+        ],
+        "harmonized_failure_type_acc_on_failures_all": 0.25,
+        "harmonized_failure_type_acc_on_failures_all_ci95": [
+          0.089,
+          0.532
+        ],
+        "hard_cases_flagged_as_failure": {
+          "wrong_compartment": {
+            "n": 2,
+            "flagged": 1,
+            "ci95": [
+              0.095,
+              0.905
+            ]
+          }
+        },
+        "confusion_truth_to_pred": {
+          "dropped": {
+            "dropped": 2,
+            "none": 1
+          },
+          "no_grasp": {
+            "dropped": 6,
+            "not_placed": 2,
+            "no_grasp": 1
+          },
+          "none": {
+            "none": 12
+          }
+        },
+        "mean_latency_s": 3.89,
+        "median_latency_s": 3.86,
+        "mean_prompt_tokens": 1980,
+        "mean_completion_tokens": 199.3,
+        "calls_per_episode": 1
+      },
+      "square": {
+        "episodes": 12,
+        "scored": 12,
+        "unparsed": 0,
+        "success_acc": 0.75,
+        "success_acc_ci95": [
+          0.468,
+          0.911
+        ],
+        "success_acc_all": 0.75,
+        "success_acc_all_ci95": [
+          0.468,
+          0.911
+        ],
+        "tp": 3,
+        "tn": 6,
+        "fp": 3,
+        "fn": 0,
+        "balanced_acc": 0.833,
+        "balanced_acc_all": 0.833,
+        "n_failures": 9,
+        "n_failures_scored": 9,
+        "failure_type_acc_on_failures": 0.111,
+        "failure_type_acc_on_failures_ci95": [
+          0.02,
+          0.435
+        ],
+        "failure_type_acc_on_failures_all": 0.111,
+        "failure_type_acc_on_failures_all_ci95": [
+          0.02,
+          0.435
+        ],
+        "harmonized_failure_type_acc_on_failures_all": 0.111,
+        "harmonized_failure_type_acc_on_failures_all_ci95": [
+          0.02,
+          0.435
+        ],
+        "hard_cases_flagged_as_failure": {
+          "nut_high_on_peg": {
+            "n": 2,
+            "flagged": 0,
+            "ci95": [
+              0.0,
+              0.658
+            ]
+          }
+        },
+        "confusion_truth_to_pred": {
+          "dropped": {
+            "none": 3,
+            "dropped": 1
+          },
+          "no_grasp": {
+            "not_placed": 1
+          },
+          "none": {
+            "none": 3
+          },
+          "other": {
+            "dropped": 2,
+            "not_placed": 2
+          }
+        },
+        "mean_latency_s": 3.45,
+        "median_latency_s": 3.42,
+        "mean_prompt_tokens": 1900,
+        "mean_completion_tokens": 210,
+        "calls_per_episode": 1
+      },
+      "paired_vs_frozen_v2": {
+        "n_common": 36,
+        "success_ok": {
+          "n": 36,
+          "variant": 0.889,
+          "frozen_v2": 0.861,
+          "diff": 0.028,
+          "diff_ci95_bootstrap": [
+            -0.083,
+            0.139
+          ],
+          "variant_only_correct": 3,
+          "v2_only_correct": 2,
+          "mcnemar_exact_p": 1.0
+        },
+        "ft_ok_on_failures": {
+          "n": 21,
+          "variant": 0.19,
+          "frozen_v2": 0.333,
+          "diff": -0.143,
+          "diff_ci95_bootstrap": [
+            -0.429,
+            0.143
+          ],
+          "variant_only_correct": 4,
+          "v2_only_correct": 7,
+          "mcnemar_exact_p": 0.5488
+        },
+        "ft_harm_ok_on_failures": {
+          "n": 21,
+          "variant": 0.19,
+          "frozen_v2": 0.333,
+          "diff": -0.143,
+          "diff_ci95_bootstrap": [
+            -0.429,
+            0.143
+          ],
+          "variant_only_correct": 4,
+          "v2_only_correct": 7,
+          "mcnemar_exact_p": 0.5488
+        }
+      }
+    }
+  },
+  "eval": {
+    "episodes_present": 210,
+    "checkpoints_present": [
+      "can_s1_e0000",
+      "can_s1_e0020",
+      "can_s1_e0040",
+      "can_s1_e0060",
+      "can_s1_e0080",
+      "can_s1_e0100",
+      "can_s2_e0000",
+      "can_s2_e0020",
+      "can_s2_e0040",
+      "can_s2_e0060",
+      "can_s2_e0080",
+      "can_s2_e0100",
+      "can_s2_e0120",
+      "can_s2_e0140",
+      "can_s2_e0160",
+      "square_s1_e0000",
+      "square_s1_e0030",
+      "square_s1_e0060",
+      "square_s1_e0090",
+      "square_s1_e0120",
+      "square_s1_e0150"
+    ],
+    "A_track8_r2": {
+      "role": "chosen_on_dev",
+      "run_on": 200,
+      "common_with_frozen_v2": 200,
+      "variant": {
+        "all": {
+          "episodes": 200,
+          "scored": 200,
+          "unparsed": 0,
+          "success_acc": 0.92,
+          "success_acc_ci95": [
+            0.874,
+            0.95
+          ],
+          "success_acc_all": 0.92,
+          "success_acc_all_ci95": [
+            0.874,
+            0.95
+          ],
+          "tp": 134,
+          "tn": 50,
+          "fp": 9,
+          "fn": 7,
+          "balanced_acc": 0.899,
+          "balanced_acc_all": 0.899,
+          "n_failures": 59,
+          "n_failures_scored": 59,
+          "failure_type_acc_on_failures": 0.39,
+          "failure_type_acc_on_failures_ci95": [
+            0.276,
+            0.517
+          ],
+          "failure_type_acc_on_failures_all": 0.39,
+          "failure_type_acc_on_failures_all_ci95": [
+            0.276,
+            0.517
+          ],
+          "harmonized_failure_type_acc_on_failures_all": 0.441,
+          "harmonized_failure_type_acc_on_failures_all_ci95": [
+            0.322,
+            0.567
+          ],
+          "hard_cases_flagged_as_failure": {
+            "nut_high_on_peg": {
+              "n": 5,
+              "flagged": 1,
+              "ci95": [
+                0.036,
+                0.624
+              ]
+            },
+            "wrong_compartment": {
+              "n": 5,
+              "flagged": 5,
+              "ci95": [
+                0.566,
+                1.0
+              ]
+            }
+          },
+          "confusion_truth_to_pred": {
+            "dropped": {
+              "no_grasp": 1,
+              "dropped": 8,
+              "not_placed": 5,
+              "none": 6
+            },
+            "no_grasp": {
+              "no_grasp": 15,
+              "dropped": 12,
+              "not_placed": 1
+            },
+            "none": {
+              "none": 134,
+              "dropped": 5,
+              "no_grasp": 2
+            },
+            "other": {
+              "none": 3,
+              "dropped": 6,
+              "no_grasp": 2
+            }
+          },
+          "mean_latency_s": 3.69,
+          "median_latency_s": 3.75,
+          "mean_prompt_tokens": 2869.3,
+          "mean_completion_tokens": 198.3,
+          "calls_per_episode": 1
+        },
+        "can": {
+          "episodes": 150,
+          "scored": 150,
+          "unparsed": 0,
+          "success_acc": 0.96,
+          "success_acc_ci95": [
+            0.915,
+            0.982
+          ],
+          "success_acc_all": 0.96,
+          "success_acc_all_ci95": [
+            0.915,
+            0.982
+          ],
+          "tp": 107,
+          "tn": 37,
+          "fp": 0,
+          "fn": 6,
+          "balanced_acc": 0.973,
+          "balanced_acc_all": 0.973,
+          "n_failures": 37,
+          "n_failures_scored": 37,
+          "failure_type_acc_on_failures": 0.622,
+          "failure_type_acc_on_failures_ci95": [
+            0.461,
+            0.759
+          ],
+          "failure_type_acc_on_failures_all": 0.622,
+          "failure_type_acc_on_failures_all_ci95": [
+            0.461,
+            0.759
+          ],
+          "harmonized_failure_type_acc_on_failures_all": 0.622,
+          "harmonized_failure_type_acc_on_failures_all_ci95": [
+            0.461,
+            0.759
+          ],
+          "hard_cases_flagged_as_failure": {
+            "wrong_compartment": {
+              "n": 5,
+              "flagged": 5,
+              "ci95": [
+                0.566,
+                1.0
+              ]
+            }
+          },
+          "confusion_truth_to_pred": {
+            "dropped": {
+              "no_grasp": 1,
+              "dropped": 8,
+              "not_placed": 3
+            },
+            "no_grasp": {
+              "no_grasp": 15,
+              "dropped": 10
+            },
+            "none": {
+              "none": 107,
+              "dropped": 5,
+              "no_grasp": 1
+            }
+          },
+          "mean_latency_s": 3.81,
+          "median_latency_s": 3.81,
+          "mean_prompt_tokens": 2889.1,
+          "mean_completion_tokens": 196.8,
+          "calls_per_episode": 1
+        },
+        "square": {
+          "episodes": 50,
+          "scored": 50,
+          "unparsed": 0,
+          "success_acc": 0.8,
+          "success_acc_ci95": [
+            0.67,
+            0.888
+          ],
+          "success_acc_all": 0.8,
+          "success_acc_all_ci95": [
+            0.67,
+            0.888
+          ],
+          "tp": 27,
+          "tn": 13,
+          "fp": 9,
+          "fn": 1,
+          "balanced_acc": 0.778,
+          "balanced_acc_all": 0.778,
+          "n_failures": 22,
+          "n_failures_scored": 22,
+          "failure_type_acc_on_failures": 0.0,
+          "failure_type_acc_on_failures_ci95": [
+            0.0,
+            0.149
+          ],
+          "failure_type_acc_on_failures_all": 0.0,
+          "failure_type_acc_on_failures_all_ci95": [
+            0.0,
+            0.149
+          ],
+          "harmonized_failure_type_acc_on_failures_all": 0.136,
+          "harmonized_failure_type_acc_on_failures_all_ci95": [
+            0.047,
+            0.333
+          ],
+          "hard_cases_flagged_as_failure": {
+            "nut_high_on_peg": {
+              "n": 5,
+              "flagged": 1,
+              "ci95": [
+                0.036,
+                0.624
+              ]
+            }
+          },
+          "confusion_truth_to_pred": {
+            "dropped": {
+              "none": 6,
+              "not_placed": 2
+            },
+            "no_grasp": {
+              "dropped": 2,
+              "not_placed": 1
+            },
+            "none": {
+              "none": 27,
+              "no_grasp": 1
+            },
+            "other": {
+              "none": 3,
+              "dropped": 6,
+              "no_grasp": 2
+            }
+          },
+          "mean_latency_s": 3.32,
+          "median_latency_s": 3.27,
+          "mean_prompt_tokens": 2809.9,
+          "mean_completion_tokens": 202.8,
+          "calls_per_episode": 1
+        }
+      },
+      "frozen_v2_same_episodes": {
+        "all": {
+          "episodes": 200,
+          "scored": 200,
+          "unparsed": 0,
+          "success_acc": 0.95,
+          "success_acc_ci95": [
+            0.91,
+            0.973
+          ],
+          "success_acc_all": 0.95,
+          "success_acc_all_ci95": [
+            0.91,
+            0.973
+          ],
+          "tp": 138,
+          "tn": 52,
+          "fp": 7,
+          "fn": 3,
+          "balanced_acc": 0.93,
+          "balanced_acc_all": 0.93,
+          "n_failures": 59,
+          "n_failures_scored": 59,
+          "failure_type_acc_on_failures": 0.356,
+          "failure_type_acc_on_failures_ci95": [
+            0.246,
+            0.483
+          ],
+          "failure_type_acc_on_failures_all": 0.356,
+          "failure_type_acc_on_failures_all_ci95": [
+            0.246,
+            0.483
+          ],
+          "harmonized_failure_type_acc_on_failures_all": 0.356,
+          "harmonized_failure_type_acc_on_failures_all_ci95": [
+            0.246,
+            0.483
+          ],
+          "hard_cases_flagged_as_failure": {
+            "nut_high_on_peg": {
+              "n": 5,
+              "flagged": 2,
+              "ci95": [
+                0.118,
+                0.769
+              ]
+            },
+            "wrong_compartment": {
+              "n": 5,
+              "flagged": 1,
+              "ci95": [
+                0.036,
+                0.624
+              ]
+            }
+          },
+          "confusion_truth_to_pred": {
+            "dropped": {
+              "none": 7,
+              "not_placed": 9,
+              "no_grasp": 3,
+              "dropped": 1
+            },
+            "no_grasp": {
+              "no_grasp": 20,
+              "not_placed": 8
+            },
+            "none": {
+              "none": 138,
+              "not_placed": 3
+            },
+            "other": {
+              "not_placed": 11
+            }
+          },
+          "mean_latency_s": 3.2,
+          "median_latency_s": 2.98,
+          "mean_prompt_tokens": 2675.3,
+          "mean_completion_tokens": 128.9,
+          "calls_per_episode": 1
+        },
+        "can": {
+          "episodes": 150,
+          "scored": 150,
+          "unparsed": 0,
+          "success_acc": 0.973,
+          "success_acc_ci95": [
+            0.933,
+            0.99
+          ],
+          "success_acc_all": 0.973,
+          "success_acc_all_ci95": [
+            0.933,
+            0.99
+          ],
+          "tp": 113,
+          "tn": 33,
+          "fp": 4,
+          "fn": 0,
+          "balanced_acc": 0.946,
+          "balanced_acc_all": 0.946,
+          "n_failures": 37,
+          "n_failures_scored": 37,
+          "failure_type_acc_on_failures": 0.541,
+          "failure_type_acc_on_failures_ci95": [
+            0.384,
+            0.69
+          ],
+          "failure_type_acc_on_failures_all": 0.541,
+          "failure_type_acc_on_failures_all_ci95": [
+            0.384,
+            0.69
+          ],
+          "harmonized_failure_type_acc_on_failures_all": 0.541,
+          "harmonized_failure_type_acc_on_failures_all_ci95": [
+            0.384,
+            0.69
+          ],
+          "hard_cases_flagged_as_failure": {
+            "wrong_compartment": {
+              "n": 5,
+              "flagged": 1,
+              "ci95": [
+                0.036,
+                0.624
+              ]
+            }
+          },
+          "confusion_truth_to_pred": {
+            "dropped": {
+              "none": 4,
+              "not_placed": 5,
+              "no_grasp": 3
+            },
+            "no_grasp": {
+              "no_grasp": 20,
+              "not_placed": 5
+            },
+            "none": {
+              "none": 113
+            }
+          },
+          "mean_latency_s": 3.13,
+          "median_latency_s": 2.94,
+          "mean_prompt_tokens": 2491.6,
+          "mean_completion_tokens": 130.0,
+          "calls_per_episode": 1
+        },
+        "square": {
+          "episodes": 50,
+          "scored": 50,
+          "unparsed": 0,
+          "success_acc": 0.88,
+          "success_acc_ci95": [
+            0.762,
+            0.944
+          ],
+          "success_acc_all": 0.88,
+          "success_acc_all_ci95": [
+            0.762,
+            0.944
+          ],
+          "tp": 25,
+          "tn": 19,
+          "fp": 3,
+          "fn": 3,
+          "balanced_acc": 0.878,
+          "balanced_acc_all": 0.878,
+          "n_failures": 22,
+          "n_failures_scored": 22,
+          "failure_type_acc_on_failures": 0.045,
+          "failure_type_acc_on_failures_ci95": [
+            0.008,
+            0.218
+          ],
+          "failure_type_acc_on_failures_all": 0.045,
+          "failure_type_acc_on_failures_all_ci95": [
+            0.008,
+            0.218
+          ],
+          "harmonized_failure_type_acc_on_failures_all": 0.045,
+          "harmonized_failure_type_acc_on_failures_all_ci95": [
+            0.008,
+            0.218
+          ],
+          "hard_cases_flagged_as_failure": {
+            "nut_high_on_peg": {
+              "n": 5,
+              "flagged": 2,
+              "ci95": [
+                0.118,
+                0.769
+              ]
+            }
+          },
+          "confusion_truth_to_pred": {
+            "dropped": {
+              "dropped": 1,
+              "none": 3,
+              "not_placed": 4
+            },
+            "no_grasp": {
+              "not_placed": 3
+            },
+            "none": {
+              "none": 25,
+              "not_placed": 3
+            },
+            "other": {
+              "not_placed": 11
+            }
+          },
+          "mean_latency_s": 3.41,
+          "median_latency_s": 3.25,
+          "mean_prompt_tokens": 3226.3,
+          "mean_completion_tokens": 125.5,
+          "calls_per_episode": 1
+        }
+      },
+      "paired_vs_frozen_v2": {
+        "n_common": 200,
+        "success_ok": {
+          "n": 200,
+          "variant": 0.92,
+          "frozen_v2": 0.95,
+          "diff": -0.03,
+          "diff_ci95_bootstrap": [
+            -0.075,
+            0.015
+          ],
+          "variant_only_correct": 7,
+          "v2_only_correct": 13,
+          "mcnemar_exact_p": 0.2632
+        },
+        "ft_ok_on_failures": {
+          "n": 59,
+          "variant": 0.39,
+          "frozen_v2": 0.356,
+          "diff": 0.034,
+          "diff_ci95_bootstrap": [
+            -0.119,
+            0.186
+          ],
+          "variant_only_correct": 12,
+          "v2_only_correct": 10,
+          "mcnemar_exact_p": 0.8318
+        },
+        "ft_harm_ok_on_failures": {
+          "n": 59,
+          "variant": 0.441,
+          "frozen_v2": 0.356,
+          "diff": 0.085,
+          "diff_ci95_bootstrap": [
+            -0.085,
+            0.254
+          ],
+          "variant_only_correct": 15,
+          "v2_only_correct": 10,
+          "mcnemar_exact_p": 0.4244
+        }
+      },
+      "per_checkpoint_success_rate": {
+        "n_checkpoints": 20,
+        "spearman_variant_vs_truth": 0.888,
+        "spearman_v2_vs_truth": 0.893,
+        "mae_variant": 0.07,
+        "mae_v2": 0.04,
+        "rows": [
+          {
+            "checkpoint_id": "can_s1_e0000",
+            "truth": 0.0,
+            "variant": 0.0,
+            "v2": 0.0
+          },
+          {
+            "checkpoint_id": "can_s1_e0020",
+            "truth": 0.5,
+            "variant": 0.5,
+            "v2": 0.6
+          },
+          {
+            "checkpoint_id": "can_s1_e0040",
+            "truth": 0.7,
+            "variant": 0.6,
+            "v2": 0.7
+          },
+          {
+            "checkpoint_id": "can_s1_e0060",
+            "truth": 0.9,
+            "variant": 0.8,
+            "v2": 1.0
+          },
+          {
+            "checkpoint_id": "can_s1_e0080",
+            "truth": 0.9,
+            "variant": 0.8,
+            "v2": 1.0
+          },
+          {
+            "checkpoint_id": "can_s1_e0100",
+            "truth": 1.0,
+            "variant": 1.0,
+            "v2": 1.0
+          },
+          {
+            "checkpoint_id": "can_s2_e0000",
+            "truth": 0.0,
+            "variant": 0.0,
+            "v2": 0.0
+          },
+          {
+            "checkpoint_id": "can_s2_e0020",
+            "truth": 0.6,
+            "variant": 0.4,
+            "v2": 0.6
+          },
+          {
+            "checkpoint_id": "can_s2_e0040",
+            "truth": 0.9,
+            "variant": 0.9,
+            "v2": 0.9
+          },
+          {
+            "checkpoint_id": "can_s2_e0060",
+            "truth": 0.9,
+            "variant": 0.9,
+            "v2": 0.9
+          },
+          {
+            "checkpoint_id": "can_s2_e0080",
+            "truth": 1.0,
+            "variant": 1.0,
+            "v2": 1.0
+          },
+          {
+            "checkpoint_id": "can_s2_e0100",
+            "truth": 0.9,
+            "variant": 0.9,
+            "v2": 1.0
+          },
+          {
+            "checkpoint_id": "can_s2_e0120",
+            "truth": 1.0,
+            "variant": 1.0,
+            "v2": 1.0
+          },
+          {
+            "checkpoint_id": "can_s2_e0140",
+            "truth": 1.0,
+            "variant": 0.9,
+            "v2": 1.0
+          },
+          {
+            "checkpoint_id": "can_s2_e0160",
+            "truth": 1.0,
+            "variant": 1.0,
+            "v2": 1.0
+          },
+          {
+            "checkpoint_id": "square_s1_e0000",
+            "truth": 0.0,
+            "variant": 0.3,
+            "v2": 0.0
+          },
+          {
+            "checkpoint_id": "square_s1_e0030",
+            "truth": 0.4,
+            "variant": 0.6,
+            "v2": 0.5
+          },
+          {
+            "checkpoint_id": "square_s1_e0060",
+            "truth": 1.0,
+            "variant": 1.0,
+            "v2": 0.8
+          },
+          {
+            "checkpoint_id": "square_s1_e0090",
+            "truth": 0.7,
+            "variant": 0.7,
+            "v2": 0.7
+          },
+          {
+            "checkpoint_id": "square_s1_e0120",
+            "truth": 0.7,
+            "variant": 1.0,
+            "v2": 0.8
+          }
+        ]
+      },
+      "variant_all_run_episodes": {
+        "all": {
+          "episodes": 200,
+          "scored": 200,
+          "unparsed": 0,
+          "success_acc": 0.92,
+          "success_acc_ci95": [
+            0.874,
+            0.95
+          ],
+          "success_acc_all": 0.92,
+          "success_acc_all_ci95": [
+            0.874,
+            0.95
+          ],
+          "tp": 134,
+          "tn": 50,
+          "fp": 9,
+          "fn": 7,
+          "balanced_acc": 0.899,
+          "balanced_acc_all": 0.899,
+          "n_failures": 59,
+          "n_failures_scored": 59,
+          "failure_type_acc_on_failures": 0.39,
+          "failure_type_acc_on_failures_ci95": [
+            0.276,
+            0.517
+          ],
+          "failure_type_acc_on_failures_all": 0.39,
+          "failure_type_acc_on_failures_all_ci95": [
+            0.276,
+            0.517
+          ],
+          "harmonized_failure_type_acc_on_failures_all": 0.441,
+          "harmonized_failure_type_acc_on_failures_all_ci95": [
+            0.322,
+            0.567
+          ],
+          "hard_cases_flagged_as_failure": {
+            "nut_high_on_peg": {
+              "n": 5,
+              "flagged": 1,
+              "ci95": [
+                0.036,
+                0.624
+              ]
+            },
+            "wrong_compartment": {
+              "n": 5,
+              "flagged": 5,
+              "ci95": [
+                0.566,
+                1.0
+              ]
+            }
+          },
+          "confusion_truth_to_pred": {
+            "dropped": {
+              "no_grasp": 1,
+              "dropped": 8,
+              "not_placed": 5,
+              "none": 6
+            },
+            "no_grasp": {
+              "no_grasp": 15,
+              "dropped": 12,
+              "not_placed": 1
+            },
+            "none": {
+              "none": 134,
+              "dropped": 5,
+              "no_grasp": 2
+            },
+            "other": {
+              "none": 3,
+              "dropped": 6,
+              "no_grasp": 2
+            }
+          },
+          "mean_latency_s": 3.69,
+          "median_latency_s": 3.75,
+          "mean_prompt_tokens": 2869.3,
+          "mean_completion_tokens": 198.3,
+          "calls_per_episode": 1
+        },
+        "can": {
+          "episodes": 150,
+          "scored": 150,
+          "unparsed": 0,
+          "success_acc": 0.96,
+          "success_acc_ci95": [
+            0.915,
+            0.982
+          ],
+          "success_acc_all": 0.96,
+          "success_acc_all_ci95": [
+            0.915,
+            0.982
+          ],
+          "tp": 107,
+          "tn": 37,
+          "fp": 0,
+          "fn": 6,
+          "balanced_acc": 0.973,
+          "balanced_acc_all": 0.973,
+          "n_failures": 37,
+          "n_failures_scored": 37,
+          "failure_type_acc_on_failures": 0.622,
+          "failure_type_acc_on_failures_ci95": [
+            0.461,
+            0.759
+          ],
+          "failure_type_acc_on_failures_all": 0.622,
+          "failure_type_acc_on_failures_all_ci95": [
+            0.461,
+            0.759
+          ],
+          "harmonized_failure_type_acc_on_failures_all": 0.622,
+          "harmonized_failure_type_acc_on_failures_all_ci95": [
+            0.461,
+            0.759
+          ],
+          "hard_cases_flagged_as_failure": {
+            "wrong_compartment": {
+              "n": 5,
+              "flagged": 5,
+              "ci95": [
+                0.566,
+                1.0
+              ]
+            }
+          },
+          "confusion_truth_to_pred": {
+            "dropped": {
+              "no_grasp": 1,
+              "dropped": 8,
+              "not_placed": 3
+            },
+            "no_grasp": {
+              "no_grasp": 15,
+              "dropped": 10
+            },
+            "none": {
+              "none": 107,
+              "dropped": 5,
+              "no_grasp": 1
+            }
+          },
+          "mean_latency_s": 3.81,
+          "median_latency_s": 3.81,
+          "mean_prompt_tokens": 2889.1,
+          "mean_completion_tokens": 196.8,
+          "calls_per_episode": 1
+        },
+        "square": {
+          "episodes": 50,
+          "scored": 50,
+          "unparsed": 0,
+          "success_acc": 0.8,
+          "success_acc_ci95": [
+            0.67,
+            0.888
+          ],
+          "success_acc_all": 0.8,
+          "success_acc_all_ci95": [
+            0.67,
+            0.888
+          ],
+          "tp": 27,
+          "tn": 13,
+          "fp": 9,
+          "fn": 1,
+          "balanced_acc": 0.778,
+          "balanced_acc_all": 0.778,
+          "n_failures": 22,
+          "n_failures_scored": 22,
+          "failure_type_acc_on_failures": 0.0,
+          "failure_type_acc_on_failures_ci95": [
+            0.0,
+            0.149
+          ],
+          "failure_type_acc_on_failures_all": 0.0,
+          "failure_type_acc_on_failures_all_ci95": [
+            0.0,
+            0.149
+          ],
+          "harmonized_failure_type_acc_on_failures_all": 0.136,
+          "harmonized_failure_type_acc_on_failures_all_ci95": [
+            0.047,
+            0.333
+          ],
+          "hard_cases_flagged_as_failure": {
+            "nut_high_on_peg": {
+              "n": 5,
+              "flagged": 1,
+              "ci95": [
+                0.036,
+                0.624
+              ]
+            }
+          },
+          "confusion_truth_to_pred": {
+            "dropped": {
+              "none": 6,
+              "not_placed": 2
+            },
+            "no_grasp": {
+              "dropped": 2,
+              "not_placed": 1
+            },
+            "none": {
+              "none": 27,
+              "no_grasp": 1
+            },
+            "other": {
+              "none": 3,
+              "dropped": 6,
+              "no_grasp": 2
+            }
+          },
+          "mean_latency_s": 3.32,
+          "median_latency_s": 3.27,
+          "mean_prompt_tokens": 2809.9,
+          "mean_completion_tokens": 202.8,
+          "calls_per_episode": 1
+        }
+      }
+    },
+    "C_vidcomp": {
+      "role": "chosen_on_dev",
+      "run_on": 200,
+      "common_with_frozen_v2": 200,
+      "variant": {
+        "all": {
+          "episodes": 200,
+          "scored": 200,
+          "unparsed": 0,
+          "success_acc": 0.915,
+          "success_acc_ci95": [
+            0.868,
+            0.946
+          ],
+          "success_acc_all": 0.915,
+          "success_acc_all_ci95": [
+            0.868,
+            0.946
+          ],
+          "tp": 141,
+          "tn": 42,
+          "fp": 17,
+          "fn": 0,
+          "balanced_acc": 0.856,
+          "balanced_acc_all": 0.856,
+          "n_failures": 59,
+          "n_failures_scored": 59,
+          "failure_type_acc_on_failures": 0.305,
+          "failure_type_acc_on_failures_ci95": [
+            0.203,
+            0.431
+          ],
+          "failure_type_acc_on_failures_all": 0.305,
+          "failure_type_acc_on_failures_all_ci95": [
+            0.203,
+            0.431
+          ],
+          "harmonized_failure_type_acc_on_failures_all": 0.322,
+          "harmonized_failure_type_acc_on_failures_all_ci95": [
+            0.217,
+            0.449
+          ],
+          "hard_cases_flagged_as_failure": {
+            "nut_high_on_peg": {
+              "n": 5,
+              "flagged": 0,
+              "ci95": [
+                -0.0,
+                0.434
+              ]
+            },
+            "wrong_compartment": {
+              "n": 5,
+              "flagged": 5,
+              "ci95": [
+                0.566,
+                1.0
+              ]
+            }
+          },
+          "confusion_truth_to_pred": {
+            "dropped": {
+              "dropped": 8,
+              "no_grasp": 3,
+              "not_placed": 1,
+              "none": 8
+            },
+            "no_grasp": {
+              "no_grasp": 10,
+              "dropped": 17,
+              "none": 1
+            },
+            "none": {
+              "none": 141
+            },
+            "other": {
+              "none": 8,
+              "dropped": 3
+            }
+          },
+          "mean_latency_s": 3.67,
+          "median_latency_s": 3.51,
+          "mean_prompt_tokens": 3027.3,
+          "mean_completion_tokens": 87.2,
+          "calls_per_episode": 1
+        },
+        "can": {
+          "episodes": 150,
+          "scored": 150,
+          "unparsed": 0,
+          "success_acc": 1.0,
+          "success_acc_ci95": [
+            0.975,
+            1.0
+          ],
+          "success_acc_all": 1.0,
+          "success_acc_all_ci95": [
+            0.975,
+            1.0
+          ],
+          "tp": 113,
+          "tn": 37,
+          "fp": 0,
+          "fn": 0,
+          "balanced_acc": 1.0,
+          "balanced_acc_all": 1.0,
+          "n_failures": 37,
+          "n_failures_scored": 37,
+          "failure_type_acc_on_failures": 0.486,
+          "failure_type_acc_on_failures_ci95": [
+            0.334,
+            0.641
+          ],
+          "failure_type_acc_on_failures_all": 0.486,
+          "failure_type_acc_on_failures_all_ci95": [
+            0.334,
+            0.641
+          ],
+          "harmonized_failure_type_acc_on_failures_all": 0.486,
+          "harmonized_failure_type_acc_on_failures_all_ci95": [
+            0.334,
+            0.641
+          ],
+          "hard_cases_flagged_as_failure": {
+            "wrong_compartment": {
+              "n": 5,
+              "flagged": 5,
+              "ci95": [
+                0.566,
+                1.0
+              ]
+            }
+          },
+          "confusion_truth_to_pred": {
+            "dropped": {
+              "dropped": 8,
+              "no_grasp": 3,
+              "not_placed": 1
+            },
+            "no_grasp": {
+              "no_grasp": 10,
+              "dropped": 15
+            },
+            "none": {
+              "none": 113
+            }
+          },
+          "mean_latency_s": 3.62,
+          "median_latency_s": 3.47,
+          "mean_prompt_tokens": 2859.6,
+          "mean_completion_tokens": 86.7,
+          "calls_per_episode": 1
+        },
+        "square": {
+          "episodes": 50,
+          "scored": 50,
+          "unparsed": 0,
+          "success_acc": 0.66,
+          "success_acc_ci95": [
+            0.522,
+            0.776
+          ],
+          "success_acc_all": 0.66,
+          "success_acc_all_ci95": [
+            0.522,
+            0.776
+          ],
+          "tp": 28,
+          "tn": 5,
+          "fp": 17,
+          "fn": 0,
+          "balanced_acc": 0.614,
+          "balanced_acc_all": 0.614,
+          "n_failures": 22,
+          "n_failures_scored": 22,
+          "failure_type_acc_on_failures": 0.0,
+          "failure_type_acc_on_failures_ci95": [
+            0.0,
+            0.149
+          ],
+          "failure_type_acc_on_failures_all": 0.0,
+          "failure_type_acc_on_failures_all_ci95": [
+            0.0,
+            0.149
+          ],
+          "harmonized_failure_type_acc_on_failures_all": 0.045,
+          "harmonized_failure_type_acc_on_failures_all_ci95": [
+            0.008,
+            0.218
+          ],
+          "hard_cases_flagged_as_failure": {
+            "nut_high_on_peg": {
+              "n": 5,
+              "flagged": 0,
+              "ci95": [
+                -0.0,
+                0.434
+              ]
+            }
+          },
+          "confusion_truth_to_pred": {
+            "dropped": {
+              "none": 8
+            },
+            "no_grasp": {
+              "dropped": 2,
+              "none": 1
+            },
+            "none": {
+              "none": 28
+            },
+            "other": {
+              "none": 8,
+              "dropped": 3
+            }
+          },
+          "mean_latency_s": 3.81,
+          "median_latency_s": 3.85,
+          "mean_prompt_tokens": 3530.3,
+          "mean_completion_tokens": 88.8,
+          "calls_per_episode": 1
+        }
+      },
+      "frozen_v2_same_episodes": {
+        "all": {
+          "episodes": 200,
+          "scored": 200,
+          "unparsed": 0,
+          "success_acc": 0.95,
+          "success_acc_ci95": [
+            0.91,
+            0.973
+          ],
+          "success_acc_all": 0.95,
+          "success_acc_all_ci95": [
+            0.91,
+            0.973
+          ],
+          "tp": 138,
+          "tn": 52,
+          "fp": 7,
+          "fn": 3,
+          "balanced_acc": 0.93,
+          "balanced_acc_all": 0.93,
+          "n_failures": 59,
+          "n_failures_scored": 59,
+          "failure_type_acc_on_failures": 0.356,
+          "failure_type_acc_on_failures_ci95": [
+            0.246,
+            0.483
+          ],
+          "failure_type_acc_on_failures_all": 0.356,
+          "failure_type_acc_on_failures_all_ci95": [
+            0.246,
+            0.483
+          ],
+          "harmonized_failure_type_acc_on_failures_all": 0.356,
+          "harmonized_failure_type_acc_on_failures_all_ci95": [
+            0.246,
+            0.483
+          ],
+          "hard_cases_flagged_as_failure": {
+            "nut_high_on_peg": {
+              "n": 5,
+              "flagged": 2,
+              "ci95": [
+                0.118,
+                0.769
+              ]
+            },
+            "wrong_compartment": {
+              "n": 5,
+              "flagged": 1,
+              "ci95": [
+                0.036,
+                0.624
+              ]
+            }
+          },
+          "confusion_truth_to_pred": {
+            "dropped": {
+              "none": 7,
+              "not_placed": 9,
+              "no_grasp": 3,
+              "dropped": 1
+            },
+            "no_grasp": {
+              "no_grasp": 20,
+              "not_placed": 8
+            },
+            "none": {
+              "none": 138,
+              "not_placed": 3
+            },
+            "other": {
+              "not_placed": 11
+            }
+          },
+          "mean_latency_s": 3.2,
+          "median_latency_s": 2.98,
+          "mean_prompt_tokens": 2675.3,
+          "mean_completion_tokens": 128.9,
+          "calls_per_episode": 1
+        },
+        "can": {
+          "episodes": 150,
+          "scored": 150,
+          "unparsed": 0,
+          "success_acc": 0.973,
+          "success_acc_ci95": [
+            0.933,
+            0.99
+          ],
+          "success_acc_all": 0.973,
+          "success_acc_all_ci95": [
+            0.933,
+            0.99
+          ],
+          "tp": 113,
+          "tn": 33,
+          "fp": 4,
+          "fn": 0,
+          "balanced_acc": 0.946,
+          "balanced_acc_all": 0.946,
+          "n_failures": 37,
+          "n_failures_scored": 37,
+          "failure_type_acc_on_failures": 0.541,
+          "failure_type_acc_on_failures_ci95": [
+            0.384,
+            0.69
+          ],
+          "failure_type_acc_on_failures_all": 0.541,
+          "failure_type_acc_on_failures_all_ci95": [
+            0.384,
+            0.69
+          ],
+          "harmonized_failure_type_acc_on_failures_all": 0.541,
+          "harmonized_failure_type_acc_on_failures_all_ci95": [
+            0.384,
+            0.69
+          ],
+          "hard_cases_flagged_as_failure": {
+            "wrong_compartment": {
+              "n": 5,
+              "flagged": 1,
+              "ci95": [
+                0.036,
+                0.624
+              ]
+            }
+          },
+          "confusion_truth_to_pred": {
+            "dropped": {
+              "none": 4,
+              "not_placed": 5,
+              "no_grasp": 3
+            },
+            "no_grasp": {
+              "no_grasp": 20,
+              "not_placed": 5
+            },
+            "none": {
+              "none": 113
+            }
+          },
+          "mean_latency_s": 3.13,
+          "median_latency_s": 2.94,
+          "mean_prompt_tokens": 2491.6,
+          "mean_completion_tokens": 130.0,
+          "calls_per_episode": 1
+        },
+        "square": {
+          "episodes": 50,
+          "scored": 50,
+          "unparsed": 0,
+          "success_acc": 0.88,
+          "success_acc_ci95": [
+            0.762,
+            0.944
+          ],
+          "success_acc_all": 0.88,
+          "success_acc_all_ci95": [
+            0.762,
+            0.944
+          ],
+          "tp": 25,
+          "tn": 19,
+          "fp": 3,
+          "fn": 3,
+          "balanced_acc": 0.878,
+          "balanced_acc_all": 0.878,
+          "n_failures": 22,
+          "n_failures_scored": 22,
+          "failure_type_acc_on_failures": 0.045,
+          "failure_type_acc_on_failures_ci95": [
+            0.008,
+            0.218
+          ],
+          "failure_type_acc_on_failures_all": 0.045,
+          "failure_type_acc_on_failures_all_ci95": [
+            0.008,
+            0.218
+          ],
+          "harmonized_failure_type_acc_on_failures_all": 0.045,
+          "harmonized_failure_type_acc_on_failures_all_ci95": [
+            0.008,
+            0.218
+          ],
+          "hard_cases_flagged_as_failure": {
+            "nut_high_on_peg": {
+              "n": 5,
+              "flagged": 2,
+              "ci95": [
+                0.118,
+                0.769
+              ]
+            }
+          },
+          "confusion_truth_to_pred": {
+            "dropped": {
+              "dropped": 1,
+              "none": 3,
+              "not_placed": 4
+            },
+            "no_grasp": {
+              "not_placed": 3
+            },
+            "none": {
+              "none": 25,
+              "not_placed": 3
+            },
+            "other": {
+              "not_placed": 11
+            }
+          },
+          "mean_latency_s": 3.41,
+          "median_latency_s": 3.25,
+          "mean_prompt_tokens": 3226.3,
+          "mean_completion_tokens": 125.5,
+          "calls_per_episode": 1
+        }
+      },
+      "paired_vs_frozen_v2": {
+        "n_common": 200,
+        "success_ok": {
+          "n": 200,
+          "variant": 0.915,
+          "frozen_v2": 0.95,
+          "diff": -0.035,
+          "diff_ci95_bootstrap": [
+            -0.08,
+            0.01
+          ],
+          "variant_only_correct": 7,
+          "v2_only_correct": 14,
+          "mcnemar_exact_p": 0.1892
+        },
+        "ft_ok_on_failures": {
+          "n": 59,
+          "variant": 0.305,
+          "frozen_v2": 0.356,
+          "diff": -0.051,
+          "diff_ci95_bootstrap": [
+            -0.203,
+            0.102
+          ],
+          "variant_only_correct": 8,
+          "v2_only_correct": 11,
+          "mcnemar_exact_p": 0.6476
+        },
+        "ft_harm_ok_on_failures": {
+          "n": 59,
+          "variant": 0.322,
+          "frozen_v2": 0.356,
+          "diff": -0.034,
+          "diff_ci95_bootstrap": [
+            -0.186,
+            0.119
+          ],
+          "variant_only_correct": 9,
+          "v2_only_correct": 11,
+          "mcnemar_exact_p": 0.8238
+        }
+      },
+      "per_checkpoint_success_rate": {
+        "n_checkpoints": 20,
+        "spearman_variant_vs_truth": 0.834,
+        "spearman_v2_vs_truth": 0.893,
+        "mae_variant": 0.085,
+        "mae_v2": 0.04,
+        "rows": [
+          {
+            "checkpoint_id": "can_s1_e0000",
+            "truth": 0.0,
+            "variant": 0.0,
+            "v2": 0.0
+          },
+          {
+            "checkpoint_id": "can_s1_e0020",
+            "truth": 0.5,
+            "variant": 0.5,
+            "v2": 0.6
+          },
+          {
+            "checkpoint_id": "can_s1_e0040",
+            "truth": 0.7,
+            "variant": 0.7,
+            "v2": 0.7
+          },
+          {
+            "checkpoint_id": "can_s1_e0060",
+            "truth": 0.9,
+            "variant": 0.9,
+            "v2": 1.0
+          },
+          {
+            "checkpoint_id": "can_s1_e0080",
+            "truth": 0.9,
+            "variant": 0.9,
+            "v2": 1.0
+          },
+          {
+            "checkpoint_id": "can_s1_e0100",
+            "truth": 1.0,
+            "variant": 1.0,
+            "v2": 1.0
+          },
+          {
+            "checkpoint_id": "can_s2_e0000",
+            "truth": 0.0,
+            "variant": 0.0,
+            "v2": 0.0
+          },
+          {
+            "checkpoint_id": "can_s2_e0020",
+            "truth": 0.6,
+            "variant": 0.6,
+            "v2": 0.6
+          },
+          {
+            "checkpoint_id": "can_s2_e0040",
+            "truth": 0.9,
+            "variant": 0.9,
+            "v2": 0.9
+          },
+          {
+            "checkpoint_id": "can_s2_e0060",
+            "truth": 0.9,
+            "variant": 0.9,
+            "v2": 0.9
+          },
+          {
+            "checkpoint_id": "can_s2_e0080",
+            "truth": 1.0,
+            "variant": 1.0,
+            "v2": 1.0
+          },
+          {
+            "checkpoint_id": "can_s2_e0100",
+            "truth": 0.9,
+            "variant": 0.9,
+            "v2": 1.0
+          },
+          {
+            "checkpoint_id": "can_s2_e0120",
+            "truth": 1.0,
+            "variant": 1.0,
+            "v2": 1.0
+          },
+          {
+            "checkpoint_id": "can_s2_e0140",
+            "truth": 1.0,
+            "variant": 1.0,
+            "v2": 1.0
+          },
+          {
+            "checkpoint_id": "can_s2_e0160",
+            "truth": 1.0,
+            "variant": 1.0,
+            "v2": 1.0
+          },
+          {
+            "checkpoint_id": "square_s1_e0000",
+            "truth": 0.0,
+            "variant": 0.7,
+            "v2": 0.0
+          },
+          {
+            "checkpoint_id": "square_s1_e0030",
+            "truth": 0.4,
+            "variant": 0.8,
+            "v2": 0.5
+          },
+          {
+            "checkpoint_id": "square_s1_e0060",
+            "truth": 1.0,
+            "variant": 1.0,
+            "v2": 0.8
+          },
+          {
+            "checkpoint_id": "square_s1_e0090",
+            "truth": 0.7,
+            "variant": 1.0,
+            "v2": 0.7
+          },
+          {
+            "checkpoint_id": "square_s1_e0120",
+            "truth": 0.7,
+            "variant": 1.0,
+            "v2": 0.8
+          }
+        ]
+      },
+      "variant_all_run_episodes": {
+        "all": {
+          "episodes": 200,
+          "scored": 200,
+          "unparsed": 0,
+          "success_acc": 0.915,
+          "success_acc_ci95": [
+            0.868,
+            0.946
+          ],
+          "success_acc_all": 0.915,
+          "success_acc_all_ci95": [
+            0.868,
+            0.946
+          ],
+          "tp": 141,
+          "tn": 42,
+          "fp": 17,
+          "fn": 0,
+          "balanced_acc": 0.856,
+          "balanced_acc_all": 0.856,
+          "n_failures": 59,
+          "n_failures_scored": 59,
+          "failure_type_acc_on_failures": 0.305,
+          "failure_type_acc_on_failures_ci95": [
+            0.203,
+            0.431
+          ],
+          "failure_type_acc_on_failures_all": 0.305,
+          "failure_type_acc_on_failures_all_ci95": [
+            0.203,
+            0.431
+          ],
+          "harmonized_failure_type_acc_on_failures_all": 0.322,
+          "harmonized_failure_type_acc_on_failures_all_ci95": [
+            0.217,
+            0.449
+          ],
+          "hard_cases_flagged_as_failure": {
+            "nut_high_on_peg": {
+              "n": 5,
+              "flagged": 0,
+              "ci95": [
+                -0.0,
+                0.434
+              ]
+            },
+            "wrong_compartment": {
+              "n": 5,
+              "flagged": 5,
+              "ci95": [
+                0.566,
+                1.0
+              ]
+            }
+          },
+          "confusion_truth_to_pred": {
+            "dropped": {
+              "dropped": 8,
+              "no_grasp": 3,
+              "not_placed": 1,
+              "none": 8
+            },
+            "no_grasp": {
+              "no_grasp": 10,
+              "dropped": 17,
+              "none": 1
+            },
+            "none": {
+              "none": 141
+            },
+            "other": {
+              "none": 8,
+              "dropped": 3
+            }
+          },
+          "mean_latency_s": 3.67,
+          "median_latency_s": 3.51,
+          "mean_prompt_tokens": 3027.3,
+          "mean_completion_tokens": 87.2,
+          "calls_per_episode": 1
+        },
+        "can": {
+          "episodes": 150,
+          "scored": 150,
+          "unparsed": 0,
+          "success_acc": 1.0,
+          "success_acc_ci95": [
+            0.975,
+            1.0
+          ],
+          "success_acc_all": 1.0,
+          "success_acc_all_ci95": [
+            0.975,
+            1.0
+          ],
+          "tp": 113,
+          "tn": 37,
+          "fp": 0,
+          "fn": 0,
+          "balanced_acc": 1.0,
+          "balanced_acc_all": 1.0,
+          "n_failures": 37,
+          "n_failures_scored": 37,
+          "failure_type_acc_on_failures": 0.486,
+          "failure_type_acc_on_failures_ci95": [
+            0.334,
+            0.641
+          ],
+          "failure_type_acc_on_failures_all": 0.486,
+          "failure_type_acc_on_failures_all_ci95": [
+            0.334,
+            0.641
+          ],
+          "harmonized_failure_type_acc_on_failures_all": 0.486,
+          "harmonized_failure_type_acc_on_failures_all_ci95": [
+            0.334,
+            0.641
+          ],
+          "hard_cases_flagged_as_failure": {
+            "wrong_compartment": {
+              "n": 5,
+              "flagged": 5,
+              "ci95": [
+                0.566,
+                1.0
+              ]
+            }
+          },
+          "confusion_truth_to_pred": {
+            "dropped": {
+              "dropped": 8,
+              "no_grasp": 3,
+              "not_placed": 1
+            },
+            "no_grasp": {
+              "no_grasp": 10,
+              "dropped": 15
+            },
+            "none": {
+              "none": 113
+            }
+          },
+          "mean_latency_s": 3.62,
+          "median_latency_s": 3.47,
+          "mean_prompt_tokens": 2859.6,
+          "mean_completion_tokens": 86.7,
+          "calls_per_episode": 1
+        },
+        "square": {
+          "episodes": 50,
+          "scored": 50,
+          "unparsed": 0,
+          "success_acc": 0.66,
+          "success_acc_ci95": [
+            0.522,
+            0.776
+          ],
+          "success_acc_all": 0.66,
+          "success_acc_all_ci95": [
+            0.522,
+            0.776
+          ],
+          "tp": 28,
+          "tn": 5,
+          "fp": 17,
+          "fn": 0,
+          "balanced_acc": 0.614,
+          "balanced_acc_all": 0.614,
+          "n_failures": 22,
+          "n_failures_scored": 22,
+          "failure_type_acc_on_failures": 0.0,
+          "failure_type_acc_on_failures_ci95": [
+            0.0,
+            0.149
+          ],
+          "failure_type_acc_on_failures_all": 0.0,
+          "failure_type_acc_on_failures_all_ci95": [
+            0.0,
+            0.149
+          ],
+          "harmonized_failure_type_acc_on_failures_all": 0.045,
+          "harmonized_failure_type_acc_on_failures_all_ci95": [
+            0.008,
+            0.218
+          ],
+          "hard_cases_flagged_as_failure": {
+            "nut_high_on_peg": {
+              "n": 5,
+              "flagged": 0,
+              "ci95": [
+                -0.0,
+                0.434
+              ]
+            }
+          },
+          "confusion_truth_to_pred": {
+            "dropped": {
+              "none": 8
+            },
+            "no_grasp": {
+              "dropped": 2,
+              "none": 1
+            },
+            "none": {
+              "none": 28
+            },
+            "other": {
+              "none": 8,
+              "dropped": 3
+            }
+          },
+          "mean_latency_s": 3.81,
+          "median_latency_s": 3.85,
+          "mean_prompt_tokens": 3530.3,
+          "mean_completion_tokens": 88.8,
+          "calls_per_episode": 1
+        }
+      }
+    },
+    "A_track8": {
+      "role": "sensitivity_other_rule",
+      "run_on": 200,
+      "common_with_frozen_v2": 200,
+      "variant": {
+        "all": {
+          "episodes": 200,
+          "scored": 200,
+          "unparsed": 0,
+          "success_acc": 0.92,
+          "success_acc_ci95": [
+            0.874,
+            0.95
+          ],
+          "success_acc_all": 0.92,
+          "success_acc_all_ci95": [
+            0.874,
+            0.95
+          ],
+          "tp": 134,
+          "tn": 50,
+          "fp": 9,
+          "fn": 7,
+          "balanced_acc": 0.899,
+          "balanced_acc_all": 0.899,
+          "n_failures": 59,
+          "n_failures_scored": 59,
+          "failure_type_acc_on_failures": 0.373,
+          "failure_type_acc_on_failures_ci95": [
+            0.261,
+            0.5
+          ],
+          "failure_type_acc_on_failures_all": 0.373,
+          "failure_type_acc_on_failures_all_ci95": [
+            0.261,
+            0.5
+          ],
+          "harmonized_failure_type_acc_on_failures_all": 0.407,
+          "harmonized_failure_type_acc_on_failures_all_ci95": [
+            0.291,
+            0.534
+          ],
+          "hard_cases_flagged_as_failure": {
+            "nut_high_on_peg": {
+              "n": 5,
+              "flagged": 1,
+              "ci95": [
+                0.036,
+                0.624
+              ]
+            },
+            "wrong_compartment": {
+              "n": 5,
+              "flagged": 5,
+              "ci95": [
+                0.566,
+                1.0
+              ]
+            }
+          },
+          "confusion_truth_to_pred": {
+            "dropped": {
+              "dropped": 9,
+              "not_placed": 5,
+              "none": 6
+            },
+            "no_grasp": {
+              "no_grasp": 13,
+              "dropped": 14,
+              "not_placed": 1
+            },
+            "none": {
+              "none": 134,
+              "dropped": 6,
+              "no_grasp": 1
+            },
+            "other": {
+              "none": 3,
+              "dropped": 7,
+              "no_grasp": 1
+            }
+          },
+          "mean_latency_s": 3.69,
+          "median_latency_s": 3.75,
+          "mean_prompt_tokens": 2869.3,
+          "mean_completion_tokens": 198.3,
+          "calls_per_episode": 1
+        },
+        "can": {
+          "episodes": 150,
+          "scored": 150,
+          "unparsed": 0,
+          "success_acc": 0.96,
+          "success_acc_ci95": [
+            0.915,
+            0.982
+          ],
+          "success_acc_all": 0.96,
+          "success_acc_all_ci95": [
+            0.915,
+            0.982
+          ],
+          "tp": 107,
+          "tn": 37,
+          "fp": 0,
+          "fn": 6,
+          "balanced_acc": 0.973,
+          "balanced_acc_all": 0.973,
+          "n_failures": 37,
+          "n_failures_scored": 37,
+          "failure_type_acc_on_failures": 0.595,
+          "failure_type_acc_on_failures_ci95": [
+            0.435,
+            0.737
+          ],
+          "failure_type_acc_on_failures_all": 0.595,
+          "failure_type_acc_on_failures_all_ci95": [
+            0.435,
+            0.737
+          ],
+          "harmonized_failure_type_acc_on_failures_all": 0.595,
+          "harmonized_failure_type_acc_on_failures_all_ci95": [
+            0.435,
+            0.737
+          ],
+          "hard_cases_flagged_as_failure": {
+            "wrong_compartment": {
+              "n": 5,
+              "flagged": 5,
+              "ci95": [
+                0.566,
+                1.0
+              ]
+            }
+          },
+          "confusion_truth_to_pred": {
+            "dropped": {
+              "dropped": 9,
+              "not_placed": 3
+            },
+            "no_grasp": {
+              "no_grasp": 13,
+              "dropped": 12
+            },
+            "none": {
+              "none": 107,
+              "dropped": 6
+            }
+          },
+          "mean_latency_s": 3.81,
+          "median_latency_s": 3.81,
+          "mean_prompt_tokens": 2889.1,
+          "mean_completion_tokens": 196.8,
+          "calls_per_episode": 1
+        },
+        "square": {
+          "episodes": 50,
+          "scored": 50,
+          "unparsed": 0,
+          "success_acc": 0.8,
+          "success_acc_ci95": [
+            0.67,
+            0.888
+          ],
+          "success_acc_all": 0.8,
+          "success_acc_all_ci95": [
+            0.67,
+            0.888
+          ],
+          "tp": 27,
+          "tn": 13,
+          "fp": 9,
+          "fn": 1,
+          "balanced_acc": 0.778,
+          "balanced_acc_all": 0.778,
+          "n_failures": 22,
+          "n_failures_scored": 22,
+          "failure_type_acc_on_failures": 0.0,
+          "failure_type_acc_on_failures_ci95": [
+            0.0,
+            0.149
+          ],
+          "failure_type_acc_on_failures_all": 0.0,
+          "failure_type_acc_on_failures_all_ci95": [
+            0.0,
+            0.149
+          ],
+          "harmonized_failure_type_acc_on_failures_all": 0.091,
+          "harmonized_failure_type_acc_on_failures_all_ci95": [
+            0.025,
+            0.278
+          ],
+          "hard_cases_flagged_as_failure": {
+            "nut_high_on_peg": {
+              "n": 5,
+              "flagged": 1,
+              "ci95": [
+                0.036,
+                0.624
+              ]
+            }
+          },
+          "confusion_truth_to_pred": {
+            "dropped": {
+              "none": 6,
+              "not_placed": 2
+            },
+            "no_grasp": {
+              "dropped": 2,
+              "not_placed": 1
+            },
+            "none": {
+              "none": 27,
+              "no_grasp": 1
+            },
+            "other": {
+              "none": 3,
+              "dropped": 7,
+              "no_grasp": 1
+            }
+          },
+          "mean_latency_s": 3.32,
+          "median_latency_s": 3.27,
+          "mean_prompt_tokens": 2809.9,
+          "mean_completion_tokens": 202.8,
+          "calls_per_episode": 1
+        }
+      },
+      "frozen_v2_same_episodes": {
+        "all": {
+          "episodes": 200,
+          "scored": 200,
+          "unparsed": 0,
+          "success_acc": 0.95,
+          "success_acc_ci95": [
+            0.91,
+            0.973
+          ],
+          "success_acc_all": 0.95,
+          "success_acc_all_ci95": [
+            0.91,
+            0.973
+          ],
+          "tp": 138,
+          "tn": 52,
+          "fp": 7,
+          "fn": 3,
+          "balanced_acc": 0.93,
+          "balanced_acc_all": 0.93,
+          "n_failures": 59,
+          "n_failures_scored": 59,
+          "failure_type_acc_on_failures": 0.356,
+          "failure_type_acc_on_failures_ci95": [
+            0.246,
+            0.483
+          ],
+          "failure_type_acc_on_failures_all": 0.356,
+          "failure_type_acc_on_failures_all_ci95": [
+            0.246,
+            0.483
+          ],
+          "harmonized_failure_type_acc_on_failures_all": 0.356,
+          "harmonized_failure_type_acc_on_failures_all_ci95": [
+            0.246,
+            0.483
+          ],
+          "hard_cases_flagged_as_failure": {
+            "nut_high_on_peg": {
+              "n": 5,
+              "flagged": 2,
+              "ci95": [
+                0.118,
+                0.769
+              ]
+            },
+            "wrong_compartment": {
+              "n": 5,
+              "flagged": 1,
+              "ci95": [
+                0.036,
+                0.624
+              ]
+            }
+          },
+          "confusion_truth_to_pred": {
+            "dropped": {
+              "none": 7,
+              "not_placed": 9,
+              "no_grasp": 3,
+              "dropped": 1
+            },
+            "no_grasp": {
+              "no_grasp": 20,
+              "not_placed": 8
+            },
+            "none": {
+              "none": 138,
+              "not_placed": 3
+            },
+            "other": {
+              "not_placed": 11
+            }
+          },
+          "mean_latency_s": 3.2,
+          "median_latency_s": 2.98,
+          "mean_prompt_tokens": 2675.3,
+          "mean_completion_tokens": 128.9,
+          "calls_per_episode": 1
+        },
+        "can": {
+          "episodes": 150,
+          "scored": 150,
+          "unparsed": 0,
+          "success_acc": 0.973,
+          "success_acc_ci95": [
+            0.933,
+            0.99
+          ],
+          "success_acc_all": 0.973,
+          "success_acc_all_ci95": [
+            0.933,
+            0.99
+          ],
+          "tp": 113,
+          "tn": 33,
+          "fp": 4,
+          "fn": 0,
+          "balanced_acc": 0.946,
+          "balanced_acc_all": 0.946,
+          "n_failures": 37,
+          "n_failures_scored": 37,
+          "failure_type_acc_on_failures": 0.541,
+          "failure_type_acc_on_failures_ci95": [
+            0.384,
+            0.69
+          ],
+          "failure_type_acc_on_failures_all": 0.541,
+          "failure_type_acc_on_failures_all_ci95": [
+            0.384,
+            0.69
+          ],
+          "harmonized_failure_type_acc_on_failures_all": 0.541,
+          "harmonized_failure_type_acc_on_failures_all_ci95": [
+            0.384,
+            0.69
+          ],
+          "hard_cases_flagged_as_failure": {
+            "wrong_compartment": {
+              "n": 5,
+              "flagged": 1,
+              "ci95": [
+                0.036,
+                0.624
+              ]
+            }
+          },
+          "confusion_truth_to_pred": {
+            "dropped": {
+              "none": 4,
+              "not_placed": 5,
+              "no_grasp": 3
+            },
+            "no_grasp": {
+              "no_grasp": 20,
+              "not_placed": 5
+            },
+            "none": {
+              "none": 113
+            }
+          },
+          "mean_latency_s": 3.13,
+          "median_latency_s": 2.94,
+          "mean_prompt_tokens": 2491.6,
+          "mean_completion_tokens": 130.0,
+          "calls_per_episode": 1
+        },
+        "square": {
+          "episodes": 50,
+          "scored": 50,
+          "unparsed": 0,
+          "success_acc": 0.88,
+          "success_acc_ci95": [
+            0.762,
+            0.944
+          ],
+          "success_acc_all": 0.88,
+          "success_acc_all_ci95": [
+            0.762,
+            0.944
+          ],
+          "tp": 25,
+          "tn": 19,
+          "fp": 3,
+          "fn": 3,
+          "balanced_acc": 0.878,
+          "balanced_acc_all": 0.878,
+          "n_failures": 22,
+          "n_failures_scored": 22,
+          "failure_type_acc_on_failures": 0.045,
+          "failure_type_acc_on_failures_ci95": [
+            0.008,
+            0.218
+          ],
+          "failure_type_acc_on_failures_all": 0.045,
+          "failure_type_acc_on_failures_all_ci95": [
+            0.008,
+            0.218
+          ],
+          "harmonized_failure_type_acc_on_failures_all": 0.045,
+          "harmonized_failure_type_acc_on_failures_all_ci95": [
+            0.008,
+            0.218
+          ],
+          "hard_cases_flagged_as_failure": {
+            "nut_high_on_peg": {
+              "n": 5,
+              "flagged": 2,
+              "ci95": [
+                0.118,
+                0.769
+              ]
+            }
+          },
+          "confusion_truth_to_pred": {
+            "dropped": {
+              "dropped": 1,
+              "none": 3,
+              "not_placed": 4
+            },
+            "no_grasp": {
+              "not_placed": 3
+            },
+            "none": {
+              "none": 25,
+              "not_placed": 3
+            },
+            "other": {
+              "not_placed": 11
+            }
+          },
+          "mean_latency_s": 3.41,
+          "median_latency_s": 3.25,
+          "mean_prompt_tokens": 3226.3,
+          "mean_completion_tokens": 125.5,
+          "calls_per_episode": 1
+        }
+      },
+      "paired_vs_frozen_v2": {
+        "n_common": 200,
+        "success_ok": {
+          "n": 200,
+          "variant": 0.92,
+          "frozen_v2": 0.95,
+          "diff": -0.03,
+          "diff_ci95_bootstrap": [
+            -0.075,
+            0.015
+          ],
+          "variant_only_correct": 7,
+          "v2_only_correct": 13,
+          "mcnemar_exact_p": 0.2632
+        },
+        "ft_ok_on_failures": {
+          "n": 59,
+          "variant": 0.373,
+          "frozen_v2": 0.356,
+          "diff": 0.017,
+          "diff_ci95_bootstrap": [
+            -0.136,
+            0.169
+          ],
+          "variant_only_correct": 12,
+          "v2_only_correct": 11,
+          "mcnemar_exact_p": 1.0
+        },
+        "ft_harm_ok_on_failures": {
+          "n": 59,
+          "variant": 0.407,
+          "frozen_v2": 0.356,
+          "diff": 0.051,
+          "diff_ci95_bootstrap": [
+            -0.119,
+            0.22
+          ],
+          "variant_only_correct": 14,
+          "v2_only_correct": 11,
+          "mcnemar_exact_p": 0.69
+        }
+      },
+      "per_checkpoint_success_rate": {
+        "n_checkpoints": 20,
+        "spearman_variant_vs_truth": 0.888,
+        "spearman_v2_vs_truth": 0.893,
+        "mae_variant": 0.07,
+        "mae_v2": 0.04,
+        "rows": [
+          {
+            "checkpoint_id": "can_s1_e0000",
+            "truth": 0.0,
+            "variant": 0.0,
+            "v2": 0.0
+          },
+          {
+            "checkpoint_id": "can_s1_e0020",
+            "truth": 0.5,
+            "variant": 0.5,
+            "v2": 0.6
+          },
+          {
+            "checkpoint_id": "can_s1_e0040",
+            "truth": 0.7,
+            "variant": 0.6,
+            "v2": 0.7
+          },
+          {
+            "checkpoint_id": "can_s1_e0060",
+            "truth": 0.9,
+            "variant": 0.8,
+            "v2": 1.0
+          },
+          {
+            "checkpoint_id": "can_s1_e0080",
+            "truth": 0.9,
+            "variant": 0.8,
+            "v2": 1.0
+          },
+          {
+            "checkpoint_id": "can_s1_e0100",
+            "truth": 1.0,
+            "variant": 1.0,
+            "v2": 1.0
+          },
+          {
+            "checkpoint_id": "can_s2_e0000",
+            "truth": 0.0,
+            "variant": 0.0,
+            "v2": 0.0
+          },
+          {
+            "checkpoint_id": "can_s2_e0020",
+            "truth": 0.6,
+            "variant": 0.4,
+            "v2": 0.6
+          },
+          {
+            "checkpoint_id": "can_s2_e0040",
+            "truth": 0.9,
+            "variant": 0.9,
+            "v2": 0.9
+          },
+          {
+            "checkpoint_id": "can_s2_e0060",
+            "truth": 0.9,
+            "variant": 0.9,
+            "v2": 0.9
+          },
+          {
+            "checkpoint_id": "can_s2_e0080",
+            "truth": 1.0,
+            "variant": 1.0,
+            "v2": 1.0
+          },
+          {
+            "checkpoint_id": "can_s2_e0100",
+            "truth": 0.9,
+            "variant": 0.9,
+            "v2": 1.0
+          },
+          {
+            "checkpoint_id": "can_s2_e0120",
+            "truth": 1.0,
+            "variant": 1.0,
+            "v2": 1.0
+          },
+          {
+            "checkpoint_id": "can_s2_e0140",
+            "truth": 1.0,
+            "variant": 0.9,
+            "v2": 1.0
+          },
+          {
+            "checkpoint_id": "can_s2_e0160",
+            "truth": 1.0,
+            "variant": 1.0,
+            "v2": 1.0
+          },
+          {
+            "checkpoint_id": "square_s1_e0000",
+            "truth": 0.0,
+            "variant": 0.3,
+            "v2": 0.0
+          },
+          {
+            "checkpoint_id": "square_s1_e0030",
+            "truth": 0.4,
+            "variant": 0.6,
+            "v2": 0.5
+          },
+          {
+            "checkpoint_id": "square_s1_e0060",
+            "truth": 1.0,
+            "variant": 1.0,
+            "v2": 0.8
+          },
+          {
+            "checkpoint_id": "square_s1_e0090",
+            "truth": 0.7,
+            "variant": 0.7,
+            "v2": 0.7
+          },
+          {
+            "checkpoint_id": "square_s1_e0120",
+            "truth": 0.7,
+            "variant": 1.0,
+            "v2": 0.8
+          }
+        ]
+      },
+      "variant_all_run_episodes": {
+        "all": {
+          "episodes": 200,
+          "scored": 200,
+          "unparsed": 0,
+          "success_acc": 0.92,
+          "success_acc_ci95": [
+            0.874,
+            0.95
+          ],
+          "success_acc_all": 0.92,
+          "success_acc_all_ci95": [
+            0.874,
+            0.95
+          ],
+          "tp": 134,
+          "tn": 50,
+          "fp": 9,
+          "fn": 7,
+          "balanced_acc": 0.899,
+          "balanced_acc_all": 0.899,
+          "n_failures": 59,
+          "n_failures_scored": 59,
+          "failure_type_acc_on_failures": 0.373,
+          "failure_type_acc_on_failures_ci95": [
+            0.261,
+            0.5
+          ],
+          "failure_type_acc_on_failures_all": 0.373,
+          "failure_type_acc_on_failures_all_ci95": [
+            0.261,
+            0.5
+          ],
+          "harmonized_failure_type_acc_on_failures_all": 0.407,
+          "harmonized_failure_type_acc_on_failures_all_ci95": [
+            0.291,
+            0.534
+          ],
+          "hard_cases_flagged_as_failure": {
+            "nut_high_on_peg": {
+              "n": 5,
+              "flagged": 1,
+              "ci95": [
+                0.036,
+                0.624
+              ]
+            },
+            "wrong_compartment": {
+              "n": 5,
+              "flagged": 5,
+              "ci95": [
+                0.566,
+                1.0
+              ]
+            }
+          },
+          "confusion_truth_to_pred": {
+            "dropped": {
+              "dropped": 9,
+              "not_placed": 5,
+              "none": 6
+            },
+            "no_grasp": {
+              "no_grasp": 13,
+              "dropped": 14,
+              "not_placed": 1
+            },
+            "none": {
+              "none": 134,
+              "dropped": 6,
+              "no_grasp": 1
+            },
+            "other": {
+              "none": 3,
+              "dropped": 7,
+              "no_grasp": 1
+            }
+          },
+          "mean_latency_s": 3.69,
+          "median_latency_s": 3.75,
+          "mean_prompt_tokens": 2869.3,
+          "mean_completion_tokens": 198.3,
+          "calls_per_episode": 1
+        },
+        "can": {
+          "episodes": 150,
+          "scored": 150,
+          "unparsed": 0,
+          "success_acc": 0.96,
+          "success_acc_ci95": [
+            0.915,
+            0.982
+          ],
+          "success_acc_all": 0.96,
+          "success_acc_all_ci95": [
+            0.915,
+            0.982
+          ],
+          "tp": 107,
+          "tn": 37,
+          "fp": 0,
+          "fn": 6,
+          "balanced_acc": 0.973,
+          "balanced_acc_all": 0.973,
+          "n_failures": 37,
+          "n_failures_scored": 37,
+          "failure_type_acc_on_failures": 0.595,
+          "failure_type_acc_on_failures_ci95": [
+            0.435,
+            0.737
+          ],
+          "failure_type_acc_on_failures_all": 0.595,
+          "failure_type_acc_on_failures_all_ci95": [
+            0.435,
+            0.737
+          ],
+          "harmonized_failure_type_acc_on_failures_all": 0.595,
+          "harmonized_failure_type_acc_on_failures_all_ci95": [
+            0.435,
+            0.737
+          ],
+          "hard_cases_flagged_as_failure": {
+            "wrong_compartment": {
+              "n": 5,
+              "flagged": 5,
+              "ci95": [
+                0.566,
+                1.0
+              ]
+            }
+          },
+          "confusion_truth_to_pred": {
+            "dropped": {
+              "dropped": 9,
+              "not_placed": 3
+            },
+            "no_grasp": {
+              "no_grasp": 13,
+              "dropped": 12
+            },
+            "none": {
+              "none": 107,
+              "dropped": 6
+            }
+          },
+          "mean_latency_s": 3.81,
+          "median_latency_s": 3.81,
+          "mean_prompt_tokens": 2889.1,
+          "mean_completion_tokens": 196.8,
+          "calls_per_episode": 1
+        },
+        "square": {
+          "episodes": 50,
+          "scored": 50,
+          "unparsed": 0,
+          "success_acc": 0.8,
+          "success_acc_ci95": [
+            0.67,
+            0.888
+          ],
+          "success_acc_all": 0.8,
+          "success_acc_all_ci95": [
+            0.67,
+            0.888
+          ],
+          "tp": 27,
+          "tn": 13,
+          "fp": 9,
+          "fn": 1,
+          "balanced_acc": 0.778,
+          "balanced_acc_all": 0.778,
+          "n_failures": 22,
+          "n_failures_scored": 22,
+          "failure_type_acc_on_failures": 0.0,
+          "failure_type_acc_on_failures_ci95": [
+            0.0,
+            0.149
+          ],
+          "failure_type_acc_on_failures_all": 0.0,
+          "failure_type_acc_on_failures_all_ci95": [
+            0.0,
+            0.149
+          ],
+          "harmonized_failure_type_acc_on_failures_all": 0.091,
+          "harmonized_failure_type_acc_on_failures_all_ci95": [
+            0.025,
+            0.278
+          ],
+          "hard_cases_flagged_as_failure": {
+            "nut_high_on_peg": {
+              "n": 5,
+              "flagged": 1,
+              "ci95": [
+                0.036,
+                0.624
+              ]
+            }
+          },
+          "confusion_truth_to_pred": {
+            "dropped": {
+              "none": 6,
+              "not_placed": 2
+            },
+            "no_grasp": {
+              "dropped": 2,
+              "not_placed": 1
+            },
+            "none": {
+              "none": 27,
+              "no_grasp": 1
+            },
+            "other": {
+              "none": 3,
+              "dropped": 7,
+              "no_grasp": 1
+            }
+          },
+          "mean_latency_s": 3.32,
+          "median_latency_s": 3.27,
+          "mean_prompt_tokens": 2809.9,
+          "mean_completion_tokens": 202.8,
+          "calls_per_episode": 1
+        }
+      }
+    }
+  },
+  "label_audit_eval": [
+    {
+      "task": "can",
+      "official": "dropped",
+      "harmonized_settled_z0": "dropped",
+      "n": 12
+    },
+    {
+      "task": "can",
+      "official": "no_grasp",
+      "harmonized_settled_z0": "no_grasp",
+      "n": 25
+    },
+    {
+      "task": "can",
+      "official": "none",
+      "harmonized_settled_z0": "none",
+      "n": 113
+    },
+    {
+      "task": "square",
+      "official": "dropped",
+      "harmonized_settled_z0": "dropped",
+      "n": 9
+    },
+    {
+      "task": "square",
+      "official": "no_grasp",
+      "harmonized_settled_z0": "dropped",
+      "n": 1
+    },
+    {
+      "task": "square",
+      "official": "no_grasp",
+      "harmonized_settled_z0": "no_grasp",
+      "n": 2
+    },
+    {
+      "task": "square",
+      "official": "none",
+      "harmonized_settled_z0": "none",
+      "n": 37
+    },
+    {
+      "task": "square",
+      "official": "other",
+      "harmonized_settled_z0": "no_grasp",
+      "n": 11
+    }
+  ],
+  "hard_cases_eval": [
+    {
+      "task": "can",
+      "case": "wrong_compartment",
+      "n": 5
+    },
+    {
+      "task": "square",
+      "case": "nut_high_on_peg",
+      "n": 5
+    }
+  ],
+  "notes": [
+    "Variant choice used the dev split only (36 episodes, seeds 300000+).",
+    "Frozen v2 baseline = eval_nebius_v2.jsonl rows; episodes recorded after it ran were scored with the same frozen settings (V2_frozen) in this exploration's scratch file.",
+    "Harmonized failure type = failure_annotator applied after the first 10 sim steps (square nut spawns about 6 cm above the table and settles), a sim-state relabel that never uses model outputs."
+  ]
+}

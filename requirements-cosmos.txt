@@ -1,0 +1,19 @@
+# Environment B (NVIDIA Cosmos + Nebius client + dashboard). Python >= 3.11.
+# Install torch first from the CUDA 12.8 index:
+#   pip install torch==2.8.0 torchvision==0.23.0 --index-url https://download.pytorch.org/whl/cu128
+# then:  pip install -r requirements-cosmos.txt
+# Full lock: configs/hackathon/requirements-cosmos-lock.txt
+transformers==5.21.0        # Cosmos3-Edge support landed in 5.15.0
+accelerate==1.15.0
+av==18.1.0
+huggingface_hub[hf_xet]==2.3.0
+openai==3.40.0              # Nebius Token Factory is OpenAI-compatible
+pillow==13.0.0
+numpy==2.4.6
+pandas==3.1.0
+scipy==1.17.1
+matplotlib==3.11.2
+imageio==2.38.1
+imageio-ffmpeg==0.7.0
+streamlit==1.66.1
+pytest==9.2.0

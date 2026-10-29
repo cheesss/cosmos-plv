@@ -1,0 +1,258 @@
+# y4_grounded_reports: grounded per-checkpoint and per-run evaluation reports from an NVIDIA text LLM (EXPLORATORY, post-hoc)
+
+(This report was meant for docs/hackathon/explore/y4_grounded_reports.md. The subagent harness does not allow
+.md report files, so per the task's fallback it is saved here as .txt.)
+
+Label: exploratory and post-hoc. The fact-sheet contents, the decision rules and the dev/test split were fixed in
+code (scripts/hackathon/explore/y4_build_facts.py docstring) before any report was generated. The author had
+already seen the per-checkpoint simulator outcome counts while checking data coverage. Every number below comes
+from results/hackathon/explore/y4_grounded_reports.json, except the manual-audit counts in section 5.3, which are
+the author's reading of the listed reports.
+
+KR 요약: Nemotron-3.5-Lightning에 측정된 사실만 담은 fact sheet를 주면 숫자는 거의 지어내지 않았다
+(test에서 시트에 없는 숫자 1/723개). 지배적 실패 유형 필드도 62/62로 맞았다. 하지만 (1) 출처를 섞은 문장
+("Nemotron이 10개 모두 no_grasp로 판정", 실제 9개)과 시트에 없는 파생 개수("다른 체크포인트 3개", 실제 9개)가
+나왔고, (2) 추천 로직이 쓸모없었다. "롤아웃을 더 쓸까?"에 62/62 모두 "no"라고 답했으며, 미리 정한 규칙과의
+일치율 0.516은 규칙의 "no" 비율(32/62)과 같다. (3) 런 단위 선택은 6번 중 4번만 규칙과 일치했고, 한 번은 템플릿
+문자열을 그대로 반환했다. 자동 검증기의 실패 유형 플래그는 대부분 오탐이었다(수동 확인 13개 중 11개).
+결론: 숫자 grounding은 쓸 만하지만 판단(추천)은 LLM에 맡기면 안 된다. 결정은 규칙으로 만들고, LLM은 그 결정을
+fact sheet에 근거해 설명하는 용도로만 쓰는 게 맞다.
+
+## 1. Question
+
+Can a cheap NVIDIA text LLM on Nebius Token Factory write a short per-checkpoint report (what the checkpoint does
+well or badly physically, its dominant failure mode, and whether to spend more evaluation rollouts on it), plus a
+per-run "which checkpoint to evaluate next" summary, without hallucinating numbers? Can that be checked
+automatically? The judging criterion is factual accuracy, not eloquence.
+
+## 2. Method
+
+Model: nvidia/Nemotron-3_5-Lightning (confirmed with NebiusVLMClient(...).list_models() at
+https://api.tokenfactory.nebius.com/v1/). Public catalog price $0.06 / $0.24 per 1M input/output tokens
+(snapshot: data/outputs/hackathon_explore/y4_grounded_reports/models_info_snapshot.json). All calls went through
+NebiusVLMClient(model_id=..., evidence_path=results/hackathon/explore/nebius_calls_explore.jsonl), tag
+explore/y4_grounded_reports/<phase>/<variant>/<key>/s<k>, temperature 0.2, 4 concurrent workers. Total: 118 calls
+(budget 700), 0 API errors, 245,513 prompt + 77,234 completion tokens, about $0.033 estimated.
+
+Fact sheets (y4_build_facts.py) contain measured facts only:
+- run, task, epoch, eval seeds;
+- simulator outcomes of the 10 eval episodes (successes, failures, failure_types counts, Wilson 95% CI,
+  per-episode success time / grasped / lifted);
+- Nemotron-3.5-Super-VL v2 judged outcomes (judged successes, agreement with the simulator, judged failure types,
+  failure-type matches), plus the pad201 variant and Cosmos3-Edge v6 judged successes and agreement;
+- a Nemotron note (cosmos_explanation from eval_nebius_v2.jsonl, truncated to 170 characters) for each failed or
+  judged-failed episode;
+- cheap metrics from baseline_metrics.csv: val_loss for every run, and Action L1, PLV-1 smoothness, open-loop
+  smoothness, boundary jump and replan overlap for can_s2 only;
+- within-run ranks.
+
+The training-time target S_i (and the checkpoint filename, which encodes test_mean_score) is EXCLUDED. Coverage:
+28 eval checkpoints. 25 have VLM diagnostics. can_s1_e0140, can_s1_e0160 and square_s1_e0210 have none and form a
+separate "missing data" stress set.
+
+Pre-registered rules (in code before generation; never shown to the LLM verbatim):
+- RULE_CKPT. Let J = Nemotron v2 judged successes. Recommend more rollouts iff J >= run median of J AND (if the run
+  has PLV-1 smoothness) the PLV-1 rank is in the top ceil(30%). Without PLV-1, the rule is J >= run median alone.
+  PLV-1 was chosen because it is the original paper's headline DP metric.
+- RULE_DOMINANT: the most frequent simulator failure type among failed episodes (ties all accepted; "none" if no
+  failures).
+- RULE_RUN: evaluate_next must be among the checkpoints with the run maximum of J.
+
+Split (fixed positional rule). Dev checkpoints: can_s2_e0000, can_s2_e0200 (first and last of can_s2),
+square_s1_e0090 and square_s1_e0120 (the middle positions among the square checkpoints with diagnostics). Dev run:
+can_s2. Test: the other 21 checkpoints with diagnostics, plus the runs can_s1 and square_s1.
+
+Output format: a JSON object (physical_summary, dominant_failure_mode, failure_mode_evidence, spend_more_rollouts,
+recommendation_reason). Every number has to be followed by its fact-sheet key in [brackets].
+
+Automatic verifier (y4_verify.py), checks per report:
+(a) unsupported numbers: every digit number, and number word before a count noun, must equal some fact-sheet value
+    exactly or within the rounding implied by its decimals; fractions may appear as percentages. This check is
+    lenient: a number only has to occur somewhere in the sheet.
+(b) citations: the number before "[key]" must equal that key's value (miscited); bad_key = key path does not exist.
+(c) failure-type claims: a non-negated mention must name a type with count > 0 (simulator or Nemotron); a stated
+    count must match the count of the source named in the same clause (simulator / Nemotron / Cosmos).
+(d) attributed "k/10" claims: the source named in the clause must have that count.
+(e) structured fields vs RULE_DOMINANT / RULE_CKPT / RULE_RUN.
+
+Prompt iteration on dev only. Pre-declared freeze criterion: lowest total dev error count
+(a misc + b miscited + c + d + wrong dominant; an unparsed report counts as 5); ties go to fewer tokens.
+- v1: base grounding rules.
+- v2: one key per bracket; name the source of every count; exact failure-type tokens and no absent types; plus a
+  statement of the screening objective ("extra rollouts are worth spending on contenders for the best in the run;
+  10/10 alone does not make more rollouts unnecessary"), without the rule's thresholds.
+- v3: v2 plus a self-check, tried with thinking on and with thinking off.
+That is 3 prompt versions and 4 dev configurations. Test: frozen config × 3 samples per checkpoint/run. CIs:
+Wilson, and a checkpoint-clustered bootstrap (2000 resamples; the 3 samples of one checkpoint stay together).
+
+## 3. Commands and exit codes (Env B: PYTHONNOUSERSITE=1 HF_HUB_OFFLINE=1 ~/.venvs/cosmos-plv/bin/python)
+
+| step | command | exit |
+|---|---|---|
+| fact sheets | scripts/hackathon/explore/y4_build_facts.py | 0 |
+| model id | inline NebiusVLMClient(...).list_models() | 0 |
+| dev v1 | y4_grounded_reports.py gen --phase dev --variant v1 --samples 2 ; gen --phase run_dev --variant v1 --samples 2 --max_tokens 1500 | 0, 0 |
+| dev v2 | same with --variant v2 | 0, 0 |
+| dev v3 thinking | gen --phase dev --variant v3 --samples 2 --reasoning --max_tokens 4000 ; run_dev ... --max_tokens 5000 | 0, 0 (all 10 truncated) |
+| dev v3 | gen --phase dev --variant v3 --samples 2 ; run_dev ... | 0, 0 |
+| freeze | y4_analyze.py | 0 (selected v2) |
+| test | gen --phase test --variant v2 --samples 3 ; gen --phase missing --variant v2 --samples 3 ; gen --phase run_test --variant v2 --samples 3 --max_tokens 1500 | 0, 0, 0 |
+| analysis | y4_analyze.py | 0 |
+
+No GPU was used.
+
+## 4. Dev results (4 checkpoints × 2 samples + can_s2 run × 2 samples per configuration)
+
+| config | total auto errors | unparsed | completion tokens | ckpt numbers cited / total | dev rule consistency |
+|---|---|---|---|---|---|
+| v1 | 5 | 0 | 2837 | 18 / 63 | 4/8 |
+| v2 | 3 | 0 | 3305 | 18 / 100 | 4/8 |
+| v3 (no thinking) | 8 | 0 | 3635 | 32 / 113 | 3/8 |
+| v3 + thinking | 50 | 10 | 42000 | — | — |
+
+Frozen: v2. With thinking on, every call spent the full 4000/5000-token budget inside a visible "thinking process"
+and never emitted the JSON (median latency about 22 s versus about 2.5 s without thinking).
+
+## 5. Test results (frozen v2)
+
+### 5.1 Per-checkpoint reports: 21 checkpoints × 3 samples = 63 reports; 62 parsed (1 invalid JSON, square_s1_e0000)
+
+| metric | k / n | rate | Wilson 95% | ckpt-cluster bootstrap 95% |
+|---|---|---|---|---|
+| reports with ≥1 unsupported number | 1 / 62 | 0.016 | [0.003, 0.086] | [0.000, 0.048] |
+| unsupported numbers per number | 1 / 723 | 0.0014 | [0.000, 0.008] (naive) | [0.000, 0.004] |
+| numbers carrying a citation | 198 / 723 | 0.27 | | |
+| miscited (key exists, value differs) per cited number | 12 / 198 | 0.061 | [0.035, 0.103] (naive) | [0.031, 0.093] |
+| citations with non-existent key path | 38 | | | |
+| auto-flagged wrong failure-type claims per mention | 13 / 243 | 0.054 | [0.032, 0.089] (naive) | [0.029, 0.085] |
+| auto-flagged misattributed k/10 claims | 1 / 166 | 0.006 | [0.001, 0.033] (naive) | [0.000, 0.019] |
+| reports with any automatic flag | 22 / 62 | 0.355 | [0.247, 0.479] | [0.226, 0.484] |
+| dominant_failure_mode correct | 62 / 62 | 1.000 | [0.942, 1.000] | [1.0, 1.0] |
+| spend_more_rollouts consistent with RULE_CKPT | 32 / 62 | 0.516 | [0.394, 0.636] | [0.286, 0.714] |
+| LLM says "yes" | 0 / 62 | 0.000 | [0.000, 0.058] | |
+| rule says "yes" | 30 / 62 | 0.484 | [0.364, 0.606] | |
+
+Recommendation confusion: LLM no / rule yes 30, LLM no / rule no 32, LLM yes 0.
+
+By task:
+- can: 1/575 unsupported numbers; 9/182 failure flags; dominant 48/48; rule 27/48.
+- square: 0/148 unsupported numbers; 4/61 failure flags; 1/36 misattributed; dominant 14/14; rule 5/14.
+
+Latency: median 2.621 s, mean 2.644 s, max 3.93 s. Tokens per report: 2060.8 prompt, 321.4 completion (means).
+Estimated cost: $0.01265 for 63 reports, $0.000201 per report.
+
+### 5.2 Missing-diagnostics stress set (3 checkpoints × 3 = 9) and run-level summaries (can_s1, square_s1 × 3 = 6)
+
+Missing set: 9/9 parsed; 0/87 unsupported numbers; 1 failure flag (a verifier false positive, see 5.3); dominant
+mode 9/9. Whether the reports explicitly said "VLM judgments unavailable" was not checked automatically.
+
+Run summaries: 6/6 parsed; 0/128 unsupported numbers; 0/30 miscited; 1/14 failure flag (a false positive:
+"no_grasp dropping to 3").
+- Pick consistent with RULE_RUN: 4/6 = 0.667, Wilson [0.300, 0.903].
+- One can_s1 sample returned the literal template text "one checkpoint_id from the sheet" as evaluate_next.
+- One square sample picked square_s1_e0060, which is not in the rule's accepted set.
+- No invented checkpoint ids.
+- Latency median 3.116 s; $0.00122 for 6 reports.
+
+Post-hoc outcome check of run picks against the training-time target S_i (S_i was not used anywhere upstream;
+3 runs; descriptive only):
+
+| run | LLM picks (S_i, regret) | rule pick, latest tied (regret) | latest epoch with S_i (regret) |
+|---|---|---|---|
+| can_s1 (test) | e0080 (0.96, 0.02) ×2; 1 invalid | e0120 (0.00) | e0140 (0.00) |
+| square_s1 (test) | e0180 (0.80, 0.10) ×2; e0060 (0.68, 0.22) | e0180 (0.10) | e0210 (0.04) |
+| can_s2 (dev, v2) | e0080 (0.96, 0.04) ×2 | e0200 (0.00) | e0200 (0.00) |
+
+The LLM preferred an EARLY checkpoint among the top-judged ones: in can_s2 the earliest 10/10 ("first perfect
+10/10"), in can_s1 the second earliest of the four tied ones. Its post-hoc regret was higher than the latest-epoch
+baseline in all 3 runs.
+
+### 5.3 Manual audit (author's reading; small n, no CI claimed)
+
+All 13 auto-flagged failure-type claims in the test checkpoint reports:
+- 2 real errors:
+  - can_s1_e0000 s2: "Nemotron judged all 10 episodes as no_grasp" (the sheet says 9);
+  - square_s1_e0030 s0: "when it does succeed, it often drops the object" (illogical).
+- 11 verifier false positives:
+  - 7 list negations such as "confirming no grasp, drop, or placement errors occurred";
+  - 3 count-parse slips ("3 out of 4 failures", "2 of 10 rollouts");
+  - 1 clause attributed to the wrong source.
+The flagged misattribution (square_s1_e0030 s1, "run median of 8/10") is also a false positive: the value is the
+correct run median.
+
+Miscitations: the biggest group is valid values under a wrong key path (e.g. "val_loss_rank_in_run" without the
+"run_context." prefix). Real wrong-number citations do exist, e.g. can_s2_e0040 "10 [run_context.n_checkpoints_with_nemotron]",
+whose value is 11.
+
+Errors the automatic checker MISSED (found by reading 2 randomly sampled unflagged test reports, the 6 test reports
+of can_s1_e0020 and can_s2_e0060, and the flagged ones; not an exhaustive audit):
+- square_s1_e0000: presents Nemotron's "not_placed" labels as physical fact ("confirming the robot lifted the
+  object"), contradicting the simulator's 10/10 no_grasp.
+- can_s2_e0060 s0: "3 other checkpoints in the run also achieve 9 or 10 judged successes" is a fabricated derived
+  count (9 others do). It passed the lenient check because 3 occurs elsewhere in the sheet.
+- can_s1_e0020 s2: "5/10 ... is close to the run median of 10/10" is a wrong comparison built from correct numbers.
+- Recommendation reasons that contradict themselves: "a strong contender ..., additional rollouts are not justified".
+- Dev can_s2 run (v1): "failure types disappearing entirely" after e0080 (e0100 and e0180 have dropped = 1), and a
+  wrong trend claim that val_action_l1 increases late (it decreases).
+
+## 6. Interpretation
+
+1. Number hallucination in the narrow sense is rare. Given a compact fact sheet, Lightning almost never writes a
+   number that is absent from it: 1/723 numbers, at most 0.8% (Wilson upper bound). The deterministic
+   dominant-failure-mode field was always right. For a dashboard, "show the facts and a short text" is feasible at
+   about $0.0002 and 2.6 s per report.
+2. "Every number is in the sheet" is NOT "every claim is true". The remaining errors are source-mixing (Nemotron vs
+   simulator), fabricated derived counts that happen to equal some other value in the sheet, and wrong comparisons
+   or trends between correct numbers. Only 27% of numbers were actually cited despite the instruction, and 38
+   cited keys did not exist. A citation-based check can only verify the cited subset.
+3. The recommendation is the weak part, and it is systematic. Even after the screening objective was stated
+   explicitly (v2), the LLM said "no more rollouts" for 62/62 checkpoints. It argued "10/10, already dominant" for
+   contenders and "clearly worse" for weak ones. Its agreement with the pre-registered rule (0.516) is exactly the
+   rule's base rate of "no". At run level it preferred an early top-judged checkpoint, which had higher post-hoc regret
+   than the trivial latest-epoch baseline in all 3 runs.
+4. Thinking mode on Lightning is unusable at these token caps: 10/10 truncated, about 9x latency.
+5. The automatic verifier is good at catching invented numbers but has low precision on failure-type claims
+   (about 2/13 flags were real) and limited recall for semantic errors. It needs a negation/list parser and, more
+   usefully, a structured-claim output format (see next steps) rather than free-text parsing.
+
+What would help PLV: use deterministic rules (or the adaptive-allocation policy from x1) for "evaluate next / spend
+more rollouts", and use the LLM only to verbalize that decision and the per-checkpoint facts, with the verifier as
+a gate. Do not let the LLM make the decision.
+
+## 7. Limitations
+
+- Post-hoc and small: 21 test checkpoints (3 runs, 2 tasks); 3 samples per checkpoint at temperature 0.2 are not
+  independent draws. Run-level n = 6 reports (2 runs). The bootstrap clusters by checkpoint, not by run.
+- The author saw the simulator outcome counts before freezing the rules and the split (rules fixed in code before
+  any LLM output). The dev set has 2 trivial epoch-0-like checkpoints (can_s2_e0000), which weakens prompt
+  iteration.
+- 4 dev configurations for 3 prompt versions (the thinking run failed for budget reasons).
+- The verifier is heuristic (regex). Its rates mix real errors with verifier false positives; the manual audit
+  covers all flagged failure claims but only 8 unflagged reports, so missed-error rates are not estimated.
+- Cheap metrics beyond val_loss exist for can_s2 only, so RULE_CKPT reduces to "J >= run median" for can_s1 and
+  square_s1. val_loss is not a validated screening metric (oriented Spearman -0.475 on can_s2).
+- VLM-judged outcomes in the fact sheets come from the unpadded v2 clips (known clip-length leak; pad201
+  agreement is included as a separate fact).
+- The cost is a catalog-price estimate, not a billed amount.
+
+## 8. Next steps
+
+1. Structured claims instead of free text: have the LLM emit claims as {source, key, value, text} triples and
+   render the prose from them; verification then becomes exact. Re-test the fabricated-count and source-mixing
+   rates.
+2. Make the recommendation deterministic (RULE_CKPT / x1 adaptive allocation) and have the LLM explain it. Measure
+   whether the explanation stays faithful to the given decision.
+3. Fix the verifier: list-negation handling, count parsing ("k out of n"), and run-level trend checks (cite both
+   endpoints). Then hand-label a random 30-report sample to estimate verifier precision and recall with CIs.
+4. Try nvidia/nemotron-3-super-120b-a12b or Super-VL in text mode on the same frozen prompt, to see whether the
+   recommendation failure is specific to Lightning.
+
+## Files
+
+- scripts/hackathon/explore/y4_build_facts.py, y4_verify.py, y4_grounded_reports.py, y4_analyze.py
+- results/hackathon/explore/y4_grounded_reports.json (all metrics, dev table, post-hoc pick check)
+- results/hackathon/explore/y4_grounded_reports_reports.json (dashboard-ready reports plus verification per report)
+- results/hackathon/explore/nebius_calls_explore.jsonl (evidence, tag explore/y4_grounded_reports/...)
+- data/outputs/hackathon_explore/y4_grounded_reports/ (fact sheets, truth rules, raw generations, logs, catalog snapshot)
+
+Rerun the analysis: cd /path/to/repo && PYTHONNOUSERSITE=1 HF_HUB_OFFLINE=1 ~/.venvs/cosmos-plv/bin/python scripts/hackathon/explore/y4_build_facts.py && PYTHONNOUSERSITE=1 ~/.venvs/cosmos-plv/bin/python scripts/hackathon/explore/y4_analyze.py

@@ -1,0 +1,182 @@
+{
+  "checkpoint_pool": {
+    "n_checkpoints": 93,
+    "runs": [
+      {
+        "config": {
+          "abs_action": true,
+          "dataset_type": "ph",
+          "horizon": 16,
+          "n_action_steps": 8,
+          "n_latency_steps": 0,
+          "n_obs_steps": 2,
+          "n_test": 50,
+          "num_epochs": 201,
+          "num_inference_steps": 100,
+          "policy_target": "diffusion_policy.policy.diffusion_unet_lowdim_policy.DiffusionUnetLowdimPolicy",
+          "seed": 1,
+          "task_name": "can",
+          "test_start_seed": 100000
+        },
+        "finished_utc": "2026-10-28T21:40:42+00:00",
+        "n_parameters": 65883660.0,
+        "run_dir": "data/outputs/hackathon_pool/paper_dp_can_abs_ph_seed1_e200_s200_r5_inf100",
+        "run_name": "paper_dp_can_abs_ph_seed1_e200_s200_r5_inf100",
+        "seed": 1,
+        "started_utc": "2026-10-28T17:47:45+00:00",
+        "task": "can",
+        "wall_hours": 3.882
+      },
+      {
+        "config": {
+          "abs_action": true,
+          "dataset_type": "ph",
+          "horizon": 16,
+          "n_action_steps": 8,
+          "n_latency_steps": 0,
+          "n_obs_steps": 2,
+          "n_test": 50,
+          "num_epochs": 201,
+          "num_inference_steps": 100,
+          "policy_target": "diffusion_policy.policy.diffusion_unet_lowdim_policy.DiffusionUnetLowdimPolicy",
+          "seed": 2,
+          "task_name": "can",
+          "test_start_seed": 100000
+        },
+        "finished_utc": "2026-10-28T20:25:07+00:00",
+        "n_parameters": 65883660.0,
+        "run_dir": "data/outputs/hackathon_pool/paper_dp_can_abs_ph_seed2_e200_s200_r10_inf100",
+        "run_name": "paper_dp_can_abs_ph_seed2_e200_s200_r10_inf100",
+        "seed": 2,
+        "started_utc": "2026-10-28T17:47:45+00:00",
+        "task": "can",
+        "wall_hours": 2.623
+      },
+      {
+        "config": {
+          "abs_action": true,
+          "dataset_type": "ph",
+          "horizon": 16,
+          "n_action_steps": 8,
+          "n_latency_steps": 0,
+          "n_obs_steps": 2,
+          "n_test": 50,
+          "num_epochs": 301,
+          "num_inference_steps": 100,
+          "policy_target": "diffusion_policy.policy.diffusion_unet_lowdim_policy.DiffusionUnetLowdimPolicy",
+          "seed": 1,
+          "task_name": "square",
+          "test_start_seed": 100000
+        },
+        "finished_utc": "2026-10-28T21:48:17+00:00",
+        "n_parameters": 65883660.0,
+        "run_dir": "data/outputs/hackathon_pool/paper_dp_square_abs_ph_seed1_e300_s200_r10_inf100",
+        "run_name": "paper_dp_square_abs_ph_seed1_e300_s200_r10_inf100",
+        "seed": 1,
+        "started_utc": "2026-10-28T17:47:45+00:00",
+        "task": "square",
+        "wall_hours": 4.009
+      }
+    ],
+    "validation_problems": []
+  },
+  "dataset": {
+    "derived": {
+      "can/ph/low_dim_abs.hdf5": {
+        "from": "v1.5/can/ph/low_dim_v15.hdf5",
+        "sha256_on_build_machine": "1551cede6ad5470e45e68c7f9d366e34caf9b8a00d736f5f98b4f0b99b29f586",
+        "tool": "diffusion_policy/scripts/robomimic_dataset_conversion.py --num_workers 8"
+      },
+      "square/ph/low_dim_abs.hdf5": {
+        "from": "v1.5/square/ph/low_dim_v15.hdf5",
+        "sha256_on_build_machine": "82a2d98090cfc178ed49954448637f09bc956df883552df1f67330b92d409124",
+        "tool": "diffusion_policy/scripts/robomimic_dataset_conversion.py --num_workers 8"
+      }
+    },
+    "downloaded_utc": "2026-10-28T17:38:00+00:00",
+    "files": {
+      "v1.5/can/ph/demo_v15.hdf5": {
+        "bytes": 64932974,
+        "sha256": "86961df85af1b9c6b9d4182a3755a8a4db6d0660cd550e45cca1f7accdb6d73d"
+      },
+      "v1.5/can/ph/low_dim_v15.hdf5": {
+        "bytes": 46889752,
+        "sha256": "3f2eb92e0a5025d0095e866ac16cc8092d6a762abe27dec90dbaff9027282962"
+      },
+      "v1.5/lift/ph/demo_v15.hdf5": {
+        "bytes": 36699586,
+        "sha256": "68f2a8cfe2502de1224f0708fb82e46da07abce108c63e721d72fc1618272f37"
+      },
+      "v1.5/lift/ph/low_dim_v15.hdf5": {
+        "bytes": 21084088,
+        "sha256": "2067777cb8b532e9263dd09fd6448c41cc31224bb27be4a3b734010ae13eb540"
+      },
+      "v1.5/square/ph/demo_v15.hdf5": {
+        "bytes": 68982198,
+        "sha256": "3d9d6cadfa9395c5b368c029582dd73f1d4f699c1d82f78f0875e9bded61e596"
+      },
+      "v1.5/square/ph/low_dim_v15.hdf5": {
+        "bytes": 51145256,
+        "sha256": "45d8cabb6d57a4c03e839aa5e4b3e58fb60fe8bd20e1951fec563a2abfd14951"
+      }
+    },
+    "revision": "74fa018461f479cd9fd15b924a16103012096203",
+    "source": "https://huggingface.co/datasets/robomimic/robomimic_datasets"
+  },
+  "diffusion_sampling_seed": "per recorder batch: 0 + 7919 * batch_index; metric scripts: policy seed 0, sampling seeds 0-3",
+  "experiments": {
+    "E1_baseline": {
+      "checkpoints": 93,
+      "metrics": [
+        "val_action_l1",
+        "open_loop_smoothness",
+        "plv1_smoothness",
+        "boundary_jump_h16",
+        "replan_overlap_h16",
+        "boundary_jump_h10",
+        "replan_overlap_h10",
+        "val_loss_logged"
+      ],
+      "runs": [
+        "can_seed1",
+        "can_seed2",
+        "square_seed1"
+      ],
+      "target": "training-time success, 50 rollouts per checkpoint, env seeds 100000-100049"
+    },
+    "E2_visual_failure": {
+      "backends": [
+        "local",
+        "nebius"
+      ],
+      "diagnostic_rows": 660,
+      "env_seeds": "200000-200009",
+      "episodes": 330
+    },
+    "E3_hybrid": {
+      "K": 10,
+      "checkpoints": 33,
+      "q": 0.3
+    },
+    "E4_action_conditioned": {
+      "reason": "no faithful robosuite -> Cosmos action adapter",
+      "status": "blocked"
+    },
+    "dev_prompt_selection": {
+      "env_seeds": "300000-300011, 300100-300111, 300200-300211",
+      "episodes": 36
+    }
+  },
+  "generated_utc": "2026-10-29T02:10:10+00:00",
+  "git_commit": "b1a484b8c5198398cdfd04c65e097a71c8709148",
+  "models": {
+    "local": {
+      "id": "nvidia/Cosmos3-Edge",
+      "revision": "344d602b128d1bbdacb43b08d0a3626f46343e29"
+    },
+    "nebius": {
+      "endpoint": "https://api.tokenfactory.nebius.com/v1/",
+      "id": "nvidia/Nemotron-3.5-Super-VL"
+    }
+  }
+}

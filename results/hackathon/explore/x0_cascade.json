@@ -1,0 +1,103 @@
+{
+  "label": "EXPLORATORY (post-hoc)",
+  "dev": {
+    "local_only": {
+      "n": 36,
+      "accuracy": 0.806,
+      "ci95": [
+        0.65,
+        0.902
+      ],
+      "balanced_accuracy": 0.824,
+      "tp": 14,
+      "tn": 15,
+      "fp": 6,
+      "fn": 1,
+      "nebius_calls": 0,
+      "nebius_call_fraction": 0.0,
+      "mean_latency_s": 1.8
+    },
+    "nebius_only": {
+      "n": 36,
+      "accuracy": 0.861,
+      "ci95": [
+        0.713,
+        0.939
+      ],
+      "balanced_accuracy": 0.871,
+      "tp": 14,
+      "tn": 17,
+      "fp": 4,
+      "fn": 1,
+      "nebius_calls": 36,
+      "nebius_call_fraction": 1.0,
+      "mean_latency_s": 3.47
+    },
+    "cascade": {
+      "n": 36,
+      "accuracy": 0.917,
+      "ci95": [
+        0.782,
+        0.971
+      ],
+      "balanced_accuracy": 0.919,
+      "tp": 14,
+      "tn": 19,
+      "fp": 2,
+      "fn": 1,
+      "nebius_calls": 20,
+      "nebius_call_fraction": 0.556,
+      "mean_latency_s": 3.58
+    }
+  },
+  "eval": {
+    "local_only": {
+      "n": 330,
+      "accuracy": 0.918,
+      "ci95": [
+        0.884,
+        0.943
+      ],
+      "balanced_accuracy": 0.832,
+      "tp": 257,
+      "tn": 46,
+      "fp": 21,
+      "fn": 6,
+      "nebius_calls": 0,
+      "nebius_call_fraction": 0.0,
+      "mean_latency_s": 2.08
+    },
+    "nebius_only": {
+      "n": 330,
+      "accuracy": 0.964,
+      "ci95": [
+        0.938,
+        0.979
+      ],
+      "balanced_accuracy": 0.927,
+      "tp": 260,
+      "tn": 58,
+      "fp": 9,
+      "fn": 3,
+      "nebius_calls": 330,
+      "nebius_call_fraction": 1.0,
+      "mean_latency_s": 3.09
+    },
+    "cascade": {
+      "n": 330,
+      "accuracy": 0.952,
+      "ci95": [
+        0.923,
+        0.97
+      ],
+      "balanced_accuracy": 0.925,
+      "tp": 255,
+      "tn": 59,
+      "fp": 8,
+      "fn": 8,
+      "nebius_calls": 278,
+      "nebius_call_fraction": 0.842,
+      "mean_latency_s": 4.57
+    }
+  }
+}

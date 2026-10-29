@@ -1,0 +1,691 @@
+cohort,task,contrast,feature,label,n_pos,n_neg,n_checkpoints,auroc,ci_lo,ci_hi,n_boot_valid,within_ckpt_auroc,within_ckpt_ci_lo,within_ckpt_ci_hi,within_ckpt_pairs,within_ckpt_n_checkpoints_both_classes
+eval_all,can,failure_vs_success,sim_replan_overlap_l1,"replan overlap L1 (episode mean, real feedback)",37,113,15,0.9588615163836403,0.8916806910820159,0.9921507064364207,2000,0.8782608695652174,0.8352924465240642,0.9385294117647055,115,8
+eval_all,can,failure_vs_success,sim_boundary_jump_l1,boundary jump L1 (episode mean),37,113,15,0.9581439846926573,0.8838268264501358,0.9913645454545454,2000,0.8521739130434782,0.7564024390243902,0.9285854893138358,115,8
+eval_all,can,failure_vs_success,ov_pos_mean,"overlap, position dims",37,113,15,0.9775173403491988,0.926455347744361,0.9983277591973244,2000,0.8695652173913043,0.7358490566037735,0.9710144927536232,115,8
+eval_all,can,failure_vs_success,ov_rot_mean,"overlap, rotation-6d dims",37,113,15,0.9280076536713705,0.7943200843119542,0.9850125694555042,2000,0.6434782608695652,0.46869791666666666,0.8197499481220166,115,8
+eval_all,can,failure_vs_success,ov_grip_mean,"overlap, gripper dim",37,113,15,0.8569720162640516,0.5824895810798282,0.9553862838256559,2000,0.5391304347826087,0.07380952380952382,0.7794205182072829,115,8
+eval_all,can,failure_vs_success,ov_all_max,"overlap, max over boundaries",37,113,15,0.9430758191820139,0.8392021896343913,0.9859727101991543,2000,0.7652173913043478,0.6727245670995671,0.8939393939393939,115,8
+eval_all,can,failure_vs_success,ov_all_p90,"overlap, p90 over boundaries",37,113,15,0.9229849318344894,0.7836632696007696,0.9780228392297358,2000,0.6782608695652174,0.47111742424242425,0.8095238095238095,115,8
+eval_all,can,failure_vs_success,jump_all_max,"boundary jump, max",37,113,15,0.9588615163836403,0.8724961278726905,0.9937392664436512,2000,0.808695652173913,0.6576447876447877,1.0,115,8
+eval_all,can,failure_vs_success,exec_smoothness,executed smoothness (mean sq. 2nd diff),37,113,15,0.7864147333173882,0.4196001131463351,0.9180069916855629,2000,0.4260869565217391,0.0,0.6397605325914146,115,8
+eval_all,can,failure_vs_success,grip_flips,gripper sign flips (count),37,113,15,0.9158096149246592,0.7451604655019903,0.9759069743132829,2000,0.7478260869565218,0.4852941176470588,0.8958512931034482,115,8
+eval_all,can,failure_vs_success,grip_flip_rate_per100,gripper flips per 100 steps,37,113,15,0.7926333413059077,0.4193794651936841,0.9210428212482247,2000,0.41739130434782606,0.0,0.6442953020134228,115,8
+eval_all,can,failure_vs_success,ov_all_pre,"overlap, first 96 steps only",37,113,15,0.9308777804353026,0.7899092052865923,0.9871365358712757,2000,0.6782608695652174,0.4486842105263158,0.8627450980392157,115,8
+eval_all,can,failure_vs_success,jump_all_pre,"boundary jump, first 96 steps only",37,113,15,0.9277684764410428,0.7880296434108527,0.9855359732033839,2000,0.6608695652173913,0.4690030126153267,0.8390804597701149,115,8
+eval_all,can,failure_vs_success,ov_grip_pre,"gripper overlap, first 96 steps only",37,113,15,0.9270509447500598,0.7762824993107251,0.9834728142670727,2000,0.6956521739130435,0.49984567901234567,0.8071477719528178,115,8
+eval_all,can,failure_vs_success,exec_smoothness_pre,"executed smoothness, first 96 steps",37,113,15,0.9136570198517101,0.7784469953473373,0.9696966006376107,2000,0.6869565217391305,0.5555555555555556,0.7878933566433566,115,8
+eval_all,can,failure_vs_success,grip_flips_pre,"gripper flips, first 96 steps",37,113,15,0.9231045204496532,0.7969156746031746,0.9731127844578931,2000,0.7478260869565218,0.6266553398058253,0.8222222222222222,115,8
+eval_all,can,failure_vs_success,ov_all_prelift,"overlap, boundaries up to the first lift (never contains a drop)",13,113,13,0.7011572498298162,0.475152220910719,0.8482137892688352,2000,0.44680851063829785,0.2698412698412698,0.602284402241594,94,8
+eval_all,can,failure_vs_success,ov_pos_prelift,"position overlap, up to the first lift",13,113,13,0.6875425459496256,0.47165185950413224,0.8655506129577337,2000,0.425531914893617,0.2222222222222222,0.6719098081683167,94,8
+eval_all,can,failure_vs_success,ov_grip_prelift,"gripper overlap, up to the first lift",13,113,13,0.6637168141592921,0.44518190757128806,0.8158114035087718,2000,0.5319148936170213,0.3299817073170732,0.6883116883116883,94,8
+eval_all,can,failure_vs_success,ov_all_reachwin,"overlap, +-16 steps around first reach",17,113,13,0.7496095783446122,0.5338658153180496,0.8448391109986505,2000,0.6,0.3809222423146474,0.7218149540517961,115,8
+eval_all,can,failure_vs_success,ov_all_liftwin,"overlap, +-16 steps around first lift",13,113,13,0.776718856364874,0.5243112947658403,0.9193853485272249,2000,0.6276595744680851,0.35185185185185186,0.8222222222222222,94,8
+eval_all,can,failure_vs_success,ov_grip_liftwin,"gripper overlap, +-16 steps around first lift",13,113,13,0.7481279782164738,0.5657685574229692,0.8726098076098076,2000,0.6914893617021277,0.48606770833333335,0.8500098425196849,94,8
+eval_all,can,failure_vs_success,n_steps,episode length (reference: trivially separates; not a PLV metric),37,113,15,1.0,1.0,1.0,2000,1.0,1.0,1.0,115,8
+eval_all,can,dropped_vs_success,sim_replan_overlap_l1,"replan overlap L1 (episode mean, real feedback)",12,113,13,0.8783185840707964,0.8161987590275658,0.9500023540489642,2000,0.8505747126436781,0.7575684024713151,0.936532738095238,87,8
+eval_all,can,dropped_vs_success,sim_boundary_jump_l1,boundary jump L1 (episode mean),12,113,13,0.8783185840707964,0.8062892392143882,0.9485275626073851,2000,0.8160919540229885,0.7058823529411765,0.9206349206349206,87,8
+eval_all,can,dropped_vs_success,ov_pos_mean,"overlap, position dims",12,113,13,0.9424778761061947,0.8831570396116076,0.9916683884297521,2000,0.8620689655172413,0.7471264367816092,0.9682539682539683,87,8
+eval_all,can,dropped_vs_success,ov_rot_mean,"overlap, rotation-6d dims",12,113,13,0.8082595870206489,0.6829394576905096,0.9216110752688171,2000,0.6436781609195402,0.4895596590909091,0.8400317460317458,87,8
+eval_all,can,dropped_vs_success,ov_grip_mean,"overlap, gripper dim",12,113,13,0.5626843657817109,0.2286937557392103,0.7913630351130352,2000,0.39080459770114945,0.07407407407407407,0.6792513304305756,87,8
+eval_all,can,dropped_vs_success,ov_all_max,"overlap, max over boundaries",12,113,13,0.8436578171091446,0.733329678362573,0.9382641692546584,2000,0.7816091954022989,0.6951219512195121,0.8795208612226684,87,8
+eval_all,can,dropped_vs_success,ov_all_p90,"overlap, p90 over boundaries",12,113,13,0.7699115044247787,0.6041393736981971,0.8888888888888888,2000,0.6091954022988506,0.4174689440993789,0.7608695652173914,87,8
+eval_all,can,dropped_vs_success,jump_all_max,"boundary jump, max",12,113,13,0.8886430678466076,0.7655362361192285,0.9756126027646831,2000,0.8275862068965517,0.6666666666666666,1.0,87,8
+eval_all,can,dropped_vs_success,exec_smoothness,executed smoothness (mean sq. 2nd diff),12,113,13,0.37610619469026546,0.0,0.6270628947532104,2000,0.27586206896551724,0.0,0.5185185185185185,87,8
+eval_all,can,dropped_vs_success,grip_flips,gripper sign flips (count),12,113,13,0.7422566371681416,0.5108009651600752,0.8905744013488422,2000,0.6666666666666666,0.4456436820652174,0.848401639344262,87,8
+eval_all,can,dropped_vs_success,grip_flip_rate_per100,gripper flips per 100 steps,12,113,13,0.3834808259587021,0.0,0.6579453441295544,2000,0.27586206896551724,0.0,0.5385593220338978,87,8
+eval_all,can,dropped_vs_success,ov_all_pre,"overlap, first 96 steps only",12,113,13,0.8053097345132744,0.5748445998445999,0.9524820105443146,2000,0.6551724137931034,0.38452380952380955,0.8735632183908046,87,8
+eval_all,can,dropped_vs_success,jump_all_pre,"boundary jump, first 96 steps only",12,113,13,0.7957227138643068,0.559105618053673,0.9468636194723151,2000,0.6436781609195402,0.4085722819593788,0.8421369689283448,87,8
+eval_all,can,dropped_vs_success,ov_grip_pre,"gripper overlap, first 96 steps only",12,113,13,0.7942477876106194,0.5427929456906729,0.9375057234432234,2000,0.6666666666666666,0.455530303030303,0.8064516129032258,87,8
+eval_all,can,dropped_vs_success,exec_smoothness_pre,"executed smoothness, first 96 steps",12,113,13,0.7927728613569321,0.6322186305873989,0.8697939510233917,2000,0.6666666666666666,0.5222101449275363,0.786966201173851,87,8
+eval_all,can,dropped_vs_success,grip_flips_pre,"gripper flips, first 96 steps",12,113,13,0.8049410029498525,0.6513396427619301,0.8890777699968876,2000,0.7298850574712644,0.5928505291005292,0.8266896551724137,87,8
+eval_all,can,dropped_vs_success,ov_all_prelift,"overlap, boundaries up to the first lift (never contains a drop)",12,113,13,0.6873156342182891,0.4457431812221348,0.8467787517531556,2000,0.42528735632183906,0.24690512430238457,0.5952380952380952,87,8
+eval_all,can,dropped_vs_success,ov_pos_prelift,"position overlap, up to the first lift",12,113,13,0.7042772861356932,0.47399908172635447,0.8686796667819668,2000,0.4482758620689655,0.23329710144927537,0.6800138888888888,87,8
+eval_all,can,dropped_vs_success,ov_grip_prelift,"gripper overlap, up to the first lift",12,113,13,0.6393805309734514,0.42152449887940374,0.8049614163968231,2000,0.5057471264367817,0.3235294117647059,0.6721311475409836,87,8
+eval_all,can,dropped_vs_success,ov_all_reachwin,"overlap, +-16 steps around first reach",12,113,13,0.6674041297935103,0.4688609568121034,0.8042065390749601,2000,0.5287356321839081,0.3076923076923077,0.69072633552015,87,8
+eval_all,can,dropped_vs_success,ov_all_liftwin,"overlap, +-16 steps around first lift",12,113,13,0.7595870206489675,0.5068698347107439,0.9122518572646449,2000,0.5977011494252874,0.3383333333333334,0.8,87,8
+eval_all,can,dropped_vs_success,ov_grip_liftwin,"gripper overlap, +-16 steps around first lift",12,113,13,0.7286135693215339,0.5594700486295314,0.851097070890503,2000,0.6666666666666666,0.48148148148148145,0.8217855689678556,87,8
+eval_all,can,dropped_vs_success,n_steps,episode length (reference: trivially separates; not a PLV metric),12,113,13,1.0,1.0,1.0,2000,1.0,1.0,1.0,87,8
+eval_all,can,no_grasp_vs_success,sim_replan_overlap_l1,"replan overlap L1 (episode mean, real feedback)",25,113,15,0.9975221238938053,0.9784837805706522,1.0,1996,0.9642857142857143,0.8571428571428571,1.0,28,3
+eval_all,can,no_grasp_vs_success,sim_boundary_jump_l1,boundary jump L1 (episode mean),25,113,15,0.9964601769911504,0.9703427307904919,1.0,1996,0.9642857142857143,0.8571428571428571,1.0,28,3
+eval_all,can,no_grasp_vs_success,ov_pos_mean,"overlap, position dims",25,113,15,0.9943362831858407,0.949143917624521,1.0,1996,0.8928571428571429,0.5714285714285714,1.0,28,3
+eval_all,can,no_grasp_vs_success,ov_rot_mean,"overlap, rotation-6d dims",25,113,15,0.9854867256637169,0.8706894586894587,1.0,1996,0.6428571428571429,0.14285714285714285,0.8333333333333334,28,3
+eval_all,can,no_grasp_vs_success,ov_grip_mean,"overlap, gripper dim",25,113,15,0.9982300884955753,0.9852722338935574,1.0,1996,1.0,1.0,1.0,28,3
+eval_all,can,no_grasp_vs_success,ov_all_max,"overlap, max over boundaries",25,113,15,0.9907964601769912,0.9335534591194968,1.0,1996,0.7142857142857143,0.6,1.0,28,3
+eval_all,can,no_grasp_vs_success,ov_all_p90,"overlap, p90 over boundaries",25,113,15,0.9964601769911504,0.9748317972350231,1.0,1996,0.8928571428571429,0.8,1.0,28,3
+eval_all,can,no_grasp_vs_success,jump_all_max,"boundary jump, max",25,113,15,0.9925663716814159,0.9437012337743497,1.0,1996,0.75,0.5,1.0,28,3
+eval_all,can,no_grasp_vs_success,exec_smoothness,executed smoothness (mean sq. 2nd diff),25,113,15,0.9833628318584071,0.890702671913836,1.0,1996,0.8928571428571429,0.8333333333333334,0.9333333333333333,28,3
+eval_all,can,no_grasp_vs_success,grip_flips,gripper sign flips (count),25,113,15,0.9991150442477876,0.9933833169452638,1.0,1996,1.0,1.0,1.0,28,3
+eval_all,can,no_grasp_vs_success,grip_flip_rate_per100,gripper flips per 100 steps,25,113,15,0.9890265486725663,0.9147062732589049,1.0,1996,0.8571428571428571,0.7142857142857143,0.9333333333333333,28,3
+eval_all,can,no_grasp_vs_success,ov_all_pre,"overlap, first 96 steps only",25,113,15,0.9911504424778761,0.94035513747257,1.0,1996,0.75,0.6666666666666666,0.8571428571428571,28,3
+eval_all,can,no_grasp_vs_success,jump_all_pre,"boundary jump, first 96 steps only",25,113,15,0.9911504424778761,0.9377430555555556,1.0,1996,0.7142857142857143,0.6666666666666666,0.8571428571428571,28,3
+eval_all,can,no_grasp_vs_success,ov_grip_pre,"gripper overlap, first 96 steps only",25,113,15,0.9907964601769912,0.9473915770609319,1.0,1996,0.7857142857142857,0.7333333333333333,0.8571428571428571,28,3
+eval_all,can,no_grasp_vs_success,exec_smoothness_pre,"executed smoothness, first 96 steps",25,113,15,0.9716814159292035,0.8446109981933153,1.0,1996,0.75,0.6666666666666666,0.8571428571428571,28,3
+eval_all,can,no_grasp_vs_success,grip_flips_pre,"gripper flips, first 96 steps",25,113,15,0.9798230088495575,0.8506529850746268,1.0,1996,0.8035714285714286,0.6666666666666666,0.8571428571428571,28,3
+eval_all,can,no_grasp_vs_success,ov_all_prelift,"overlap, boundaries up to the first lift (never contains a drop)",1,113,13,0.8672566371681416,0.7549019607843137,0.9344262295081968,1267,0.7142857142857143,,,7,1
+eval_all,can,no_grasp_vs_success,ov_pos_prelift,"position overlap, up to the first lift",1,113,13,0.48672566371681414,0.28259862778730704,0.6611570247933884,1267,0.14285714285714285,,,7,1
+eval_all,can,no_grasp_vs_success,ov_grip_prelift,"gripper overlap, up to the first lift",1,113,13,0.9557522123893806,0.9029669762641899,0.9834710743801653,1267,0.8571428571428571,,,7,1
+eval_all,can,no_grasp_vs_success,ov_all_reachwin,"overlap, +-16 steps around first reach",5,113,13,0.9469026548672567,0.8347826086956521,0.9915254237288136,1941,0.8214285714285714,0.6666666666666666,0.8666666666666667,28,3
+eval_all,can,no_grasp_vs_success,ov_all_liftwin,"overlap, +-16 steps around first lift",1,113,13,0.9823008849557522,0.9509803921568627,1.0,1267,1.0,,,7,1
+eval_all,can,no_grasp_vs_success,ov_grip_liftwin,"gripper overlap, +-16 steps around first lift",1,113,13,0.9823008849557522,0.9509803921568627,1.0,1267,1.0,,,7,1
+eval_all,can,no_grasp_vs_success,n_steps,episode length (reference: trivially separates; not a PLV metric),25,113,15,1.0,1.0,1.0,1996,1.0,1.0,1.0,28,3
+eval_all,can,dropped_vs_no_grasp,sim_replan_overlap_l1,"replan overlap L1 (episode mean, real feedback)",12,25,10,0.03666666666666667,0.0028011204481792717,0.23076923076923078,1998,0.2727272727272727,0.16666666666666666,0.5,11,3
+eval_all,can,dropped_vs_no_grasp,sim_boundary_jump_l1,boundary jump L1 (episode mean),12,25,10,0.03666666666666667,0.0,0.2857142857142857,1998,0.2727272727272727,0.0,0.6666666666666666,11,3
+eval_all,can,dropped_vs_no_grasp,ov_pos_mean,"overlap, position dims",12,25,10,0.07333333333333333,0.0056022408963585435,0.4889880952380958,1998,0.45454545454545453,0.3333333333333333,0.6666666666666666,11,3
+eval_all,can,dropped_vs_no_grasp,ov_rot_mean,"overlap, rotation-6d dims",12,25,10,0.05,0.0028011204481792717,0.3149450549450553,1998,0.2727272727272727,0.16666666666666666,0.5,11,3
+eval_all,can,dropped_vs_no_grasp,ov_grip_mean,"overlap, gripper dim",12,25,10,0.02666666666666667,0.0,0.14583333333333334,1998,0.09090909090909091,0.0,0.16666666666666666,11,3
+eval_all,can,dropped_vs_no_grasp,ov_all_max,"overlap, max over boundaries",12,25,10,0.08666666666666667,0.004032258064516129,0.5073689892623718,1998,0.7272727272727273,0.5,1.0,11,3
+eval_all,can,dropped_vs_no_grasp,ov_all_p90,"overlap, p90 over boundaries",12,25,10,0.03666666666666667,0.0,0.23506158873805932,1998,0.36363636363636365,0.0,0.5,11,3
+eval_all,can,dropped_vs_no_grasp,jump_all_max,"boundary jump, max",12,25,10,0.06666666666666667,0.003048780487804878,0.3878401360544218,1998,0.45454545454545453,0.3333333333333333,0.5,11,3
+eval_all,can,dropped_vs_no_grasp,exec_smoothness,executed smoothness (mean sq. 2nd diff),12,25,10,0.03333333333333333,0.0,0.2222222222222222,1998,0.2727272727272727,0.0,0.6666666666666666,11,3
+eval_all,can,dropped_vs_no_grasp,grip_flips,gripper sign flips (count),12,25,10,0.035,0.0,0.2222222222222222,1998,0.22727272727272727,0.0,0.5,11,3
+eval_all,can,dropped_vs_no_grasp,grip_flip_rate_per100,gripper flips per 100 steps,12,25,10,0.035,0.0,0.2222222222222222,1998,0.22727272727272727,0.0,0.5,11,3
+eval_all,can,dropped_vs_no_grasp,ov_all_pre,"overlap, first 96 steps only",12,25,10,0.06,0.003484320557491289,0.3645833333333333,1998,0.45454545454545453,0.3333333333333333,0.6666666666666666,11,3
+eval_all,can,dropped_vs_no_grasp,jump_all_pre,"boundary jump, first 96 steps only",12,25,10,0.07,0.0028011204481792717,0.40625,1998,0.45454545454545453,0.3333333333333333,1.0,11,3
+eval_all,can,dropped_vs_no_grasp,ov_grip_pre,"gripper overlap, first 96 steps only",12,25,10,0.05333333333333334,0.0028011204481792717,0.2986111111111111,1998,0.36363636363636365,0.3333333333333333,0.5,11,3
+eval_all,can,dropped_vs_no_grasp,exec_smoothness_pre,"executed smoothness, first 96 steps",12,25,10,0.08333333333333333,0.003484320557491289,0.48471354166666686,1998,0.36363636363636365,0.16666666666666666,0.6666666666666666,11,3
+eval_all,can,dropped_vs_no_grasp,grip_flips_pre,"gripper flips, first 96 steps",12,25,10,0.075,0.0031723569931117104,0.4958705357142859,1998,0.45454545454545453,0.16666666666666666,0.8333333333333334,11,3
+eval_all,can,dropped_vs_no_grasp,ov_all_prelift,"overlap, boundaries up to the first lift (never contains a drop)",12,1,8,0.4166666666666667,0.1111111111111111,0.6428571428571429,1347,0.5,,,2,1
+eval_all,can,dropped_vs_no_grasp,ov_pos_prelift,"position overlap, up to the first lift",12,1,8,0.75,0.4444444444444444,0.9230769230769231,1347,0.5,,,2,1
+eval_all,can,dropped_vs_no_grasp,ov_grip_prelift,"gripper overlap, up to the first lift",12,1,8,0.16666666666666666,0.0,0.28055555555555484,1347,0.0,,,2,1
+eval_all,can,dropped_vs_no_grasp,ov_all_reachwin,"overlap, +-16 steps around first reach",12,5,8,0.2,0.037037037037037035,0.425,1965,0.36363636363636365,0.16666666666666666,0.6666666666666666,11,3
+eval_all,can,dropped_vs_no_grasp,ov_all_liftwin,"overlap, +-16 steps around first lift",12,1,8,0.08333333333333333,0.0,0.1875,1347,0.0,,,2,1
+eval_all,can,dropped_vs_no_grasp,ov_grip_liftwin,"gripper overlap, +-16 steps around first lift",12,1,8,0.0,0.0,0.0,1347,0.0,,,2,1
+eval_all,can,dropped_vs_no_grasp,n_steps,episode length (reference: trivially separates; not a PLV metric),12,25,10,0.5,0.5,0.5,1998,0.5,0.5,0.5,11,3
+eval_all,can,dropped_vs_other_failures,sim_replan_overlap_l1,"replan overlap L1 (episode mean, real feedback)",12,25,10,0.03666666666666667,0.0028011204481792717,0.23076923076923078,1998,0.2727272727272727,0.16666666666666666,0.5,11,3
+eval_all,can,dropped_vs_other_failures,sim_boundary_jump_l1,boundary jump L1 (episode mean),12,25,10,0.03666666666666667,0.0,0.2857142857142857,1998,0.2727272727272727,0.0,0.6666666666666666,11,3
+eval_all,can,dropped_vs_other_failures,ov_pos_mean,"overlap, position dims",12,25,10,0.07333333333333333,0.0056022408963585435,0.4889880952380958,1998,0.45454545454545453,0.3333333333333333,0.6666666666666666,11,3
+eval_all,can,dropped_vs_other_failures,ov_rot_mean,"overlap, rotation-6d dims",12,25,10,0.05,0.0028011204481792717,0.3149450549450553,1998,0.2727272727272727,0.16666666666666666,0.5,11,3
+eval_all,can,dropped_vs_other_failures,ov_grip_mean,"overlap, gripper dim",12,25,10,0.02666666666666667,0.0,0.14583333333333334,1998,0.09090909090909091,0.0,0.16666666666666666,11,3
+eval_all,can,dropped_vs_other_failures,ov_all_max,"overlap, max over boundaries",12,25,10,0.08666666666666667,0.004032258064516129,0.5073689892623718,1998,0.7272727272727273,0.5,1.0,11,3
+eval_all,can,dropped_vs_other_failures,ov_all_p90,"overlap, p90 over boundaries",12,25,10,0.03666666666666667,0.0,0.23506158873805932,1998,0.36363636363636365,0.0,0.5,11,3
+eval_all,can,dropped_vs_other_failures,jump_all_max,"boundary jump, max",12,25,10,0.06666666666666667,0.003048780487804878,0.3878401360544218,1998,0.45454545454545453,0.3333333333333333,0.5,11,3
+eval_all,can,dropped_vs_other_failures,exec_smoothness,executed smoothness (mean sq. 2nd diff),12,25,10,0.03333333333333333,0.0,0.2222222222222222,1998,0.2727272727272727,0.0,0.6666666666666666,11,3
+eval_all,can,dropped_vs_other_failures,grip_flips,gripper sign flips (count),12,25,10,0.035,0.0,0.2222222222222222,1998,0.22727272727272727,0.0,0.5,11,3
+eval_all,can,dropped_vs_other_failures,grip_flip_rate_per100,gripper flips per 100 steps,12,25,10,0.035,0.0,0.2222222222222222,1998,0.22727272727272727,0.0,0.5,11,3
+eval_all,can,dropped_vs_other_failures,ov_all_pre,"overlap, first 96 steps only",12,25,10,0.06,0.003484320557491289,0.3645833333333333,1998,0.45454545454545453,0.3333333333333333,0.6666666666666666,11,3
+eval_all,can,dropped_vs_other_failures,jump_all_pre,"boundary jump, first 96 steps only",12,25,10,0.07,0.0028011204481792717,0.40625,1998,0.45454545454545453,0.3333333333333333,1.0,11,3
+eval_all,can,dropped_vs_other_failures,ov_grip_pre,"gripper overlap, first 96 steps only",12,25,10,0.05333333333333334,0.0028011204481792717,0.2986111111111111,1998,0.36363636363636365,0.3333333333333333,0.5,11,3
+eval_all,can,dropped_vs_other_failures,exec_smoothness_pre,"executed smoothness, first 96 steps",12,25,10,0.08333333333333333,0.003484320557491289,0.48471354166666686,1998,0.36363636363636365,0.16666666666666666,0.6666666666666666,11,3
+eval_all,can,dropped_vs_other_failures,grip_flips_pre,"gripper flips, first 96 steps",12,25,10,0.075,0.0031723569931117104,0.4958705357142859,1998,0.45454545454545453,0.16666666666666666,0.8333333333333334,11,3
+eval_all,can,dropped_vs_other_failures,ov_all_prelift,"overlap, boundaries up to the first lift (never contains a drop)",12,1,8,0.4166666666666667,0.1111111111111111,0.6428571428571429,1347,0.5,,,2,1
+eval_all,can,dropped_vs_other_failures,ov_pos_prelift,"position overlap, up to the first lift",12,1,8,0.75,0.4444444444444444,0.9230769230769231,1347,0.5,,,2,1
+eval_all,can,dropped_vs_other_failures,ov_grip_prelift,"gripper overlap, up to the first lift",12,1,8,0.16666666666666666,0.0,0.28055555555555484,1347,0.0,,,2,1
+eval_all,can,dropped_vs_other_failures,ov_all_reachwin,"overlap, +-16 steps around first reach",12,5,8,0.2,0.037037037037037035,0.425,1965,0.36363636363636365,0.16666666666666666,0.6666666666666666,11,3
+eval_all,can,dropped_vs_other_failures,ov_all_liftwin,"overlap, +-16 steps around first lift",12,1,8,0.08333333333333333,0.0,0.1875,1347,0.0,,,2,1
+eval_all,can,dropped_vs_other_failures,ov_grip_liftwin,"gripper overlap, +-16 steps around first lift",12,1,8,0.0,0.0,0.0,1347,0.0,,,2,1
+eval_all,can,dropped_vs_other_failures,n_steps,episode length (reference: trivially separates; not a PLV metric),12,25,10,0.5,0.5,0.5,1998,0.5,0.5,0.5,11,3
+eval_all,square,failure_vs_success,sim_replan_overlap_l1,"replan overlap L1 (episode mean, real feedback)",23,37,6,0.8942420681551116,0.6666,0.9904306220095693,2000,0.92,0.803921568627451,1.0,75,4
+eval_all,square,failure_vs_success,sim_boundary_jump_l1,boundary jump L1 (episode mean),23,37,6,0.8507638072855465,0.5096153846153846,0.978675645342312,2000,0.72,0.5238095238095238,0.9777777777777777,75,4
+eval_all,square,failure_vs_success,ov_pos_mean,"overlap, position dims",23,37,6,0.9283196239717979,0.7493261455525606,0.9954285714285714,2000,0.9733333333333334,0.875,1.0,75,4
+eval_all,square,failure_vs_success,ov_rot_mean,"overlap, rotation-6d dims",23,37,6,0.8578143360752056,0.5832331730769231,0.9633357142857143,2000,0.7466666666666667,0.6333333333333333,0.9019607843137255,75,4
+eval_all,square,failure_vs_success,ov_grip_mean,"overlap, gripper dim",23,37,6,0.736780258519389,0.42844742063492064,0.9468524357369787,2000,0.52,0.3333333333333333,0.8125,75,4
+eval_all,square,failure_vs_success,ov_all_max,"overlap, max over boundaries",23,37,6,0.8437132784958872,0.6170212765957447,0.9671945701357466,2000,0.6933333333333334,0.5362318840579711,0.9230769230769231,75,4
+eval_all,square,failure_vs_success,ov_all_p90,"overlap, p90 over boundaries",23,37,6,0.8131609870740305,0.542,0.9473684210526315,2000,0.5866666666666667,0.463768115942029,0.7435897435897436,75,4
+eval_all,square,failure_vs_success,jump_all_max,"boundary jump, max",23,37,6,0.8213866039952996,0.5089285714285714,0.968,2000,0.5466666666666666,0.3968253968253968,0.7857142857142857,75,4
+eval_all,square,failure_vs_success,exec_smoothness,executed smoothness (mean sq. 2nd diff),23,37,6,0.6157461809635723,0.17037037037037037,0.9225589225589226,2000,0.30666666666666664,0.09195402298850575,0.6862745098039216,75,4
+eval_all,square,failure_vs_success,grip_flips,gripper sign flips (count),23,37,6,0.8401880141010576,0.6051699346405228,0.9678785366771074,2000,0.6733333333333333,0.5606060606060606,0.8589743589743589,75,4
+eval_all,square,failure_vs_success,grip_flip_rate_per100,gripper flips per 100 steps,23,37,6,0.6598119858989424,0.22997916666666668,0.9225589225589226,2000,0.3466666666666667,0.10584677419354838,0.6923076923076923,75,4
+eval_all,square,failure_vs_success,ov_all_pre,"overlap, first 96 steps only",23,37,6,0.827262044653349,0.5363881401617251,0.9461279461279462,2000,0.6,0.30952380952380953,0.8472222222222222,75,4
+eval_all,square,failure_vs_success,jump_all_pre,"boundary jump, first 96 steps only",23,37,6,0.8061104582843713,0.47361988304093566,0.9558823529411765,2000,0.5733333333333334,0.391304347826087,0.8717948717948718,75,4
+eval_all,square,failure_vs_success,ov_grip_pre,"gripper overlap, first 96 steps only",23,37,6,0.7414806110458284,0.3896296296296296,0.9283124999999995,2000,0.4,0.11904761904761904,0.7380952380952381,75,4
+eval_all,square,failure_vs_success,exec_smoothness_pre,"executed smoothness, first 96 steps",23,37,6,0.7344300822561692,0.40607543498168497,0.9668571428571429,2000,0.49333333333333335,0.2753623188405797,0.8205128205128205,75,4
+eval_all,square,failure_vs_success,grip_flips_pre,"gripper flips, first 96 steps",23,37,6,0.7579318448883666,0.4444444444444444,0.9685714285714285,2000,0.52,0.3115942028985507,0.8589743589743589,75,4
+eval_all,square,failure_vs_success,ov_all_prelift,"overlap, boundaries up to the first lift (never contains a drop)",9,37,5,0.5945945945945946,0.3377777777777778,0.7807017543859649,2000,0.6271186440677966,0.19230769230769232,0.8626691401134843,59,4
+eval_all,square,failure_vs_success,ov_pos_prelift,"position overlap, up to the first lift",9,37,5,0.6366366366366366,0.4577777777777778,0.7858627858627859,2000,0.7288135593220338,0.5,0.8571428571428571,59,4
+eval_all,square,failure_vs_success,ov_grip_prelift,"gripper overlap, up to the first lift",9,37,5,0.5255255255255256,0.2926829268292683,0.6975,2000,0.4915254237288136,0.11538461538461539,0.759493670886076,59,4
+eval_all,square,failure_vs_success,ov_all_reachwin,"overlap, +-16 steps around first reach",11,3,6,0.8787878787878788,0.5,1.0,1968,1.0,,,3,1
+eval_all,square,failure_vs_success,ov_all_liftwin,"overlap, +-16 steps around first lift",9,37,5,0.5615615615615616,0.36585365853658536,0.7398373983739838,2000,0.5932203389830508,0.40540540540540543,0.7692307692307693,59,4
+eval_all,square,failure_vs_success,ov_grip_liftwin,"gripper overlap, +-16 steps around first lift",9,37,5,0.6096096096096096,0.4128787878787879,0.7879417879417879,2000,0.711864406779661,0.5384615384615384,0.8648648648648649,59,4
+eval_all,square,failure_vs_success,n_steps,episode length (reference: trivially separates; not a PLV metric),23,37,6,1.0,1.0,1.0,2000,1.0,1.0,1.0,75,4
+eval_all,square,dropped_vs_success,sim_replan_overlap_l1,"replan overlap L1 (episode mean, real feedback)",9,37,5,0.7297297297297297,0.553030303030303,0.9288888888888889,2000,0.8983050847457628,0.8,1.0,59,4
+eval_all,square,dropped_vs_success,sim_boundary_jump_l1,boundary jump L1 (episode mean),9,37,5,0.6186186186186187,0.3939393939393939,0.8666666666666667,2000,0.6440677966101694,0.5238095238095238,0.96,59,4
+eval_all,square,dropped_vs_success,ov_pos_mean,"overlap, position dims",9,37,5,0.8168168168168168,0.6533333333333333,0.9792099792099792,2000,0.9661016949152542,0.8461538461538461,1.0,59,4
+eval_all,square,dropped_vs_success,ov_rot_mean,"overlap, rotation-6d dims",9,37,5,0.6606606606606606,0.4666666666666667,0.8308823529411765,2000,0.7966101694915254,0.6875,0.92,59,4
+eval_all,square,dropped_vs_success,ov_grip_mean,"overlap, gripper dim",9,37,5,0.5795795795795796,0.4444444444444444,0.7669376693766937,2000,0.6101694915254238,0.4864864864864865,0.8125,59,4
+eval_all,square,dropped_vs_success,ov_all_max,"overlap, max over boundaries",9,37,5,0.6816816816816816,0.5416666666666666,0.8617886178861789,2000,0.7288135593220338,0.5135135135135135,0.9130434782608695,59,4
+eval_all,square,dropped_vs_success,ov_all_p90,"overlap, p90 over boundaries",9,37,5,0.6186186186186187,0.4621212121212121,0.7541666666666667,2000,0.6610169491525424,0.58,0.7435897435897436,59,4
+eval_all,square,dropped_vs_success,jump_all_max,"boundary jump, max",9,37,5,0.6036036036036037,0.42005420054200543,0.8702702702702703,2000,0.5423728813559322,0.3968253968253968,0.9230769230769231,59,4
+eval_all,square,dropped_vs_success,exec_smoothness,executed smoothness (mean sq. 2nd diff),9,37,5,0.34534534534534533,0.12723214285714285,0.7774086378737541,2000,0.3389830508474576,0.07142857142857142,0.8846153846153846,59,4
+eval_all,square,dropped_vs_success,grip_flips,gripper sign flips (count),9,37,5,0.7522522522522522,0.5460704607046071,0.975,2000,0.7372881355932204,0.5774647887323944,1.0,59,4
+eval_all,square,dropped_vs_success,grip_flip_rate_per100,gripper flips per 100 steps,9,37,5,0.4114114114114114,0.16279069767441862,0.7873754152823921,2000,0.3898305084745763,0.1,0.8846153846153846,59,4
+eval_all,square,dropped_vs_success,ov_all_pre,"overlap, first 96 steps only",9,37,5,0.6216216216216216,0.38666666666666666,0.7925407925407926,2000,0.6440677966101694,0.23076923076923078,0.8690476190476191,59,4
+eval_all,square,dropped_vs_success,jump_all_pre,"boundary jump, first 96 steps only",9,37,5,0.5825825825825826,0.3685636856368564,0.8111111111111111,2000,0.6101694915254238,0.35135135135135137,0.8636363636363636,59,4
+eval_all,square,dropped_vs_success,ov_grip_pre,"gripper overlap, first 96 steps only",9,37,5,0.5435435435435435,0.324875,0.7205882352941176,2000,0.4915254237288136,0.15384615384615385,0.76,59,4
+eval_all,square,dropped_vs_success,exec_smoothness_pre,"executed smoothness, first 96 steps",9,37,5,0.5765765765765766,0.35,0.8292682926829268,2000,0.559322033898305,0.2972972972972973,0.8205128205128205,59,4
+eval_all,square,dropped_vs_success,grip_flips_pre,"gripper flips, first 96 steps",9,37,5,0.5990990990990991,0.375,0.8414634146341463,2000,0.5932203389830508,0.36,0.8589743589743589,59,4
+eval_all,square,dropped_vs_success,ov_all_prelift,"overlap, boundaries up to the first lift (never contains a drop)",9,37,5,0.5945945945945946,0.3377777777777778,0.7807017543859649,2000,0.6271186440677966,0.19230769230769232,0.8626691401134843,59,4
+eval_all,square,dropped_vs_success,ov_pos_prelift,"position overlap, up to the first lift",9,37,5,0.6366366366366366,0.4577777777777778,0.7858627858627859,2000,0.7288135593220338,0.5,0.8571428571428571,59,4
+eval_all,square,dropped_vs_success,ov_grip_prelift,"gripper overlap, up to the first lift",9,37,5,0.5255255255255256,0.2926829268292683,0.6975,2000,0.4915254237288136,0.11538461538461539,0.759493670886076,59,4
+eval_all,square,dropped_vs_success,ov_all_reachwin,"overlap, +-16 steps around first reach",4,3,5,0.8333333333333334,0.25,1.0,1964,1.0,,,1,1
+eval_all,square,dropped_vs_success,ov_all_liftwin,"overlap, +-16 steps around first lift",9,37,5,0.5615615615615616,0.36585365853658536,0.7398373983739838,2000,0.5932203389830508,0.40540540540540543,0.7692307692307693,59,4
+eval_all,square,dropped_vs_success,ov_grip_liftwin,"gripper overlap, +-16 steps around first lift",9,37,5,0.6096096096096096,0.4128787878787879,0.7879417879417879,2000,0.711864406779661,0.5384615384615384,0.8648648648648649,59,4
+eval_all,square,dropped_vs_success,n_steps,episode length (reference: trivially separates; not a PLV metric),9,37,5,1.0,1.0,1.0,2000,1.0,1.0,1.0,59,4
+eval_all,square,no_grasp_vs_success,sim_replan_overlap_l1,"replan overlap L1 (episode mean, real feedback)",3,37,5,1.0,1.0,1.0,1372,1.0,,,12,1
+eval_all,square,no_grasp_vs_success,sim_boundary_jump_l1,boundary jump L1 (episode mean),3,37,5,1.0,1.0,1.0,1372,1.0,,,12,1
+eval_all,square,no_grasp_vs_success,ov_pos_mean,"overlap, position dims",3,37,5,1.0,1.0,1.0,1372,1.0,,,12,1
+eval_all,square,no_grasp_vs_success,ov_rot_mean,"overlap, rotation-6d dims",3,37,5,0.9459459459459459,0.8076923076923077,0.9537037037037037,1372,0.5833333333333334,,,12,1
+eval_all,square,no_grasp_vs_success,ov_grip_mean,"overlap, gripper dim",3,37,5,0.5675675675675675,0.3448275862068966,0.7685185185185185,1372,0.25,,,12,1
+eval_all,square,no_grasp_vs_success,ov_all_max,"overlap, max over boundaries",3,37,5,0.963963963963964,0.8846153846153846,0.9722222222222222,1372,0.75,,,12,1
+eval_all,square,no_grasp_vs_success,ov_all_p90,"overlap, p90 over boundaries",3,37,5,0.8108108108108109,0.6190476190476191,0.9313725490196079,1372,0.4166666666666667,,,12,1
+eval_all,square,no_grasp_vs_success,jump_all_max,"boundary jump, max",3,37,5,0.972972972972973,0.8846153846153846,0.975609756097561,1372,0.75,,,12,1
+eval_all,square,no_grasp_vs_success,exec_smoothness,executed smoothness (mean sq. 2nd diff),3,37,5,0.35135135135135137,0.22916666666666666,0.4878048780487805,1372,0.25,,,12,1
+eval_all,square,no_grasp_vs_success,grip_flips,gripper sign flips (count),3,37,5,0.8468468468468469,0.7126436781609196,0.9166666666666666,1372,0.5833333333333334,,,12,1
+eval_all,square,no_grasp_vs_success,grip_flip_rate_per100,gripper flips per 100 steps,3,37,5,0.49099099099099097,0.3229166666666667,0.6544715447154471,1372,0.25,,,12,1
+eval_all,square,no_grasp_vs_success,ov_all_pre,"overlap, first 96 steps only",3,37,5,0.8558558558558559,0.6805,0.9411764705882353,1372,0.5,,,12,1
+eval_all,square,no_grasp_vs_success,jump_all_pre,"boundary jump, first 96 steps only",3,37,5,0.7837837837837838,0.6,0.9035087719298246,1372,0.4166666666666667,,,12,1
+eval_all,square,no_grasp_vs_success,ov_grip_pre,"gripper overlap, first 96 steps only",3,37,5,0.5405405405405406,0.3229166666666667,0.625,1372,0.08333333333333333,,,12,1
+eval_all,square,no_grasp_vs_success,exec_smoothness_pre,"executed smoothness, first 96 steps",3,37,5,0.32432432432432434,0.27586206896551724,0.3684210526315789,1372,0.25,,,12,1
+eval_all,square,no_grasp_vs_success,grip_flips_pre,"gripper flips, first 96 steps",3,37,5,0.5540540540540541,0.4367816091954023,0.6157407407407407,1372,0.2916666666666667,,,12,1
+eval_all,square,no_grasp_vs_success,ov_all_prelift,"overlap, boundaries up to the first lift (never contains a drop)",0,37,5,,,,0,,,,0,0
+eval_all,square,no_grasp_vs_success,ov_pos_prelift,"position overlap, up to the first lift",0,37,5,,,,0,,,,0,0
+eval_all,square,no_grasp_vs_success,ov_grip_prelift,"gripper overlap, up to the first lift",0,37,5,,,,0,,,,0,0
+eval_all,square,no_grasp_vs_success,ov_all_reachwin,"overlap, +-16 steps around first reach",2,3,3,0.6666666666666666,0.3333333333333333,1.0,1401,1.0,,,2,1
+eval_all,square,no_grasp_vs_success,ov_all_liftwin,"overlap, +-16 steps around first lift",0,37,5,,,,0,,,,0,0
+eval_all,square,no_grasp_vs_success,ov_grip_liftwin,"gripper overlap, +-16 steps around first lift",0,37,5,,,,0,,,,0,0
+eval_all,square,no_grasp_vs_success,n_steps,episode length (reference: trivially separates; not a PLV metric),3,37,5,1.0,1.0,1.0,1372,1.0,,,12,1
+eval_all,square,dropped_vs_no_grasp,sim_replan_overlap_l1,"replan overlap L1 (episode mean, real feedback)",9,3,4,0.2222222222222222,0.18181818181818182,0.6666666666666666,1385,1.0,,,6,1
+eval_all,square,dropped_vs_no_grasp,sim_boundary_jump_l1,boundary jump L1 (episode mean),9,3,4,0.1111111111111111,0.09090909090909091,0.3333333333333333,1385,0.5,,,6,1
+eval_all,square,dropped_vs_no_grasp,ov_pos_mean,"overlap, position dims",9,3,4,0.07407407407407407,0.06060606060606061,0.2222222222222222,1385,0.3333333333333333,,,6,1
+eval_all,square,dropped_vs_no_grasp,ov_rot_mean,"overlap, rotation-6d dims",9,3,4,0.18518518518518517,0.15151515151515152,0.5555555555555556,1385,0.8333333333333334,,,6,1
+eval_all,square,dropped_vs_no_grasp,ov_grip_mean,"overlap, gripper dim",9,3,4,0.48148148148148145,0.3939393939393939,0.7777777777777778,1385,0.8333333333333334,,,6,1
+eval_all,square,dropped_vs_no_grasp,ov_all_max,"overlap, max over boundaries",9,3,4,0.0,0.0,0.0,1385,0.0,,,6,1
+eval_all,square,dropped_vs_no_grasp,ov_all_p90,"overlap, p90 over boundaries",9,3,4,0.3333333333333333,0.2857142857142857,0.5555555555555556,1385,0.6666666666666666,,,6,1
+eval_all,square,dropped_vs_no_grasp,jump_all_max,"boundary jump, max",9,3,4,0.07407407407407407,0.06060606060606061,0.2222222222222222,1385,0.3333333333333333,,,6,1
+eval_all,square,dropped_vs_no_grasp,exec_smoothness,executed smoothness (mean sq. 2nd diff),9,3,4,0.4444444444444444,0.3333333333333333,0.7777777777777778,1385,0.8333333333333334,,,6,1
+eval_all,square,dropped_vs_no_grasp,grip_flips,gripper sign flips (count),9,3,4,0.42592592592592593,0.2962962962962963,0.7777777777777778,1385,0.8333333333333334,,,6,1
+eval_all,square,dropped_vs_no_grasp,grip_flip_rate_per100,gripper flips per 100 steps,9,3,4,0.42592592592592593,0.2962962962962963,0.7777777777777778,1385,0.8333333333333334,,,6,1
+eval_all,square,dropped_vs_no_grasp,ov_all_pre,"overlap, first 96 steps only",9,3,4,0.18518518518518517,0.18181818181818182,0.37037037037037035,1385,0.5,,,6,1
+eval_all,square,dropped_vs_no_grasp,jump_all_pre,"boundary jump, first 96 steps only",9,3,4,0.2962962962962963,0.2222222222222222,0.5555555555555556,1385,0.6666666666666666,,,6,1
+eval_all,square,dropped_vs_no_grasp,ov_grip_pre,"gripper overlap, first 96 steps only",9,3,4,0.4074074074074074,0.3333333333333333,0.5714285714285714,1385,0.6666666666666666,,,6,1
+eval_all,square,dropped_vs_no_grasp,exec_smoothness_pre,"executed smoothness, first 96 steps",9,3,4,0.7407407407407407,0.6666666666666666,0.8095238095238095,1385,0.6666666666666666,,,6,1
+eval_all,square,dropped_vs_no_grasp,grip_flips_pre,"gripper flips, first 96 steps",9,3,4,0.5370370370370371,0.43333333333333335,0.6666666666666666,1385,0.5833333333333334,,,6,1
+eval_all,square,dropped_vs_no_grasp,ov_all_prelift,"overlap, boundaries up to the first lift (never contains a drop)",9,0,4,,,,0,,,,0,0
+eval_all,square,dropped_vs_no_grasp,ov_pos_prelift,"position overlap, up to the first lift",9,0,4,,,,0,,,,0,0
+eval_all,square,dropped_vs_no_grasp,ov_grip_prelift,"gripper overlap, up to the first lift",9,0,4,,,,0,,,,0,0
+eval_all,square,dropped_vs_no_grasp,ov_all_reachwin,"overlap, +-16 steps around first reach",4,2,3,0.875,0.8,1.0,1401,1.0,,,2,1
+eval_all,square,dropped_vs_no_grasp,ov_all_liftwin,"overlap, +-16 steps around first lift",9,0,4,,,,0,,,,0,0
+eval_all,square,dropped_vs_no_grasp,ov_grip_liftwin,"gripper overlap, +-16 steps around first lift",9,0,4,,,,0,,,,0,0
+eval_all,square,dropped_vs_no_grasp,n_steps,episode length (reference: trivially separates; not a PLV metric),9,3,4,0.5,0.5,0.5,1385,0.5,,,6,1
+eval_all,square,dropped_vs_other_failures,sim_replan_overlap_l1,"replan overlap L1 (episode mean, real feedback)",9,14,5,0.06349206349206349,0.0,0.5,1848,1.0,,,8,1
+eval_all,square,dropped_vs_other_failures,sim_boundary_jump_l1,boundary jump L1 (episode mean),9,14,5,0.023809523809523808,0.0,0.1875,1848,0.375,,,8,1
+eval_all,square,dropped_vs_other_failures,ov_pos_mean,"overlap, position dims",9,14,5,0.015873015873015872,0.0,0.125,1848,0.25,,,8,1
+eval_all,square,dropped_vs_other_failures,ov_rot_mean,"overlap, rotation-6d dims",9,14,5,0.05555555555555555,0.0,0.4375,1848,0.875,,,8,1
+eval_all,square,dropped_vs_other_failures,ov_grip_mean,"overlap, gripper dim",9,14,5,0.1746031746031746,0.0,0.75,1848,0.875,,,8,1
+eval_all,square,dropped_vs_other_failures,ov_all_max,"overlap, max over boundaries",9,14,5,0.07142857142857142,0.0,0.25,1848,0.25,,,8,1
+eval_all,square,dropped_vs_other_failures,ov_all_p90,"overlap, p90 over boundaries",9,14,5,0.1111111111111111,0.0,0.525,1848,0.75,,,8,1
+eval_all,square,dropped_vs_other_failures,jump_all_max,"boundary jump, max",9,14,5,0.05555555555555555,0.0,0.3055555555555556,1848,0.5,,,8,1
+eval_all,square,dropped_vs_other_failures,exec_smoothness,executed smoothness (mean sq. 2nd diff),9,14,5,0.16666666666666666,0.0,0.75,1848,0.875,,,8,1
+eval_all,square,dropped_vs_other_failures,grip_flips,gripper sign flips (count),9,14,5,0.1626984126984127,0.0,0.75,1848,0.875,,,8,1
+eval_all,square,dropped_vs_other_failures,grip_flip_rate_per100,gripper flips per 100 steps,9,14,5,0.1626984126984127,0.0,0.75,1848,0.875,,,8,1
+eval_all,square,dropped_vs_other_failures,ov_all_pre,"overlap, first 96 steps only",9,14,5,0.047619047619047616,0.0,0.2916666666666667,1848,0.5,,,8,1
+eval_all,square,dropped_vs_other_failures,jump_all_pre,"boundary jump, first 96 steps only",9,14,5,0.06349206349206349,0.0,0.325,1848,0.5,,,8,1
+eval_all,square,dropped_vs_other_failures,ov_grip_pre,"gripper overlap, first 96 steps only",9,14,5,0.12698412698412698,0.0,0.5447916666666668,1848,0.625,,,8,1
+eval_all,square,dropped_vs_other_failures,exec_smoothness_pre,"executed smoothness, first 96 steps",9,14,5,0.19047619047619047,0.0,0.75,1848,0.625,,,8,1
+eval_all,square,dropped_vs_other_failures,grip_flips_pre,"gripper flips, first 96 steps",9,14,5,0.16666666666666666,0.0,0.6944444444444444,1848,0.625,,,8,1
+eval_all,square,dropped_vs_other_failures,ov_all_prelift,"overlap, boundaries up to the first lift (never contains a drop)",9,0,4,,,,0,,,,0,0
+eval_all,square,dropped_vs_other_failures,ov_pos_prelift,"position overlap, up to the first lift",9,0,4,,,,0,,,,0,0
+eval_all,square,dropped_vs_other_failures,ov_grip_prelift,"gripper overlap, up to the first lift",9,0,4,,,,0,,,,0,0
+eval_all,square,dropped_vs_other_failures,ov_all_reachwin,"overlap, +-16 steps around first reach",4,7,4,0.25,0.0,1.0,1883,1.0,,,2,1
+eval_all,square,dropped_vs_other_failures,ov_all_liftwin,"overlap, +-16 steps around first lift",9,0,4,,,,0,,,,0,0
+eval_all,square,dropped_vs_other_failures,ov_grip_liftwin,"gripper overlap, +-16 steps around first lift",9,0,4,,,,0,,,,0,0
+eval_all,square,dropped_vs_other_failures,n_steps,episode length (reference: trivially separates; not a PLV metric),9,14,5,0.5,0.5,0.5,1848,0.5,,,8,1
+eval_all,square,other_vs_success,sim_replan_overlap_l1,"replan overlap L1 (episode mean, real feedback)",11,37,6,1.0,1.0,1.0,1839,1.0,,,4,1
+eval_all,square,other_vs_success,sim_boundary_jump_l1,boundary jump L1 (episode mean),11,37,6,1.0,1.0,1.0,1839,1.0,,,4,1
+eval_all,square,other_vs_success,ov_pos_mean,"overlap, position dims",11,37,6,1.0,1.0,1.0,1839,1.0,,,4,1
+eval_all,square,other_vs_success,ov_rot_mean,"overlap, rotation-6d dims",11,37,6,0.995085995085995,0.8378378378378378,1.0,1839,0.5,,,4,1
+eval_all,square,other_vs_success,ov_grip_mean,"overlap, gripper dim",11,37,6,0.9115479115479116,0.0,1.0,1839,0.0,,,4,1
+eval_all,square,other_vs_success,ov_all_max,"overlap, max over boundaries",11,37,6,0.9434889434889435,0.23312500000000003,1.0,1839,0.0,,,4,1
+eval_all,square,other_vs_success,ov_all_p90,"overlap, p90 over boundaries",11,37,6,0.972972972972973,0.5,1.0,1839,0.0,,,4,1
+eval_all,square,other_vs_success,jump_all_max,"boundary jump, max",11,37,6,0.9582309582309583,0.38095238095238093,1.0,1839,0.0,,,4,1
+eval_all,square,other_vs_success,exec_smoothness,executed smoothness (mean sq. 2nd diff),11,37,6,0.9090909090909091,0.0,1.0,1839,0.0,,,4,1
+eval_all,square,other_vs_success,grip_flips,gripper sign flips (count),11,37,6,0.9103194103194103,0.0,1.0,1839,0.0,,,4,1
+eval_all,square,other_vs_success,grip_flip_rate_per100,gripper flips per 100 steps,11,37,6,0.9090909090909091,0.0,1.0,1839,0.0,,,4,1
+eval_all,square,other_vs_success,ov_all_pre,"overlap, first 96 steps only",11,37,6,0.9877149877149877,0.7272727272727273,1.0,1839,0.25,,,4,1
+eval_all,square,other_vs_success,jump_all_pre,"boundary jump, first 96 steps only",11,37,6,0.995085995085995,0.8378378378378378,1.0,1839,0.5,,,4,1
+eval_all,square,other_vs_success,ov_grip_pre,"gripper overlap, first 96 steps only",11,37,6,0.9582309582309583,0.39473684210526316,1.0,1839,0.0,,,4,1
+eval_all,square,other_vs_success,exec_smoothness_pre,"executed smoothness, first 96 steps",11,37,6,0.9754299754299754,0.5952380952380952,1.0,1839,0.25,,,4,1
+eval_all,square,other_vs_success,grip_flips_pre,"gripper flips, first 96 steps",11,37,6,0.9434889434889435,0.30303030303030304,1.0,1839,0.125,,,4,1
+eval_all,square,other_vs_success,ov_all_prelift,"overlap, boundaries up to the first lift (never contains a drop)",0,37,5,,,,0,,,,0,0
+eval_all,square,other_vs_success,ov_pos_prelift,"position overlap, up to the first lift",0,37,5,,,,0,,,,0,0
+eval_all,square,other_vs_success,ov_grip_prelift,"gripper overlap, up to the first lift",0,37,5,,,,0,,,,0,0
+eval_all,square,other_vs_success,ov_all_reachwin,"overlap, +-16 steps around first reach",5,3,4,1.0,1.0,1.0,1383,,,,0,0
+eval_all,square,other_vs_success,ov_all_liftwin,"overlap, +-16 steps around first lift",0,37,5,,,,0,,,,0,0
+eval_all,square,other_vs_success,ov_grip_liftwin,"gripper overlap, +-16 steps around first lift",0,37,5,,,,0,,,,0,0
+eval_all,square,other_vs_success,n_steps,episode length (reference: trivially separates; not a PLV metric),11,37,6,1.0,1.0,1.0,1839,1.0,,,4,1
+eval_trained_epoch_gt0,can,failure_vs_success,sim_replan_overlap_l1,"replan overlap L1 (episode mean, real feedback)",17,113,13,0.9104633003643935,0.85227094053745,0.9638395792241946,2000,0.8782608695652174,0.8363609782030834,0.9425287356321839,115,8
+eval_trained_epoch_gt0,can,failure_vs_success,sim_boundary_jump_l1,boundary jump L1 (episode mean),17,113,13,0.9089016137428423,0.8403915103801024,0.9623507805325987,2000,0.8521739130434782,0.7599814814814815,0.931378833584716,115,8
+eval_trained_epoch_gt0,can,failure_vs_success,ov_pos_mean,"overlap, position dims",17,113,13,0.9510671525247267,0.8929603651830949,0.9918032786885246,2000,0.8695652173913043,0.7385463150777553,0.9710144927536232,115,8
+eval_trained_epoch_gt0,can,failure_vs_success,ov_rot_mean,"overlap, rotation-6d dims",17,113,13,0.8433107756376887,0.7038323771476631,0.9385596804718588,2000,0.6434782608695652,0.4705705173635719,0.8347893321380546,115,8
+eval_trained_epoch_gt0,can,failure_vs_success,ov_grip_mean,"overlap, gripper dim",17,113,13,0.6887038001041125,0.2791281801976989,0.8582091230897066,2000,0.5391304347826087,0.08851851851851854,0.7803737677984662,115,8
+eval_trained_epoch_gt0,can,failure_vs_success,ov_all_max,"overlap, max over boundaries",17,113,13,0.8761061946902655,0.7578288538065456,0.9456267655367231,2000,0.7652173913043478,0.6721189136285783,0.8888888888888888,115,8
+eval_trained_epoch_gt0,can,failure_vs_success,ov_all_p90,"overlap, p90 over boundaries",17,113,13,0.8323789692868298,0.6492450638792102,0.9181837280366693,2000,0.6782608695652174,0.4761446886446886,0.8125306372549018,115,8
+eval_trained_epoch_gt0,can,failure_vs_success,jump_all_max,"boundary jump, max",17,113,13,0.9104633003643935,0.8053895599350145,0.9763242223679495,2000,0.808695652173913,0.6665841584158415,1.0,115,8
+eval_trained_epoch_gt0,can,failure_vs_success,exec_smoothness,executed smoothness (mean sq. 2nd diff),17,113,13,0.5351379489849037,0.0,0.7276985996013394,2000,0.4260869565217391,0.0,0.6538793103448274,115,8
+eval_trained_epoch_gt0,can,failure_vs_success,grip_flips,gripper sign flips (count),17,113,13,0.816762103071317,0.5507281391628899,0.9284619272237197,2000,0.7478260869565218,0.5,0.8983552631578947,115,8
+eval_trained_epoch_gt0,can,failure_vs_success,grip_flip_rate_per100,gripper flips per 100 steps,17,113,13,0.5486725663716814,0.0,0.7580111388970612,2000,0.41739130434782606,0.0,0.6470588235294118,115,8
+eval_trained_epoch_gt0,can,failure_vs_success,ov_all_pre,"overlap, first 96 steps only",17,113,13,0.8495575221238938,0.6141640674759282,0.9576284696634734,2000,0.6782608695652174,0.44680851063829785,0.8543806764797994,115,8
+eval_trained_epoch_gt0,can,failure_vs_success,jump_all_pre,"boundary jump, first 96 steps only",17,113,13,0.842790213430505,0.6122528248587571,0.9503690465214298,2000,0.6608695652173913,0.4672741433021807,0.8333333333333334,115,8
+eval_trained_epoch_gt0,can,failure_vs_success,ov_grip_pre,"gripper overlap, first 96 steps only",17,113,13,0.8433107756376887,0.5942965212692616,0.9451818185750371,2000,0.6956521739130435,0.5,0.8066754385964912,115,8
+eval_trained_epoch_gt0,can,failure_vs_success,exec_smoothness_pre,"executed smoothness, first 96 steps",17,113,13,0.8120770432066632,0.6672847354665536,0.866371212121212,2000,0.6869565217391305,0.5555555555555556,0.7894736842105263,115,8
+eval_trained_epoch_gt0,can,failure_vs_success,grip_flips_pre,"gripper flips, first 96 steps",17,113,13,0.8326392503904216,0.6795055147058824,0.8918524184149184,2000,0.7478260869565218,0.625,0.822840702604482,115,8
+eval_trained_epoch_gt0,can,failure_vs_success,ov_all_prelift,"overlap, boundaries up to the first lift (never contains a drop)",13,113,13,0.7011572498298162,0.475152220910719,0.8482137892688352,2000,0.44680851063829785,0.2698412698412698,0.602284402241594,94,8
+eval_trained_epoch_gt0,can,failure_vs_success,ov_pos_prelift,"position overlap, up to the first lift",13,113,13,0.6875425459496256,0.47165185950413224,0.8655506129577337,2000,0.425531914893617,0.2222222222222222,0.6719098081683167,94,8
+eval_trained_epoch_gt0,can,failure_vs_success,ov_grip_prelift,"gripper overlap, up to the first lift",13,113,13,0.6637168141592921,0.44518190757128806,0.8158114035087718,2000,0.5319148936170213,0.3299817073170732,0.6883116883116883,94,8
+eval_trained_epoch_gt0,can,failure_vs_success,ov_all_reachwin,"overlap, +-16 steps around first reach",17,113,13,0.7496095783446122,0.5338658153180496,0.8448391109986505,2000,0.6,0.3809222423146474,0.7218149540517961,115,8
+eval_trained_epoch_gt0,can,failure_vs_success,ov_all_liftwin,"overlap, +-16 steps around first lift",13,113,13,0.776718856364874,0.5243112947658403,0.9193853485272249,2000,0.6276595744680851,0.35185185185185186,0.8222222222222222,94,8
+eval_trained_epoch_gt0,can,failure_vs_success,ov_grip_liftwin,"gripper overlap, +-16 steps around first lift",13,113,13,0.7481279782164738,0.5657685574229692,0.8726098076098076,2000,0.6914893617021277,0.48606770833333335,0.8500098425196849,94,8
+eval_trained_epoch_gt0,can,failure_vs_success,n_steps,episode length (reference: trivially separates; not a PLV metric),17,113,13,1.0,1.0,1.0,2000,1.0,1.0,1.0,115,8
+eval_trained_epoch_gt0,can,dropped_vs_success,sim_replan_overlap_l1,"replan overlap L1 (episode mean, real feedback)",12,113,13,0.8783185840707964,0.8161987590275658,0.9500023540489642,2000,0.8505747126436781,0.7575684024713151,0.936532738095238,87,8
+eval_trained_epoch_gt0,can,dropped_vs_success,sim_boundary_jump_l1,boundary jump L1 (episode mean),12,113,13,0.8783185840707964,0.8062892392143882,0.9485275626073851,2000,0.8160919540229885,0.7058823529411765,0.9206349206349206,87,8
+eval_trained_epoch_gt0,can,dropped_vs_success,ov_pos_mean,"overlap, position dims",12,113,13,0.9424778761061947,0.8831570396116076,0.9916683884297521,2000,0.8620689655172413,0.7471264367816092,0.9682539682539683,87,8
+eval_trained_epoch_gt0,can,dropped_vs_success,ov_rot_mean,"overlap, rotation-6d dims",12,113,13,0.8082595870206489,0.6829394576905096,0.9216110752688171,2000,0.6436781609195402,0.4895596590909091,0.8400317460317458,87,8
+eval_trained_epoch_gt0,can,dropped_vs_success,ov_grip_mean,"overlap, gripper dim",12,113,13,0.5626843657817109,0.2286937557392103,0.7913630351130352,2000,0.39080459770114945,0.07407407407407407,0.6792513304305756,87,8
+eval_trained_epoch_gt0,can,dropped_vs_success,ov_all_max,"overlap, max over boundaries",12,113,13,0.8436578171091446,0.733329678362573,0.9382641692546584,2000,0.7816091954022989,0.6951219512195121,0.8795208612226684,87,8
+eval_trained_epoch_gt0,can,dropped_vs_success,ov_all_p90,"overlap, p90 over boundaries",12,113,13,0.7699115044247787,0.6041393736981971,0.8888888888888888,2000,0.6091954022988506,0.4174689440993789,0.7608695652173914,87,8
+eval_trained_epoch_gt0,can,dropped_vs_success,jump_all_max,"boundary jump, max",12,113,13,0.8886430678466076,0.7655362361192285,0.9756126027646831,2000,0.8275862068965517,0.6666666666666666,1.0,87,8
+eval_trained_epoch_gt0,can,dropped_vs_success,exec_smoothness,executed smoothness (mean sq. 2nd diff),12,113,13,0.37610619469026546,0.0,0.6270628947532104,2000,0.27586206896551724,0.0,0.5185185185185185,87,8
+eval_trained_epoch_gt0,can,dropped_vs_success,grip_flips,gripper sign flips (count),12,113,13,0.7422566371681416,0.5108009651600752,0.8905744013488422,2000,0.6666666666666666,0.4456436820652174,0.848401639344262,87,8
+eval_trained_epoch_gt0,can,dropped_vs_success,grip_flip_rate_per100,gripper flips per 100 steps,12,113,13,0.3834808259587021,0.0,0.6579453441295544,2000,0.27586206896551724,0.0,0.5385593220338978,87,8
+eval_trained_epoch_gt0,can,dropped_vs_success,ov_all_pre,"overlap, first 96 steps only",12,113,13,0.8053097345132744,0.5748445998445999,0.9524820105443146,2000,0.6551724137931034,0.38452380952380955,0.8735632183908046,87,8
+eval_trained_epoch_gt0,can,dropped_vs_success,jump_all_pre,"boundary jump, first 96 steps only",12,113,13,0.7957227138643068,0.559105618053673,0.9468636194723151,2000,0.6436781609195402,0.4085722819593788,0.8421369689283448,87,8
+eval_trained_epoch_gt0,can,dropped_vs_success,ov_grip_pre,"gripper overlap, first 96 steps only",12,113,13,0.7942477876106194,0.5427929456906729,0.9375057234432234,2000,0.6666666666666666,0.455530303030303,0.8064516129032258,87,8
+eval_trained_epoch_gt0,can,dropped_vs_success,exec_smoothness_pre,"executed smoothness, first 96 steps",12,113,13,0.7927728613569321,0.6322186305873989,0.8697939510233917,2000,0.6666666666666666,0.5222101449275363,0.786966201173851,87,8
+eval_trained_epoch_gt0,can,dropped_vs_success,grip_flips_pre,"gripper flips, first 96 steps",12,113,13,0.8049410029498525,0.6513396427619301,0.8890777699968876,2000,0.7298850574712644,0.5928505291005292,0.8266896551724137,87,8
+eval_trained_epoch_gt0,can,dropped_vs_success,ov_all_prelift,"overlap, boundaries up to the first lift (never contains a drop)",12,113,13,0.6873156342182891,0.4457431812221348,0.8467787517531556,2000,0.42528735632183906,0.24690512430238457,0.5952380952380952,87,8
+eval_trained_epoch_gt0,can,dropped_vs_success,ov_pos_prelift,"position overlap, up to the first lift",12,113,13,0.7042772861356932,0.47399908172635447,0.8686796667819668,2000,0.4482758620689655,0.23329710144927537,0.6800138888888888,87,8
+eval_trained_epoch_gt0,can,dropped_vs_success,ov_grip_prelift,"gripper overlap, up to the first lift",12,113,13,0.6393805309734514,0.42152449887940374,0.8049614163968231,2000,0.5057471264367817,0.3235294117647059,0.6721311475409836,87,8
+eval_trained_epoch_gt0,can,dropped_vs_success,ov_all_reachwin,"overlap, +-16 steps around first reach",12,113,13,0.6674041297935103,0.4688609568121034,0.8042065390749601,2000,0.5287356321839081,0.3076923076923077,0.69072633552015,87,8
+eval_trained_epoch_gt0,can,dropped_vs_success,ov_all_liftwin,"overlap, +-16 steps around first lift",12,113,13,0.7595870206489675,0.5068698347107439,0.9122518572646449,2000,0.5977011494252874,0.3383333333333334,0.8,87,8
+eval_trained_epoch_gt0,can,dropped_vs_success,ov_grip_liftwin,"gripper overlap, +-16 steps around first lift",12,113,13,0.7286135693215339,0.5594700486295314,0.851097070890503,2000,0.6666666666666666,0.48148148148148145,0.8217855689678556,87,8
+eval_trained_epoch_gt0,can,dropped_vs_success,n_steps,episode length (reference: trivially separates; not a PLV metric),12,113,13,1.0,1.0,1.0,2000,1.0,1.0,1.0,87,8
+eval_trained_epoch_gt0,can,no_grasp_vs_success,sim_replan_overlap_l1,"replan overlap L1 (episode mean, real feedback)",5,113,13,0.9876106194690265,0.9544466403162055,1.0,1941,0.9642857142857143,0.8571428571428571,1.0,28,3
+eval_trained_epoch_gt0,can,no_grasp_vs_success,sim_boundary_jump_l1,boundary jump L1 (episode mean),5,113,13,0.9823008849557522,0.9377866972477065,1.0,1941,0.9642857142857143,0.8571428571428571,1.0,28,3
+eval_trained_epoch_gt0,can,no_grasp_vs_success,ov_pos_mean,"overlap, position dims",5,113,13,0.9716814159292035,0.8801693328795099,1.0,1941,0.8928571428571429,0.5714285714285714,1.0,28,3
+eval_trained_epoch_gt0,can,no_grasp_vs_success,ov_rot_mean,"overlap, rotation-6d dims",5,113,13,0.9274336283185841,0.7138643067846607,0.9917355371900827,1941,0.6428571428571429,0.14285714285714285,0.8333333333333334,28,3
+eval_trained_epoch_gt0,can,no_grasp_vs_success,ov_grip_mean,"overlap, gripper dim",5,113,13,0.9911504424778761,0.9665266106442577,1.0,1941,1.0,1.0,1.0,28,3
+eval_trained_epoch_gt0,can,no_grasp_vs_success,ov_all_max,"overlap, max over boundaries",5,113,13,0.9539823008849557,0.8825242718446602,0.991869918699187,1941,0.7142857142857143,0.6,1.0,28,3
+eval_trained_epoch_gt0,can,no_grasp_vs_success,ov_all_p90,"overlap, p90 over boundaries",5,113,13,0.9823008849557522,0.9543135435992579,1.0,1941,0.8928571428571429,0.8,1.0,28,3
+eval_trained_epoch_gt0,can,no_grasp_vs_success,jump_all_max,"boundary jump, max",5,113,13,0.9628318584070796,0.8932038834951457,1.0,1941,0.75,0.5,1.0,28,3
+eval_trained_epoch_gt0,can,no_grasp_vs_success,exec_smoothness,executed smoothness (mean sq. 2nd diff),5,113,13,0.9168141592920354,0.8067226890756303,0.9687937611666425,1941,0.8928571428571429,0.8333333333333334,0.9333333333333333,28,3
+eval_trained_epoch_gt0,can,no_grasp_vs_success,grip_flips,gripper sign flips (count),5,113,13,0.995575221238938,0.9863636363636363,1.0,1941,1.0,1.0,1.0,28,3
+eval_trained_epoch_gt0,can,no_grasp_vs_success,grip_flip_rate_per100,gripper flips per 100 steps,5,113,13,0.9451327433628318,0.8148210897262131,0.9889593846753943,1941,0.8571428571428571,0.7142857142857143,0.9333333333333333,28,3
+eval_trained_epoch_gt0,can,no_grasp_vs_success,ov_all_pre,"overlap, first 96 steps only",5,113,13,0.9557522123893806,0.898567856092128,0.9916666666666667,1941,0.75,0.6666666666666666,0.8571428571428571,28,3
+eval_trained_epoch_gt0,can,no_grasp_vs_success,jump_all_pre,"boundary jump, first 96 steps only",5,113,13,0.9557522123893806,0.8961811997526283,0.9861111111111112,1941,0.7142857142857143,0.6666666666666666,0.8571428571428571,28,3
+eval_trained_epoch_gt0,can,no_grasp_vs_success,ov_grip_pre,"gripper overlap, first 96 steps only",5,113,13,0.9610619469026549,0.9176203334619176,0.9916666666666667,1941,0.7857142857142857,0.7333333333333333,0.8571428571428571,28,3
+eval_trained_epoch_gt0,can,no_grasp_vs_success,exec_smoothness_pre,"executed smoothness, first 96 steps",5,113,13,0.8584070796460177,0.8117793193361205,0.892704495210022,1941,0.75,0.6666666666666666,0.8571428571428571,28,3
+eval_trained_epoch_gt0,can,no_grasp_vs_success,grip_flips_pre,"gripper flips, first 96 steps",5,113,13,0.8991150442477877,0.8076923076923077,0.9558404558404558,1941,0.8035714285714286,0.6666666666666666,0.8571428571428571,28,3
+eval_trained_epoch_gt0,can,no_grasp_vs_success,ov_all_prelift,"overlap, boundaries up to the first lift (never contains a drop)",1,113,13,0.8672566371681416,0.7549019607843137,0.9344262295081968,1267,0.7142857142857143,,,7,1
+eval_trained_epoch_gt0,can,no_grasp_vs_success,ov_pos_prelift,"position overlap, up to the first lift",1,113,13,0.48672566371681414,0.28259862778730704,0.6611570247933884,1267,0.14285714285714285,,,7,1
+eval_trained_epoch_gt0,can,no_grasp_vs_success,ov_grip_prelift,"gripper overlap, up to the first lift",1,113,13,0.9557522123893806,0.9029669762641899,0.9834710743801653,1267,0.8571428571428571,,,7,1
+eval_trained_epoch_gt0,can,no_grasp_vs_success,ov_all_reachwin,"overlap, +-16 steps around first reach",5,113,13,0.9469026548672567,0.8347826086956521,0.9915254237288136,1941,0.8214285714285714,0.6666666666666666,0.8666666666666667,28,3
+eval_trained_epoch_gt0,can,no_grasp_vs_success,ov_all_liftwin,"overlap, +-16 steps around first lift",1,113,13,0.9823008849557522,0.9509803921568627,1.0,1267,1.0,,,7,1
+eval_trained_epoch_gt0,can,no_grasp_vs_success,ov_grip_liftwin,"gripper overlap, +-16 steps around first lift",1,113,13,0.9823008849557522,0.9509803921568627,1.0,1267,1.0,,,7,1
+eval_trained_epoch_gt0,can,no_grasp_vs_success,n_steps,episode length (reference: trivially separates; not a PLV metric),5,113,13,1.0,1.0,1.0,1941,1.0,1.0,1.0,28,3
+eval_trained_epoch_gt0,can,dropped_vs_no_grasp,sim_replan_overlap_l1,"replan overlap L1 (episode mean, real feedback)",12,5,8,0.18333333333333332,0.037037037037037035,0.36456043956043843,1965,0.2727272727272727,0.16666666666666666,0.5,11,3
+eval_trained_epoch_gt0,can,dropped_vs_no_grasp,sim_boundary_jump_l1,boundary jump L1 (episode mean),12,5,8,0.18333333333333332,0.0,0.5,1965,0.2727272727272727,0.0,0.6666666666666666,11,3
+eval_trained_epoch_gt0,can,dropped_vs_no_grasp,ov_pos_mean,"overlap, position dims",12,5,8,0.36666666666666664,0.07407407407407407,0.8888888888888888,1965,0.45454545454545453,0.3333333333333333,0.6666666666666666,11,3
+eval_trained_epoch_gt0,can,dropped_vs_no_grasp,ov_rot_mean,"overlap, rotation-6d dims",12,5,8,0.25,0.037037037037037035,0.6363636363636364,1965,0.2727272727272727,0.16666666666666666,0.5,11,3
+eval_trained_epoch_gt0,can,dropped_vs_no_grasp,ov_grip_mean,"overlap, gripper dim",12,5,8,0.13333333333333333,0.0,0.21428571428571427,1965,0.09090909090909091,0.0,0.16666666666666666,11,3
+eval_trained_epoch_gt0,can,dropped_vs_no_grasp,ov_all_max,"overlap, max over boundaries",12,5,8,0.43333333333333335,0.2,0.6888888888888889,1965,0.7272727272727273,0.5,1.0,11,3
+eval_trained_epoch_gt0,can,dropped_vs_no_grasp,ov_all_p90,"overlap, p90 over boundaries",12,5,8,0.18333333333333332,0.0,0.3020833333333333,1965,0.36363636363636365,0.0,0.5,11,3
+eval_trained_epoch_gt0,can,dropped_vs_no_grasp,jump_all_max,"boundary jump, max",12,5,8,0.3333333333333333,0.1675,0.5,1965,0.45454545454545453,0.3333333333333333,0.5,11,3
+eval_trained_epoch_gt0,can,dropped_vs_no_grasp,exec_smoothness,executed smoothness (mean sq. 2nd diff),12,5,8,0.16666666666666666,0.0,0.42857142857142855,1965,0.2727272727272727,0.0,0.6666666666666666,11,3
+eval_trained_epoch_gt0,can,dropped_vs_no_grasp,grip_flips,gripper sign flips (count),12,5,8,0.175,0.0,0.34834267040149336,1965,0.22727272727272727,0.0,0.5,11,3
+eval_trained_epoch_gt0,can,dropped_vs_no_grasp,grip_flip_rate_per100,gripper flips per 100 steps,12,5,8,0.175,0.0,0.34834267040149336,1965,0.22727272727272727,0.0,0.5,11,3
+eval_trained_epoch_gt0,can,dropped_vs_no_grasp,ov_all_pre,"overlap, first 96 steps only",12,5,8,0.3,0.07407407407407407,0.5,1965,0.45454545454545453,0.3333333333333333,0.6666666666666666,11,3
+eval_trained_epoch_gt0,can,dropped_vs_no_grasp,jump_all_pre,"boundary jump, first 96 steps only",12,5,8,0.35,0.1,0.6,1965,0.45454545454545453,0.3333333333333333,1.0,11,3
+eval_trained_epoch_gt0,can,dropped_vs_no_grasp,ov_grip_pre,"gripper overlap, first 96 steps only",12,5,8,0.26666666666666666,0.07407407407407407,0.39705882352941174,1965,0.36363636363636365,0.3333333333333333,0.5,11,3
+eval_trained_epoch_gt0,can,dropped_vs_no_grasp,exec_smoothness_pre,"executed smoothness, first 96 steps",12,5,8,0.4166666666666667,0.1111111111111111,0.6317752100840334,1965,0.36363636363636365,0.16666666666666666,0.6666666666666666,11,3
+eval_trained_epoch_gt0,can,dropped_vs_no_grasp,grip_flips_pre,"gripper flips, first 96 steps",12,5,8,0.375,0.037037037037037035,0.6923076923076923,1965,0.45454545454545453,0.16666666666666666,0.8333333333333334,11,3
+eval_trained_epoch_gt0,can,dropped_vs_no_grasp,ov_all_prelift,"overlap, boundaries up to the first lift (never contains a drop)",12,1,8,0.4166666666666667,0.1111111111111111,0.6428571428571429,1347,0.5,,,2,1
+eval_trained_epoch_gt0,can,dropped_vs_no_grasp,ov_pos_prelift,"position overlap, up to the first lift",12,1,8,0.75,0.4444444444444444,0.9230769230769231,1347,0.5,,,2,1
+eval_trained_epoch_gt0,can,dropped_vs_no_grasp,ov_grip_prelift,"gripper overlap, up to the first lift",12,1,8,0.16666666666666666,0.0,0.28055555555555484,1347,0.0,,,2,1
+eval_trained_epoch_gt0,can,dropped_vs_no_grasp,ov_all_reachwin,"overlap, +-16 steps around first reach",12,5,8,0.2,0.037037037037037035,0.425,1965,0.36363636363636365,0.16666666666666666,0.6666666666666666,11,3
+eval_trained_epoch_gt0,can,dropped_vs_no_grasp,ov_all_liftwin,"overlap, +-16 steps around first lift",12,1,8,0.08333333333333333,0.0,0.1875,1347,0.0,,,2,1
+eval_trained_epoch_gt0,can,dropped_vs_no_grasp,ov_grip_liftwin,"gripper overlap, +-16 steps around first lift",12,1,8,0.0,0.0,0.0,1347,0.0,,,2,1
+eval_trained_epoch_gt0,can,dropped_vs_no_grasp,n_steps,episode length (reference: trivially separates; not a PLV metric),12,5,8,0.5,0.5,0.5,1965,0.5,0.5,0.5,11,3
+eval_trained_epoch_gt0,can,dropped_vs_other_failures,sim_replan_overlap_l1,"replan overlap L1 (episode mean, real feedback)",12,5,8,0.18333333333333332,0.037037037037037035,0.36456043956043843,1965,0.2727272727272727,0.16666666666666666,0.5,11,3
+eval_trained_epoch_gt0,can,dropped_vs_other_failures,sim_boundary_jump_l1,boundary jump L1 (episode mean),12,5,8,0.18333333333333332,0.0,0.5,1965,0.2727272727272727,0.0,0.6666666666666666,11,3
+eval_trained_epoch_gt0,can,dropped_vs_other_failures,ov_pos_mean,"overlap, position dims",12,5,8,0.36666666666666664,0.07407407407407407,0.8888888888888888,1965,0.45454545454545453,0.3333333333333333,0.6666666666666666,11,3
+eval_trained_epoch_gt0,can,dropped_vs_other_failures,ov_rot_mean,"overlap, rotation-6d dims",12,5,8,0.25,0.037037037037037035,0.6363636363636364,1965,0.2727272727272727,0.16666666666666666,0.5,11,3
+eval_trained_epoch_gt0,can,dropped_vs_other_failures,ov_grip_mean,"overlap, gripper dim",12,5,8,0.13333333333333333,0.0,0.21428571428571427,1965,0.09090909090909091,0.0,0.16666666666666666,11,3
+eval_trained_epoch_gt0,can,dropped_vs_other_failures,ov_all_max,"overlap, max over boundaries",12,5,8,0.43333333333333335,0.2,0.6888888888888889,1965,0.7272727272727273,0.5,1.0,11,3
+eval_trained_epoch_gt0,can,dropped_vs_other_failures,ov_all_p90,"overlap, p90 over boundaries",12,5,8,0.18333333333333332,0.0,0.3020833333333333,1965,0.36363636363636365,0.0,0.5,11,3
+eval_trained_epoch_gt0,can,dropped_vs_other_failures,jump_all_max,"boundary jump, max",12,5,8,0.3333333333333333,0.1675,0.5,1965,0.45454545454545453,0.3333333333333333,0.5,11,3
+eval_trained_epoch_gt0,can,dropped_vs_other_failures,exec_smoothness,executed smoothness (mean sq. 2nd diff),12,5,8,0.16666666666666666,0.0,0.42857142857142855,1965,0.2727272727272727,0.0,0.6666666666666666,11,3
+eval_trained_epoch_gt0,can,dropped_vs_other_failures,grip_flips,gripper sign flips (count),12,5,8,0.175,0.0,0.34834267040149336,1965,0.22727272727272727,0.0,0.5,11,3
+eval_trained_epoch_gt0,can,dropped_vs_other_failures,grip_flip_rate_per100,gripper flips per 100 steps,12,5,8,0.175,0.0,0.34834267040149336,1965,0.22727272727272727,0.0,0.5,11,3
+eval_trained_epoch_gt0,can,dropped_vs_other_failures,ov_all_pre,"overlap, first 96 steps only",12,5,8,0.3,0.07407407407407407,0.5,1965,0.45454545454545453,0.3333333333333333,0.6666666666666666,11,3
+eval_trained_epoch_gt0,can,dropped_vs_other_failures,jump_all_pre,"boundary jump, first 96 steps only",12,5,8,0.35,0.1,0.6,1965,0.45454545454545453,0.3333333333333333,1.0,11,3
+eval_trained_epoch_gt0,can,dropped_vs_other_failures,ov_grip_pre,"gripper overlap, first 96 steps only",12,5,8,0.26666666666666666,0.07407407407407407,0.39705882352941174,1965,0.36363636363636365,0.3333333333333333,0.5,11,3
+eval_trained_epoch_gt0,can,dropped_vs_other_failures,exec_smoothness_pre,"executed smoothness, first 96 steps",12,5,8,0.4166666666666667,0.1111111111111111,0.6317752100840334,1965,0.36363636363636365,0.16666666666666666,0.6666666666666666,11,3
+eval_trained_epoch_gt0,can,dropped_vs_other_failures,grip_flips_pre,"gripper flips, first 96 steps",12,5,8,0.375,0.037037037037037035,0.6923076923076923,1965,0.45454545454545453,0.16666666666666666,0.8333333333333334,11,3
+eval_trained_epoch_gt0,can,dropped_vs_other_failures,ov_all_prelift,"overlap, boundaries up to the first lift (never contains a drop)",12,1,8,0.4166666666666667,0.1111111111111111,0.6428571428571429,1347,0.5,,,2,1
+eval_trained_epoch_gt0,can,dropped_vs_other_failures,ov_pos_prelift,"position overlap, up to the first lift",12,1,8,0.75,0.4444444444444444,0.9230769230769231,1347,0.5,,,2,1
+eval_trained_epoch_gt0,can,dropped_vs_other_failures,ov_grip_prelift,"gripper overlap, up to the first lift",12,1,8,0.16666666666666666,0.0,0.28055555555555484,1347,0.0,,,2,1
+eval_trained_epoch_gt0,can,dropped_vs_other_failures,ov_all_reachwin,"overlap, +-16 steps around first reach",12,5,8,0.2,0.037037037037037035,0.425,1965,0.36363636363636365,0.16666666666666666,0.6666666666666666,11,3
+eval_trained_epoch_gt0,can,dropped_vs_other_failures,ov_all_liftwin,"overlap, +-16 steps around first lift",12,1,8,0.08333333333333333,0.0,0.1875,1347,0.0,,,2,1
+eval_trained_epoch_gt0,can,dropped_vs_other_failures,ov_grip_liftwin,"gripper overlap, +-16 steps around first lift",12,1,8,0.0,0.0,0.0,1347,0.0,,,2,1
+eval_trained_epoch_gt0,can,dropped_vs_other_failures,n_steps,episode length (reference: trivially separates; not a PLV metric),12,5,8,0.5,0.5,0.5,1965,0.5,0.5,0.5,11,3
+eval_trained_epoch_gt0,square,failure_vs_success,sim_replan_overlap_l1,"replan overlap L1 (episode mean, real feedback)",13,37,5,0.8128898128898129,0.553030303030303,0.96,2000,0.92,0.8095238095238095,1.0,75,4
+eval_trained_epoch_gt0,square,failure_vs_success,sim_boundary_jump_l1,boundary jump L1 (episode mean),13,37,5,0.735966735966736,0.3939393939393939,0.9397089397089398,2000,0.72,0.5238095238095238,0.9824561403508771,75,4
+eval_trained_epoch_gt0,square,failure_vs_success,ov_pos_mean,"overlap, position dims",13,37,5,0.8731808731808732,0.6533333333333333,0.9792099792099792,2000,0.9733333333333334,0.8821691176470589,1.0,75,4
+eval_trained_epoch_gt0,square,failure_vs_success,ov_rot_mean,"overlap, rotation-6d dims",13,37,5,0.7484407484407485,0.4666666666666667,0.8523908523908524,2000,0.7466666666666667,0.631578947368421,0.8928571428571429,75,4
+eval_trained_epoch_gt0,square,failure_vs_success,ov_grip_mean,"overlap, gripper dim",13,37,5,0.5343035343035343,0.38476190476190475,0.7347039473684207,2000,0.52,0.34746376811594204,0.7692307692307693,75,4
+eval_trained_epoch_gt0,square,failure_vs_success,ov_all_max,"overlap, max over boundaries",13,37,5,0.7234927234927235,0.5582655826558266,0.8617886178861789,2000,0.6933333333333334,0.5362318840579711,0.9130434782608695,75,4
+eval_trained_epoch_gt0,square,failure_vs_success,ov_all_p90,"overlap, p90 over boundaries",13,37,5,0.6694386694386695,0.4621212121212121,0.7825311942959001,2000,0.5866666666666667,0.463768115942029,0.7391304347826086,75,4
+eval_trained_epoch_gt0,square,failure_vs_success,jump_all_max,"boundary jump, max",13,37,5,0.683991683991684,0.42005420054200543,0.8538205980066446,2000,0.5466666666666666,0.3968253968253968,0.7857142857142857,75,4
+eval_trained_epoch_gt0,square,failure_vs_success,exec_smoothness,executed smoothness (mean sq. 2nd diff),13,37,5,0.3201663201663202,0.1371527777777778,0.6140350877192983,2000,0.30666666666666664,0.09195402298850575,0.6862745098039216,75,4
+eval_trained_epoch_gt0,square,failure_vs_success,grip_flips,gripper sign flips (count),13,37,5,0.7172557172557172,0.5580952380952381,0.8712121212121212,2000,0.6733333333333333,0.5606060606060606,0.85,75,4
+eval_trained_epoch_gt0,square,failure_vs_success,grip_flip_rate_per100,gripper flips per 100 steps,13,37,5,0.3981288981288981,0.16279069767441862,0.6653116531165312,2000,0.3466666666666667,0.10714285714285714,0.6923076923076923,75,4
+eval_trained_epoch_gt0,square,failure_vs_success,ov_all_pre,"overlap, first 96 steps only",13,37,5,0.6943866943866944,0.4053030303030303,0.7996323529411765,2000,0.6,0.30952380952380953,0.8472222222222222,75,4
+eval_trained_epoch_gt0,square,failure_vs_success,jump_all_pre,"boundary jump, first 96 steps only",13,37,5,0.656964656964657,0.3685636856368564,0.8432539682539683,2000,0.5733333333333334,0.391304347826087,0.855072463768116,75,4
+eval_trained_epoch_gt0,square,failure_vs_success,ov_grip_pre,"gripper overlap, first 96 steps only",13,37,5,0.5426195426195426,0.32,0.7123809523809523,2000,0.4,0.11904761904761904,0.7380952380952381,75,4
+eval_trained_epoch_gt0,square,failure_vs_success,exec_smoothness_pre,"executed smoothness, first 96 steps",13,37,5,0.5301455301455301,0.3541666666666667,0.8265582655826558,2000,0.49333333333333335,0.2753623188405797,0.7971014492753623,75,4
+eval_trained_epoch_gt0,square,failure_vs_success,grip_flips_pre,"gripper flips, first 96 steps",13,37,5,0.5717255717255717,0.3952124849033816,0.82,2000,0.52,0.3115942028985507,0.8405797101449275,75,4
+eval_trained_epoch_gt0,square,failure_vs_success,ov_all_prelift,"overlap, boundaries up to the first lift (never contains a drop)",9,37,5,0.5945945945945946,0.3377777777777778,0.7807017543859649,2000,0.6271186440677966,0.19230769230769232,0.8626691401134843,59,4
+eval_trained_epoch_gt0,square,failure_vs_success,ov_pos_prelift,"position overlap, up to the first lift",9,37,5,0.6366366366366366,0.4577777777777778,0.7858627858627859,2000,0.7288135593220338,0.5,0.8571428571428571,59,4
+eval_trained_epoch_gt0,square,failure_vs_success,ov_grip_prelift,"gripper overlap, up to the first lift",9,37,5,0.5255255255255256,0.2926829268292683,0.6975,2000,0.4915254237288136,0.11538461538461539,0.759493670886076,59,4
+eval_trained_epoch_gt0,square,failure_vs_success,ov_all_reachwin,"overlap, +-16 steps around first reach",6,3,5,0.7777777777777778,0.25,1.0,1964,1.0,,,3,1
+eval_trained_epoch_gt0,square,failure_vs_success,ov_all_liftwin,"overlap, +-16 steps around first lift",9,37,5,0.5615615615615616,0.36585365853658536,0.7398373983739838,2000,0.5932203389830508,0.40540540540540543,0.7692307692307693,59,4
+eval_trained_epoch_gt0,square,failure_vs_success,ov_grip_liftwin,"gripper overlap, +-16 steps around first lift",9,37,5,0.6096096096096096,0.4128787878787879,0.7879417879417879,2000,0.711864406779661,0.5384615384615384,0.8648648648648649,59,4
+eval_trained_epoch_gt0,square,failure_vs_success,n_steps,episode length (reference: trivially separates; not a PLV metric),13,37,5,1.0,1.0,1.0,2000,1.0,1.0,1.0,75,4
+eval_trained_epoch_gt0,square,dropped_vs_success,sim_replan_overlap_l1,"replan overlap L1 (episode mean, real feedback)",9,37,5,0.7297297297297297,0.553030303030303,0.9288888888888889,2000,0.8983050847457628,0.8,1.0,59,4
+eval_trained_epoch_gt0,square,dropped_vs_success,sim_boundary_jump_l1,boundary jump L1 (episode mean),9,37,5,0.6186186186186187,0.3939393939393939,0.8666666666666667,2000,0.6440677966101694,0.5238095238095238,0.96,59,4
+eval_trained_epoch_gt0,square,dropped_vs_success,ov_pos_mean,"overlap, position dims",9,37,5,0.8168168168168168,0.6533333333333333,0.9792099792099792,2000,0.9661016949152542,0.8461538461538461,1.0,59,4
+eval_trained_epoch_gt0,square,dropped_vs_success,ov_rot_mean,"overlap, rotation-6d dims",9,37,5,0.6606606606606606,0.4666666666666667,0.8308823529411765,2000,0.7966101694915254,0.6875,0.92,59,4
+eval_trained_epoch_gt0,square,dropped_vs_success,ov_grip_mean,"overlap, gripper dim",9,37,5,0.5795795795795796,0.4444444444444444,0.7669376693766937,2000,0.6101694915254238,0.4864864864864865,0.8125,59,4
+eval_trained_epoch_gt0,square,dropped_vs_success,ov_all_max,"overlap, max over boundaries",9,37,5,0.6816816816816816,0.5416666666666666,0.8617886178861789,2000,0.7288135593220338,0.5135135135135135,0.9130434782608695,59,4
+eval_trained_epoch_gt0,square,dropped_vs_success,ov_all_p90,"overlap, p90 over boundaries",9,37,5,0.6186186186186187,0.4621212121212121,0.7541666666666667,2000,0.6610169491525424,0.58,0.7435897435897436,59,4
+eval_trained_epoch_gt0,square,dropped_vs_success,jump_all_max,"boundary jump, max",9,37,5,0.6036036036036037,0.42005420054200543,0.8702702702702703,2000,0.5423728813559322,0.3968253968253968,0.9230769230769231,59,4
+eval_trained_epoch_gt0,square,dropped_vs_success,exec_smoothness,executed smoothness (mean sq. 2nd diff),9,37,5,0.34534534534534533,0.12723214285714285,0.7774086378737541,2000,0.3389830508474576,0.07142857142857142,0.8846153846153846,59,4
+eval_trained_epoch_gt0,square,dropped_vs_success,grip_flips,gripper sign flips (count),9,37,5,0.7522522522522522,0.5460704607046071,0.975,2000,0.7372881355932204,0.5774647887323944,1.0,59,4
+eval_trained_epoch_gt0,square,dropped_vs_success,grip_flip_rate_per100,gripper flips per 100 steps,9,37,5,0.4114114114114114,0.16279069767441862,0.7873754152823921,2000,0.3898305084745763,0.1,0.8846153846153846,59,4
+eval_trained_epoch_gt0,square,dropped_vs_success,ov_all_pre,"overlap, first 96 steps only",9,37,5,0.6216216216216216,0.38666666666666666,0.7925407925407926,2000,0.6440677966101694,0.23076923076923078,0.8690476190476191,59,4
+eval_trained_epoch_gt0,square,dropped_vs_success,jump_all_pre,"boundary jump, first 96 steps only",9,37,5,0.5825825825825826,0.3685636856368564,0.8111111111111111,2000,0.6101694915254238,0.35135135135135137,0.8636363636363636,59,4
+eval_trained_epoch_gt0,square,dropped_vs_success,ov_grip_pre,"gripper overlap, first 96 steps only",9,37,5,0.5435435435435435,0.324875,0.7205882352941176,2000,0.4915254237288136,0.15384615384615385,0.76,59,4
+eval_trained_epoch_gt0,square,dropped_vs_success,exec_smoothness_pre,"executed smoothness, first 96 steps",9,37,5,0.5765765765765766,0.35,0.8292682926829268,2000,0.559322033898305,0.2972972972972973,0.8205128205128205,59,4
+eval_trained_epoch_gt0,square,dropped_vs_success,grip_flips_pre,"gripper flips, first 96 steps",9,37,5,0.5990990990990991,0.375,0.8414634146341463,2000,0.5932203389830508,0.36,0.8589743589743589,59,4
+eval_trained_epoch_gt0,square,dropped_vs_success,ov_all_prelift,"overlap, boundaries up to the first lift (never contains a drop)",9,37,5,0.5945945945945946,0.3377777777777778,0.7807017543859649,2000,0.6271186440677966,0.19230769230769232,0.8626691401134843,59,4
+eval_trained_epoch_gt0,square,dropped_vs_success,ov_pos_prelift,"position overlap, up to the first lift",9,37,5,0.6366366366366366,0.4577777777777778,0.7858627858627859,2000,0.7288135593220338,0.5,0.8571428571428571,59,4
+eval_trained_epoch_gt0,square,dropped_vs_success,ov_grip_prelift,"gripper overlap, up to the first lift",9,37,5,0.5255255255255256,0.2926829268292683,0.6975,2000,0.4915254237288136,0.11538461538461539,0.759493670886076,59,4
+eval_trained_epoch_gt0,square,dropped_vs_success,ov_all_reachwin,"overlap, +-16 steps around first reach",4,3,5,0.8333333333333334,0.25,1.0,1964,1.0,,,1,1
+eval_trained_epoch_gt0,square,dropped_vs_success,ov_all_liftwin,"overlap, +-16 steps around first lift",9,37,5,0.5615615615615616,0.36585365853658536,0.7398373983739838,2000,0.5932203389830508,0.40540540540540543,0.7692307692307693,59,4
+eval_trained_epoch_gt0,square,dropped_vs_success,ov_grip_liftwin,"gripper overlap, +-16 steps around first lift",9,37,5,0.6096096096096096,0.4128787878787879,0.7879417879417879,2000,0.711864406779661,0.5384615384615384,0.8648648648648649,59,4
+eval_trained_epoch_gt0,square,dropped_vs_success,n_steps,episode length (reference: trivially separates; not a PLV metric),9,37,5,1.0,1.0,1.0,2000,1.0,1.0,1.0,59,4
+eval_trained_epoch_gt0,square,no_grasp_vs_success,sim_replan_overlap_l1,"replan overlap L1 (episode mean, real feedback)",3,37,5,1.0,1.0,1.0,1372,1.0,,,12,1
+eval_trained_epoch_gt0,square,no_grasp_vs_success,sim_boundary_jump_l1,boundary jump L1 (episode mean),3,37,5,1.0,1.0,1.0,1372,1.0,,,12,1
+eval_trained_epoch_gt0,square,no_grasp_vs_success,ov_pos_mean,"overlap, position dims",3,37,5,1.0,1.0,1.0,1372,1.0,,,12,1
+eval_trained_epoch_gt0,square,no_grasp_vs_success,ov_rot_mean,"overlap, rotation-6d dims",3,37,5,0.9459459459459459,0.8076923076923077,0.9537037037037037,1372,0.5833333333333334,,,12,1
+eval_trained_epoch_gt0,square,no_grasp_vs_success,ov_grip_mean,"overlap, gripper dim",3,37,5,0.5675675675675675,0.3448275862068966,0.7685185185185185,1372,0.25,,,12,1
+eval_trained_epoch_gt0,square,no_grasp_vs_success,ov_all_max,"overlap, max over boundaries",3,37,5,0.963963963963964,0.8846153846153846,0.9722222222222222,1372,0.75,,,12,1
+eval_trained_epoch_gt0,square,no_grasp_vs_success,ov_all_p90,"overlap, p90 over boundaries",3,37,5,0.8108108108108109,0.6190476190476191,0.9313725490196079,1372,0.4166666666666667,,,12,1
+eval_trained_epoch_gt0,square,no_grasp_vs_success,jump_all_max,"boundary jump, max",3,37,5,0.972972972972973,0.8846153846153846,0.975609756097561,1372,0.75,,,12,1
+eval_trained_epoch_gt0,square,no_grasp_vs_success,exec_smoothness,executed smoothness (mean sq. 2nd diff),3,37,5,0.35135135135135137,0.22916666666666666,0.4878048780487805,1372,0.25,,,12,1
+eval_trained_epoch_gt0,square,no_grasp_vs_success,grip_flips,gripper sign flips (count),3,37,5,0.8468468468468469,0.7126436781609196,0.9166666666666666,1372,0.5833333333333334,,,12,1
+eval_trained_epoch_gt0,square,no_grasp_vs_success,grip_flip_rate_per100,gripper flips per 100 steps,3,37,5,0.49099099099099097,0.3229166666666667,0.6544715447154471,1372,0.25,,,12,1
+eval_trained_epoch_gt0,square,no_grasp_vs_success,ov_all_pre,"overlap, first 96 steps only",3,37,5,0.8558558558558559,0.6805,0.9411764705882353,1372,0.5,,,12,1
+eval_trained_epoch_gt0,square,no_grasp_vs_success,jump_all_pre,"boundary jump, first 96 steps only",3,37,5,0.7837837837837838,0.6,0.9035087719298246,1372,0.4166666666666667,,,12,1
+eval_trained_epoch_gt0,square,no_grasp_vs_success,ov_grip_pre,"gripper overlap, first 96 steps only",3,37,5,0.5405405405405406,0.3229166666666667,0.625,1372,0.08333333333333333,,,12,1
+eval_trained_epoch_gt0,square,no_grasp_vs_success,exec_smoothness_pre,"executed smoothness, first 96 steps",3,37,5,0.32432432432432434,0.27586206896551724,0.3684210526315789,1372,0.25,,,12,1
+eval_trained_epoch_gt0,square,no_grasp_vs_success,grip_flips_pre,"gripper flips, first 96 steps",3,37,5,0.5540540540540541,0.4367816091954023,0.6157407407407407,1372,0.2916666666666667,,,12,1
+eval_trained_epoch_gt0,square,no_grasp_vs_success,ov_all_prelift,"overlap, boundaries up to the first lift (never contains a drop)",0,37,5,,,,0,,,,0,0
+eval_trained_epoch_gt0,square,no_grasp_vs_success,ov_pos_prelift,"position overlap, up to the first lift",0,37,5,,,,0,,,,0,0
+eval_trained_epoch_gt0,square,no_grasp_vs_success,ov_grip_prelift,"gripper overlap, up to the first lift",0,37,5,,,,0,,,,0,0
+eval_trained_epoch_gt0,square,no_grasp_vs_success,ov_all_reachwin,"overlap, +-16 steps around first reach",2,3,3,0.6666666666666666,0.3333333333333333,1.0,1401,1.0,,,2,1
+eval_trained_epoch_gt0,square,no_grasp_vs_success,ov_all_liftwin,"overlap, +-16 steps around first lift",0,37,5,,,,0,,,,0,0
+eval_trained_epoch_gt0,square,no_grasp_vs_success,ov_grip_liftwin,"gripper overlap, +-16 steps around first lift",0,37,5,,,,0,,,,0,0
+eval_trained_epoch_gt0,square,no_grasp_vs_success,n_steps,episode length (reference: trivially separates; not a PLV metric),3,37,5,1.0,1.0,1.0,1372,1.0,,,12,1
+eval_trained_epoch_gt0,square,dropped_vs_no_grasp,sim_replan_overlap_l1,"replan overlap L1 (episode mean, real feedback)",9,3,4,0.2222222222222222,0.18181818181818182,0.6666666666666666,1385,1.0,,,6,1
+eval_trained_epoch_gt0,square,dropped_vs_no_grasp,sim_boundary_jump_l1,boundary jump L1 (episode mean),9,3,4,0.1111111111111111,0.09090909090909091,0.3333333333333333,1385,0.5,,,6,1
+eval_trained_epoch_gt0,square,dropped_vs_no_grasp,ov_pos_mean,"overlap, position dims",9,3,4,0.07407407407407407,0.06060606060606061,0.2222222222222222,1385,0.3333333333333333,,,6,1
+eval_trained_epoch_gt0,square,dropped_vs_no_grasp,ov_rot_mean,"overlap, rotation-6d dims",9,3,4,0.18518518518518517,0.15151515151515152,0.5555555555555556,1385,0.8333333333333334,,,6,1
+eval_trained_epoch_gt0,square,dropped_vs_no_grasp,ov_grip_mean,"overlap, gripper dim",9,3,4,0.48148148148148145,0.3939393939393939,0.7777777777777778,1385,0.8333333333333334,,,6,1
+eval_trained_epoch_gt0,square,dropped_vs_no_grasp,ov_all_max,"overlap, max over boundaries",9,3,4,0.0,0.0,0.0,1385,0.0,,,6,1
+eval_trained_epoch_gt0,square,dropped_vs_no_grasp,ov_all_p90,"overlap, p90 over boundaries",9,3,4,0.3333333333333333,0.2857142857142857,0.5555555555555556,1385,0.6666666666666666,,,6,1
+eval_trained_epoch_gt0,square,dropped_vs_no_grasp,jump_all_max,"boundary jump, max",9,3,4,0.07407407407407407,0.06060606060606061,0.2222222222222222,1385,0.3333333333333333,,,6,1
+eval_trained_epoch_gt0,square,dropped_vs_no_grasp,exec_smoothness,executed smoothness (mean sq. 2nd diff),9,3,4,0.4444444444444444,0.3333333333333333,0.7777777777777778,1385,0.8333333333333334,,,6,1
+eval_trained_epoch_gt0,square,dropped_vs_no_grasp,grip_flips,gripper sign flips (count),9,3,4,0.42592592592592593,0.2962962962962963,0.7777777777777778,1385,0.8333333333333334,,,6,1
+eval_trained_epoch_gt0,square,dropped_vs_no_grasp,grip_flip_rate_per100,gripper flips per 100 steps,9,3,4,0.42592592592592593,0.2962962962962963,0.7777777777777778,1385,0.8333333333333334,,,6,1
+eval_trained_epoch_gt0,square,dropped_vs_no_grasp,ov_all_pre,"overlap, first 96 steps only",9,3,4,0.18518518518518517,0.18181818181818182,0.37037037037037035,1385,0.5,,,6,1
+eval_trained_epoch_gt0,square,dropped_vs_no_grasp,jump_all_pre,"boundary jump, first 96 steps only",9,3,4,0.2962962962962963,0.2222222222222222,0.5555555555555556,1385,0.6666666666666666,,,6,1
+eval_trained_epoch_gt0,square,dropped_vs_no_grasp,ov_grip_pre,"gripper overlap, first 96 steps only",9,3,4,0.4074074074074074,0.3333333333333333,0.5714285714285714,1385,0.6666666666666666,,,6,1
+eval_trained_epoch_gt0,square,dropped_vs_no_grasp,exec_smoothness_pre,"executed smoothness, first 96 steps",9,3,4,0.7407407407407407,0.6666666666666666,0.8095238095238095,1385,0.6666666666666666,,,6,1
+eval_trained_epoch_gt0,square,dropped_vs_no_grasp,grip_flips_pre,"gripper flips, first 96 steps",9,3,4,0.5370370370370371,0.43333333333333335,0.6666666666666666,1385,0.5833333333333334,,,6,1
+eval_trained_epoch_gt0,square,dropped_vs_no_grasp,ov_all_prelift,"overlap, boundaries up to the first lift (never contains a drop)",9,0,4,,,,0,,,,0,0
+eval_trained_epoch_gt0,square,dropped_vs_no_grasp,ov_pos_prelift,"position overlap, up to the first lift",9,0,4,,,,0,,,,0,0
+eval_trained_epoch_gt0,square,dropped_vs_no_grasp,ov_grip_prelift,"gripper overlap, up to the first lift",9,0,4,,,,0,,,,0,0
+eval_trained_epoch_gt0,square,dropped_vs_no_grasp,ov_all_reachwin,"overlap, +-16 steps around first reach",4,2,3,0.875,0.8,1.0,1401,1.0,,,2,1
+eval_trained_epoch_gt0,square,dropped_vs_no_grasp,ov_all_liftwin,"overlap, +-16 steps around first lift",9,0,4,,,,0,,,,0,0
+eval_trained_epoch_gt0,square,dropped_vs_no_grasp,ov_grip_liftwin,"gripper overlap, +-16 steps around first lift",9,0,4,,,,0,,,,0,0
+eval_trained_epoch_gt0,square,dropped_vs_no_grasp,n_steps,episode length (reference: trivially separates; not a PLV metric),9,3,4,0.5,0.5,0.5,1385,0.5,,,6,1
+eval_trained_epoch_gt0,square,dropped_vs_other_failures,sim_replan_overlap_l1,"replan overlap L1 (episode mean, real feedback)",9,4,4,0.2222222222222222,0.18181818181818182,0.6666666666666666,1385,1.0,,,8,1
+eval_trained_epoch_gt0,square,dropped_vs_other_failures,sim_boundary_jump_l1,boundary jump L1 (episode mean),9,4,4,0.08333333333333333,0.06818181818181818,0.25,1385,0.375,,,8,1
+eval_trained_epoch_gt0,square,dropped_vs_other_failures,ov_pos_mean,"overlap, position dims",9,4,4,0.05555555555555555,0.045454545454545456,0.16666666666666666,1385,0.25,,,8,1
+eval_trained_epoch_gt0,square,dropped_vs_other_failures,ov_rot_mean,"overlap, rotation-6d dims",9,4,4,0.19444444444444445,0.1590909090909091,0.5833333333333334,1385,0.875,,,8,1
+eval_trained_epoch_gt0,square,dropped_vs_other_failures,ov_grip_mean,"overlap, gripper dim",9,4,4,0.6111111111111112,0.5454545454545454,0.8333333333333334,1385,0.875,,,8,1
+eval_trained_epoch_gt0,square,dropped_vs_other_failures,ov_all_max,"overlap, max over boundaries",9,4,4,0.25,0.25,0.25,1385,0.25,,,8,1
+eval_trained_epoch_gt0,square,dropped_vs_other_failures,ov_all_p90,"overlap, p90 over boundaries",9,4,4,0.3888888888888889,0.32142857142857145,0.6388888888888888,1385,0.75,,,8,1
+eval_trained_epoch_gt0,square,dropped_vs_other_failures,jump_all_max,"boundary jump, max",9,4,4,0.19444444444444445,0.1590909090909091,0.4166666666666667,1385,0.5,,,8,1
+eval_trained_epoch_gt0,square,dropped_vs_other_failures,exec_smoothness,executed smoothness (mean sq. 2nd diff),9,4,4,0.5833333333333334,0.5,0.8333333333333334,1385,0.875,,,8,1
+eval_trained_epoch_gt0,square,dropped_vs_other_failures,grip_flips,gripper sign flips (count),9,4,4,0.5694444444444444,0.4722222222222222,0.8333333333333334,1385,0.875,,,8,1
+eval_trained_epoch_gt0,square,dropped_vs_other_failures,grip_flip_rate_per100,gripper flips per 100 steps,9,4,4,0.5694444444444444,0.4722222222222222,0.8333333333333334,1385,0.875,,,8,1
+eval_trained_epoch_gt0,square,dropped_vs_other_failures,ov_all_pre,"overlap, first 96 steps only",9,4,4,0.16666666666666666,0.1590909090909091,0.3611111111111111,1385,0.5,,,8,1
+eval_trained_epoch_gt0,square,dropped_vs_other_failures,jump_all_pre,"boundary jump, first 96 steps only",9,4,4,0.2222222222222222,0.16666666666666666,0.4166666666666667,1385,0.5,,,8,1
+eval_trained_epoch_gt0,square,dropped_vs_other_failures,ov_grip_pre,"gripper overlap, first 96 steps only",9,4,4,0.4444444444444444,0.32142857142857145,0.6,1385,0.625,,,8,1
+eval_trained_epoch_gt0,square,dropped_vs_other_failures,exec_smoothness_pre,"executed smoothness, first 96 steps",9,4,4,0.6666666666666666,0.55,0.7857142857142857,1385,0.625,,,8,1
+eval_trained_epoch_gt0,square,dropped_vs_other_failures,grip_flips_pre,"gripper flips, first 96 steps",9,4,4,0.5833333333333334,0.475,0.7142857142857143,1385,0.625,,,8,1
+eval_trained_epoch_gt0,square,dropped_vs_other_failures,ov_all_prelift,"overlap, boundaries up to the first lift (never contains a drop)",9,0,4,,,,0,,,,0,0
+eval_trained_epoch_gt0,square,dropped_vs_other_failures,ov_pos_prelift,"position overlap, up to the first lift",9,0,4,,,,0,,,,0,0
+eval_trained_epoch_gt0,square,dropped_vs_other_failures,ov_grip_prelift,"gripper overlap, up to the first lift",9,0,4,,,,0,,,,0,0
+eval_trained_epoch_gt0,square,dropped_vs_other_failures,ov_all_reachwin,"overlap, +-16 steps around first reach",4,2,3,0.875,0.8,1.0,1401,1.0,,,2,1
+eval_trained_epoch_gt0,square,dropped_vs_other_failures,ov_all_liftwin,"overlap, +-16 steps around first lift",9,0,4,,,,0,,,,0,0
+eval_trained_epoch_gt0,square,dropped_vs_other_failures,ov_grip_liftwin,"gripper overlap, +-16 steps around first lift",9,0,4,,,,0,,,,0,0
+eval_trained_epoch_gt0,square,dropped_vs_other_failures,n_steps,episode length (reference: trivially separates; not a PLV metric),9,4,4,0.5,0.5,0.5,1385,0.5,,,8,1
+dev_all,can,failure_vs_success,sim_replan_overlap_l1,"replan overlap L1 (episode mean, real feedback)",12,12,2,0.9166666666666666,,,0,0.9259259259259259,,,54,2
+dev_all,can,failure_vs_success,sim_boundary_jump_l1,boundary jump L1 (episode mean),12,12,2,0.9444444444444444,,,0,0.9629629629629629,,,54,2
+dev_all,can,failure_vs_success,ov_pos_mean,"overlap, position dims",12,12,2,0.9305555555555556,,,0,0.9074074074074074,,,54,2
+dev_all,can,failure_vs_success,ov_rot_mean,"overlap, rotation-6d dims",12,12,2,0.8888888888888888,,,0,0.8703703703703703,,,54,2
+dev_all,can,failure_vs_success,ov_grip_mean,"overlap, gripper dim",12,12,2,0.8958333333333334,,,0,0.8518518518518519,,,54,2
+dev_all,can,failure_vs_success,ov_all_max,"overlap, max over boundaries",12,12,2,0.8263888888888888,,,0,0.7592592592592593,,,54,2
+dev_all,can,failure_vs_success,ov_all_p90,"overlap, p90 over boundaries",12,12,2,0.8888888888888888,,,0,0.8888888888888888,,,54,2
+dev_all,can,failure_vs_success,jump_all_max,"boundary jump, max",12,12,2,0.8472222222222222,,,0,0.7962962962962963,,,54,2
+dev_all,can,failure_vs_success,exec_smoothness,executed smoothness (mean sq. 2nd diff),12,12,2,0.8680555555555556,,,0,0.8703703703703703,,,54,2
+dev_all,can,failure_vs_success,grip_flips,gripper sign flips (count),12,12,2,0.9722222222222222,,,0,0.9629629629629629,,,54,2
+dev_all,can,failure_vs_success,grip_flip_rate_per100,gripper flips per 100 steps,12,12,2,0.9027777777777778,,,0,0.9074074074074074,,,54,2
+dev_all,can,failure_vs_success,ov_all_pre,"overlap, first 96 steps only",12,12,2,0.8125,,,0,0.7222222222222222,,,54,2
+dev_all,can,failure_vs_success,jump_all_pre,"boundary jump, first 96 steps only",12,12,2,0.8333333333333334,,,0,0.7407407407407407,,,54,2
+dev_all,can,failure_vs_success,ov_grip_pre,"gripper overlap, first 96 steps only",12,12,2,0.8402777777777778,,,0,0.7592592592592593,,,54,2
+dev_all,can,failure_vs_success,exec_smoothness_pre,"executed smoothness, first 96 steps",12,12,2,0.7777777777777778,,,0,0.7407407407407407,,,54,2
+dev_all,can,failure_vs_success,grip_flips_pre,"gripper flips, first 96 steps",12,12,2,0.8402777777777778,,,0,0.8055555555555556,,,54,2
+dev_all,can,failure_vs_success,ov_all_prelift,"overlap, boundaries up to the first lift (never contains a drop)",3,12,2,0.6944444444444444,,,0,0.7619047619047619,,,21,2
+dev_all,can,failure_vs_success,ov_pos_prelift,"position overlap, up to the first lift",3,12,2,0.5833333333333334,,,0,0.6666666666666666,,,21,2
+dev_all,can,failure_vs_success,ov_grip_prelift,"gripper overlap, up to the first lift",3,12,2,0.8055555555555556,,,0,0.8571428571428571,,,21,2
+dev_all,can,failure_vs_success,ov_all_reachwin,"overlap, +-16 steps around first reach",12,12,2,0.75,,,0,0.5555555555555556,,,54,2
+dev_all,can,failure_vs_success,ov_all_liftwin,"overlap, +-16 steps around first lift",3,12,2,0.5555555555555556,,,0,0.5714285714285714,,,21,2
+dev_all,can,failure_vs_success,ov_grip_liftwin,"gripper overlap, +-16 steps around first lift",3,12,2,0.8055555555555556,,,0,0.8095238095238095,,,21,2
+dev_all,can,failure_vs_success,n_steps,episode length (reference: trivially separates; not a PLV metric),12,12,2,1.0,,,0,1.0,,,54,2
+dev_all,can,dropped_vs_success,sim_replan_overlap_l1,"replan overlap L1 (episode mean, real feedback)",3,12,2,0.7777777777777778,,,0,0.9047619047619048,,,21,2
+dev_all,can,dropped_vs_success,sim_boundary_jump_l1,boundary jump L1 (episode mean),3,12,2,0.9444444444444444,,,0,1.0,,,21,2
+dev_all,can,dropped_vs_success,ov_pos_mean,"overlap, position dims",3,12,2,0.9444444444444444,,,0,0.9523809523809523,,,21,2
+dev_all,can,dropped_vs_success,ov_rot_mean,"overlap, rotation-6d dims",3,12,2,0.75,,,0,0.8571428571428571,,,21,2
+dev_all,can,dropped_vs_success,ov_grip_mean,"overlap, gripper dim",3,12,2,0.6666666666666666,,,0,0.7142857142857143,,,21,2
+dev_all,can,dropped_vs_success,ov_all_max,"overlap, max over boundaries",3,12,2,0.6111111111111112,,,0,0.7142857142857143,,,21,2
+dev_all,can,dropped_vs_success,ov_all_p90,"overlap, p90 over boundaries",3,12,2,0.6944444444444444,,,0,0.8095238095238095,,,21,2
+dev_all,can,dropped_vs_success,jump_all_max,"boundary jump, max",3,12,2,0.7222222222222222,,,0,0.7619047619047619,,,21,2
+dev_all,can,dropped_vs_success,exec_smoothness,executed smoothness (mean sq. 2nd diff),3,12,2,0.7777777777777778,,,0,0.8571428571428571,,,21,2
+dev_all,can,dropped_vs_success,grip_flips,gripper sign flips (count),3,12,2,0.8888888888888888,,,0,0.9047619047619048,,,21,2
+dev_all,can,dropped_vs_success,grip_flip_rate_per100,gripper flips per 100 steps,3,12,2,0.7777777777777778,,,0,0.8571428571428571,,,21,2
+dev_all,can,dropped_vs_success,ov_all_pre,"overlap, first 96 steps only",3,12,2,0.6666666666666666,,,0,0.7142857142857143,,,21,2
+dev_all,can,dropped_vs_success,jump_all_pre,"boundary jump, first 96 steps only",3,12,2,0.7777777777777778,,,0,0.8571428571428571,,,21,2
+dev_all,can,dropped_vs_success,ov_grip_pre,"gripper overlap, first 96 steps only",3,12,2,0.8055555555555556,,,0,0.8571428571428571,,,21,2
+dev_all,can,dropped_vs_success,exec_smoothness_pre,"executed smoothness, first 96 steps",3,12,2,0.8611111111111112,,,0,0.9047619047619048,,,21,2
+dev_all,can,dropped_vs_success,grip_flips_pre,"gripper flips, first 96 steps",3,12,2,0.9027777777777778,,,0,0.9047619047619048,,,21,2
+dev_all,can,dropped_vs_success,ov_all_prelift,"overlap, boundaries up to the first lift (never contains a drop)",3,12,2,0.6944444444444444,,,0,0.7619047619047619,,,21,2
+dev_all,can,dropped_vs_success,ov_pos_prelift,"position overlap, up to the first lift",3,12,2,0.5833333333333334,,,0,0.6666666666666666,,,21,2
+dev_all,can,dropped_vs_success,ov_grip_prelift,"gripper overlap, up to the first lift",3,12,2,0.8055555555555556,,,0,0.8571428571428571,,,21,2
+dev_all,can,dropped_vs_success,ov_all_reachwin,"overlap, +-16 steps around first reach",3,12,2,0.8055555555555556,,,0,0.8571428571428571,,,21,2
+dev_all,can,dropped_vs_success,ov_all_liftwin,"overlap, +-16 steps around first lift",3,12,2,0.5555555555555556,,,0,0.5714285714285714,,,21,2
+dev_all,can,dropped_vs_success,ov_grip_liftwin,"gripper overlap, +-16 steps around first lift",3,12,2,0.8055555555555556,,,0,0.8095238095238095,,,21,2
+dev_all,can,dropped_vs_success,n_steps,episode length (reference: trivially separates; not a PLV metric),3,12,2,1.0,,,0,1.0,,,21,2
+dev_all,can,no_grasp_vs_success,sim_replan_overlap_l1,"replan overlap L1 (episode mean, real feedback)",9,12,2,0.9629629629629629,,,0,0.9393939393939394,,,33,2
+dev_all,can,no_grasp_vs_success,sim_boundary_jump_l1,boundary jump L1 (episode mean),9,12,2,0.9444444444444444,,,0,0.9393939393939394,,,33,2
+dev_all,can,no_grasp_vs_success,ov_pos_mean,"overlap, position dims",9,12,2,0.9259259259259259,,,0,0.8787878787878788,,,33,2
+dev_all,can,no_grasp_vs_success,ov_rot_mean,"overlap, rotation-6d dims",9,12,2,0.9351851851851852,,,0,0.8787878787878788,,,33,2
+dev_all,can,no_grasp_vs_success,ov_grip_mean,"overlap, gripper dim",9,12,2,0.9722222222222222,,,0,0.9393939393939394,,,33,2
+dev_all,can,no_grasp_vs_success,ov_all_max,"overlap, max over boundaries",9,12,2,0.8981481481481481,,,0,0.7878787878787878,,,33,2
+dev_all,can,no_grasp_vs_success,ov_all_p90,"overlap, p90 over boundaries",9,12,2,0.9537037037037037,,,0,0.9393939393939394,,,33,2
+dev_all,can,no_grasp_vs_success,jump_all_max,"boundary jump, max",9,12,2,0.8888888888888888,,,0,0.8181818181818182,,,33,2
+dev_all,can,no_grasp_vs_success,exec_smoothness,executed smoothness (mean sq. 2nd diff),9,12,2,0.8981481481481481,,,0,0.8787878787878788,,,33,2
+dev_all,can,no_grasp_vs_success,grip_flips,gripper sign flips (count),9,12,2,1.0,,,0,1.0,,,33,2
+dev_all,can,no_grasp_vs_success,grip_flip_rate_per100,gripper flips per 100 steps,9,12,2,0.9444444444444444,,,0,0.9393939393939394,,,33,2
+dev_all,can,no_grasp_vs_success,ov_all_pre,"overlap, first 96 steps only",9,12,2,0.8611111111111112,,,0,0.7272727272727273,,,33,2
+dev_all,can,no_grasp_vs_success,jump_all_pre,"boundary jump, first 96 steps only",9,12,2,0.8518518518518519,,,0,0.6666666666666666,,,33,2
+dev_all,can,no_grasp_vs_success,ov_grip_pre,"gripper overlap, first 96 steps only",9,12,2,0.8518518518518519,,,0,0.696969696969697,,,33,2
+dev_all,can,no_grasp_vs_success,exec_smoothness_pre,"executed smoothness, first 96 steps",9,12,2,0.75,,,0,0.6363636363636364,,,33,2
+dev_all,can,no_grasp_vs_success,grip_flips_pre,"gripper flips, first 96 steps",9,12,2,0.8194444444444444,,,0,0.7424242424242424,,,33,2
+dev_all,can,no_grasp_vs_success,ov_all_prelift,"overlap, boundaries up to the first lift (never contains a drop)",0,12,2,,,,0,,,,0,0
+dev_all,can,no_grasp_vs_success,ov_pos_prelift,"position overlap, up to the first lift",0,12,2,,,,0,,,,0,0
+dev_all,can,no_grasp_vs_success,ov_grip_prelift,"gripper overlap, up to the first lift",0,12,2,,,,0,,,,0,0
+dev_all,can,no_grasp_vs_success,ov_all_reachwin,"overlap, +-16 steps around first reach",9,12,2,0.7314814814814815,,,0,0.36363636363636365,,,33,2
+dev_all,can,no_grasp_vs_success,ov_all_liftwin,"overlap, +-16 steps around first lift",0,12,2,,,,0,,,,0,0
+dev_all,can,no_grasp_vs_success,ov_grip_liftwin,"gripper overlap, +-16 steps around first lift",0,12,2,,,,0,,,,0,0
+dev_all,can,no_grasp_vs_success,n_steps,episode length (reference: trivially separates; not a PLV metric),9,12,2,1.0,,,0,1.0,,,33,2
+dev_all,can,dropped_vs_no_grasp,sim_replan_overlap_l1,"replan overlap L1 (episode mean, real feedback)",3,9,2,0.07407407407407407,,,0,0.1,,,10,2
+dev_all,can,dropped_vs_no_grasp,sim_boundary_jump_l1,boundary jump L1 (episode mean),3,9,2,0.2222222222222222,,,0,0.3,,,10,2
+dev_all,can,dropped_vs_no_grasp,ov_pos_mean,"overlap, position dims",3,9,2,0.25925925925925924,,,0,0.3,,,10,2
+dev_all,can,dropped_vs_no_grasp,ov_rot_mean,"overlap, rotation-6d dims",3,9,2,0.1111111111111111,,,0,0.2,,,10,2
+dev_all,can,dropped_vs_no_grasp,ov_grip_mean,"overlap, gripper dim",3,9,2,0.14814814814814814,,,0,0.3,,,10,2
+dev_all,can,dropped_vs_no_grasp,ov_all_max,"overlap, max over boundaries",3,9,2,0.0,,,0,0.0,,,10,2
+dev_all,can,dropped_vs_no_grasp,ov_all_p90,"overlap, p90 over boundaries",3,9,2,0.07407407407407407,,,0,0.1,,,10,2
+dev_all,can,dropped_vs_no_grasp,jump_all_max,"boundary jump, max",3,9,2,0.14814814814814814,,,0,0.2,,,10,2
+dev_all,can,dropped_vs_no_grasp,exec_smoothness,executed smoothness (mean sq. 2nd diff),3,9,2,0.18518518518518517,,,0,0.3,,,10,2
+dev_all,can,dropped_vs_no_grasp,grip_flips,gripper sign flips (count),3,9,2,0.07407407407407407,,,0,0.1,,,10,2
+dev_all,can,dropped_vs_no_grasp,grip_flip_rate_per100,gripper flips per 100 steps,3,9,2,0.07407407407407407,,,0,0.1,,,10,2
+dev_all,can,dropped_vs_no_grasp,ov_all_pre,"overlap, first 96 steps only",3,9,2,0.2222222222222222,,,0,0.3,,,10,2
+dev_all,can,dropped_vs_no_grasp,jump_all_pre,"boundary jump, first 96 steps only",3,9,2,0.2962962962962963,,,0,0.4,,,10,2
+dev_all,can,dropped_vs_no_grasp,ov_grip_pre,"gripper overlap, first 96 steps only",3,9,2,0.37037037037037035,,,0,0.6,,,10,2
+dev_all,can,dropped_vs_no_grasp,exec_smoothness_pre,"executed smoothness, first 96 steps",3,9,2,0.6666666666666666,,,0,0.5,,,10,2
+dev_all,can,dropped_vs_no_grasp,grip_flips_pre,"gripper flips, first 96 steps",3,9,2,0.7037037037037037,,,0,0.7,,,10,2
+dev_all,can,dropped_vs_no_grasp,ov_all_prelift,"overlap, boundaries up to the first lift (never contains a drop)",3,0,2,,,,0,,,,0,0
+dev_all,can,dropped_vs_no_grasp,ov_pos_prelift,"position overlap, up to the first lift",3,0,2,,,,0,,,,0,0
+dev_all,can,dropped_vs_no_grasp,ov_grip_prelift,"gripper overlap, up to the first lift",3,0,2,,,,0,,,,0,0
+dev_all,can,dropped_vs_no_grasp,ov_all_reachwin,"overlap, +-16 steps around first reach",3,9,2,0.5185185185185185,,,0,0.7,,,10,2
+dev_all,can,dropped_vs_no_grasp,ov_all_liftwin,"overlap, +-16 steps around first lift",3,0,2,,,,0,,,,0,0
+dev_all,can,dropped_vs_no_grasp,ov_grip_liftwin,"gripper overlap, +-16 steps around first lift",3,0,2,,,,0,,,,0,0
+dev_all,can,dropped_vs_no_grasp,n_steps,episode length (reference: trivially separates; not a PLV metric),3,9,2,0.5,,,0,0.5,,,10,2
+dev_all,can,dropped_vs_other_failures,sim_replan_overlap_l1,"replan overlap L1 (episode mean, real feedback)",3,9,2,0.07407407407407407,,,0,0.1,,,10,2
+dev_all,can,dropped_vs_other_failures,sim_boundary_jump_l1,boundary jump L1 (episode mean),3,9,2,0.2222222222222222,,,0,0.3,,,10,2
+dev_all,can,dropped_vs_other_failures,ov_pos_mean,"overlap, position dims",3,9,2,0.25925925925925924,,,0,0.3,,,10,2
+dev_all,can,dropped_vs_other_failures,ov_rot_mean,"overlap, rotation-6d dims",3,9,2,0.1111111111111111,,,0,0.2,,,10,2
+dev_all,can,dropped_vs_other_failures,ov_grip_mean,"overlap, gripper dim",3,9,2,0.14814814814814814,,,0,0.3,,,10,2
+dev_all,can,dropped_vs_other_failures,ov_all_max,"overlap, max over boundaries",3,9,2,0.0,,,0,0.0,,,10,2
+dev_all,can,dropped_vs_other_failures,ov_all_p90,"overlap, p90 over boundaries",3,9,2,0.07407407407407407,,,0,0.1,,,10,2
+dev_all,can,dropped_vs_other_failures,jump_all_max,"boundary jump, max",3,9,2,0.14814814814814814,,,0,0.2,,,10,2
+dev_all,can,dropped_vs_other_failures,exec_smoothness,executed smoothness (mean sq. 2nd diff),3,9,2,0.18518518518518517,,,0,0.3,,,10,2
+dev_all,can,dropped_vs_other_failures,grip_flips,gripper sign flips (count),3,9,2,0.07407407407407407,,,0,0.1,,,10,2
+dev_all,can,dropped_vs_other_failures,grip_flip_rate_per100,gripper flips per 100 steps,3,9,2,0.07407407407407407,,,0,0.1,,,10,2
+dev_all,can,dropped_vs_other_failures,ov_all_pre,"overlap, first 96 steps only",3,9,2,0.2222222222222222,,,0,0.3,,,10,2
+dev_all,can,dropped_vs_other_failures,jump_all_pre,"boundary jump, first 96 steps only",3,9,2,0.2962962962962963,,,0,0.4,,,10,2
+dev_all,can,dropped_vs_other_failures,ov_grip_pre,"gripper overlap, first 96 steps only",3,9,2,0.37037037037037035,,,0,0.6,,,10,2
+dev_all,can,dropped_vs_other_failures,exec_smoothness_pre,"executed smoothness, first 96 steps",3,9,2,0.6666666666666666,,,0,0.5,,,10,2
+dev_all,can,dropped_vs_other_failures,grip_flips_pre,"gripper flips, first 96 steps",3,9,2,0.7037037037037037,,,0,0.7,,,10,2
+dev_all,can,dropped_vs_other_failures,ov_all_prelift,"overlap, boundaries up to the first lift (never contains a drop)",3,0,2,,,,0,,,,0,0
+dev_all,can,dropped_vs_other_failures,ov_pos_prelift,"position overlap, up to the first lift",3,0,2,,,,0,,,,0,0
+dev_all,can,dropped_vs_other_failures,ov_grip_prelift,"gripper overlap, up to the first lift",3,0,2,,,,0,,,,0,0
+dev_all,can,dropped_vs_other_failures,ov_all_reachwin,"overlap, +-16 steps around first reach",3,9,2,0.5185185185185185,,,0,0.7,,,10,2
+dev_all,can,dropped_vs_other_failures,ov_all_liftwin,"overlap, +-16 steps around first lift",3,0,2,,,,0,,,,0,0
+dev_all,can,dropped_vs_other_failures,ov_grip_liftwin,"gripper overlap, +-16 steps around first lift",3,0,2,,,,0,,,,0,0
+dev_all,can,dropped_vs_other_failures,n_steps,episode length (reference: trivially separates; not a PLV metric),3,9,2,0.5,,,0,0.5,,,10,2
+dev_all,square,failure_vs_success,sim_replan_overlap_l1,"replan overlap L1 (episode mean, real feedback)",9,3,1,1.0,,,0,1.0,,,27,1
+dev_all,square,failure_vs_success,sim_boundary_jump_l1,boundary jump L1 (episode mean),9,3,1,1.0,,,0,1.0,,,27,1
+dev_all,square,failure_vs_success,ov_pos_mean,"overlap, position dims",9,3,1,0.9629629629629629,,,0,0.9629629629629629,,,27,1
+dev_all,square,failure_vs_success,ov_rot_mean,"overlap, rotation-6d dims",9,3,1,1.0,,,0,1.0,,,27,1
+dev_all,square,failure_vs_success,ov_grip_mean,"overlap, gripper dim",9,3,1,0.5925925925925926,,,0,0.5925925925925926,,,27,1
+dev_all,square,failure_vs_success,ov_all_max,"overlap, max over boundaries",9,3,1,1.0,,,0,1.0,,,27,1
+dev_all,square,failure_vs_success,ov_all_p90,"overlap, p90 over boundaries",9,3,1,0.8518518518518519,,,0,0.8518518518518519,,,27,1
+dev_all,square,failure_vs_success,jump_all_max,"boundary jump, max",9,3,1,0.9259259259259259,,,0,0.9259259259259259,,,27,1
+dev_all,square,failure_vs_success,exec_smoothness,executed smoothness (mean sq. 2nd diff),9,3,1,0.7037037037037037,,,0,0.7037037037037037,,,27,1
+dev_all,square,failure_vs_success,grip_flips,gripper sign flips (count),9,3,1,0.7037037037037037,,,0,0.7037037037037037,,,27,1
+dev_all,square,failure_vs_success,grip_flip_rate_per100,gripper flips per 100 steps,9,3,1,0.5185185185185185,,,0,0.5185185185185185,,,27,1
+dev_all,square,failure_vs_success,ov_all_pre,"overlap, first 96 steps only",9,3,1,0.9629629629629629,,,0,0.9629629629629629,,,27,1
+dev_all,square,failure_vs_success,jump_all_pre,"boundary jump, first 96 steps only",9,3,1,0.8888888888888888,,,0,0.8888888888888888,,,27,1
+dev_all,square,failure_vs_success,ov_grip_pre,"gripper overlap, first 96 steps only",9,3,1,0.9629629629629629,,,0,0.9629629629629629,,,27,1
+dev_all,square,failure_vs_success,exec_smoothness_pre,"executed smoothness, first 96 steps",9,3,1,0.8888888888888888,,,0,0.8888888888888888,,,27,1
+dev_all,square,failure_vs_success,grip_flips_pre,"gripper flips, first 96 steps",9,3,1,0.8333333333333334,,,0,0.8333333333333334,,,27,1
+dev_all,square,failure_vs_success,ov_all_prelift,"overlap, boundaries up to the first lift (never contains a drop)",4,3,1,1.0,,,0,1.0,,,12,1
+dev_all,square,failure_vs_success,ov_pos_prelift,"position overlap, up to the first lift",4,3,1,0.9166666666666666,,,0,0.9166666666666666,,,12,1
+dev_all,square,failure_vs_success,ov_grip_prelift,"gripper overlap, up to the first lift",4,3,1,0.9166666666666666,,,0,0.9166666666666666,,,12,1
+dev_all,square,failure_vs_success,ov_all_reachwin,"overlap, +-16 steps around first reach",3,0,1,,,,0,,,,0,0
+dev_all,square,failure_vs_success,ov_all_liftwin,"overlap, +-16 steps around first lift",4,3,1,0.75,,,0,0.75,,,12,1
+dev_all,square,failure_vs_success,ov_grip_liftwin,"gripper overlap, +-16 steps around first lift",4,3,1,1.0,,,0,1.0,,,12,1
+dev_all,square,failure_vs_success,n_steps,episode length (reference: trivially separates; not a PLV metric),9,3,1,1.0,,,0,1.0,,,27,1
+dev_all,square,dropped_vs_success,sim_replan_overlap_l1,"replan overlap L1 (episode mean, real feedback)",4,3,1,1.0,,,0,1.0,,,12,1
+dev_all,square,dropped_vs_success,sim_boundary_jump_l1,boundary jump L1 (episode mean),4,3,1,1.0,,,0,1.0,,,12,1
+dev_all,square,dropped_vs_success,ov_pos_mean,"overlap, position dims",4,3,1,0.9166666666666666,,,0,0.9166666666666666,,,12,1
+dev_all,square,dropped_vs_success,ov_rot_mean,"overlap, rotation-6d dims",4,3,1,1.0,,,0,1.0,,,12,1
+dev_all,square,dropped_vs_success,ov_grip_mean,"overlap, gripper dim",4,3,1,0.9166666666666666,,,0,0.9166666666666666,,,12,1
+dev_all,square,dropped_vs_success,ov_all_max,"overlap, max over boundaries",4,3,1,1.0,,,0,1.0,,,12,1
+dev_all,square,dropped_vs_success,ov_all_p90,"overlap, p90 over boundaries",4,3,1,1.0,,,0,1.0,,,12,1
+dev_all,square,dropped_vs_success,jump_all_max,"boundary jump, max",4,3,1,0.9166666666666666,,,0,0.9166666666666666,,,12,1
+dev_all,square,dropped_vs_success,exec_smoothness,executed smoothness (mean sq. 2nd diff),4,3,1,1.0,,,0,1.0,,,12,1
+dev_all,square,dropped_vs_success,grip_flips,gripper sign flips (count),4,3,1,1.0,,,0,1.0,,,12,1
+dev_all,square,dropped_vs_success,grip_flip_rate_per100,gripper flips per 100 steps,4,3,1,0.9166666666666666,,,0,0.9166666666666666,,,12,1
+dev_all,square,dropped_vs_success,ov_all_pre,"overlap, first 96 steps only",4,3,1,1.0,,,0,1.0,,,12,1
+dev_all,square,dropped_vs_success,jump_all_pre,"boundary jump, first 96 steps only",4,3,1,0.9166666666666666,,,0,0.9166666666666666,,,12,1
+dev_all,square,dropped_vs_success,ov_grip_pre,"gripper overlap, first 96 steps only",4,3,1,1.0,,,0,1.0,,,12,1
+dev_all,square,dropped_vs_success,exec_smoothness_pre,"executed smoothness, first 96 steps",4,3,1,1.0,,,0,1.0,,,12,1
+dev_all,square,dropped_vs_success,grip_flips_pre,"gripper flips, first 96 steps",4,3,1,0.875,,,0,0.875,,,12,1
+dev_all,square,dropped_vs_success,ov_all_prelift,"overlap, boundaries up to the first lift (never contains a drop)",4,3,1,1.0,,,0,1.0,,,12,1
+dev_all,square,dropped_vs_success,ov_pos_prelift,"position overlap, up to the first lift",4,3,1,0.9166666666666666,,,0,0.9166666666666666,,,12,1
+dev_all,square,dropped_vs_success,ov_grip_prelift,"gripper overlap, up to the first lift",4,3,1,0.9166666666666666,,,0,0.9166666666666666,,,12,1
+dev_all,square,dropped_vs_success,ov_all_reachwin,"overlap, +-16 steps around first reach",2,0,1,,,,0,,,,0,0
+dev_all,square,dropped_vs_success,ov_all_liftwin,"overlap, +-16 steps around first lift",4,3,1,0.75,,,0,0.75,,,12,1
+dev_all,square,dropped_vs_success,ov_grip_liftwin,"gripper overlap, +-16 steps around first lift",4,3,1,1.0,,,0,1.0,,,12,1
+dev_all,square,dropped_vs_success,n_steps,episode length (reference: trivially separates; not a PLV metric),4,3,1,1.0,,,0,1.0,,,12,1
+dev_all,square,dropped_vs_other_failures,sim_replan_overlap_l1,"replan overlap L1 (episode mean, real feedback)",4,5,1,0.4,,,0,0.4,,,20,1
+dev_all,square,dropped_vs_other_failures,sim_boundary_jump_l1,boundary jump L1 (episode mean),4,5,1,0.1,,,0,0.1,,,20,1
+dev_all,square,dropped_vs_other_failures,ov_pos_mean,"overlap, position dims",4,5,1,0.05,,,0,0.05,,,20,1
+dev_all,square,dropped_vs_other_failures,ov_rot_mean,"overlap, rotation-6d dims",4,5,1,0.5,,,0,0.5,,,20,1
+dev_all,square,dropped_vs_other_failures,ov_grip_mean,"overlap, gripper dim",4,5,1,0.9,,,0,0.9,,,20,1
+dev_all,square,dropped_vs_other_failures,ov_all_max,"overlap, max over boundaries",4,5,1,0.2,,,0,0.2,,,20,1
+dev_all,square,dropped_vs_other_failures,ov_all_p90,"overlap, p90 over boundaries",4,5,1,0.8,,,0,0.8,,,20,1
+dev_all,square,dropped_vs_other_failures,jump_all_max,"boundary jump, max",4,5,1,0.3,,,0,0.3,,,20,1
+dev_all,square,dropped_vs_other_failures,exec_smoothness,executed smoothness (mean sq. 2nd diff),4,5,1,0.85,,,0,0.85,,,20,1
+dev_all,square,dropped_vs_other_failures,grip_flips,gripper sign flips (count),4,5,1,0.8,,,0,0.8,,,20,1
+dev_all,square,dropped_vs_other_failures,grip_flip_rate_per100,gripper flips per 100 steps,4,5,1,0.8,,,0,0.8,,,20,1
+dev_all,square,dropped_vs_other_failures,ov_all_pre,"overlap, first 96 steps only",4,5,1,0.2,,,0,0.2,,,20,1
+dev_all,square,dropped_vs_other_failures,jump_all_pre,"boundary jump, first 96 steps only",4,5,1,0.4,,,0,0.4,,,20,1
+dev_all,square,dropped_vs_other_failures,ov_grip_pre,"gripper overlap, first 96 steps only",4,5,1,0.3,,,0,0.3,,,20,1
+dev_all,square,dropped_vs_other_failures,exec_smoothness_pre,"executed smoothness, first 96 steps",4,5,1,0.75,,,0,0.75,,,20,1
+dev_all,square,dropped_vs_other_failures,grip_flips_pre,"gripper flips, first 96 steps",4,5,1,0.75,,,0,0.75,,,20,1
+dev_all,square,dropped_vs_other_failures,ov_all_prelift,"overlap, boundaries up to the first lift (never contains a drop)",4,0,1,,,,0,,,,0,0
+dev_all,square,dropped_vs_other_failures,ov_pos_prelift,"position overlap, up to the first lift",4,0,1,,,,0,,,,0,0
+dev_all,square,dropped_vs_other_failures,ov_grip_prelift,"gripper overlap, up to the first lift",4,0,1,,,,0,,,,0,0
+dev_all,square,dropped_vs_other_failures,ov_all_reachwin,"overlap, +-16 steps around first reach",2,1,1,1.0,,,0,1.0,,,2,1
+dev_all,square,dropped_vs_other_failures,ov_all_liftwin,"overlap, +-16 steps around first lift",4,0,1,,,,0,,,,0,0
+dev_all,square,dropped_vs_other_failures,ov_grip_liftwin,"gripper overlap, +-16 steps around first lift",4,0,1,,,,0,,,,0,0
+dev_all,square,dropped_vs_other_failures,n_steps,episode length (reference: trivially separates; not a PLV metric),4,5,1,0.5,,,0,0.5,,,20,1
+dev_all,square,other_vs_success,sim_replan_overlap_l1,"replan overlap L1 (episode mean, real feedback)",4,3,1,1.0,,,0,1.0,,,12,1
+dev_all,square,other_vs_success,sim_boundary_jump_l1,boundary jump L1 (episode mean),4,3,1,1.0,,,0,1.0,,,12,1
+dev_all,square,other_vs_success,ov_pos_mean,"overlap, position dims",4,3,1,1.0,,,0,1.0,,,12,1
+dev_all,square,other_vs_success,ov_rot_mean,"overlap, rotation-6d dims",4,3,1,1.0,,,0,1.0,,,12,1
+dev_all,square,other_vs_success,ov_grip_mean,"overlap, gripper dim",4,3,1,0.16666666666666666,,,0,0.16666666666666666,,,12,1
+dev_all,square,other_vs_success,ov_all_max,"overlap, max over boundaries",4,3,1,1.0,,,0,1.0,,,12,1
+dev_all,square,other_vs_success,ov_all_p90,"overlap, p90 over boundaries",4,3,1,0.6666666666666666,,,0,0.6666666666666666,,,12,1
+dev_all,square,other_vs_success,jump_all_max,"boundary jump, max",4,3,1,0.9166666666666666,,,0,0.9166666666666666,,,12,1
+dev_all,square,other_vs_success,exec_smoothness,executed smoothness (mean sq. 2nd diff),4,3,1,0.3333333333333333,,,0,0.3333333333333333,,,12,1
+dev_all,square,other_vs_success,grip_flips,gripper sign flips (count),4,3,1,0.3333333333333333,,,0,0.3333333333333333,,,12,1
+dev_all,square,other_vs_success,grip_flip_rate_per100,gripper flips per 100 steps,4,3,1,0.0,,,0,0.0,,,12,1
+dev_all,square,other_vs_success,ov_all_pre,"overlap, first 96 steps only",4,3,1,0.9166666666666666,,,0,0.9166666666666666,,,12,1
+dev_all,square,other_vs_success,jump_all_pre,"boundary jump, first 96 steps only",4,3,1,0.8333333333333334,,,0,0.8333333333333334,,,12,1
+dev_all,square,other_vs_success,ov_grip_pre,"gripper overlap, first 96 steps only",4,3,1,0.9166666666666666,,,0,0.9166666666666666,,,12,1
+dev_all,square,other_vs_success,exec_smoothness_pre,"executed smoothness, first 96 steps",4,3,1,0.75,,,0,0.75,,,12,1
+dev_all,square,other_vs_success,grip_flips_pre,"gripper flips, first 96 steps",4,3,1,0.75,,,0,0.75,,,12,1
+dev_all,square,other_vs_success,ov_all_prelift,"overlap, boundaries up to the first lift (never contains a drop)",0,3,1,,,,0,,,,0,0
+dev_all,square,other_vs_success,ov_pos_prelift,"position overlap, up to the first lift",0,3,1,,,,0,,,,0,0
+dev_all,square,other_vs_success,ov_grip_prelift,"gripper overlap, up to the first lift",0,3,1,,,,0,,,,0,0
+dev_all,square,other_vs_success,ov_all_reachwin,"overlap, +-16 steps around first reach",0,0,0,,,,0,,,,0,0
+dev_all,square,other_vs_success,ov_all_liftwin,"overlap, +-16 steps around first lift",0,3,1,,,,0,,,,0,0
+dev_all,square,other_vs_success,ov_grip_liftwin,"gripper overlap, +-16 steps around first lift",0,3,1,,,,0,,,,0,0
+dev_all,square,other_vs_success,n_steps,episode length (reference: trivially separates; not a PLV metric),4,3,1,1.0,,,0,1.0,,,12,1

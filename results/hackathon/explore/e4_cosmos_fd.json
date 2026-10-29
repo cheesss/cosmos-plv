@@ -1,0 +1,320 @@
+{
+  "label": "EXPLORATORY (post-hoc design; adapter follows the Cosmos framework LIBERO pipeline)",
+  "n_jobs": 385,
+  "episodes": 11,
+  "chunk_starts": [
+    0,
+    16,
+    32,
+    48,
+    64
+  ],
+  "per_condition_mean": [
+    {
+      "condition": "gripflip",
+      "psnr_full": 19.912,
+      "psnr_grip": 14.158,
+      "psnr_grip_last": 12.728,
+      "motion_corr": 0.428
+    },
+    {
+      "condition": "main",
+      "psnr_full": 20.221,
+      "psnr_grip": 14.241,
+      "psnr_grip_last": 12.559,
+      "motion_corr": 0.426
+    },
+    {
+      "condition": "mirror",
+      "psnr_full": 19.454,
+      "psnr_grip": 14.152,
+      "psnr_grip_last": 12.689,
+      "motion_corr": 0.359
+    },
+    {
+      "condition": "reversed",
+      "psnr_full": 20.409,
+      "psnr_grip": 14.41,
+      "psnr_grip_last": 12.641,
+      "motion_corr": 0.429
+    },
+    {
+      "condition": "shuffled",
+      "psnr_full": 20.143,
+      "psnr_grip": 14.26,
+      "psnr_grip_last": 12.75,
+      "motion_corr": 0.435
+    },
+    {
+      "condition": "unnorm",
+      "psnr_full": 20.272,
+      "psnr_grip": 14.252,
+      "psnr_grip_last": 12.608,
+      "motion_corr": 0.426
+    },
+    {
+      "condition": "zero",
+      "psnr_full": 20.527,
+      "psnr_grip": 14.324,
+      "psnr_grip_last": 12.51,
+      "motion_corr": 0.433
+    }
+  ],
+  "per_condition_mean_moving_chunks": [
+    {
+      "condition": "gripflip",
+      "psnr_grip": 14.141,
+      "motion_corr": 0.416
+    },
+    {
+      "condition": "main",
+      "psnr_grip": 14.085,
+      "motion_corr": 0.41
+    },
+    {
+      "condition": "mirror",
+      "psnr_grip": 14.011,
+      "motion_corr": 0.341
+    },
+    {
+      "condition": "reversed",
+      "psnr_grip": 14.291,
+      "motion_corr": 0.415
+    },
+    {
+      "condition": "shuffled",
+      "psnr_grip": 14.089,
+      "motion_corr": 0.425
+    },
+    {
+      "condition": "unnorm",
+      "psnr_grip": 14.193,
+      "motion_corr": 0.409
+    },
+    {
+      "condition": "zero",
+      "psnr_grip": 14.218,
+      "motion_corr": 0.42
+    }
+  ],
+  "n_moving_units": 38,
+  "paired_vs_main": [
+    {
+      "metric": "psnr_full",
+      "main_minus": "gripflip",
+      "mean_diff": 0.30982823305862944,
+      "ci95": [
+        0.03342316828062006,
+        0.590467898701559
+      ],
+      "main_wins": 41,
+      "units": 55,
+      "episodes": 11
+    },
+    {
+      "metric": "psnr_full",
+      "main_minus": "mirror",
+      "mean_diff": 0.7676205935668685,
+      "ci95": [
+        0.48620834000229785,
+        1.0510419379742548
+      ],
+      "main_wins": 39,
+      "units": 55,
+      "episodes": 11
+    },
+    {
+      "metric": "psnr_full",
+      "main_minus": "reversed",
+      "mean_diff": -0.18717651312348885,
+      "ci95": [
+        -0.3903154404400095,
+        0.014286871802409179
+      ],
+      "main_wins": 27,
+      "units": 55,
+      "episodes": 11
+    },
+    {
+      "metric": "psnr_full",
+      "main_minus": "shuffled",
+      "mean_diff": 0.07888688780197316,
+      "ci95": [
+        -0.1255222096962528,
+        0.28771032975032984
+      ],
+      "main_wins": 25,
+      "units": 55,
+      "episodes": 11
+    },
+    {
+      "metric": "psnr_full",
+      "main_minus": "unnorm",
+      "mean_diff": -0.05105828164796342,
+      "ci95": [
+        -0.2487732290873288,
+        0.1375528045625459
+      ],
+      "main_wins": 31,
+      "units": 55,
+      "episodes": 11
+    },
+    {
+      "metric": "psnr_full",
+      "main_minus": "zero",
+      "mean_diff": -0.3060178709244445,
+      "ci95": [
+        -0.573753415283532,
+        -0.05034107440962201
+      ],
+      "main_wins": 20,
+      "units": 55,
+      "episodes": 11
+    },
+    {
+      "metric": "psnr_grip",
+      "main_minus": "gripflip",
+      "mean_diff": 0.08359554438504455,
+      "ci95": [
+        -0.11788392568132895,
+        0.2717455119788307
+      ],
+      "main_wins": 31,
+      "units": 55,
+      "episodes": 11
+    },
+    {
+      "metric": "psnr_grip",
+      "main_minus": "mirror",
+      "mean_diff": 0.08932274247394831,
+      "ci95": [
+        -0.041071424073859115,
+        0.2150145588499044
+      ],
+      "main_wins": 27,
+      "units": 55,
+      "episodes": 11
+    },
+    {
+      "metric": "psnr_grip",
+      "main_minus": "reversed",
+      "mean_diff": -0.16894674731898848,
+      "ci95": [
+        -0.3603203610074641,
+        -0.004012412199536764
+      ],
+      "main_wins": 27,
+      "units": 55,
+      "episodes": 11
+    },
+    {
+      "metric": "psnr_grip",
+      "main_minus": "shuffled",
+      "mean_diff": -0.019082272048843923,
+      "ci95": [
+        -0.10878110173616447,
+        0.08499568395153236
+      ],
+      "main_wins": 23,
+      "units": 55,
+      "episodes": 11
+    },
+    {
+      "metric": "psnr_grip",
+      "main_minus": "unnorm",
+      "mean_diff": -0.010962821523310996,
+      "ci95": [
+        -0.09789543791123936,
+        0.08790573516606187
+      ],
+      "main_wins": 31,
+      "units": 55,
+      "episodes": 11
+    },
+    {
+      "metric": "psnr_grip",
+      "main_minus": "zero",
+      "mean_diff": -0.08276108642000311,
+      "ci95": [
+        -0.16471314623616723,
+        0.014401587802547348
+      ],
+      "main_wins": 26,
+      "units": 55,
+      "episodes": 11
+    },
+    {
+      "metric": "motion_corr",
+      "main_minus": "gripflip",
+      "mean_diff": -0.0019700252567354222,
+      "ci95": [
+        -0.02438689264638048,
+        0.020371517702807804
+      ],
+      "main_wins": 27,
+      "units": 55,
+      "episodes": 11
+    },
+    {
+      "metric": "motion_corr",
+      "main_minus": "mirror",
+      "mean_diff": 0.06734226716624438,
+      "ci95": [
+        0.025404848371190815,
+        0.10623909803489359
+      ],
+      "main_wins": 39,
+      "units": 55,
+      "episodes": 11
+    },
+    {
+      "metric": "motion_corr",
+      "main_minus": "reversed",
+      "mean_diff": -0.003017149482519445,
+      "ci95": [
+        -0.033533052952801706,
+        0.023512832913343024
+      ],
+      "main_wins": 30,
+      "units": 55,
+      "episodes": 11
+    },
+    {
+      "metric": "motion_corr",
+      "main_minus": "shuffled",
+      "mean_diff": -0.008943344946859466,
+      "ci95": [
+        -0.035701325802436575,
+        0.013366281693840106
+      ],
+      "main_wins": 27,
+      "units": 55,
+      "episodes": 11
+    },
+    {
+      "metric": "motion_corr",
+      "main_minus": "unnorm",
+      "mean_diff": 0.0004154786965688578,
+      "ci95": [
+        -0.010013992465194318,
+        0.014641157284193301
+      ],
+      "main_wins": 26,
+      "units": 55,
+      "episodes": 11
+    },
+    {
+      "metric": "motion_corr",
+      "main_minus": "zero",
+      "mean_diff": -0.006540410670773026,
+      "ci95": [
+        -0.029643283340270634,
+        0.01366959920328029
+      ],
+      "main_wins": 32,
+      "units": 55,
+      "episodes": 11
+    }
+  ],
+  "mean_gen_seconds": 5.355090909090909
+}

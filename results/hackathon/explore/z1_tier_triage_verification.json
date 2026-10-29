@@ -1,0 +1,1399 @@
+{
+ "name": "z1_tier_triage_verification",
+ "exploratory": true,
+ "data_facts": {
+  "n_ckpt": 93,
+  "tier50_share_BAD_OK_GOOD": [
+   0.1075,
+   0.4301,
+   0.4624
+  ],
+  "share_p50_in_[0.80,0.95]": 0.3870967741935484,
+  "n_p50_in_[0.80,0.95]": 36,
+  "n_p50_exactly_0.90": 4,
+  "n_p50_exactly_0.50": 0,
+  "n_p50_0.48_or_0.52": 1,
+  "n_p50_0.88_or_0.92": 6,
+  "ckpts_at_0.90": [
+   "can_s1_e0035",
+   "can_s1_e0050",
+   "can_s2_e0060",
+   "square_s1_e0120"
+  ],
+  "GOOD_by_task": {
+   "can": 43,
+   "square": 0
+  }
+ },
+ "K0_prior_tie_check": {
+  "flat": {
+   "n_ties_top2_within_1e-9": 0,
+   "acc_vs_tier50_argmax_as_coded": 0.10752688172043011,
+   "acc_ties_to_OK": 0.10752688172043011,
+   "acc_ties_to_GOOD": 0.10752688172043011,
+   "share_called_GOOD_as_coded": 0.0
+  },
+  "tierflat": {
+   "n_ties_top2_within_1e-9": 93,
+   "acc_vs_tier50_argmax_as_coded": 0.43010752688172044,
+   "acc_ties_to_OK": 0.43010752688172044,
+   "acc_ties_to_GOOD": 0.46236559139784944,
+   "share_called_GOOD_as_coded": 0.0
+  },
+  "pop": {
+   "n_ties_top2_within_1e-9": 0,
+   "acc_vs_tier50_argmax_as_coded": 0.12903225806451613,
+   "acc_ties_to_OK": 0.12903225806451613,
+   "acc_ties_to_GOOD": 0.12903225806451613,
+   "share_called_GOOD_as_coded": 0.3333333333333333
+  },
+  "kde_epoch": {
+   "n_ties_top2_within_1e-9": 0,
+   "acc_vs_tier50_argmax_as_coded": 0.43010752688172044,
+   "acc_ties_to_OK": 0.43010752688172044,
+   "acc_ties_to_GOOD": 0.43010752688172044,
+   "share_called_GOOD_as_coded": 0.3870967741935484
+  },
+  "kde_replan_overlap_h16": {
+   "n_ties_top2_within_1e-9": 0,
+   "acc_vs_tier50_argmax_as_coded": 0.40860215053763443,
+   "acc_ties_to_OK": 0.40860215053763443,
+   "acc_ties_to_GOOD": 0.40860215053763443,
+   "share_called_GOOD_as_coded": 0.3655913978494624
+  },
+  "kde_val_action_l1": {
+   "n_ties_top2_within_1e-9": 0,
+   "acc_vs_tier50_argmax_as_coded": 0.40860215053763443,
+   "acc_ties_to_OK": 0.40860215053763443,
+   "acc_ties_to_GOOD": 0.40860215053763443,
+   "share_called_GOOD_as_coded": 0.3655913978494624
+  },
+  "prog_epoch": {
+   "n_ties_top2_within_1e-9": 79,
+   "acc_vs_tier50_argmax_as_coded": 0.5483870967741935,
+   "acc_ties_to_OK": 0.4946236559139785,
+   "acc_ties_to_GOOD": 0.5698924731182796,
+   "share_called_GOOD_as_coded": 0.3978494623655914
+  },
+  "prog_replan_overlap_h16": {
+   "n_ties_top2_within_1e-9": 79,
+   "acc_vs_tier50_argmax_as_coded": 0.5483870967741935,
+   "acc_ties_to_OK": 0.4946236559139785,
+   "acc_ties_to_GOOD": 0.5698924731182796,
+   "share_called_GOOD_as_coded": 0.3978494623655914
+  },
+  "prog_val_action_l1": {
+   "n_ties_top2_within_1e-9": 79,
+   "acc_vs_tier50_argmax_as_coded": 0.5591397849462365,
+   "acc_ties_to_OK": 0.4946236559139785,
+   "acc_ties_to_GOOD": 0.5698924731182796,
+   "share_called_GOOD_as_coded": 0.3870967741935484
+  },
+  "prog_plv1_smoothness": {
+   "n_ties_top2_within_1e-9": 81,
+   "acc_vs_tier50_argmax_as_coded": 0.5698924731182796,
+   "acc_ties_to_OK": 0.4946236559139785,
+   "acc_ties_to_GOOD": 0.5591397849462365,
+   "share_called_GOOD_as_coded": 0.3978494623655914
+  },
+  "prog_val_loss_logged": {
+   "n_ties_top2_within_1e-9": 93,
+   "acc_vs_tier50_argmax_as_coded": 0.43010752688172044,
+   "acc_ties_to_OK": 0.43010752688172044,
+   "acc_ties_to_GOOD": 0.46236559139784944,
+   "share_called_GOOD_as_coded": 0.41935483870967744
+  }
+ },
+ "exact_world_B_plugin": {
+  "perfect_gt": {
+   "acc_at": {
+    "1": 0.5402,
+    "5": 0.7442,
+    "10": 0.8134,
+    "20": 0.8714,
+    "25": 0.8763,
+    "30": 0.8989,
+    "35": 0.8971,
+    "36": 0.9011,
+    "40": 0.9148,
+    "45": 0.9107,
+    "50": 0.9253,
+    "100": 0.9489,
+    "200": 0.9626
+   },
+   "minK90_first_crossing": 36,
+   "minK90_stays_above": 43,
+   "minK80": 9,
+   "K_below_0.9_after_first_crossing": [
+    41,
+    42
+   ],
+   "acc_ci95_at": {
+    "10": [
+     0.7854701876917339,
+     0.8392294257105769
+    ],
+    "25": [
+     0.8464555442597154,
+     0.9037995692755249
+    ],
+    "50": [
+     0.9002705942749735,
+     0.9473447230617916
+    ]
+   },
+   "minK90_boot": {
+    "median": 35.0,
+    "p2.5": 25.0,
+    "p97.5": 50.0,
+    "frac_reached": 1.0
+   }
+  },
+  "perfect_ge_decision_rule": {
+   "acc_at": {
+    "1": 0.5402,
+    "5": 0.7442,
+    "10": 0.7698,
+    "20": 0.8344,
+    "25": 0.8763,
+    "30": 0.8671,
+    "35": 0.8971,
+    "36": 0.9011,
+    "40": 0.8875,
+    "45": 0.9107,
+    "50": 0.9015,
+    "100": 0.9349,
+    "200": 0.9549
+   },
+   "minK90_first_crossing": 36,
+   "minK90_stays_above": 43,
+   "minK80": 9,
+   "K_below_0.9_after_first_crossing": [
+    40,
+    41,
+    42
+   ],
+   "acc_ci95_at": {
+    "10": [
+     0.7253950186175131,
+     0.8110651166079262
+    ],
+    "25": [
+     0.8464555442597154,
+     0.9037995692755249
+    ],
+    "50": [
+     0.8673121153978287,
+     0.9320611983819963
+    ]
+   },
+   "minK90_boot": {
+    "median": 36.0,
+    "p2.5": 25.0,
+    "p97.5": 58.0,
+    "frac_reached": 1.0
+   }
+  },
+  "perfect_asymptotic_ceiling_Kinf": 0.978494623655914,
+  "nemotron_qworld": {
+   "acc_at": {
+    "1": 0.5397,
+    "5": 0.735,
+    "10": 0.8093,
+    "20": 0.8567,
+    "25": 0.8443,
+    "30": 0.8732,
+    "35": 0.8582,
+    "36": 0.8624,
+    "40": 0.8811,
+    "45": 0.8667,
+    "50": 0.8856
+   },
+   "minK90_first_crossing": null,
+   "minK90_stays_above": null,
+   "minK80": 9,
+   "K_below_0.9_after_first_crossing": null,
+   "acc_ci95_at": {
+    "10": [
+     0.7808473540194396,
+     0.8358252316222211
+    ],
+    "25": [
+     0.7980230040587248,
+     0.8856554275795779
+    ],
+    "50": [
+     0.8422939999987412,
+     0.9245008377246396
+    ]
+   },
+   "minK90_boot": {
+    "median": 51.0,
+    "p2.5": 28.0,
+    "p97.5": 51.0,
+    "frac_reached": 0.2665
+   }
+  },
+  "nemotron_iidworld": {
+   "acc_at": {
+    "1": 0.5256,
+    "5": 0.7318,
+    "10": 0.7967,
+    "20": 0.8616,
+    "25": 0.8697,
+    "30": 0.8897,
+    "35": 0.8896,
+    "36": 0.8922,
+    "40": 0.9051,
+    "45": 0.902,
+    "50": 0.9148
+   },
+   "minK90_first_crossing": 39,
+   "minK90_stays_above": 45,
+   "minK80": 13,
+   "K_below_0.9_after_first_crossing": [
+    41,
+    42,
+    43,
+    44
+   ],
+   "acc_ci95_at": {
+    "10": [
+     0.7692613091837527,
+     0.8217809314801833
+    ],
+    "25": [
+     0.8365176321386768,
+     0.9002371449282053
+    ],
+    "50": [
+     0.8843369268631734,
+     0.9424942597086229
+    ]
+   },
+   "minK90_boot": {
+    "median": 38.0,
+    "p2.5": 25.0,
+    "p97.5": 51.0,
+    "frac_reached": 0.833
+   }
+  },
+  "nemotron_qworld_pointfit": {
+   "acc_at": {
+    "1": 0.5406,
+    "5": 0.7378,
+    "10": 0.8122,
+    "20": 0.8644,
+    "25": 0.8524,
+    "30": 0.8829,
+    "35": 0.8675,
+    "36": 0.8721,
+    "40": 0.8917,
+    "45": 0.8769,
+    "50": 0.8968
+   },
+   "minK90_first_crossing": null,
+   "minK90_stays_above": null,
+   "minK80": 9,
+   "K_below_0.9_after_first_crossing": null
+  },
+  "cosmos_qworld": {
+   "acc_at": {
+    "1": 0.5307,
+    "5": 0.7015,
+    "10": 0.7728,
+    "20": 0.8088,
+    "25": 0.7836,
+    "30": 0.819,
+    "35": 0.7937,
+    "36": 0.7989,
+    "40": 0.8229,
+    "45": 0.7999,
+    "50": 0.8248
+   },
+   "minK90_first_crossing": null,
+   "minK90_stays_above": null,
+   "minK80": 19,
+   "K_below_0.9_after_first_crossing": null,
+   "acc_ci95_at": {
+    "10": [
+     0.7389244472973012,
+     0.8030738488990119
+    ],
+    "25": [
+     0.7335156631876745,
+     0.8293684594345841
+    ],
+    "50": [
+     0.7748932139302559,
+     0.8710971450445653
+    ]
+   },
+   "minK90_boot": {
+    "median": 51.0,
+    "p2.5": 51.0,
+    "p97.5": 51.0,
+    "frac_reached": 0.0
+   }
+  },
+  "cosmos_iidworld": {
+   "acc_at": {
+    "1": 0.5143,
+    "5": 0.7067,
+    "10": 0.7689,
+    "20": 0.8303,
+    "25": 0.8328,
+    "30": 0.8567,
+    "35": 0.8519,
+    "36": 0.8545,
+    "40": 0.8712,
+    "45": 0.8641,
+    "50": 0.8803
+   },
+   "minK90_first_crossing": null,
+   "minK90_stays_above": null,
+   "minK80": 16,
+   "K_below_0.9_after_first_crossing": null,
+   "acc_ci95_at": {
+    "10": [
+     0.7361555280607704,
+     0.7984065839307998
+    ],
+    "25": [
+     0.792817074557459,
+     0.8700505514727156
+    ],
+    "50": [
+     0.8401253528788623,
+     0.9179065212114308
+    ]
+   },
+   "minK90_boot": {
+    "median": 51.0,
+    "p2.5": 38.0,
+    "p97.5": 51.0,
+    "frac_reached": 0.167
+   }
+  },
+  "cosmos_qworld_pointfit": {
+   "acc_at": {
+    "1": 0.5324,
+    "5": 0.7009,
+    "10": 0.774,
+    "20": 0.8102,
+    "25": 0.7787,
+    "30": 0.8191,
+    "35": 0.7878,
+    "36": 0.7941,
+    "40": 0.8219,
+    "45": 0.7935,
+    "50": 0.8231
+   },
+   "minK90_first_crossing": null,
+   "minK90_stays_above": null,
+   "minK80": 19,
+   "K_below_0.9_after_first_crossing": null
+  }
+ },
+ "exact_world_A_perfect": {
+  "plugin_gt": {
+   "acc_at": {
+    "1": 0.5817,
+    "5": 0.7232,
+    "10": 0.7574,
+    "20": 0.8331,
+    "25": 0.8401
+   },
+   "minK90_first_crossing": null,
+   "minK90_stays_above": null,
+   "minK80": 14,
+   "K_below_0.9_after_first_crossing": null,
+   "acc_ci95_at": {
+    "10": [
+     0.716960045937365,
+     0.7954027215318045
+    ],
+    "25": [
+     0.7838680954525503,
+     0.8902344961173814
+    ]
+   },
+   "minK90_boot": {
+    "median": 26.0,
+    "p2.5": 26.0,
+    "p97.5": 26.0,
+    "frac_reached": 0.009
+   }
+  },
+  "plugin_ge_decision_rule": {
+   "acc_at": {
+    "1": 0.5817,
+    "5": 0.7232,
+    "10": 0.7595,
+    "20": 0.8068,
+    "25": 0.8401
+   },
+   "minK90_first_crossing": null,
+   "minK90_stays_above": null,
+   "minK80": 14,
+   "K_below_0.9_after_first_crossing": null,
+   "acc_ci95_at": {
+    "10": [
+     0.7126032933986778,
+     0.8044806514870436
+    ],
+    "25": [
+     0.7838680954525503,
+     0.8902344961173814
+    ]
+   },
+   "minK90_boot": {
+    "median": 26.0,
+    "p2.5": 26.0,
+    "p97.5": 26.0,
+    "frac_reached": 0.009
+   }
+  },
+  "expected_half_vs_half_tier_agreement_random_split": 0.8400925820409579
+ },
+ "exact_sequential": {
+  "B_perfect_flat": {
+   "acc": 0.9155051884929877,
+   "acc_ci95": [
+    0.8911607117881893,
+    0.9372526130263066
+   ],
+   "meanK": 25.070886531521655,
+   "meanK_ci95": [
+    23.403172872557114,
+    26.625053732082385
+   ],
+   "meanK_by_tier50": {
+    "BAD": 9.025911621350946,
+    "OK": 25.08794107310149,
+    "GOOD": 28.786411355673145
+   },
+   "acc_by_tier50": {
+    "BAD": 0.9557890942560766,
+    "OK": 0.8619458161994545,
+    "GOOD": 0.9559595102164861
+   },
+   "fixed_K_plugin_interp_at_meanK": 0.8766415456132122,
+   "best_fixed_K_plugin_K<=ceil(meanK)": 0.8817543071334127
+  },
+  "B_perfect_tierflat": {
+   "acc": 0.8410859159024477,
+   "acc_ci95": [
+    0.7951018082711022,
+    0.8819404675337033
+   ],
+   "meanK": 20.14891813069966,
+   "meanK_ci95": [
+    18.667349630322587,
+    21.639246822452957
+   ],
+   "meanK_by_tier50": {
+    "BAD": 9.666723607034815,
+    "OK": 27.632963429631342,
+    "GOOD": 15.624735183708518
+   },
+   "acc_by_tier50": {
+    "BAD": 0.9473569466823475,
+    "OK": 0.6510078674337277,
+    "GOOD": 0.9931885119710475
+   },
+   "fixed_K_plugin_interp_at_meanK": 0.8674066216074465,
+   "best_fixed_K_plugin_K<=ceil(meanK)": 0.8713826516002517
+  },
+  "B_perfect_prog_epoch": {
+   "acc": 0.8454348643436329,
+   "acc_ci95": [
+    0.8000675357622568,
+    0.8862389063931619
+   ],
+   "meanK": 18.876634308091756,
+   "meanK_ci95": [
+    17.418540442492837,
+    20.318387876157676
+   ],
+   "meanK_by_tier50": {
+    "BAD": 6.964358972593267,
+    "OK": 25.497163145020785,
+    "GOOD": 15.488299421529513
+   },
+   "acc_by_tier50": {
+    "BAD": 0.9592759188238033,
+    "OK": 0.661149719715908,
+    "GOOD": 0.9903882420251979
+   },
+   "fixed_K_plugin_interp_at_meanK": 0.8666866394641736,
+   "best_fixed_K_plugin_K<=ceil(meanK)": 0.8673277668761792
+  },
+  "B_perfect_prog_replan_overlap_h16": {
+   "acc": 0.8454344591848297,
+   "acc_ci95": [
+    0.8000668688810731,
+    0.8862390654512367
+   ],
+   "meanK": 18.877403256173178,
+   "meanK_ci95": [
+    17.420010715952404,
+    20.318869748605294
+   ],
+   "meanK_by_tier50": {
+    "BAD": 6.964358972593267,
+    "OK": 25.498935562558973,
+    "GOOD": 15.48831373478638
+   },
+   "acc_by_tier50": {
+    "BAD": 0.9592759188238033,
+    "OK": 0.6611487777216902,
+    "GOOD": 0.9903882420251979
+   },
+   "fixed_K_plugin_interp_at_meanK": 0.8666906356618665,
+   "best_fixed_K_plugin_K<=ceil(meanK)": 0.8673277668761792
+  },
+  "B_perfect_prog_val_action_l1": {
+   "acc": 0.8469261917463224,
+   "acc_ci95": [
+    0.8020589100962826,
+    0.8880770645622027
+   ],
+   "meanK": 18.83987146053189,
+   "meanK_ci95": [
+    17.375526878549486,
+    20.26871450003336
+   ],
+   "meanK_by_tier50": {
+    "BAD": 7.441379955628773,
+    "OK": 25.280399049503863,
+    "GOOD": 15.499494983558682
+   },
+   "acc_by_tier50": {
+    "BAD": 0.957728433294377,
+    "OK": 0.6647656309492112,
+    "GOOD": 0.9906099130580412
+   },
+   "fixed_K_plugin_interp_at_meanK": 0.8664955841638754,
+   "best_fixed_K_plugin_K<=ceil(meanK)": 0.8673277668761792
+  },
+  "paired_B_flat_seq_minus_fixedK_plugin": {
+   "fixed_K": 25,
+   "acc_diff": {
+    "point": 0.03925372002638872,
+    "ci95": [
+     0.029457416273801544,
+     0.04890197377196611
+    ]
+   },
+   "fixed_K_plus1": 26,
+   "acc_diff_Kplus1": {
+    "point": 0.033750881359574644,
+    "ci95": [
+     0.024823464777509525,
+     0.0427977778627052
+    ]
+   }
+  },
+  "paired_B_prog_epoch_minus_tierflat": {
+   "acc_diff": {
+    "point": 0.004348948441185438,
+    "ci95": [
+     0.0012508853462872024,
+     0.006961244461587451
+    ]
+   },
+   "meanK_diff": {
+    "point": -1.2722838226079025,
+    "ci95": [
+     -1.5450372147663392,
+     -1.015059747022686
+    ]
+   },
+   "rel_meanK_change": -0.0631440266100145
+  },
+  "paired_B_prog_epoch_minus_flat": {
+   "acc_diff": {
+    "point": -0.07007032414935466,
+    "ci95": [
+     -0.09683084037419519,
+     -0.044464251805134435
+    ]
+   },
+   "meanK_diff": {
+    "point": -6.194252223429907,
+    "ci95": [
+     -7.185534152047848,
+     -5.091728385317256
+    ]
+   }
+  },
+  "A_perfect_flat": {
+   "acc": 0.8363387963440652,
+   "acc_ci95": [
+    0.7896481084102448,
+    0.878330409137096
+   ],
+   "meanK": 19.026344364152838,
+   "fixed_K_plugin_interp_at_meanK": 0.830563541471697
+  },
+  "A_perfect_tierflat": {
+   "acc": 0.7881274283408121,
+   "acc_ci95": [
+    0.7323402936681127,
+    0.8415588913677133
+   ],
+   "meanK": 15.963110495003257,
+   "fixed_K_plugin_interp_at_meanK": 0.8163135738728061
+  },
+  "A_perfect_prog_epoch": {
+   "acc": 0.7916345774130827,
+   "acc_ci95": [
+    0.7358442101877887,
+    0.8453525453822187
+   ],
+   "meanK": 15.072004996519723,
+   "fixed_K_plugin_interp_at_meanK": 0.8104587879306814
+  },
+  "paired_A_prog_epoch_minus_tierflat": {
+   "acc_diff": {
+    "point": 0.0035071490722708033,
+    "ci95": [
+     0.0017712626605341673,
+     0.005185281339160849
+    ]
+   },
+   "meanK_diff": {
+    "point": -0.8911054984835366,
+    "ci95": [
+     -1.0910567014778427,
+     -0.6936607644672783
+    ]
+   },
+   "rel_meanK_change": -0.05582279836767812
+  },
+  "paired_A_flat_seq_minus_fixedK_plugin": {
+   "fixed_K": 19,
+   "acc_diff": {
+    "point": 0.005844737423198807,
+    "ci95": [
+     -0.007309450137127238,
+     0.018900963145551303
+    ]
+   }
+  },
+  "B_nemotron_qmarg_flat": {
+   "acc": 0.8756376790303453,
+   "acc_ci95_ckpt_boot_only": [
+    0.8511621083398482,
+    0.8987466435204534
+   ],
+   "meanK": 34.94800999359201,
+   "note": "60 judge-parameter draws; CI excludes parameter uncertainty"
+  },
+  "B_cosmos_qmarg_flat": {
+   "acc": 0.8832298085427588,
+   "acc_ci95_ckpt_boot_only": [
+    0.8582289553039526,
+    0.9065954241638786
+   ],
+   "meanK": 42.897629464235855,
+   "note": "60 judge-parameter draws; CI excludes parameter uncertainty"
+  }
+ },
+ "judge_fit_robustness": {
+  "nemotron": {
+   "full": {
+    "theta_a_can_a_square_b": [
+     -1.932,
+     -2.172,
+     4.192
+    ],
+    "se": [
+     0.586,
+     0.647,
+     1.52
+    ],
+    "fpr_can_s0.9": 0.4365657017698962,
+    "fpr_square_s0.85": 0.33064725065495,
+    "pointfit_B_plugin_acc_K25": 0.8524,
+    "pointfit_B_plugin_acc_K50": 0.8968,
+    "pointfit_B_minK90": null,
+    "pointfit_B_conf_OK_to_GOOD_K25": 0.2952489879287864
+   },
+   "drop_run0": {
+    "theta_a_can_a_square_b": [
+     -2.105,
+     -2.022,
+     3.38
+    ],
+    "se": [
+     0.837,
+     0.624,
+     1.631
+    ],
+    "fpr_can_s0.9": 0.32018102141336025,
+    "fpr_square_s0.85": 0.3018008518237213,
+    "pointfit_B_plugin_acc_K25": 0.8586,
+    "pointfit_B_plugin_acc_K50": 0.9084,
+    "pointfit_B_minK90": 48,
+    "pointfit_B_conf_OK_to_GOOD_K25": 0.25814683852197
+   },
+   "drop_run1": {
+    "theta_a_can_a_square_b": [
+     -1.558,
+     -2.07,
+     3.656
+    ],
+    "se": [
+     0.684,
+     0.635,
+     1.616
+    ],
+    "fpr_can_s0.9": 0.47616506745849296,
+    "fpr_square_s0.85": 0.3120981571720754,
+    "pointfit_B_plugin_acc_K25": 0.8494,
+    "pointfit_B_plugin_acc_K50": 0.8945,
+    "pointfit_B_minK90": null,
+    "pointfit_B_conf_OK_to_GOOD_K25": 0.2912279051318345
+   },
+   "cov_p50": {
+    "theta_a_can_a_square_b": [
+     -2.476,
+     -3.043,
+     5.743
+    ],
+    "se": [
+     0.822,
+     0.848,
+     2.073
+    ],
+    "fpr_can_s0.9": 0.4554475927390121,
+    "fpr_square_s0.85": 0.262480051653471,
+    "pointfit_B_plugin_acc_K25": 0.8655,
+    "pointfit_B_plugin_acc_K50": 0.9073,
+    "pointfit_B_minK90": 40,
+    "pointfit_B_conf_OK_to_GOOD_K25": 0.2702898056444121
+   }
+  },
+  "cosmos": {
+   "full": {
+    "theta_a_can_a_square_b": [
+     -1.131,
+     -0.066,
+     3.232
+    ],
+    "se": [
+     0.443,
+     0.425,
+     0.935
+    ],
+    "fpr_can_s0.9": 0.5403740831634214,
+    "fpr_square_s0.85": 0.743559190012526,
+    "pointfit_B_plugin_acc_K25": 0.7787,
+    "pointfit_B_plugin_acc_K50": 0.8231,
+    "pointfit_B_minK90": null,
+    "pointfit_B_conf_OK_to_GOOD_K25": 0.4481851533911865
+   },
+   "drop_run0": {
+    "theta_a_can_a_square_b": [
+     -1.082,
+     -0.075,
+     2.764
+    ],
+    "se": [
+     0.62,
+     0.412,
+     0.997
+    ],
+    "fpr_can_s0.9": 0.5058986234843559,
+    "fpr_square_s0.85": 0.7093929767518963,
+    "pointfit_B_plugin_acc_K25": 0.7877,
+    "pointfit_B_plugin_acc_K50": 0.8371,
+    "pointfit_B_minK90": null,
+    "pointfit_B_conf_OK_to_GOOD_K25": 0.41360180741692315
+   },
+   "drop_run1": {
+    "theta_a_can_a_square_b": [
+     -1.129,
+     -0.08,
+     2.562
+    ],
+    "se": [
+     0.587,
+     0.407,
+     1.007
+    ],
+    "fpr_can_s0.9": 0.4739369699715483,
+    "fpr_square_s0.85": 0.6935461912653985,
+    "pointfit_B_plugin_acc_K25": 0.7932,
+    "pointfit_B_plugin_acc_K50": 0.8442,
+    "pointfit_B_minK90": null,
+    "pointfit_B_conf_OK_to_GOOD_K25": 0.3972944333559868
+   },
+   "cov_p50": {
+    "theta_a_can_a_square_b": [
+     -1.212,
+     -0.427,
+     3.238
+    ],
+    "se": [
+     0.455,
+     0.448,
+     0.917
+    ],
+    "fpr_can_s0.9": 0.5208556528481139,
+    "fpr_square_s0.85": 0.6694403386689407,
+    "pointfit_B_plugin_acc_K25": 0.8042,
+    "pointfit_B_plugin_acc_K50": 0.8498,
+    "pointfit_B_minK90": null,
+    "pointfit_B_conf_OK_to_GOOD_K25": 0.39336637629208226
+   }
+  }
+ },
+ "clear_cut_stratum_check": {
+  "z1_def_outside[0.45,0.55]&[0.85,0.95]": {
+   "n": 74,
+   "A_perfect_point_minK90": 14,
+   "A_perfect_acc_K14": 0.9002424434298427,
+   "A_perfect_acc_K25": 0.9521528865436697,
+   "B_perfect_point_minK90": 15,
+   "B_perfect_acc_K15": 0.9002088106324064
+  },
+  "outside[0.40,0.60]&[0.80,1.00)": {
+   "n": 28,
+   "A_perfect_point_minK90": 6,
+   "A_perfect_acc_K14": 0.9647235441468638,
+   "A_perfect_acc_K25": 0.991336192311227,
+   "B_perfect_point_minK90": 6,
+   "B_perfect_acc_K15": 0.9590677462602925
+  },
+  "outside[0.48,0.52]&[0.88,0.92]": {
+   "n": 82,
+   "A_perfect_point_minK90": 20,
+   "A_perfect_acc_K14": 0.8692811335192562,
+   "A_perfect_acc_K25": 0.925010145288817,
+   "B_perfect_point_minK90": 19,
+   "B_perfect_acc_K15": 0.8814112122379378
+  },
+  "note": "strata are defined on the 50-ep outcome (the same episodes that make the truth and the K draws); a conditional statement, not a usable a-priori triage rule"
+ },
+ "world_R_anatomy": {
+  "flip_rows_real_vs_perfect_K10": [
+   {
+    "ckpt": "can_s1_e0060",
+    "p50": 0.94,
+    "tier50": "GOOD",
+    "eval_truth_succ": 9,
+    "nemotron_judged": 10,
+    "nemotron_fp": 1,
+    "nemotron_fn": 0,
+    "nemotron_K10_correct": true,
+    "cosmos_judged": 10,
+    "cosmos_fp": 1,
+    "cosmos_fn": 0,
+    "cosmos_K10_correct": true,
+    "perfect_K10_correct": false
+   },
+   {
+    "ckpt": "can_s1_e0080",
+    "p50": 0.96,
+    "tier50": "GOOD",
+    "eval_truth_succ": 9,
+    "nemotron_judged": 10,
+    "nemotron_fp": 1,
+    "nemotron_fn": 0,
+    "nemotron_K10_correct": true,
+    "cosmos_judged": 10,
+    "cosmos_fp": 1,
+    "cosmos_fn": 0,
+    "cosmos_K10_correct": true,
+    "perfect_K10_correct": false
+   },
+   {
+    "ckpt": "can_s2_e0060",
+    "p50": 0.9,
+    "tier50": "OK",
+    "eval_truth_succ": 9,
+    "nemotron_judged": 9,
+    "nemotron_fp": 0,
+    "nemotron_fn": 0,
+    "nemotron_K10_correct": true,
+    "cosmos_judged": 10,
+    "cosmos_fp": 1,
+    "cosmos_fn": 0,
+    "cosmos_K10_correct": false,
+    "perfect_K10_correct": true
+   },
+   {
+    "ckpt": "can_s2_e0100",
+    "p50": 0.98,
+    "tier50": "GOOD",
+    "eval_truth_succ": 9,
+    "nemotron_judged": 10,
+    "nemotron_fp": 1,
+    "nemotron_fn": 0,
+    "nemotron_K10_correct": true,
+    "cosmos_judged": 10,
+    "cosmos_fp": 1,
+    "cosmos_fn": 0,
+    "cosmos_K10_correct": true,
+    "perfect_K10_correct": false
+   },
+   {
+    "ckpt": "can_s2_e0180",
+    "p50": 1.0,
+    "tier50": "GOOD",
+    "eval_truth_succ": 9,
+    "nemotron_judged": 10,
+    "nemotron_fp": 1,
+    "nemotron_fn": 0,
+    "nemotron_K10_correct": true,
+    "cosmos_judged": 10,
+    "cosmos_fp": 1,
+    "cosmos_fn": 0,
+    "cosmos_K10_correct": true,
+    "perfect_K10_correct": false
+   },
+   {
+    "ckpt": "square_s1_e0030",
+    "p50": 0.68,
+    "tier50": "OK",
+    "eval_truth_succ": 4,
+    "nemotron_judged": 5,
+    "nemotron_fp": 1,
+    "nemotron_fn": 0,
+    "nemotron_K10_correct": true,
+    "cosmos_judged": 8,
+    "cosmos_fp": 4,
+    "cosmos_fn": 0,
+    "cosmos_K10_correct": true,
+    "perfect_K10_correct": false
+   },
+   {
+    "ckpt": "square_s1_e0060",
+    "p50": 0.68,
+    "tier50": "OK",
+    "eval_truth_succ": 10,
+    "nemotron_judged": 8,
+    "nemotron_fp": 0,
+    "nemotron_fn": 2,
+    "nemotron_K10_correct": true,
+    "cosmos_judged": 9,
+    "cosmos_fp": 0,
+    "cosmos_fn": 1,
+    "cosmos_K10_correct": true,
+    "perfect_K10_correct": false
+   }
+  ],
+  "counts_K10_correct": {
+   "perfect_K10_correct": 25,
+   "nemotron_K10_correct": 31,
+   "cosmos_K10_correct": 30
+  },
+  "fp_cross_judge": {
+   "n_truth_fail_eps": 67,
+   "nemotron_fp": 9,
+   "cosmos_fp": 21,
+   "both_fp": 8,
+   "expected_both_if_independent": 2.8208955223880596,
+   "P(nem_fp|cos_fp)": 0.38095238095238093,
+   "P(nem_fp)": 0.13432835820895522
+  },
+  "truth_fail_episodes_in_ckpts_with_eval_succ>=8": [
+   {
+    "ckpt": "can_s1_e0060",
+    "seed": 200003,
+    "eval_truth_succ": 9,
+    "p50": 0.94,
+    "truth_failure_type": "dropped",
+    "truth_lifted": true,
+    "truth_grasped": true,
+    "truth_dropped": true,
+    "nemotron_says_success": true,
+    "cosmos_says_success": true,
+    "nemotron_expl": "The robot arm descended onto the red can in the left bin, closed its gripper around it, lifted it into the air, and carried it over to the front-right compartment of the right bin where it was placed.",
+    "cosmos_expl": "The robot arm is positioned above the dark wooden bin with compartments, and the gripper appears to be holding a red can."
+   },
+   {
+    "ckpt": "can_s1_e0080",
+    "seed": 200000,
+    "eval_truth_succ": 9,
+    "p50": 0.96,
+    "truth_failure_type": "dropped",
+    "truth_lifted": true,
+    "truth_grasped": true,
+    "truth_dropped": true,
+    "nemotron_says_success": true,
+    "cosmos_says_success": true,
+    "nemotron_expl": "The robot arm picked up the red can from the left bin and placed it into the front-right compartment of the right bin, where it remained at the end of the clip.",
+    "cosmos_expl": "A robotic arm is positioned above two bins, with the dark wooden bin on the right containing a red soda can in one of its compartments."
+   },
+   {
+    "ckpt": "can_s2_e0040",
+    "seed": 200006,
+    "eval_truth_succ": 9,
+    "p50": 0.8,
+    "truth_failure_type": "dropped",
+    "truth_lifted": true,
+    "truth_grasped": true,
+    "truth_dropped": true,
+    "nemotron_says_success": false,
+    "cosmos_says_success": false,
+    "nemotron_expl": "The gripper descended onto the red can and made contact, but the can remained on the table and was never lifted into the air.",
+    "cosmos_expl": "The red can is resting inside the light wooden bin on the left, while the robot arm is positioned above the bins."
+   },
+   {
+    "ckpt": "can_s2_e0060",
+    "seed": 200003,
+    "eval_truth_succ": 9,
+    "p50": 0.9,
+    "truth_failure_type": "dropped",
+    "truth_lifted": true,
+    "truth_grasped": true,
+    "truth_dropped": true,
+    "nemotron_says_success": false,
+    "cosmos_says_success": true,
+    "nemotron_expl": "The robot grasped the red can and lifted it, but held it above the table without placing it into the target compartment before the video ended.",
+    "cosmos_expl": "The red can is visible inside the dark wooden bin on the right, and the robot arm is positioned above it, indicating that the gripper is likely grasping the can."
+   },
+   {
+    "ckpt": "can_s2_e0100",
+    "seed": 200000,
+    "eval_truth_succ": 9,
+    "p50": 0.98,
+    "truth_failure_type": "dropped",
+    "truth_lifted": true,
+    "truth_grasped": true,
+    "truth_dropped": true,
+    "nemotron_says_success": true,
+    "cosmos_says_success": true,
+    "nemotron_expl": "The robot arm grasps the red can from the left bin, lifts it into the air, and places it into the front-right compartment of the dark wooden bin on the right.",
+    "cosmos_expl": "The red can is visible inside the dark wooden bin on the right, not in the gripper."
+   },
+   {
+    "ckpt": "can_s2_e0180",
+    "seed": 200000,
+    "eval_truth_succ": 9,
+    "p50": 1.0,
+    "truth_failure_type": "dropped",
+    "truth_lifted": true,
+    "truth_grasped": true,
+    "truth_dropped": true,
+    "nemotron_says_success": true,
+    "cosmos_says_success": true,
+    "nemotron_expl": "The robot arm grasps the red can from the left bin, lifts it into the air, and places it into the front-right compartment of the dark wooden bin on the right.",
+    "cosmos_expl": "The robot arm is positioned over the dark wooden bin with compartments, and the gripper is holding a red can above it."
+   },
+   {
+    "ckpt": "square_s1_e0150",
+    "seed": 200005,
+    "eval_truth_succ": 9,
+    "p50": 0.84,
+    "truth_failure_type": "dropped",
+    "truth_lifted": true,
+    "truth_grasped": true,
+    "truth_dropped": true,
+    "nemotron_says_success": false,
+    "cosmos_says_success": false,
+    "nemotron_expl": "The robot picked up the square nut and carried it to the square peg, but the nut remained held in the air above the peg at the end of the clip rather than being slid down onto it.",
+    "cosmos_expl": "The flat square nut with a handle is not visible in the image."
+   },
+   {
+    "ckpt": "square_s1_e0210",
+    "seed": 200007,
+    "eval_truth_succ": 8,
+    "p50": 0.86,
+    "truth_failure_type": "dropped",
+    "truth_lifted": true,
+    "truth_grasped": true,
+    "truth_dropped": true,
+    "nemotron_says_success": false,
+    "cosmos_says_success": false,
+    "nemotron_expl": "The robot picked up the square nut and carried it in the air, but did not place it onto the square peg before the video ended.",
+    "cosmos_expl": "The flat square nut with a handle is not visible in the image."
+   },
+   {
+    "ckpt": "square_s1_e0210",
+    "seed": 200008,
+    "eval_truth_succ": 8,
+    "p50": 0.86,
+    "truth_failure_type": "dropped",
+    "truth_lifted": true,
+    "truth_grasped": true,
+    "truth_dropped": true,
+    "nemotron_says_success": false,
+    "cosmos_says_success": true,
+    "nemotron_expl": "The gripper contacts and pushes the square nut but never closes around it to lift it off the table.",
+    "cosmos_expl": "The square nut with a handle is positioned on top of the square peg."
+   },
+   {
+    "ckpt": "square_s1_e0240",
+    "seed": 200002,
+    "eval_truth_succ": 8,
+    "p50": 0.86,
+    "truth_failure_type": "not_placed",
+    "truth_lifted": true,
+    "truth_grasped": true,
+    "truth_dropped": false,
+    "nemotron_says_success": true,
+    "cosmos_says_success": true,
+    "nemotron_expl": "The robot gripper closed around the square nut, lifted it into the air, and slid it down onto the square peg so the peg passed through the nut's hole.",
+    "cosmos_expl": "The square nut is positioned on the square peg, ready to be grasped by the robot gripper."
+   },
+   {
+    "ckpt": "square_s1_e0240",
+    "seed": 200007,
+    "eval_truth_succ": 8,
+    "p50": 0.86,
+    "truth_failure_type": "dropped",
+    "truth_lifted": true,
+    "truth_grasped": true,
+    "truth_dropped": true,
+    "nemotron_says_success": false,
+    "cosmos_says_success": false,
+    "nemotron_expl": "The robot picked up the square nut and carried it upward, but the video ends with the nut still held in the air and never placed onto the square peg.",
+    "cosmos_expl": "The flat square nut with a handle is not visible in the image."
+   },
+   {
+    "ckpt": "square_s1_e0270",
+    "seed": 200009,
+    "eval_truth_succ": 9,
+    "p50": 0.84,
+    "truth_failure_type": "dropped",
+    "truth_lifted": true,
+    "truth_grasped": true,
+    "truth_dropped": true,
+    "nemotron_says_success": false,
+    "cosmos_says_success": true,
+    "nemotron_expl": "The robot picked up the square nut and carried it in the air, but never slid it onto the square peg; the nut remained held above the table at the end.",
+    "cosmos_expl": "The square nut is on the table, not around the square peg."
+   },
+   {
+    "ckpt": "square_s1_e0300",
+    "seed": 200009,
+    "eval_truth_succ": 9,
+    "p50": 0.88,
+    "truth_failure_type": "dropped",
+    "truth_lifted": true,
+    "truth_grasped": true,
+    "truth_dropped": true,
+    "nemotron_says_success": false,
+    "cosmos_says_success": true,
+    "nemotron_expl": "The robot picked up the square nut and carried it in the air, but never slid it onto the square peg; it remained held above the table at the end.",
+    "cosmos_expl": "The square nut is positioned on top of the square peg on the table."
+   }
+  ]
+ },
+ "extra_checks": {
+  "prog_flatbase_epoch": {
+   "B": {
+    "acc": 0.8983383890940855,
+    "meanK": 20.448459699653323,
+    "acc_minus_flat": {
+     "point": -0.01716679939890202,
+     "ci95": [
+      -0.027198268149542557,
+      -0.007802952483201284
+     ]
+    },
+    "meanK_minus_flat": {
+     "point": -4.622426831868337,
+     "ci95": [
+      -5.1808281699505985,
+      -4.088594559279328
+     ]
+    },
+    "rel_meanK_change": -0.1843742871260874,
+    "meanK_by_tier50": {
+     "BAD": 8.345500568647113,
+     "OK": 17.704108952463276,
+     "GOOD": 25.8159857740176
+    }
+   },
+   "A": {
+    "acc": 0.8198042179358034,
+    "meanK": 15.778358976276909,
+    "acc_minus_flat": {
+     "point": -0.016534578408261506,
+     "ci95": [
+      -0.02380066685847867,
+      -0.01058339864140622
+     ]
+    },
+    "meanK_minus_flat": {
+     "point": -3.2479853878759135,
+     "ci95": [
+      -3.631365324349102,
+      -2.874833372030927
+     ]
+    },
+    "rel_meanK_change": -0.17070990231814542
+   }
+  },
+  "prog_flatbase_replan_overlap_h16": {
+   "B": {
+    "acc": 0.89835641563155,
+    "meanK": 20.442478267631063,
+    "acc_minus_flat": {
+     "point": -0.017148772861437643,
+     "ci95": [
+      -0.02720391103739781,
+      -0.007801848379836195
+     ]
+    },
+    "meanK_minus_flat": {
+     "point": -4.628408263890593,
+     "ci95": [
+      -5.172986763489209,
+      -4.088451691770058
+     ]
+    },
+    "rel_meanK_change": -0.184612867920378,
+    "meanK_by_tier50": {
+     "BAD": 8.345500568647113,
+     "OK": 17.690201999930345,
+     "GOOD": 25.81598588851173
+    }
+   },
+   "A": {
+    "acc": 0.8198090678135819,
+    "meanK": 15.774933186793065,
+    "acc_minus_flat": {
+     "point": -0.016529728530483023,
+     "ci95": [
+      -0.023794397080410173,
+      -0.010583439197912395
+     ]
+    },
+    "meanK_minus_flat": {
+     "point": -3.251411177359764,
+     "ci95": [
+      -3.633533266900632,
+      -2.866660714688987
+     ]
+    },
+    "rel_meanK_change": -0.17088995737329826
+   }
+  },
+  "prog_flatbase_val_loss_logged": {
+   "B": {
+    "acc": 0.9042892159936815,
+    "meanK": 21.84586170285837,
+    "acc_minus_flat": {
+     "point": -0.011215972499306111,
+     "ci95": [
+      -0.02959540306931281,
+      0.0033423106456518044
+     ]
+    },
+    "meanK_minus_flat": {
+     "point": -3.2250248286632903,
+     "ci95": [
+      -3.9039839846110964,
+      -2.5557183046601506
+     ]
+    },
+    "rel_meanK_change": -0.1286362500427919,
+    "meanK_by_tier50": {
+     "BAD": 10.474991826352257,
+     "OK": 18.646413548357433,
+     "GOOD": 27.466480887628105
+    }
+   },
+   "A": {
+    "acc": 0.8311945259695404,
+    "meanK": 16.793860121319288,
+    "acc_minus_flat": {
+     "point": -0.005144270374524872,
+     "ci95": [
+      -0.020105595264091173,
+      0.007092563672816604
+     ]
+    },
+    "meanK_minus_flat": {
+     "point": -2.2324842428335407,
+     "ci95": [
+      -2.769627122854806,
+      -1.7207950705713082
+     ]
+    },
+    "rel_meanK_change": -0.1173364783116051
+   }
+  },
+  "B_prog_epoch_seq_minus_plugin_fixedK": {
+   "fixed_K": 19,
+   "acc_diff": {
+    "point": -0.021892902532545885,
+    "ci95": [
+     -0.05111243960400306,
+     0.0063400702758262305
+    ]
+   }
+  },
+  "B_tierflat_seq_minus_plugin_fixedK": {
+   "fixed_K": 20,
+   "acc_diff": {
+    "point": -0.030296735697804195,
+    "ci95": [
+     -0.06299523996535997,
+     0.0014459143924944033
+    ]
+   }
+  },
+  "nemotron_B_plugin_over_1500_param_draws": {
+   "acc25_mean": 0.8399864098873168,
+   "acc40_mean": 0.8771474879927142,
+   "acc50_mean": 0.8815313585875817,
+   "acc50_median": 0.8879196642042007,
+   "acc50_p5_p95": [
+    0.816232533222119,
+    0.9249641252101426
+   ],
+   "frac_draws_acc50_ge_0.9": 0.3466666666666667
+  },
+  "cosmos_B_plugin_over_1500_param_draws": {
+   "acc25_mean": 0.7743932894811848,
+   "acc40_mean": 0.812989369837939,
+   "acc50_mean": 0.8136433971703569,
+   "acc50_median": 0.8210227491431707,
+   "acc50_p5_p95": [
+    0.7092087673033385,
+    0.8974530777126329
+   ],
+   "frac_draws_acc50_ge_0.9": 0.04466666666666667
+  },
+  "judge_loro_predictive_can_runs": {
+   "nemotron": {
+    "loro_logscore_sum_q": -10.176288807808158,
+    "loro_logscore_sum_iid": -14.64236945559613,
+    "loro_mae_q": 0.03465124092937521,
+    "loro_mae_iid": 0.04434680346152757,
+    "n_ckpt": 22
+   },
+   "cosmos": {
+    "loro_logscore_sum_q": -11.296684374660956,
+    "loro_logscore_sum_iid": -16.891037675618197,
+    "loro_mae_q": 0.03896577366959832,
+    "loro_mae_iid": 0.05465544855518983,
+    "n_ckpt": 22
+   }
+  }
+ },
+ "verdict": {
+  "status": "partially_confirmed",
+  "reran": true,
+  "rerun_reproduction": "z1_tier_triage.py --reps 250 --orders 8 and the iid sensitivity run reproduce results/hackathon/explore/z1_tier_triage.json and z1_tier_triage_iidworld.json with 0 numeric differences (outputs in data/outputs/hackathon_explore/z1_tier_triage_verification/)",
+  "confirmed": [
+   "saved VLM outputs: all listed files exist with the stated row counts; results/hackathon/raw_model_outputs/*.jsonl are byte-identical to data/outputs/hackathon_cosmos/*.jsonl; raw_text 330/330; request_id 330/330 for Nebius rows (none for local Cosmos, as expected)",
+   "exact (no-MC) world-B perfect plug-in accuracy 0.813/0.876/0.925 at K=10/25/50 matches z1 0.814/0.876/0.925",
+   "exact world-A perfect plug-in 0.757/0.840 at K=10/25 matches z1; K=25 accuracy equals the expected half-vs-half agreement 0.840 by construction",
+   "exact sequential flat-prior world B: 0.9155 at 25.07 rollouts (BAD/OK/GOOD 9.0/25.1/28.8); paired gain vs fixed K=25 plug-in +3.9pt [2.9, 4.9]",
+   "Nemotron / Cosmos qmarg-flat sequential 0.876 @34.9 / 0.883 @42.9 (z1 0.873 @35.0 / 0.881 @42.9)",
+   "quality-dependent FPR beats constant FPR also under leave-one-RUN-out on the two can runs (log score -10.2 vs -14.6 Nemotron, -11.3 vs -16.9 Cosmos)",
+   "world-R numbers (0.939 / 0.909 / 0.758 at K=10) and the four can GOOD checkpoints with 1 failure judged success by both VLMs",
+   "Cosmos never reaches 0.9 by K=50 under any judge-model variant tried (0.82-0.88)"
+  ],
+  "issues": "see md"
+ }
+}

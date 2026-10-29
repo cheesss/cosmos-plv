@@ -1,0 +1,63 @@
+{
+  "by_backend_variant": [
+    {
+      "backend": "local",
+      "balanced_acc": 0.832,
+      "balanced_acc_all": 0.832,
+      "episodes": 330,
+      "failure_type_acc": null,
+      "failure_type_acc_on_failures": null,
+      "fn": 6,
+      "fp": 21,
+      "mean_latency_s": 2.08,
+      "n_failures_scored": 0,
+      "reasoning": false,
+      "scored": 330,
+      "success_acc": 0.918,
+      "success_acc_all": 0.918,
+      "success_acc_ci95": [
+        0.884,
+        0.943
+      ],
+      "tasks": [
+        "can",
+        "square"
+      ],
+      "tn": 46,
+      "tp": 257,
+      "unparsed": 0,
+      "variant": "v6_perception_last"
+    },
+    {
+      "backend": "nebius",
+      "balanced_acc": 0.927,
+      "balanced_acc_all": 0.927,
+      "episodes": 330,
+      "failure_type_acc": 0.852,
+      "failure_type_acc_on_failures": 0.313,
+      "fn": 3,
+      "fp": 9,
+      "mean_latency_s": 3.09,
+      "n_failures_scored": 67,
+      "reasoning": false,
+      "scored": 330,
+      "success_acc": 0.964,
+      "success_acc_all": 0.964,
+      "success_acc_ci95": [
+        0.938,
+        0.979
+      ],
+      "tasks": [
+        "can",
+        "square"
+      ],
+      "tn": 58,
+      "tp": 260,
+      "unparsed": 0,
+      "variant": "v2_evidence_first"
+    }
+  ],
+  "generated_utc": "2026-10-28T22:24:26+00:00",
+  "git_commit": "b1a484b8c5198398cdfd04c65e097a71c8709148",
+  "n_diagnostic_rows": 660
+}

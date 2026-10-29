@@ -1,0 +1,1141 @@
+{
+ "name": "y3_visual_robustness",
+ "rule": "* universe = eval episodes (seeds 200000-200009) of the 25 checkpoints that the\n    frozen eval diagnostics cover (checkpoint ids in eval_local_v6.jsonl);\n  * strata = (task, verified failure_type) with failure_type in {none, no_grasp, dropped};\n  * quotas: can none 12 / no_grasp 10 / dropped 8, square none 12 / no_grasp 9 / dropped 9 (60);\n  * order inside a stratum: round-robin over checkpoints (checkpoint order and episode\n    order both by sha256(\"y3|<checkpoint_id>|<env_seed>\")), so several checkpoints appear.\n  If a stratum has fewer episodes than its quota, all are taken.",
+ "universe_checkpoints": [
+  "can_s1_e0000",
+  "can_s1_e0020",
+  "can_s1_e0040",
+  "can_s1_e0060",
+  "can_s1_e0080",
+  "can_s1_e0100",
+  "can_s1_e0120",
+  "can_s2_e0000",
+  "can_s2_e0020",
+  "can_s2_e0040",
+  "can_s2_e0060",
+  "can_s2_e0080",
+  "can_s2_e0100",
+  "can_s2_e0120",
+  "can_s2_e0140",
+  "can_s2_e0160",
+  "can_s2_e0180",
+  "can_s2_e0200",
+  "square_s1_e0000",
+  "square_s1_e0030",
+  "square_s1_e0060",
+  "square_s1_e0090",
+  "square_s1_e0120",
+  "square_s1_e0150",
+  "square_s1_e0180"
+ ],
+ "strata": {
+  "can/none": {
+   "available": 142,
+   "picked": 12
+  },
+  "can/no_grasp": {
+   "available": 25,
+   "picked": 10
+  },
+  "can/dropped": {
+   "available": 13,
+   "picked": 8
+  },
+  "square/none": {
+   "available": 47,
+   "picked": 12
+  },
+  "square/no_grasp": {
+   "available": 13,
+   "picked": 9
+  },
+  "square/dropped": {
+   "available": 10,
+   "picked": 9
+  }
+ },
+ "n": 60,
+ "n_checkpoints": 22,
+ "episodes": [
+  {
+   "checkpoint_id": "can_s2_e0020",
+   "checkpoint_path": "data/outputs/hackathon_pool/paper_dp_can_abs_ph_seed2_e200_s200_r10_inf100/checkpoints/epoch=0020-test_mean_score=0.480.ckpt",
+   "task": "can",
+   "env_seed": 200008,
+   "success": true,
+   "failure_type": "none",
+   "video": "data/outputs/hackathon_rollouts_eval/can_s2_e0020/videos/seed200008.mp4",
+   "video_frames": 150,
+   "video_fps": 10,
+   "episode_npz": "data/outputs/hackathon_rollouts_eval/can_s2_e0020/episodes/seed200008.npz",
+   "n_steps": 299,
+   "render_hw": [
+    448,
+    448
+   ],
+   "camera": "agentview"
+  },
+  {
+   "checkpoint_id": "can_s2_e0200",
+   "checkpoint_path": "data/outputs/hackathon_pool/paper_dp_can_abs_ph_seed2_e200_s200_r10_inf100/checkpoints/epoch=0200-test_mean_score=1.000.ckpt",
+   "task": "can",
+   "env_seed": 200008,
+   "success": true,
+   "failure_type": "none",
+   "video": "data/outputs/hackathon_rollouts_eval/can_s2_e0200/videos/seed200008.mp4",
+   "video_frames": 70,
+   "video_fps": 10,
+   "episode_npz": "data/outputs/hackathon_rollouts_eval/can_s2_e0200/episodes/seed200008.npz",
+   "n_steps": 140,
+   "render_hw": [
+    448,
+    448
+   ],
+   "camera": "agentview"
+  },
+  {
+   "checkpoint_id": "can_s2_e0060",
+   "checkpoint_path": "data/outputs/hackathon_pool/paper_dp_can_abs_ph_seed2_e200_s200_r10_inf100/checkpoints/epoch=0060-test_mean_score=0.900.ckpt",
+   "task": "can",
+   "env_seed": 200001,
+   "success": true,
+   "failure_type": "none",
+   "video": "data/outputs/hackathon_rollouts_eval/can_s2_e0060/videos/seed200001.mp4",
+   "video_frames": 68,
+   "video_fps": 10,
+   "episode_npz": "data/outputs/hackathon_rollouts_eval/can_s2_e0060/episodes/seed200001.npz",
+   "n_steps": 136,
+   "render_hw": [
+    448,
+    448
+   ],
+   "camera": "agentview"
+  },
+  {
+   "checkpoint_id": "can_s2_e0140",
+   "checkpoint_path": "data/outputs/hackathon_pool/paper_dp_can_abs_ph_seed2_e200_s200_r10_inf100/checkpoints/epoch=0140-test_mean_score=1.000.ckpt",
+   "task": "can",
+   "env_seed": 200007,
+   "success": true,
+   "failure_type": "none",
+   "video": "data/outputs/hackathon_rollouts_eval/can_s2_e0140/videos/seed200007.mp4",
+   "video_frames": 60,
+   "video_fps": 10,
+   "episode_npz": "data/outputs/hackathon_rollouts_eval/can_s2_e0140/episodes/seed200007.npz",
+   "n_steps": 119,
+   "render_hw": [
+    448,
+    448
+   ],
+   "camera": "agentview"
+  },
+  {
+   "checkpoint_id": "can_s1_e0080",
+   "checkpoint_path": "data/outputs/hackathon_pool/paper_dp_can_abs_ph_seed1_e200_s200_r5_inf100/checkpoints/epoch=0080-test_mean_score=0.960.ckpt",
+   "task": "can",
+   "env_seed": 200004,
+   "success": true,
+   "failure_type": "none",
+   "video": "data/outputs/hackathon_rollouts_eval/can_s1_e0080/videos/seed200004.mp4",
+   "video_frames": 59,
+   "video_fps": 10,
+   "episode_npz": "data/outputs/hackathon_rollouts_eval/can_s1_e0080/episodes/seed200004.npz",
+   "n_steps": 118,
+   "render_hw": [
+    448,
+    448
+   ],
+   "camera": "agentview"
+  },
+  {
+   "checkpoint_id": "can_s2_e0040",
+   "checkpoint_path": "data/outputs/hackathon_pool/paper_dp_can_abs_ph_seed2_e200_s200_r10_inf100/checkpoints/epoch=0040-test_mean_score=0.800.ckpt",
+   "task": "can",
+   "env_seed": 200007,
+   "success": true,
+   "failure_type": "none",
+   "video": "data/outputs/hackathon_rollouts_eval/can_s2_e0040/videos/seed200007.mp4",
+   "video_frames": 59,
+   "video_fps": 10,
+   "episode_npz": "data/outputs/hackathon_rollouts_eval/can_s2_e0040/episodes/seed200007.npz",
+   "n_steps": 118,
+   "render_hw": [
+    448,
+    448
+   ],
+   "camera": "agentview"
+  },
+  {
+   "checkpoint_id": "can_s2_e0080",
+   "checkpoint_path": "data/outputs/hackathon_pool/paper_dp_can_abs_ph_seed2_e200_s200_r10_inf100/checkpoints/epoch=0080-test_mean_score=0.960.ckpt",
+   "task": "can",
+   "env_seed": 200005,
+   "success": true,
+   "failure_type": "none",
+   "video": "data/outputs/hackathon_rollouts_eval/can_s2_e0080/videos/seed200005.mp4",
+   "video_frames": 63,
+   "video_fps": 10,
+   "episode_npz": "data/outputs/hackathon_rollouts_eval/can_s2_e0080/episodes/seed200005.npz",
+   "n_steps": 126,
+   "render_hw": [
+    448,
+    448
+   ],
+   "camera": "agentview"
+  },
+  {
+   "checkpoint_id": "can_s2_e0180",
+   "checkpoint_path": "data/outputs/hackathon_pool/paper_dp_can_abs_ph_seed2_e200_s200_r10_inf100/checkpoints/epoch=0180-test_mean_score=1.000.ckpt",
+   "task": "can",
+   "env_seed": 200003,
+   "success": true,
+   "failure_type": "none",
+   "video": "data/outputs/hackathon_rollouts_eval/can_s2_e0180/videos/seed200003.mp4",
+   "video_frames": 55,
+   "video_fps": 10,
+   "episode_npz": "data/outputs/hackathon_rollouts_eval/can_s2_e0180/episodes/seed200003.npz",
+   "n_steps": 109,
+   "render_hw": [
+    448,
+    448
+   ],
+   "camera": "agentview"
+  },
+  {
+   "checkpoint_id": "can_s1_e0020",
+   "checkpoint_path": "data/outputs/hackathon_pool/paper_dp_can_abs_ph_seed1_e200_s200_r5_inf100/checkpoints/epoch=0020-test_mean_score=0.560.ckpt",
+   "task": "can",
+   "env_seed": 200002,
+   "success": true,
+   "failure_type": "none",
+   "video": "data/outputs/hackathon_rollouts_eval/can_s1_e0020/videos/seed200002.mp4",
+   "video_frames": 71,
+   "video_fps": 10,
+   "episode_npz": "data/outputs/hackathon_rollouts_eval/can_s1_e0020/episodes/seed200002.npz",
+   "n_steps": 142,
+   "render_hw": [
+    448,
+    448
+   ],
+   "camera": "agentview"
+  },
+  {
+   "checkpoint_id": "can_s2_e0160",
+   "checkpoint_path": "data/outputs/hackathon_pool/paper_dp_can_abs_ph_seed2_e200_s200_r10_inf100/checkpoints/epoch=0160-test_mean_score=1.000.ckpt",
+   "task": "can",
+   "env_seed": 200004,
+   "success": true,
+   "failure_type": "none",
+   "video": "data/outputs/hackathon_rollouts_eval/can_s2_e0160/videos/seed200004.mp4",
+   "video_frames": 58,
+   "video_fps": 10,
+   "episode_npz": "data/outputs/hackathon_rollouts_eval/can_s2_e0160/episodes/seed200004.npz",
+   "n_steps": 116,
+   "render_hw": [
+    448,
+    448
+   ],
+   "camera": "agentview"
+  },
+  {
+   "checkpoint_id": "can_s1_e0040",
+   "checkpoint_path": "data/outputs/hackathon_pool/paper_dp_can_abs_ph_seed1_e200_s200_r5_inf100/checkpoints/epoch=0040-test_mean_score=0.860.ckpt",
+   "task": "can",
+   "env_seed": 200001,
+   "success": true,
+   "failure_type": "none",
+   "video": "data/outputs/hackathon_rollouts_eval/can_s1_e0040/videos/seed200001.mp4",
+   "video_frames": 66,
+   "video_fps": 10,
+   "episode_npz": "data/outputs/hackathon_rollouts_eval/can_s1_e0040/episodes/seed200001.npz",
+   "n_steps": 131,
+   "render_hw": [
+    448,
+    448
+   ],
+   "camera": "agentview"
+  },
+  {
+   "checkpoint_id": "can_s1_e0120",
+   "checkpoint_path": "data/outputs/hackathon_pool/paper_dp_can_abs_ph_seed1_e200_s200_r5_inf100/checkpoints/epoch=0120-test_mean_score=0.980.ckpt",
+   "task": "can",
+   "env_seed": 200000,
+   "success": true,
+   "failure_type": "none",
+   "video": "data/outputs/hackathon_rollouts_eval/can_s1_e0120/videos/seed200000.mp4",
+   "video_frames": 59,
+   "video_fps": 10,
+   "episode_npz": "data/outputs/hackathon_rollouts_eval/can_s1_e0120/episodes/seed200000.npz",
+   "n_steps": 117,
+   "render_hw": [
+    448,
+    448
+   ],
+   "camera": "agentview"
+  },
+  {
+   "checkpoint_id": "can_s2_e0020",
+   "checkpoint_path": "data/outputs/hackathon_pool/paper_dp_can_abs_ph_seed2_e200_s200_r10_inf100/checkpoints/epoch=0020-test_mean_score=0.480.ckpt",
+   "task": "can",
+   "env_seed": 200003,
+   "success": false,
+   "failure_type": "no_grasp",
+   "video": "data/outputs/hackathon_rollouts_eval/can_s2_e0020/videos/seed200003.mp4",
+   "video_frames": 201,
+   "video_fps": 10,
+   "episode_npz": "data/outputs/hackathon_rollouts_eval/can_s2_e0020/episodes/seed200003.npz",
+   "n_steps": 401,
+   "render_hw": [
+    448,
+    448
+   ],
+   "camera": "agentview"
+  },
+  {
+   "checkpoint_id": "can_s1_e0020",
+   "checkpoint_path": "data/outputs/hackathon_pool/paper_dp_can_abs_ph_seed1_e200_s200_r5_inf100/checkpoints/epoch=0020-test_mean_score=0.560.ckpt",
+   "task": "can",
+   "env_seed": 200005,
+   "success": false,
+   "failure_type": "no_grasp",
+   "video": "data/outputs/hackathon_rollouts_eval/can_s1_e0020/videos/seed200005.mp4",
+   "video_frames": 201,
+   "video_fps": 10,
+   "episode_npz": "data/outputs/hackathon_rollouts_eval/can_s1_e0020/episodes/seed200005.npz",
+   "n_steps": 401,
+   "render_hw": [
+    448,
+    448
+   ],
+   "camera": "agentview"
+  },
+  {
+   "checkpoint_id": "can_s2_e0000",
+   "checkpoint_path": "data/outputs/hackathon_pool/paper_dp_can_abs_ph_seed2_e200_s200_r10_inf100/checkpoints/epoch=0000-test_mean_score=0.000.ckpt",
+   "task": "can",
+   "env_seed": 200006,
+   "success": false,
+   "failure_type": "no_grasp",
+   "video": "data/outputs/hackathon_rollouts_eval/can_s2_e0000/videos/seed200006.mp4",
+   "video_frames": 201,
+   "video_fps": 10,
+   "episode_npz": "data/outputs/hackathon_rollouts_eval/can_s2_e0000/episodes/seed200006.npz",
+   "n_steps": 401,
+   "render_hw": [
+    448,
+    448
+   ],
+   "camera": "agentview"
+  },
+  {
+   "checkpoint_id": "can_s1_e0040",
+   "checkpoint_path": "data/outputs/hackathon_pool/paper_dp_can_abs_ph_seed1_e200_s200_r5_inf100/checkpoints/epoch=0040-test_mean_score=0.860.ckpt",
+   "task": "can",
+   "env_seed": 200003,
+   "success": false,
+   "failure_type": "no_grasp",
+   "video": "data/outputs/hackathon_rollouts_eval/can_s1_e0040/videos/seed200003.mp4",
+   "video_frames": 201,
+   "video_fps": 10,
+   "episode_npz": "data/outputs/hackathon_rollouts_eval/can_s1_e0040/episodes/seed200003.npz",
+   "n_steps": 401,
+   "render_hw": [
+    448,
+    448
+   ],
+   "camera": "agentview"
+  },
+  {
+   "checkpoint_id": "can_s1_e0000",
+   "checkpoint_path": "data/outputs/hackathon_pool/paper_dp_can_abs_ph_seed1_e200_s200_r5_inf100/checkpoints/epoch=0000-test_mean_score=0.000.ckpt",
+   "task": "can",
+   "env_seed": 200001,
+   "success": false,
+   "failure_type": "no_grasp",
+   "video": "data/outputs/hackathon_rollouts_eval/can_s1_e0000/videos/seed200001.mp4",
+   "video_frames": 201,
+   "video_fps": 10,
+   "episode_npz": "data/outputs/hackathon_rollouts_eval/can_s1_e0000/episodes/seed200001.npz",
+   "n_steps": 401,
+   "render_hw": [
+    448,
+    448
+   ],
+   "camera": "agentview"
+  },
+  {
+   "checkpoint_id": "can_s1_e0020",
+   "checkpoint_path": "data/outputs/hackathon_pool/paper_dp_can_abs_ph_seed1_e200_s200_r5_inf100/checkpoints/epoch=0020-test_mean_score=0.560.ckpt",
+   "task": "can",
+   "env_seed": 200007,
+   "success": false,
+   "failure_type": "no_grasp",
+   "video": "data/outputs/hackathon_rollouts_eval/can_s1_e0020/videos/seed200007.mp4",
+   "video_frames": 201,
+   "video_fps": 10,
+   "episode_npz": "data/outputs/hackathon_rollouts_eval/can_s1_e0020/episodes/seed200007.npz",
+   "n_steps": 401,
+   "render_hw": [
+    448,
+    448
+   ],
+   "camera": "agentview"
+  },
+  {
+   "checkpoint_id": "can_s2_e0000",
+   "checkpoint_path": "data/outputs/hackathon_pool/paper_dp_can_abs_ph_seed2_e200_s200_r10_inf100/checkpoints/epoch=0000-test_mean_score=0.000.ckpt",
+   "task": "can",
+   "env_seed": 200007,
+   "success": false,
+   "failure_type": "no_grasp",
+   "video": "data/outputs/hackathon_rollouts_eval/can_s2_e0000/videos/seed200007.mp4",
+   "video_frames": 201,
+   "video_fps": 10,
+   "episode_npz": "data/outputs/hackathon_rollouts_eval/can_s2_e0000/episodes/seed200007.npz",
+   "n_steps": 401,
+   "render_hw": [
+    448,
+    448
+   ],
+   "camera": "agentview"
+  },
+  {
+   "checkpoint_id": "can_s1_e0000",
+   "checkpoint_path": "data/outputs/hackathon_pool/paper_dp_can_abs_ph_seed1_e200_s200_r5_inf100/checkpoints/epoch=0000-test_mean_score=0.000.ckpt",
+   "task": "can",
+   "env_seed": 200007,
+   "success": false,
+   "failure_type": "no_grasp",
+   "video": "data/outputs/hackathon_rollouts_eval/can_s1_e0000/videos/seed200007.mp4",
+   "video_frames": 201,
+   "video_fps": 10,
+   "episode_npz": "data/outputs/hackathon_rollouts_eval/can_s1_e0000/episodes/seed200007.npz",
+   "n_steps": 401,
+   "render_hw": [
+    448,
+    448
+   ],
+   "camera": "agentview"
+  },
+  {
+   "checkpoint_id": "can_s1_e0020",
+   "checkpoint_path": "data/outputs/hackathon_pool/paper_dp_can_abs_ph_seed1_e200_s200_r5_inf100/checkpoints/epoch=0020-test_mean_score=0.560.ckpt",
+   "task": "can",
+   "env_seed": 200006,
+   "success": false,
+   "failure_type": "no_grasp",
+   "video": "data/outputs/hackathon_rollouts_eval/can_s1_e0020/videos/seed200006.mp4",
+   "video_frames": 201,
+   "video_fps": 10,
+   "episode_npz": "data/outputs/hackathon_rollouts_eval/can_s1_e0020/episodes/seed200006.npz",
+   "n_steps": 401,
+   "render_hw": [
+    448,
+    448
+   ],
+   "camera": "agentview"
+  },
+  {
+   "checkpoint_id": "can_s2_e0000",
+   "checkpoint_path": "data/outputs/hackathon_pool/paper_dp_can_abs_ph_seed2_e200_s200_r10_inf100/checkpoints/epoch=0000-test_mean_score=0.000.ckpt",
+   "task": "can",
+   "env_seed": 200008,
+   "success": false,
+   "failure_type": "no_grasp",
+   "video": "data/outputs/hackathon_rollouts_eval/can_s2_e0000/videos/seed200008.mp4",
+   "video_frames": 201,
+   "video_fps": 10,
+   "episode_npz": "data/outputs/hackathon_rollouts_eval/can_s2_e0000/episodes/seed200008.npz",
+   "n_steps": 401,
+   "render_hw": [
+    448,
+    448
+   ],
+   "camera": "agentview"
+  },
+  {
+   "checkpoint_id": "can_s2_e0020",
+   "checkpoint_path": "data/outputs/hackathon_pool/paper_dp_can_abs_ph_seed2_e200_s200_r10_inf100/checkpoints/epoch=0020-test_mean_score=0.480.ckpt",
+   "task": "can",
+   "env_seed": 200001,
+   "success": false,
+   "failure_type": "dropped",
+   "video": "data/outputs/hackathon_rollouts_eval/can_s2_e0020/videos/seed200001.mp4",
+   "video_frames": 201,
+   "video_fps": 10,
+   "episode_npz": "data/outputs/hackathon_rollouts_eval/can_s2_e0020/episodes/seed200001.npz",
+   "n_steps": 401,
+   "render_hw": [
+    448,
+    448
+   ],
+   "camera": "agentview"
+  },
+  {
+   "checkpoint_id": "can_s2_e0060",
+   "checkpoint_path": "data/outputs/hackathon_pool/paper_dp_can_abs_ph_seed2_e200_s200_r10_inf100/checkpoints/epoch=0060-test_mean_score=0.900.ckpt",
+   "task": "can",
+   "env_seed": 200003,
+   "success": false,
+   "failure_type": "dropped",
+   "video": "data/outputs/hackathon_rollouts_eval/can_s2_e0060/videos/seed200003.mp4",
+   "video_frames": 201,
+   "video_fps": 10,
+   "episode_npz": "data/outputs/hackathon_rollouts_eval/can_s2_e0060/episodes/seed200003.npz",
+   "n_steps": 401,
+   "render_hw": [
+    448,
+    448
+   ],
+   "camera": "agentview"
+  },
+  {
+   "checkpoint_id": "can_s1_e0080",
+   "checkpoint_path": "data/outputs/hackathon_pool/paper_dp_can_abs_ph_seed1_e200_s200_r5_inf100/checkpoints/epoch=0080-test_mean_score=0.960.ckpt",
+   "task": "can",
+   "env_seed": 200000,
+   "success": false,
+   "failure_type": "dropped",
+   "video": "data/outputs/hackathon_rollouts_eval/can_s1_e0080/videos/seed200000.mp4",
+   "video_frames": 201,
+   "video_fps": 10,
+   "episode_npz": "data/outputs/hackathon_rollouts_eval/can_s1_e0080/episodes/seed200000.npz",
+   "n_steps": 401,
+   "render_hw": [
+    448,
+    448
+   ],
+   "camera": "agentview"
+  },
+  {
+   "checkpoint_id": "can_s2_e0040",
+   "checkpoint_path": "data/outputs/hackathon_pool/paper_dp_can_abs_ph_seed2_e200_s200_r10_inf100/checkpoints/epoch=0040-test_mean_score=0.800.ckpt",
+   "task": "can",
+   "env_seed": 200006,
+   "success": false,
+   "failure_type": "dropped",
+   "video": "data/outputs/hackathon_rollouts_eval/can_s2_e0040/videos/seed200006.mp4",
+   "video_frames": 201,
+   "video_fps": 10,
+   "episode_npz": "data/outputs/hackathon_rollouts_eval/can_s2_e0040/episodes/seed200006.npz",
+   "n_steps": 401,
+   "render_hw": [
+    448,
+    448
+   ],
+   "camera": "agentview"
+  },
+  {
+   "checkpoint_id": "can_s2_e0180",
+   "checkpoint_path": "data/outputs/hackathon_pool/paper_dp_can_abs_ph_seed2_e200_s200_r10_inf100/checkpoints/epoch=0180-test_mean_score=1.000.ckpt",
+   "task": "can",
+   "env_seed": 200000,
+   "success": false,
+   "failure_type": "dropped",
+   "video": "data/outputs/hackathon_rollouts_eval/can_s2_e0180/videos/seed200000.mp4",
+   "video_frames": 201,
+   "video_fps": 10,
+   "episode_npz": "data/outputs/hackathon_rollouts_eval/can_s2_e0180/episodes/seed200000.npz",
+   "n_steps": 401,
+   "render_hw": [
+    448,
+    448
+   ],
+   "camera": "agentview"
+  },
+  {
+   "checkpoint_id": "can_s1_e0020",
+   "checkpoint_path": "data/outputs/hackathon_pool/paper_dp_can_abs_ph_seed1_e200_s200_r5_inf100/checkpoints/epoch=0020-test_mean_score=0.560.ckpt",
+   "task": "can",
+   "env_seed": 200003,
+   "success": false,
+   "failure_type": "dropped",
+   "video": "data/outputs/hackathon_rollouts_eval/can_s1_e0020/videos/seed200003.mp4",
+   "video_frames": 201,
+   "video_fps": 10,
+   "episode_npz": "data/outputs/hackathon_rollouts_eval/can_s1_e0020/episodes/seed200003.npz",
+   "n_steps": 401,
+   "render_hw": [
+    448,
+    448
+   ],
+   "camera": "agentview"
+  },
+  {
+   "checkpoint_id": "can_s1_e0040",
+   "checkpoint_path": "data/outputs/hackathon_pool/paper_dp_can_abs_ph_seed1_e200_s200_r5_inf100/checkpoints/epoch=0040-test_mean_score=0.860.ckpt",
+   "task": "can",
+   "env_seed": 200005,
+   "success": false,
+   "failure_type": "dropped",
+   "video": "data/outputs/hackathon_rollouts_eval/can_s1_e0040/videos/seed200005.mp4",
+   "video_frames": 201,
+   "video_fps": 10,
+   "episode_npz": "data/outputs/hackathon_rollouts_eval/can_s1_e0040/episodes/seed200005.npz",
+   "n_steps": 401,
+   "render_hw": [
+    448,
+    448
+   ],
+   "camera": "agentview"
+  },
+  {
+   "checkpoint_id": "can_s2_e0100",
+   "checkpoint_path": "data/outputs/hackathon_pool/paper_dp_can_abs_ph_seed2_e200_s200_r10_inf100/checkpoints/epoch=0100-test_mean_score=0.980.ckpt",
+   "task": "can",
+   "env_seed": 200000,
+   "success": false,
+   "failure_type": "dropped",
+   "video": "data/outputs/hackathon_rollouts_eval/can_s2_e0100/videos/seed200000.mp4",
+   "video_frames": 201,
+   "video_fps": 10,
+   "episode_npz": "data/outputs/hackathon_rollouts_eval/can_s2_e0100/episodes/seed200000.npz",
+   "n_steps": 401,
+   "render_hw": [
+    448,
+    448
+   ],
+   "camera": "agentview"
+  },
+  {
+   "checkpoint_id": "square_s1_e0180",
+   "checkpoint_path": "data/outputs/hackathon_pool/paper_dp_square_abs_ph_seed1_e300_s200_r10_inf100/checkpoints/epoch=0180-test_mean_score=0.800.ckpt",
+   "task": "square",
+   "env_seed": 200000,
+   "success": true,
+   "failure_type": "none",
+   "video": "data/outputs/hackathon_rollouts_eval/square_s1_e0180/videos/seed200000.mp4",
+   "video_frames": 68,
+   "video_fps": 10,
+   "episode_npz": "data/outputs/hackathon_rollouts_eval/square_s1_e0180/episodes/seed200000.npz",
+   "n_steps": 135,
+   "render_hw": [
+    448,
+    448
+   ],
+   "camera": "agentview"
+  },
+  {
+   "checkpoint_id": "square_s1_e0150",
+   "checkpoint_path": "data/outputs/hackathon_pool/paper_dp_square_abs_ph_seed1_e300_s200_r10_inf100/checkpoints/epoch=0150-test_mean_score=0.840.ckpt",
+   "task": "square",
+   "env_seed": 200002,
+   "success": true,
+   "failure_type": "none",
+   "video": "data/outputs/hackathon_rollouts_eval/square_s1_e0150/videos/seed200002.mp4",
+   "video_frames": 100,
+   "video_fps": 10,
+   "episode_npz": "data/outputs/hackathon_rollouts_eval/square_s1_e0150/episodes/seed200002.npz",
+   "n_steps": 200,
+   "render_hw": [
+    448,
+    448
+   ],
+   "camera": "agentview"
+  },
+  {
+   "checkpoint_id": "square_s1_e0030",
+   "checkpoint_path": "data/outputs/hackathon_pool/paper_dp_square_abs_ph_seed1_e300_s200_r10_inf100/checkpoints/epoch=0030-test_mean_score=0.680.ckpt",
+   "task": "square",
+   "env_seed": 200005,
+   "success": true,
+   "failure_type": "none",
+   "video": "data/outputs/hackathon_rollouts_eval/square_s1_e0030/videos/seed200005.mp4",
+   "video_frames": 136,
+   "video_fps": 10,
+   "episode_npz": "data/outputs/hackathon_rollouts_eval/square_s1_e0030/episodes/seed200005.npz",
+   "n_steps": 272,
+   "render_hw": [
+    448,
+    448
+   ],
+   "camera": "agentview"
+  },
+  {
+   "checkpoint_id": "square_s1_e0120",
+   "checkpoint_path": "data/outputs/hackathon_pool/paper_dp_square_abs_ph_seed1_e300_s200_r10_inf100/checkpoints/epoch=0120-test_mean_score=0.900.ckpt",
+   "task": "square",
+   "env_seed": 200001,
+   "success": true,
+   "failure_type": "none",
+   "video": "data/outputs/hackathon_rollouts_eval/square_s1_e0120/videos/seed200001.mp4",
+   "video_frames": 84,
+   "video_fps": 10,
+   "episode_npz": "data/outputs/hackathon_rollouts_eval/square_s1_e0120/episodes/seed200001.npz",
+   "n_steps": 168,
+   "render_hw": [
+    448,
+    448
+   ],
+   "camera": "agentview"
+  },
+  {
+   "checkpoint_id": "square_s1_e0060",
+   "checkpoint_path": "data/outputs/hackathon_pool/paper_dp_square_abs_ph_seed1_e300_s200_r10_inf100/checkpoints/epoch=0060-test_mean_score=0.680.ckpt",
+   "task": "square",
+   "env_seed": 200001,
+   "success": true,
+   "failure_type": "none",
+   "video": "data/outputs/hackathon_rollouts_eval/square_s1_e0060/videos/seed200001.mp4",
+   "video_frames": 67,
+   "video_fps": 10,
+   "episode_npz": "data/outputs/hackathon_rollouts_eval/square_s1_e0060/episodes/seed200001.npz",
+   "n_steps": 134,
+   "render_hw": [
+    448,
+    448
+   ],
+   "camera": "agentview"
+  },
+  {
+   "checkpoint_id": "square_s1_e0090",
+   "checkpoint_path": "data/outputs/hackathon_pool/paper_dp_square_abs_ph_seed1_e300_s200_r10_inf100/checkpoints/epoch=0090-test_mean_score=0.760.ckpt",
+   "task": "square",
+   "env_seed": 200002,
+   "success": true,
+   "failure_type": "none",
+   "video": "data/outputs/hackathon_rollouts_eval/square_s1_e0090/videos/seed200002.mp4",
+   "video_frames": 100,
+   "video_fps": 10,
+   "episode_npz": "data/outputs/hackathon_rollouts_eval/square_s1_e0090/episodes/seed200002.npz",
+   "n_steps": 199,
+   "render_hw": [
+    448,
+    448
+   ],
+   "camera": "agentview"
+  },
+  {
+   "checkpoint_id": "square_s1_e0180",
+   "checkpoint_path": "data/outputs/hackathon_pool/paper_dp_square_abs_ph_seed1_e300_s200_r10_inf100/checkpoints/epoch=0180-test_mean_score=0.800.ckpt",
+   "task": "square",
+   "env_seed": 200006,
+   "success": true,
+   "failure_type": "none",
+   "video": "data/outputs/hackathon_rollouts_eval/square_s1_e0180/videos/seed200006.mp4",
+   "video_frames": 71,
+   "video_fps": 10,
+   "episode_npz": "data/outputs/hackathon_rollouts_eval/square_s1_e0180/episodes/seed200006.npz",
+   "n_steps": 142,
+   "render_hw": [
+    448,
+    448
+   ],
+   "camera": "agentview"
+  },
+  {
+   "checkpoint_id": "square_s1_e0150",
+   "checkpoint_path": "data/outputs/hackathon_pool/paper_dp_square_abs_ph_seed1_e300_s200_r10_inf100/checkpoints/epoch=0150-test_mean_score=0.840.ckpt",
+   "task": "square",
+   "env_seed": 200006,
+   "success": true,
+   "failure_type": "none",
+   "video": "data/outputs/hackathon_rollouts_eval/square_s1_e0150/videos/seed200006.mp4",
+   "video_frames": 60,
+   "video_fps": 10,
+   "episode_npz": "data/outputs/hackathon_rollouts_eval/square_s1_e0150/episodes/seed200006.npz",
+   "n_steps": 120,
+   "render_hw": [
+    448,
+    448
+   ],
+   "camera": "agentview"
+  },
+  {
+   "checkpoint_id": "square_s1_e0030",
+   "checkpoint_path": "data/outputs/hackathon_pool/paper_dp_square_abs_ph_seed1_e300_s200_r10_inf100/checkpoints/epoch=0030-test_mean_score=0.680.ckpt",
+   "task": "square",
+   "env_seed": 200003,
+   "success": true,
+   "failure_type": "none",
+   "video": "data/outputs/hackathon_rollouts_eval/square_s1_e0030/videos/seed200003.mp4",
+   "video_frames": 81,
+   "video_fps": 10,
+   "episode_npz": "data/outputs/hackathon_rollouts_eval/square_s1_e0030/episodes/seed200003.npz",
+   "n_steps": 162,
+   "render_hw": [
+    448,
+    448
+   ],
+   "camera": "agentview"
+  },
+  {
+   "checkpoint_id": "square_s1_e0120",
+   "checkpoint_path": "data/outputs/hackathon_pool/paper_dp_square_abs_ph_seed1_e300_s200_r10_inf100/checkpoints/epoch=0120-test_mean_score=0.900.ckpt",
+   "task": "square",
+   "env_seed": 200000,
+   "success": true,
+   "failure_type": "none",
+   "video": "data/outputs/hackathon_rollouts_eval/square_s1_e0120/videos/seed200000.mp4",
+   "video_frames": 64,
+   "video_fps": 10,
+   "episode_npz": "data/outputs/hackathon_rollouts_eval/square_s1_e0120/episodes/seed200000.npz",
+   "n_steps": 127,
+   "render_hw": [
+    448,
+    448
+   ],
+   "camera": "agentview"
+  },
+  {
+   "checkpoint_id": "square_s1_e0060",
+   "checkpoint_path": "data/outputs/hackathon_pool/paper_dp_square_abs_ph_seed1_e300_s200_r10_inf100/checkpoints/epoch=0060-test_mean_score=0.680.ckpt",
+   "task": "square",
+   "env_seed": 200004,
+   "success": true,
+   "failure_type": "none",
+   "video": "data/outputs/hackathon_rollouts_eval/square_s1_e0060/videos/seed200004.mp4",
+   "video_frames": 94,
+   "video_fps": 10,
+   "episode_npz": "data/outputs/hackathon_rollouts_eval/square_s1_e0060/episodes/seed200004.npz",
+   "n_steps": 188,
+   "render_hw": [
+    448,
+    448
+   ],
+   "camera": "agentview"
+  },
+  {
+   "checkpoint_id": "square_s1_e0090",
+   "checkpoint_path": "data/outputs/hackathon_pool/paper_dp_square_abs_ph_seed1_e300_s200_r10_inf100/checkpoints/epoch=0090-test_mean_score=0.760.ckpt",
+   "task": "square",
+   "env_seed": 200000,
+   "success": true,
+   "failure_type": "none",
+   "video": "data/outputs/hackathon_rollouts_eval/square_s1_e0090/videos/seed200000.mp4",
+   "video_frames": 70,
+   "video_fps": 10,
+   "episode_npz": "data/outputs/hackathon_rollouts_eval/square_s1_e0090/episodes/seed200000.npz",
+   "n_steps": 140,
+   "render_hw": [
+    448,
+    448
+   ],
+   "camera": "agentview"
+  },
+  {
+   "checkpoint_id": "square_s1_e0000",
+   "checkpoint_path": "data/outputs/hackathon_pool/paper_dp_square_abs_ph_seed1_e300_s200_r10_inf100/checkpoints/epoch=0000-test_mean_score=0.000.ckpt",
+   "task": "square",
+   "env_seed": 200003,
+   "success": false,
+   "failure_type": "no_grasp",
+   "video": "data/outputs/hackathon_rollouts_eval/square_s1_e0000/videos/seed200003.mp4",
+   "video_frames": 201,
+   "video_fps": 10,
+   "episode_npz": "data/outputs/hackathon_rollouts_eval/square_s1_e0000/episodes/seed200003.npz",
+   "n_steps": 401,
+   "render_hw": [
+    448,
+    448
+   ],
+   "camera": "agentview"
+  },
+  {
+   "checkpoint_id": "square_s1_e0030",
+   "checkpoint_path": "data/outputs/hackathon_pool/paper_dp_square_abs_ph_seed1_e300_s200_r10_inf100/checkpoints/epoch=0030-test_mean_score=0.680.ckpt",
+   "task": "square",
+   "env_seed": 200004,
+   "success": false,
+   "failure_type": "no_grasp",
+   "video": "data/outputs/hackathon_rollouts_eval/square_s1_e0030/videos/seed200004.mp4",
+   "video_frames": 201,
+   "video_fps": 10,
+   "episode_npz": "data/outputs/hackathon_rollouts_eval/square_s1_e0030/episodes/seed200004.npz",
+   "n_steps": 401,
+   "render_hw": [
+    448,
+    448
+   ],
+   "camera": "agentview"
+  },
+  {
+   "checkpoint_id": "square_s1_e0000",
+   "checkpoint_path": "data/outputs/hackathon_pool/paper_dp_square_abs_ph_seed1_e300_s200_r10_inf100/checkpoints/epoch=0000-test_mean_score=0.000.ckpt",
+   "task": "square",
+   "env_seed": 200006,
+   "success": false,
+   "failure_type": "no_grasp",
+   "video": "data/outputs/hackathon_rollouts_eval/square_s1_e0000/videos/seed200006.mp4",
+   "video_frames": 201,
+   "video_fps": 10,
+   "episode_npz": "data/outputs/hackathon_rollouts_eval/square_s1_e0000/episodes/seed200006.npz",
+   "n_steps": 401,
+   "render_hw": [
+    448,
+    448
+   ],
+   "camera": "agentview"
+  },
+  {
+   "checkpoint_id": "square_s1_e0030",
+   "checkpoint_path": "data/outputs/hackathon_pool/paper_dp_square_abs_ph_seed1_e300_s200_r10_inf100/checkpoints/epoch=0030-test_mean_score=0.680.ckpt",
+   "task": "square",
+   "env_seed": 200008,
+   "success": false,
+   "failure_type": "no_grasp",
+   "video": "data/outputs/hackathon_rollouts_eval/square_s1_e0030/videos/seed200008.mp4",
+   "video_frames": 201,
+   "video_fps": 10,
+   "episode_npz": "data/outputs/hackathon_rollouts_eval/square_s1_e0030/episodes/seed200008.npz",
+   "n_steps": 401,
+   "render_hw": [
+    448,
+    448
+   ],
+   "camera": "agentview"
+  },
+  {
+   "checkpoint_id": "square_s1_e0000",
+   "checkpoint_path": "data/outputs/hackathon_pool/paper_dp_square_abs_ph_seed1_e300_s200_r10_inf100/checkpoints/epoch=0000-test_mean_score=0.000.ckpt",
+   "task": "square",
+   "env_seed": 200000,
+   "success": false,
+   "failure_type": "no_grasp",
+   "video": "data/outputs/hackathon_rollouts_eval/square_s1_e0000/videos/seed200000.mp4",
+   "video_frames": 201,
+   "video_fps": 10,
+   "episode_npz": "data/outputs/hackathon_rollouts_eval/square_s1_e0000/episodes/seed200000.npz",
+   "n_steps": 401,
+   "render_hw": [
+    448,
+    448
+   ],
+   "camera": "agentview"
+  },
+  {
+   "checkpoint_id": "square_s1_e0030",
+   "checkpoint_path": "data/outputs/hackathon_pool/paper_dp_square_abs_ph_seed1_e300_s200_r10_inf100/checkpoints/epoch=0030-test_mean_score=0.680.ckpt",
+   "task": "square",
+   "env_seed": 200002,
+   "success": false,
+   "failure_type": "no_grasp",
+   "video": "data/outputs/hackathon_rollouts_eval/square_s1_e0030/videos/seed200002.mp4",
+   "video_frames": 201,
+   "video_fps": 10,
+   "episode_npz": "data/outputs/hackathon_rollouts_eval/square_s1_e0030/episodes/seed200002.npz",
+   "n_steps": 401,
+   "render_hw": [
+    448,
+    448
+   ],
+   "camera": "agentview"
+  },
+  {
+   "checkpoint_id": "square_s1_e0000",
+   "checkpoint_path": "data/outputs/hackathon_pool/paper_dp_square_abs_ph_seed1_e300_s200_r10_inf100/checkpoints/epoch=0000-test_mean_score=0.000.ckpt",
+   "task": "square",
+   "env_seed": 200004,
+   "success": false,
+   "failure_type": "no_grasp",
+   "video": "data/outputs/hackathon_rollouts_eval/square_s1_e0000/videos/seed200004.mp4",
+   "video_frames": 201,
+   "video_fps": 10,
+   "episode_npz": "data/outputs/hackathon_rollouts_eval/square_s1_e0000/episodes/seed200004.npz",
+   "n_steps": 401,
+   "render_hw": [
+    448,
+    448
+   ],
+   "camera": "agentview"
+  },
+  {
+   "checkpoint_id": "square_s1_e0000",
+   "checkpoint_path": "data/outputs/hackathon_pool/paper_dp_square_abs_ph_seed1_e300_s200_r10_inf100/checkpoints/epoch=0000-test_mean_score=0.000.ckpt",
+   "task": "square",
+   "env_seed": 200008,
+   "success": false,
+   "failure_type": "no_grasp",
+   "video": "data/outputs/hackathon_rollouts_eval/square_s1_e0000/videos/seed200008.mp4",
+   "video_frames": 201,
+   "video_fps": 10,
+   "episode_npz": "data/outputs/hackathon_rollouts_eval/square_s1_e0000/episodes/seed200008.npz",
+   "n_steps": 401,
+   "render_hw": [
+    448,
+    448
+   ],
+   "camera": "agentview"
+  },
+  {
+   "checkpoint_id": "square_s1_e0000",
+   "checkpoint_path": "data/outputs/hackathon_pool/paper_dp_square_abs_ph_seed1_e300_s200_r10_inf100/checkpoints/epoch=0000-test_mean_score=0.000.ckpt",
+   "task": "square",
+   "env_seed": 200002,
+   "success": false,
+   "failure_type": "no_grasp",
+   "video": "data/outputs/hackathon_rollouts_eval/square_s1_e0000/videos/seed200002.mp4",
+   "video_frames": 201,
+   "video_fps": 10,
+   "episode_npz": "data/outputs/hackathon_rollouts_eval/square_s1_e0000/episodes/seed200002.npz",
+   "n_steps": 401,
+   "render_hw": [
+    448,
+    448
+   ],
+   "camera": "agentview"
+  },
+  {
+   "checkpoint_id": "square_s1_e0150",
+   "checkpoint_path": "data/outputs/hackathon_pool/paper_dp_square_abs_ph_seed1_e300_s200_r10_inf100/checkpoints/epoch=0150-test_mean_score=0.840.ckpt",
+   "task": "square",
+   "env_seed": 200005,
+   "success": false,
+   "failure_type": "dropped",
+   "video": "data/outputs/hackathon_rollouts_eval/square_s1_e0150/videos/seed200005.mp4",
+   "video_frames": 201,
+   "video_fps": 10,
+   "episode_npz": "data/outputs/hackathon_rollouts_eval/square_s1_e0150/episodes/seed200005.npz",
+   "n_steps": 401,
+   "render_hw": [
+    448,
+    448
+   ],
+   "camera": "agentview"
+  },
+  {
+   "checkpoint_id": "square_s1_e0030",
+   "checkpoint_path": "data/outputs/hackathon_pool/paper_dp_square_abs_ph_seed1_e300_s200_r10_inf100/checkpoints/epoch=0030-test_mean_score=0.680.ckpt",
+   "task": "square",
+   "env_seed": 200007,
+   "success": false,
+   "failure_type": "dropped",
+   "video": "data/outputs/hackathon_rollouts_eval/square_s1_e0030/videos/seed200007.mp4",
+   "video_frames": 201,
+   "video_fps": 10,
+   "episode_npz": "data/outputs/hackathon_rollouts_eval/square_s1_e0030/episodes/seed200007.npz",
+   "n_steps": 401,
+   "render_hw": [
+    448,
+    448
+   ],
+   "camera": "agentview"
+  },
+  {
+   "checkpoint_id": "square_s1_e0120",
+   "checkpoint_path": "data/outputs/hackathon_pool/paper_dp_square_abs_ph_seed1_e300_s200_r10_inf100/checkpoints/epoch=0120-test_mean_score=0.900.ckpt",
+   "task": "square",
+   "env_seed": 200004,
+   "success": false,
+   "failure_type": "dropped",
+   "video": "data/outputs/hackathon_rollouts_eval/square_s1_e0120/videos/seed200004.mp4",
+   "video_frames": 201,
+   "video_fps": 10,
+   "episode_npz": "data/outputs/hackathon_rollouts_eval/square_s1_e0120/episodes/seed200004.npz",
+   "n_steps": 401,
+   "render_hw": [
+    448,
+    448
+   ],
+   "camera": "agentview"
+  },
+  {
+   "checkpoint_id": "square_s1_e0090",
+   "checkpoint_path": "data/outputs/hackathon_pool/paper_dp_square_abs_ph_seed1_e300_s200_r10_inf100/checkpoints/epoch=0090-test_mean_score=0.760.ckpt",
+   "task": "square",
+   "env_seed": 200001,
+   "success": false,
+   "failure_type": "dropped",
+   "video": "data/outputs/hackathon_rollouts_eval/square_s1_e0090/videos/seed200001.mp4",
+   "video_frames": 201,
+   "video_fps": 10,
+   "episode_npz": "data/outputs/hackathon_rollouts_eval/square_s1_e0090/episodes/seed200001.npz",
+   "n_steps": 401,
+   "render_hw": [
+    448,
+    448
+   ],
+   "camera": "agentview"
+  },
+  {
+   "checkpoint_id": "square_s1_e0030",
+   "checkpoint_path": "data/outputs/hackathon_pool/paper_dp_square_abs_ph_seed1_e300_s200_r10_inf100/checkpoints/epoch=0030-test_mean_score=0.680.ckpt",
+   "task": "square",
+   "env_seed": 200001,
+   "success": false,
+   "failure_type": "dropped",
+   "video": "data/outputs/hackathon_rollouts_eval/square_s1_e0030/videos/seed200001.mp4",
+   "video_frames": 201,
+   "video_fps": 10,
+   "episode_npz": "data/outputs/hackathon_rollouts_eval/square_s1_e0030/episodes/seed200001.npz",
+   "n_steps": 401,
+   "render_hw": [
+    448,
+    448
+   ],
+   "camera": "agentview"
+  },
+  {
+   "checkpoint_id": "square_s1_e0120",
+   "checkpoint_path": "data/outputs/hackathon_pool/paper_dp_square_abs_ph_seed1_e300_s200_r10_inf100/checkpoints/epoch=0120-test_mean_score=0.900.ckpt",
+   "task": "square",
+   "env_seed": 200005,
+   "success": false,
+   "failure_type": "dropped",
+   "video": "data/outputs/hackathon_rollouts_eval/square_s1_e0120/videos/seed200005.mp4",
+   "video_frames": 201,
+   "video_fps": 10,
+   "episode_npz": "data/outputs/hackathon_rollouts_eval/square_s1_e0120/episodes/seed200005.npz",
+   "n_steps": 401,
+   "render_hw": [
+    448,
+    448
+   ],
+   "camera": "agentview"
+  },
+  {
+   "checkpoint_id": "square_s1_e0090",
+   "checkpoint_path": "data/outputs/hackathon_pool/paper_dp_square_abs_ph_seed1_e300_s200_r10_inf100/checkpoints/epoch=0090-test_mean_score=0.760.ckpt",
+   "task": "square",
+   "env_seed": 200009,
+   "success": false,
+   "failure_type": "dropped",
+   "video": "data/outputs/hackathon_rollouts_eval/square_s1_e0090/videos/seed200009.mp4",
+   "video_frames": 201,
+   "video_fps": 10,
+   "episode_npz": "data/outputs/hackathon_rollouts_eval/square_s1_e0090/episodes/seed200009.npz",
+   "n_steps": 401,
+   "render_hw": [
+    448,
+    448
+   ],
+   "camera": "agentview"
+  },
+  {
+   "checkpoint_id": "square_s1_e0030",
+   "checkpoint_path": "data/outputs/hackathon_pool/paper_dp_square_abs_ph_seed1_e300_s200_r10_inf100/checkpoints/epoch=0030-test_mean_score=0.680.ckpt",
+   "task": "square",
+   "env_seed": 200006,
+   "success": false,
+   "failure_type": "dropped",
+   "video": "data/outputs/hackathon_rollouts_eval/square_s1_e0030/videos/seed200006.mp4",
+   "video_frames": 201,
+   "video_fps": 10,
+   "episode_npz": "data/outputs/hackathon_rollouts_eval/square_s1_e0030/episodes/seed200006.npz",
+   "n_steps": 401,
+   "render_hw": [
+    448,
+    448
+   ],
+   "camera": "agentview"
+  },
+  {
+   "checkpoint_id": "square_s1_e0120",
+   "checkpoint_path": "data/outputs/hackathon_pool/paper_dp_square_abs_ph_seed1_e300_s200_r10_inf100/checkpoints/epoch=0120-test_mean_score=0.900.ckpt",
+   "task": "square",
+   "env_seed": 200007,
+   "success": false,
+   "failure_type": "dropped",
+   "video": "data/outputs/hackathon_rollouts_eval/square_s1_e0120/videos/seed200007.mp4",
+   "video_frames": 201,
+   "video_fps": 10,
+   "episode_npz": "data/outputs/hackathon_rollouts_eval/square_s1_e0120/episodes/seed200007.npz",
+   "n_steps": 401,
+   "render_hw": [
+    448,
+    448
+   ],
+   "camera": "agentview"
+  }
+ ]
+}

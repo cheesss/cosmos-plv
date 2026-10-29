@@ -1,0 +1,73 @@
+metric,run_id,n_checkpoints,spearman,spearman_ci_lo,spearman_ci_hi,regret@30,k@30,label,level,subset
+epoch,can_seed1,41,0.7796025184781451,0.5493126923523832,0.9082873317062767,0.0,13.0,Training epoch (free baseline: later = better),B,all
+epoch,can_seed2,21,0.8813358037236503,0.6452796590561433,0.9752602851745635,0.0,7.0,Training epoch (free baseline: later = better),B,all
+epoch,square_seed1,31,0.7851381860967293,0.5199230466138449,0.9289778173484695,0.020000000000000018,10.0,Training epoch (free baseline: later = better),B,all
+epoch,mean_over_runs,93,0.8153588360995082,,,0.006666666666666672,,Training epoch (free baseline: later = better),B,all
+val_loss_logged,can_seed1,41,-0.4582471709969791,-0.6922544747893857,-0.13551543606611588,0.040000000000000036,13.0,Validation loss (objective),L0,all
+val_loss_logged,can_seed2,21,-0.4751316785450203,-0.8318176329518651,0.051961689709978276,0.040000000000000036,7.0,Validation loss (objective),L0,all
+val_loss_logged,square_seed1,31,-0.5083657824960159,-0.800525356369035,-0.11724883259041113,0.06000000000000005,10.0,Validation loss (objective),L0,all
+val_loss_logged,mean_over_runs,93,-0.4805815440126718,,,0.04666666666666671,,Validation loss (objective),L0,all
+val_action_l1,can_seed1,41,0.7530842071164431,0.5246135419097125,0.8835372716200588,0.0,13.0,Action L1,L1,all
+val_action_l1,can_seed2,21,0.8324842367746553,0.5731782028127854,0.947039786485974,0.0,7.0,Action L1,L1,all
+val_action_l1,square_seed1,31,0.7305977418577652,0.4166879975308502,0.913326507319676,0.020000000000000018,10.0,Action L1,L1,all
+val_action_l1,mean_over_runs,93,0.7720553952496211,,,0.006666666666666672,,Action L1,L1,all
+open_loop_smoothness,can_seed1,41,0.7594450182876622,0.5429162213296745,0.8721820477661342,0.0,13.0,Open-loop smoothness (teacher-forced),L2,all
+open_loop_smoothness,can_seed2,21,0.8525602231920505,0.5987385035379921,0.9627599229940507,0.0,7.0,Open-loop smoothness (teacher-forced),L2,all
+open_loop_smoothness,square_seed1,31,0.7519661994887026,0.4938559813727672,0.8920822731968876,0.020000000000000018,10.0,Open-loop smoothness (teacher-forced),L2,all
+open_loop_smoothness,mean_over_runs,93,0.7879904803228049,,,0.006666666666666672,,Open-loop smoothness (teacher-forced),L2,all
+plv1_smoothness,can_seed1,41,0.7340913624925214,0.4987197563089111,0.8722591701226671,0.0,13.0,PLV-1 smoothness (model feedback),L2,all
+plv1_smoothness,can_seed2,21,0.7568646879358,0.44656598963578337,0.9042611927164182,0.0,7.0,PLV-1 smoothness (model feedback),L2,all
+plv1_smoothness,square_seed1,31,0.7851381860967293,0.5199230466138449,0.9289778173484695,0.020000000000000018,10.0,PLV-1 smoothness (model feedback),L2,all
+plv1_smoothness,mean_over_runs,93,0.7586980788416836,,,0.006666666666666672,,PLV-1 smoothness (model feedback),L2,all
+boundary_jump_h16,can_seed1,41,0.7674184294741199,0.5248904097124285,0.9070543250509622,0.0,13.0,"Boundary jump (model feedback, H=16, median of 4 seeds)",L3,all
+boundary_jump_h16,can_seed2,21,0.8512218240975575,0.5593998867093842,0.9749592902940337,0.0,7.0,"Boundary jump (model feedback, H=16, median of 4 seeds)",L3,all
+boundary_jump_h16,square_seed1,31,0.7259170320909883,0.42351395194236807,0.9049431493190818,0.020000000000000018,10.0,"Boundary jump (model feedback, H=16, median of 4 seeds)",L3,all
+boundary_jump_h16,mean_over_runs,93,0.7815190952208887,,,0.006666666666666672,,"Boundary jump (model feedback, H=16, median of 4 seeds)",L3,all
+replan_overlap_h16,can_seed1,41,0.7796025184781451,0.5493126923523832,0.9082873317062767,0.0,13.0,"Replan overlap (model feedback, H=16, median of 4 seeds)",L3,all
+replan_overlap_h16,can_seed2,21,0.8612598173062551,0.582142857312316,0.9749592902940337,0.0,7.0,"Replan overlap (model feedback, H=16, median of 4 seeds)",L3,all
+replan_overlap_h16,square_seed1,31,0.7625486737440239,0.49525763047391436,0.9197302622773077,0.020000000000000018,10.0,"Replan overlap (model feedback, H=16, median of 4 seeds)",L3,all
+replan_overlap_h16,mean_over_runs,93,0.8011370031761413,,,0.006666666666666672,,"Replan overlap (model feedback, H=16, median of 4 seeds)",L3,all
+boundary_jump_h10,can_seed1,41,0.7674184294741199,0.5248904097124285,0.9070543250509622,0.0,13.0,"Boundary jump (model feedback, H=10)",L3,all
+boundary_jump_h10,can_seed2,21,0.8512218240975575,0.5593998867093842,0.9749592902940337,0.0,7.0,"Boundary jump (model feedback, H=10)",L3,all
+boundary_jump_h10,square_seed1,31,0.7259170320909883,0.42351395194236807,0.9049431493190818,0.020000000000000018,10.0,"Boundary jump (model feedback, H=10)",L3,all
+boundary_jump_h10,mean_over_runs,93,0.7815190952208887,,,0.006666666666666672,,"Boundary jump (model feedback, H=10)",L3,all
+replan_overlap_h10,can_seed1,41,0.7796025184781451,0.5493126923523832,0.9082873317062767,0.0,13.0,"Replan overlap (model feedback, H=10)",L3,all
+replan_overlap_h10,can_seed2,21,0.8612598173062551,0.582142857312316,0.9749592902940337,0.0,7.0,"Replan overlap (model feedback, H=10)",L3,all
+replan_overlap_h10,square_seed1,31,0.7625486737440239,0.49525763047391436,0.9197302622773077,0.020000000000000018,10.0,"Replan overlap (model feedback, H=10)",L3,all
+replan_overlap_h10,mean_over_runs,93,0.8011370031761413,,,0.006666666666666672,,"Replan overlap (model feedback, H=10)",L3,all
+epoch,can_seed1,21,-0.09608905826599336,-0.5032972906825237,0.2656063657125469,0.0,7.0,Training epoch (free baseline: later = better),B,late_half
+epoch,can_seed2,11,0.4979193521615871,-0.1950099867766872,0.811278667859002,0.0,4.0,Training epoch (free baseline: later = better),B,late_half
+epoch,square_seed1,16,0.5981885851855431,0.1532958681248128,0.8434208086604977,0.0,5.0,Training epoch (free baseline: later = better),B,late_half
+epoch,mean_over_runs,48,0.33333962636037895,,,0.0,,Training epoch (free baseline: later = better),B,late_half
+val_loss_logged,can_seed1,21,0.0789023974379295,-0.4051388834130633,0.5125342852589606,0.0,7.0,Validation loss (objective),L0,late_half
+val_loss_logged,can_seed2,11,-0.4979193521615871,-0.811278667859002,0.1950099867766872,0.0,4.0,Validation loss (objective),L0,late_half
+val_loss_logged,square_seed1,16,-0.5786497620513419,-0.8524167082887373,-0.07558884814329002,0.040000000000000036,5.0,Validation loss (objective),L0,late_half
+val_loss_logged,mean_over_runs,48,-0.33255557225833315,,,0.013333333333333345,,Validation loss (objective),L0,late_half
+val_action_l1,can_seed1,21,-0.04609149949344397,-0.49381249400601773,0.44278399329172763,0.0,7.0,Action L1,L1,late_half
+val_action_l1,can_seed2,11,0.4025730932370279,-0.2596307006915927,0.8452846353257397,0.0,4.0,Action L1,L1,late_half
+val_action_l1,square_seed1,16,0.5110153742791071,0.027695870276574382,0.8267139558134611,0.0,5.0,Action L1,L1,late_half
+val_action_l1,mean_over_runs,48,0.28916565600756367,,,0.0,,Action L1,L1,late_half
+open_loop_smoothness,can_seed1,21,-0.1132757190940572,-0.4992998836709945,0.2482662490164015,0.0,7.0,Open-loop smoothness (teacher-forced),L2,late_half
+open_loop_smoothness,can_seed2,11,0.3337119062359573,-0.3688289469578861,0.8446557856466829,0.0,4.0,Open-loop smoothness (teacher-forced),L2,late_half
+open_loop_smoothness,square_seed1,16,0.5681288572867721,0.1646318851953688,0.8124240434993598,0.0,5.0,Open-loop smoothness (teacher-forced),L2,late_half
+open_loop_smoothness,mean_over_runs,48,0.2628550148095574,,,0.0,,Open-loop smoothness (teacher-forced),L2,late_half
+plv1_smoothness,can_seed1,21,-0.17967872683884936,-0.5767170118041629,0.2420143062457492,0.0,7.0,PLV-1 smoothness (model feedback),L2,late_half
+plv1_smoothness,can_seed2,11,0.1959895322338162,-0.4781855712669879,0.7608356232934,0.0,4.0,PLV-1 smoothness (model feedback),L2,late_half
+plv1_smoothness,square_seed1,16,0.5981885851855431,0.1532958681248128,0.8434208086604977,0.0,5.0,PLV-1 smoothness (model feedback),L2,late_half
+plv1_smoothness,mean_over_runs,48,0.20483313019350333,,,0.0,,PLV-1 smoothness (model feedback),L2,late_half
+boundary_jump_h16,can_seed1,21,-0.1874908453970602,-0.5946280895700589,0.29789023850190294,0.0,7.0,"Boundary jump (model feedback, H=16, median of 4 seeds)",L3,late_half
+boundary_jump_h16,can_seed2,11,0.29133579115837543,-0.5607304206578797,0.8104748277048033,0.0,4.0,"Boundary jump (model feedback, H=16, median of 4 seeds)",L3,late_half
+boundary_jump_h16,square_seed1,16,0.267531578299062,-0.35766474634601075,0.7230581604512374,0.0,5.0,"Boundary jump (model feedback, H=16, median of 4 seeds)",L3,late_half
+boundary_jump_h16,mean_over_runs,48,0.12379217468679242,,,0.0,,"Boundary jump (model feedback, H=16, median of 4 seeds)",L3,late_half
+replan_overlap_h16,can_seed1,21,-0.09608905826599336,-0.5032972906825237,0.2656063657125469,0.0,7.0,"Replan overlap (model feedback, H=16, median of 4 seeds)",L3,late_half
+replan_overlap_h16,can_seed2,11,0.360196978159446,-0.4079715264726716,0.8104748277048033,0.0,4.0,"Replan overlap (model feedback, H=16, median of 4 seeds)",L3,late_half
+replan_overlap_h16,square_seed1,16,0.45690786406131934,-0.013892398399599099,0.7937563527292041,0.0,5.0,"Replan overlap (model feedback, H=16, median of 4 seeds)",L3,late_half
+replan_overlap_h16,mean_over_runs,48,0.24033859465159066,,,0.0,,"Replan overlap (model feedback, H=16, median of 4 seeds)",L3,late_half
+boundary_jump_h10,can_seed1,21,-0.1874908453970602,-0.5946280895700589,0.29789023850190294,0.0,7.0,"Boundary jump (model feedback, H=10)",L3,late_half
+boundary_jump_h10,can_seed2,11,0.29133579115837543,-0.5607304206578797,0.8104748277048033,0.0,4.0,"Boundary jump (model feedback, H=10)",L3,late_half
+boundary_jump_h10,square_seed1,16,0.267531578299062,-0.35766474634601075,0.7230581604512374,0.0,5.0,"Boundary jump (model feedback, H=10)",L3,late_half
+boundary_jump_h10,mean_over_runs,48,0.12379217468679242,,,0.0,,"Boundary jump (model feedback, H=10)",L3,late_half
+replan_overlap_h10,can_seed1,21,-0.09608905826599336,-0.5032972906825237,0.2656063657125469,0.0,7.0,"Replan overlap (model feedback, H=10)",L3,late_half
+replan_overlap_h10,can_seed2,11,0.360196978159446,-0.4079715264726716,0.8104748277048033,0.0,4.0,"Replan overlap (model feedback, H=10)",L3,late_half
+replan_overlap_h10,square_seed1,16,0.45690786406131934,-0.013892398399599099,0.7937563527292041,0.0,5.0,"Replan overlap (model feedback, H=10)",L3,late_half
+replan_overlap_h10,mean_over_runs,48,0.24033859465159066,,,0.0,,"Replan overlap (model feedback, H=10)",L3,late_half

@@ -1,0 +1,55 @@
+{
+ "relabel_transitions_square": {
+  "other->no_grasp": 11,
+  "no_grasp->dropped": 1,
+  "no_grasp->no_grasp": 2,
+  "dropped->dropped": 9
+ },
+ "relabel_transitions_can": {
+  "no_grasp->no_grasp": 25,
+  "dropped->dropped": 12
+ },
+ "failure_type_accuracy": {
+  "eval_nebius_v2.jsonl": {
+   "all": {
+    "n_failures": 55,
+    "acc_old_labels": 0.3818,
+    "acc_settled_labels": 0.3818,
+    "pred_counts": {
+     "no_grasp": 23,
+     "not_placed": 27,
+     "none": 4,
+     "dropped": 1
+    }
+   },
+   "square": {
+    "n_failures": 19,
+    "acc_old_labels": 0.0526,
+    "acc_settled_labels": 0.0526,
+    "pred_counts": {
+     "not_placed": 17,
+     "dropped": 1,
+     "none": 1
+    }
+   }
+  },
+  "eval_local_v6.jsonl": {
+   "all": {
+    "n_failures": 55,
+    "acc_old_labels": 0.0,
+    "acc_settled_labels": 0.0,
+    "pred_counts": {
+     "null": 55
+    }
+   },
+   "square": {
+    "n_failures": 19,
+    "acc_old_labels": 0.0,
+    "acc_settled_labels": 0.0,
+    "pred_counts": {
+     "null": 19
+    }
+   }
+  }
+ }
+}

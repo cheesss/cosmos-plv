@@ -1,0 +1,17 @@
+{
+  "source": "https://huggingface.co/datasets/robomimic/robomimic_datasets",
+  "revision": "74fa018461f479cd9fd15b924a16103012096203",
+  "downloaded_utc": "2026-10-28T17:38:00+00:00",
+  "files": {
+    "v1.5/can/ph/low_dim_v15.hdf5": {"bytes": 46889752, "sha256": "3f2eb92e0a5025d0095e866ac16cc8092d6a762abe27dec90dbaff9027282962"},
+    "v1.5/can/ph/demo_v15.hdf5": {"bytes": 64932974, "sha256": "86961df85af1b9c6b9d4182a3755a8a4db6d0660cd550e45cca1f7accdb6d73d"},
+    "v1.5/square/ph/low_dim_v15.hdf5": {"bytes": 51145256, "sha256": "45d8cabb6d57a4c03e839aa5e4b3e58fb60fe8bd20e1951fec563a2abfd14951"},
+    "v1.5/square/ph/demo_v15.hdf5": {"bytes": 68982198, "sha256": "3d9d6cadfa9395c5b368c029582dd73f1d4f699c1d82f78f0875e9bded61e596"},
+    "v1.5/lift/ph/low_dim_v15.hdf5": {"bytes": 21084088, "sha256": "2067777cb8b532e9263dd09fd6448c41cc31224bb27be4a3b734010ae13eb540"},
+    "v1.5/lift/ph/demo_v15.hdf5": {"bytes": 36699586, "sha256": "68f2a8cfe2502de1224f0708fb82e46da07abce108c63e721d72fc1618272f37"}
+  },
+  "derived": {
+    "can/ph/low_dim_abs.hdf5": {"from": "v1.5/can/ph/low_dim_v15.hdf5", "tool": "diffusion_policy/scripts/robomimic_dataset_conversion.py --num_workers 8", "sha256_on_build_machine": "1551cede6ad5470e45e68c7f9d366e34caf9b8a00d736f5f98b4f0b99b29f586"},
+    "square/ph/low_dim_abs.hdf5": {"from": "v1.5/square/ph/low_dim_v15.hdf5", "tool": "diffusion_policy/scripts/robomimic_dataset_conversion.py --num_workers 8", "sha256_on_build_machine": "82a2d98090cfc178ed49954448637f09bc956df883552df1f67330b92d409124"}
+  }
+}
