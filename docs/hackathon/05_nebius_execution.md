@@ -64,7 +64,23 @@ Nebius console shows.
   Cloud resources. The published L40S price is about $1.35 per GPU-hour. This was
   not authorized at the time of writing, so it was not done.
 
-## Measured usage (generated 2026-10-29T02:25:19Z)
+## Final totals (log cutoff 2026-10-29T15:22:49Z = 2026-10-30 00:22 KST)
+
+These are recomputed from both call logs by `scripts/hackathon/build_claim_ledger.py` (claim ledger) and `scripts/hackathon/make_figures.py:_nebius_total()`.
+
+| log | calls | failed |
+|---|---|---|
+| `results/hackathon/nebius_calls.jsonl` (main pipeline, dashboard, smoke tests) | 776 | 0 |
+| `results/hackathon/explore/nebius_calls_explore.jsonl` (exploratory and pre-registered studies) | 6,229 | 0 |
+| **total** | **7,005** | **0** |
+
+* **By model:** `nvidia/Nemotron-3.5-Super-VL` 6,874 calls; `nvidia/Nemotron-3_5-Lightning` 131 calls.
+* **Tokens:** 14,583,444 input / 782,273 output.
+* **Estimated cost: about $4.96.**
+  * Each model is priced at its public list price.
+  * This is an estimate from logged tokens, not an invoice. Cached-input discounts are not applied, so the billed amount, which the Nebius console shows, may be lower.
+
+## Historical snapshot: measured usage (generated 2026-10-29T02:25:19Z, before the r1, c1, s1 and s2 studies)
 
 Main pipeline log `results/hackathon/nebius_calls.jsonl`:
 

@@ -1,4 +1,4 @@
-"""Expert/rollout HDF5를 OOD dynamics 학습용 샘플로 바꾸는 이미지 데이터셋."""
+"""Image dataset that turns expert/rollout HDF5 into samples for OOD dynamics training."""
 
 from typing import Dict, Iterable, List, Sequence
 import copy

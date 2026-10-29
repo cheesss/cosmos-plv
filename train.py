@@ -6,7 +6,7 @@ python train.py --config-name=son_train_diffusion_transformer_real_hybrid_worksp
 
 import sys
 
-# 버퍼링 없이 한줄마다 출력 (모아서 출력X)
+# print every line immediately, without buffering (no batched output)
 # use line-buffering for both stdout and stderr
 sys.stdout = open(sys.stdout.fileno(), mode='w', buffering=1)
 sys.stderr = open(sys.stderr.fileno(), mode='w', buffering=1)
@@ -17,13 +17,13 @@ import pathlib
 from diffusion_policy.workspace.base_workspace import BaseWorkspace
 
 # allows arbitrary python code execution in configs using the ${eval:''} resolver
-# 수식을 사용할수있게함
+# lets configs use expressions
 OmegaConf.register_new_resolver("eval", eval, replace=True)
 
 
 @hydra.main(
     version_base=None,
-    # 경로 : ~/diffusion_policy/diffusion_policy/config  <-- 여기서 yaml config 데이터 가져오나봄
+    # path: ~/diffusion_policy/diffusion_policy/config  <-- the yaml config data seems to be loaded from here
     config_path=str(pathlib.Path(__file__).parent.joinpath(
         'diffusion_policy','config'))
 )
@@ -32,9 +32,9 @@ def main(cfg: OmegaConf):
     # will use the same time.
     OmegaConf.resolve(cfg)
 
-    # cfg에 있는 __target__ Class를 cls로 가져옴
+    # get the __target__ class in cfg as cls
     cls = hydra.utils.get_class(cfg._target_)
-    # 가져온 class로 workspace 인스턴스 생성 후, run 실행
+    # create a workspace instance from that class, then call run
     workspace: BaseWorkspace = cls(cfg)
     workspace.run()
 

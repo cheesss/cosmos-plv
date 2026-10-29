@@ -37,6 +37,7 @@ DIAG_DIRS = [ROOT / "data" / "outputs" / "hackathon_cosmos", RES / "raw_model_ou
 NEBIUS_LOGS = [RES / "nebius_calls.jsonl", RES / "explore" / "nebius_calls_explore.jsonl"]
 ROLL_DIRS = [ROOT / "data/outputs/hackathon_rollouts_eval", ROOT / "data/outputs/hackathon_live",
              ROOT / "media/hackathon/episodes"]
+REPLAY = os.environ.get("COSMOS_PLV_REPLAY") == "1"  # judge replay: recorded evidence only, no live calls
 NEEDS_POOL = "needs the checkpoint pool (see README: Data and checkpoints)"
 ENV_A = os.environ.get("PLV_ENV_SH", str(ROOT / "scripts/hackathon/env.sh"))
 GREEN, PURPLE, BLUE, GREY = "#76B900", "#7E57C2", "#4C72B0", "#8C8C8C"
@@ -215,6 +216,30 @@ k[3].metric("Cosmos3-Edge calls (eval)", f"{n_v6 + n_v7:,}" if n_v6 + n_v7 else 
                   else "v7 keyframe calls not counted (eval_local_v7.jsonl missing)"))
 k[4].metric("Nebius API calls", f"{len(nebius_log):,}" if nebius_log else "–",
             help=" + ".join(f"{len(v):,} in {rel(p)}" for p, v in neb_logs.items()) + " (one logged line per call)")
+def _live_status():
+    """Which live paths this checkout can run; everything else is shown as recorded evidence (never faked)."""
+    if REPLAY:
+        return [("checkpoint pool (live metrics + rollouts)", False), ("Cosmos3-Edge weights (local GPU)", False),
+                ("Nebius Token Factory key", False)]
+    pool = (ROOT / "data/outputs/hackathon_pool").is_dir()
+    hub = Path(os.environ.get("HF_HOME", Path.home() / ".cache/huggingface")) / "hub/models--nvidia--Cosmos3-Edge"
+    try:
+        from cosmos_plv.nebius_backend import load_api_key
+        key = bool(load_api_key())  # only whether a key is configured; the key itself is never read out here
+    except Exception:
+        key = False
+    return [("checkpoint pool (live metrics + rollouts)", pool), ("Cosmos3-Edge weights (local GPU)", hub.is_dir()),
+            ("Nebius Token Factory key", key)]
+
+
+if REPLAY:
+    st.info("**RECORDED REPLAY MODE** (COSMOS_PLV_REPLAY=1). Everything on this page comes from logged runs: real robosuite "
+            "rollouts, the real Cosmos3-Edge and Nemotron answers that were recorded, and the measured results. No model or API "
+            "is called and the live buttons are disabled, so no GPU and no Nebius key are needed.")
+st.markdown("**Live backends in this checkout:** " + " · ".join(
+    f"{'🟢 live' if ok else '⚪ recorded outputs only'}: {name}" for name, ok in _live_status()) +
+    '  <span class="small">Recorded outputs come from the logged runs in `results/hackathon/`; live calls show a fresh '
+    'request id and latency.</span>', unsafe_allow_html=True)
 if exp2 and exp2.get("overall"):
     loc = exp2["overall"].get("local_success", [{}])[0].get("success_acc_all")
     neb = exp2["overall"].get("nebius", [{}])[0].get("success_acc_all")
@@ -361,7 +386,7 @@ with tab_ck:
                    "metric script, so the two can differ slightly.")
         if not have_ck:
             st.caption(f"Disabled: {NEEDS_POOL}.")
-        if st.button("▶ Run cheap metrics (quick mode)", key="cheap", disabled=not have_ck):
+        if st.button("▶ Run cheap metrics (quick mode)", key="cheap", disabled=REPLAY or not have_ck):
             out = ROOT / "data/outputs/hackathon_live" / f"cheap_{ck_id}.csv"
             out.parent.mkdir(parents=True, exist_ok=True)
             box = st.empty()
@@ -435,7 +460,7 @@ with tab_roll:
             have_ck = ck_id is not None and (ROOT / str(cks[cks.checkpoint_id == ck_id].checkpoint_path.iloc[0])).exists()
             if not have_ck:
                 st.caption(f"Disabled: {NEEDS_POOL}.")
-            if st.button("▶ Record rollout", key="rec", disabled=not have_ck) and ck_id is not None:
+            if st.button("▶ Record rollout", key="rec", disabled=REPLAY or not have_ck) and ck_id is not None:
                 row = cks[cks.checkpoint_id == ck_id].iloc[0]
                 box = st.empty()
                 code = run_env_a(["python", "scripts/hackathon/record_rollouts.py", "--checkpoint", f"'{row.checkpoint_path}'",
@@ -480,7 +505,7 @@ with tab_roll:
             st.divider()
             if video is None:
                 st.caption("Live model buttons disabled: this episode's video is not in this checkout.")
-            if st.button("▶ Run Cosmos3-Edge now (local GPU)", key="cos", disabled=video is None) and video is not None:
+            if st.button("▶ Run Cosmos3-Edge now (local GPU)", key="cos", disabled=REPLAY or video is None) and video is not None:
                 import imageio.v2 as imageio
                 try:
                     frames = [f for f in imageio.get_reader(str(video))]
@@ -502,7 +527,7 @@ with tab_roll:
                              "failure_type (unreliable)": agg.fields.get("failure_type"), "per_frame": agg.answer_text})
                 except Exception as ex:  # no GPU / weights not downloaded etc.
                     st.error(rel(ex))
-            if st.button("▶ Ask Nemotron-3.5-Super-VL on Nebius", key="neb", disabled=video is None) and video is not None:
+            if st.button("▶ Ask Nemotron-3.5-Super-VL on Nebius", key="neb", disabled=REPLAY or video is None) and video is not None:
                 from cosmos_plv.nebius_backend import NebiusVLMClient
                 try:
                     c = NebiusVLMClient(evidence_path=str(RES / "nebius_calls.jsonl"))

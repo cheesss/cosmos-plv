@@ -42,7 +42,7 @@ class DiffusionTransformerHybridImagePolicy(BaseImagePolicy):
             causal_attn=True,
             time_as_cond=True,
             obs_as_cond=True,
-            pred_action_steps_only=False,   # 실행할 action만 예측
+            pred_action_steps_only=False,   # predict only the actions to be executed
             # parameters passed to step
             **kwargs):
         super().__init__()
@@ -190,14 +190,14 @@ class DiffusionTransformerHybridImagePolicy(BaseImagePolicy):
         model = self.model   # Transformer model
         scheduler = self.noise_scheduler
 
-        # 랜덤 trajectory 생성
+        # create a random trajectory
         trajectory = torch.randn(
             size=condition_data.shape, 
             dtype=condition_data.dtype,
             device=condition_data.device,
             generator=generator)
     
-        # set step values; scheduler.timestep 생성
+        # set step values; create scheduler.timestep
         scheduler.set_timesteps(self.num_inference_steps)
 
         for t in scheduler.timesteps:
@@ -217,7 +217,7 @@ class DiffusionTransformerHybridImagePolicy(BaseImagePolicy):
         # finally make sure conditioning is enforced
         trajectory[condition_mask] = condition_data[condition_mask]        
 
-        return trajectory   # 최종 trajectory
+        return trajectory   # final trajectory
 
 
     def predict_action(self, obs_dict: Dict[str, torch.Tensor]) -> Dict[str, torch.Tensor]:   
@@ -243,7 +243,7 @@ class DiffusionTransformerHybridImagePolicy(BaseImagePolicy):
         cond = None
         cond_data = None
         cond_mask = None
-        if self.obs_as_cond:   # obs를 Transformer에 condition으로 따로줌
+        if self.obs_as_cond:   # obs is given to the Transformer separately, as a condition
             this_nobs = dict_apply(nobs, lambda x: x[:,:To,...].reshape(-1,*x.shape[2:]))
             nobs_features = self.obs_encoder(this_nobs)
             # reshape back to B, To, Do
@@ -254,7 +254,7 @@ class DiffusionTransformerHybridImagePolicy(BaseImagePolicy):
             cond_data = torch.zeros(size=shape, device=device, dtype=dtype)
             cond_mask = torch.zeros_like(cond_data, dtype=torch.bool)
 
-        else:   # obs를 Transformer에 input으로 같이 들어감
+        else:   # obs goes into the Transformer together with the input
             # condition through impainting
             this_nobs = dict_apply(nobs, lambda x: x[:,:To,...].reshape(-1,*x.shape[2:]))
             nobs_features = self.obs_encoder(this_nobs)
@@ -264,9 +264,9 @@ class DiffusionTransformerHybridImagePolicy(BaseImagePolicy):
             cond_data = torch.zeros(size=shape, device=device, dtype=dtype)
             cond_mask = torch.zeros_like(cond_data, dtype=torch.bool)
             cond_data[:,:To,Da:] = nobs_features
-            cond_mask[:,:To,Da:] = True   # obs와 action이후 dimension은 masking
+            cond_mask[:,:To,Da:] = True   # mask the obs, i.e. the dimensions after action
 
-        # run sampling; Denoising후 trajectory
+        # run sampling; trajectory after denoising
         nsample = self.conditional_sample(
             cond_data, 
             cond_mask,
@@ -274,8 +274,8 @@ class DiffusionTransformerHybridImagePolicy(BaseImagePolicy):
             **self.kwargs)
         
         # unnormalize prediction
-        naction_pred = nsample[...,:Da]   # action부분만 사용
-        action_pred = self.normalizer['action'].unnormalize(naction_pred)   # 정규화 풀기
+        naction_pred = nsample[...,:Da]   # use only the action part
+        action_pred = self.normalizer['action'].unnormalize(naction_pred)   # undo the normalization
 
         # get action
         if self.pred_action_steps_only:   # False
@@ -283,11 +283,11 @@ class DiffusionTransformerHybridImagePolicy(BaseImagePolicy):
         else:
             start = To - 1
             end = start + self.n_action_steps
-            action = action_pred[:,start:end]   # 실제 실행할 action만 추출
+            action = action_pred[:,start:end]   # extract only the actions that will actually be executed
         
         result = {
-            'action': action,   # 실제 사용할 traj
-            'action_pred': action_pred   # 예측한 전체 traj
+            'action': action,   # the traj that is actually used
+            'action_pred': action_pred   # the full predicted traj
         }
         return result
 

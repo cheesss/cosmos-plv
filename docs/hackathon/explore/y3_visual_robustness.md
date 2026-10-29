@@ -1,14 +1,14 @@
 # y3_visual_robustness: how robust is VLM success detection to the camera and to image quality? (EXPLORATORY, post-hoc)
 
-**한국어 요약.** 기록된 실행 action을 다시 재생했더니 결과가 비트 단위로 같았다. 60/60 에피소드에서 eef와 물체 위치 오차가 0.0 m였고 성공 플래그도 모두 일치했다. 그래서 같은 에피소드를 다른 카메라 4개로 다시 렌더링하고, 원래 agentview 영상에는 화질 저하 5종을 적용했다. 고정된 두 judge(Cosmos3-Edge v6 마지막 프레임, Nemotron v2 pad 20.1 s)를 프롬프트를 바꾸지 않고 돌렸다. 결과는 세 가지다. **(1) 화질 저하는 거의 영향이 없다.** 224/112 px 다운스케일, blur, 어둡게(dim)는 모두 |Δacc| ≤ 0.05였다. 가장 큰 손실은 Nemotron JPEG q20의 −0.083 [−0.17, 0.00]이다. **(2) 카메라 위치가 결정적이다.** agentview 재렌더 대비 정확도 변화는 다음과 같다(Cosmos / Nemotron).
+**Summary.** Replaying the recorded executed actions gave bit-identical results. On 60/60 episodes the eef and object position errors were 0.0 m and every success flag matched. So I re-rendered the same episodes from 4 other cameras and applied 5 kinds of image degradation to the original agentview video. I ran the two frozen judges (Cosmos3-Edge v6 last frame, Nemotron v2 pad 20.1 s) without changing their prompts. There are three results. **(1) Image degradation has almost no effect.** 224/112 px downscaling, blur and darkening (dim) all gave |Δacc| ≤ 0.05. The largest loss is Nemotron JPEG q20 at −0.083 [−0.17, 0.00]. **(2) Camera position is decisive.** The accuracy change relative to the agentview re-render is as follows (Cosmos / Nemotron).
 
-| 카메라 | Cosmos3-Edge | Nemotron |
+| camera | Cosmos3-Edge | Nemotron |
 |---|---|---|
 | frontview | −0.10 [−0.23, 0.02] | −0.07 [−0.16, 0.04] |
 | birdview | −0.17 [−0.34, 0.00] | −0.15 [−0.25, −0.04] |
 | eye-in-hand | −0.28 [−0.45, −0.15] | −0.30 [−0.45, −0.18] |
 
-eye-in-hand에서는 두 모델 모두 balanced accuracy가 0.49–0.51, 즉 우연 수준이다. **(3) 실패 양상이 카메라마다 다르다.** frontview/birdview처럼 멀리서 본 화면에서는 square nut이 몇 픽셀밖에 안 된다. 그래서 Cosmos가 실패한 square 에피소드 대부분을 "on_peg"라고 답했다(frontview 16/18, birdview 18/18). eye-in-hand에서는 물체가 카메라와 함께 움직인다. 그래서 Nemotron은 성공한 에피소드의 88%를 "잡지 못함/들지 않음"으로 판정했다(TPR 0.12). 이는 화면 정보가 부족한 탓이기도 하지만, 프롬프트가 "고정된 3인칭 카메라", "로봇 팔이 두 bin 위에 있다"고 설명하는 탓이기도 하다. **권장 사항**: 실제 로봇에서 판정용으로는 물체가 화면을 크게 차지하는 가까운 사선 3인칭 고정 카메라(agentview와 비슷한 배치)를 쓴다. 손목 카메라 단독이나 먼 정면·천장 카메라는 쓰지 않는다. 화질(해상도 224 px 이상, 일반적인 압축)은 병목이 아니다. 새 카메라를 쓸 때는 그 카메라로 dev 프롬프트 선택을 다시 해야 한다. 이번 실험은 사후 탐색이다. 60 에피소드, 22 체크포인트이고 CI가 넓다.
+On eye-in-hand, both models have a balanced accuracy of 0.49–0.51, i.e. chance level. **(3) The failure pattern differs by camera.** In distant views such as frontview/birdview, the square nut is only a few pixels. So Cosmos answered "on_peg" for most failed square episodes (frontview 16/18, birdview 18/18). On eye-in-hand, the object moves with the camera. So Nemotron judged 88% of successful episodes as "did not grasp / did not lift" (TPR 0.12). This is partly because the view lacks information, but also because the prompt describes "a fixed third-person camera" and "the robot arm is above two bins". **Recommendation**: for judging on a real robot, use a close, oblique, fixed third-person camera in which the object takes up a large part of the frame (a placement similar to agentview). Do not use a wrist camera alone or a distant front or overhead camera. Image quality (resolution of 224 px or more, ordinary compression) is not the bottleneck. When a new camera is used, the dev prompt selection must be redone with that camera. This experiment is a post-hoc exploration: 60 episodes, 22 checkpoints, and the CIs are wide.
 
 ## Question
 

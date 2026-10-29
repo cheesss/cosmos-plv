@@ -6,7 +6,7 @@
 > `y5_cross_seed_selection_tables.py` into `results/hackathon/explore/y5_cross_seed_selection_tables.txt`.
 > CPU only. No GPU and no Nebius calls.
 
-**한 줄 요약 (KR):** 두 Can 시드를 하나의 선택 문제로 합쳐도 PLV는 epoch보다 낫지 않았다. 합친 Spearman은 epoch 0.826, Action L1 0.790, rank-avg(epoch, L1) 0.805였고, epoch 대비 차이의 CI는 모두 0을 포함한다. 같은 epoch에서 두 시드를 가르는 쌍별 테스트에서는 성공률 차이가 0.06 이상인 쌍이 4개뿐이었다. PLV 지표 정확도는 0.25–0.50이었고, K=10 eval 롤아웃(계측, VLM 모두)은 2쌍 모두 틀렸다. 이 풀에서는 시드 간 차이가 대부분 노이즈 수준(≤0.04)이어서 고를 것이 거의 없다. 유일하게 "유의"했던 teacher-forced latent MSE(14쌍 중 13쌍 정답)는 held-out 반쪽에서 재현되지 않았다(5/9).
+**One-line summary:** Even when the two Can seeds are pooled into one selection problem, PLV is no better than epoch. The pooled Spearman was 0.826 for epoch, 0.790 for Action L1 and 0.805 for rank-avg(epoch, L1), and the CIs of all differences against epoch include 0. In the pairwise test that separates the two seeds at the same epoch, only 4 pairs had a success-rate difference of 0.06 or more. PLV metric accuracy was 0.25–0.50, and the K=10 eval rollouts (both instrumented and VLM) got both of 2 pairs wrong. In this pool the differences between seeds are mostly at noise level (≤0.04), so there is almost nothing to choose. The only "significant" one, teacher-forced latent MSE (13 of 14 pairs correct), did not reproduce on the held-out half (5/9).
 
 ## 1. Question
 

@@ -1,4 +1,4 @@
-"""기존 diffusion_policy workspace 형식을 따라 OOD dynamics 모델을 학습하는 워크스페이스."""
+"""Workspace that trains the OOD dynamics model, following the existing diffusion_policy workspace format."""
 
 if __name__ == "__main__":
     import sys
@@ -38,7 +38,7 @@ OmegaConf.register_new_resolver("eval", eval, replace=True)
 
 
 class TrainOODDynamicsWorkspace(BaseWorkspace):
-    """Frozen reference policy encoder를 재사용해 latent dynamics를 학습한다."""
+    """Trains latent dynamics by reusing a frozen reference policy encoder."""
     include_keys = ["global_step", "epoch", "lowdim_keys"]
     exclude_keys = ("reference_policy", "reference_workspace")
 

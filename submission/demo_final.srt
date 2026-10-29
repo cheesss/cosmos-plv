@@ -1,0 +1,104 @@
+1
+00:00:00,300 --> 00:00:08,900
+Robot checkpoints are cheap to save but expensive to evaluate, and even an accurate AI judge can be confidently wrong.
+
+2
+00:00:09,600 --> 00:00:16,825
+Cosmos-PLV picks which robot checkpoint to test next, and shows when its AI judge can be trusted.
+
+3
+00:00:17,500 --> 00:00:27,475
+PLV screening, rollouts and NVIDIA Cosmos run on one local GPU; NVIDIA Nemotron runs on Nebius Token Factory.
+
+4
+00:00:28,167 --> 00:00:39,167
+The dashboard recommends what to test next, beside the free latest-epoch baseline and each rule's measured regret, and warns when strong checkpoints may fool the judge.
+
+5
+00:00:40,533 --> 00:00:46,658
+Cheap screening re-runs the original PLV metric script, live, with no rollouts.
+
+6
+00:00:47,800 --> 00:00:52,272
+Shortlisted checkpoints run in a real robosuite simulation.
+
+7
+00:00:52,272 --> 00:00:55,925
+Cosmos reports, frame by frame, where the can is.
+
+8
+00:00:57,200 --> 00:01:02,022
+This is a live call to NVIDIA Cosmos3-Edge on the local GPU.
+
+9
+00:01:02,022 --> 00:01:09,100
+It reads eight keyframes, and a fixed rule turns its answers into grasp, drop or success.
+
+10
+00:01:10,067 --> 00:01:15,369
+Now the same video goes to NVIDIA Nemotron on Nebius Token Factory.
+
+11
+00:01:15,369 --> 00:01:21,217
+The live verdict comes back with its request ID, latency and token count.
+
+12
+00:01:22,000 --> 00:01:30,075
+The results tab scores both judges against verified simulator outcomes on 330 recorded rollouts.
+
+13
+00:01:31,500 --> 00:01:39,725
+Nemotron was right on 96.4% of them, but it still called 9 of 67 failures a success.
+
+14
+00:01:40,400 --> 00:01:51,175
+Exploratory analyses: adaptive allocation, not PLV, cut rollouts two- to threefold; a time limit saved 16% of rollout time.
+
+15
+00:01:51,867 --> 00:01:53,673
+But can we trust the judge?
+
+16
+00:01:53,673 --> 00:01:55,681
+Our pre-registered audits say:
+
+17
+00:01:55,681 --> 00:01:56,417
+not always.
+
+18
+00:01:56,417 --> 00:02:03,042
+The judges could not tell when a replan helped, and they accept failures that end in the goal bin.
+
+19
+00:02:04,133 --> 00:02:07,077
+Here the can is in the wrong compartment.
+
+20
+00:02:07,077 --> 00:02:08,970
+The simulator says failure.
+
+21
+00:02:08,970 --> 00:02:11,633
+Nemotron says it was placed correctly.
+
+22
+00:02:12,300 --> 00:02:13,763
+It is systematic:
+
+23
+00:02:13,763 --> 00:02:27,450
+Nemotron let 58 of 149 failures into a self-training set, and the resulting policy reached 75% success, versus 86% with plain continued training.
+
+24
+00:02:28,133 --> 00:02:33,183
+About 7,000 Nebius calls cost an estimated five dollars.
+
+25
+00:02:33,867 --> 00:02:36,327
+Faster robot evaluation matters.
+
+26
+00:02:36,327 --> 00:02:44,017
+But before trusting AI-generated labels to train robots, audit what the judge systematically misses.
+

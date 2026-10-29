@@ -17,12 +17,12 @@ wrong or overstated:
 * The diagnosis of the h10 == h16 duplication is wrong. The horizon flag was applied; the
   duplication is structural.
 
-**한 줄 요약 (KR):** 핵심 결론("두 시드를 합쳐도 PLV는 epoch보다 낫지 않다")은 재현되며, 고정 풀 bootstrap에서는 오히려 Action L1·open-loop가 epoch보다 유의하게 나쁘다. 다만 세부 주장 몇 개는 틀렸거나 과장됐다.
-- VLM은 e20에서 동점이라 "2쌍 모두 틀림"이 아니다.
-- replan의 "우연보다 유의하게 나쁨"은 Holm 보정 후 p=0.14다.
-- late 신뢰도는 음수가 아니라 ≈0이다.
-- 100003 분석은 시드 간 실제 차이를 입증하지 못한다. 그 시드를 빼면 common10 late 실패가 4 대 4이고, eval 시드에서는 오히려 seed1이 낫다.
-- h10==h16은 플래그 미적용이 아니다. stride 8 때문에 replan 경계가 하나뿐이라 구조적으로 같아진다.
+**One-line summary:** The core conclusion ("even with the two seeds pooled, PLV is no better than epoch") reproduces, and in the fixed-pool bootstrap Action L1 and open-loop are actually significantly worse than epoch. However, several detailed claims are wrong or overstated.
+- The VLM ties at e20, so it is not "both of 2 pairs wrong".
+- Replan's "significantly worse than chance" is p=0.14 after Holm correction.
+- The late reliability is ≈0, not negative.
+- The 100003 analysis does not establish a real difference between seeds. Without that seed, common10 late failures are 4 vs 4, and on the eval seeds seed1 is actually better.
+- h10==h16 is not a case of the flag not being applied. Because of stride 8 there is only one replan boundary, so the two are structurally identical.
 
 ## 1. What was checked
 

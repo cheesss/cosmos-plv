@@ -1,11 +1,11 @@
-"""LPB 스타일의 latent dynamics predictor를 단일 policy encoder 위에 맞춘 모델."""
+"""An LPB-style latent dynamics predictor adapted to sit on top of a single policy encoder."""
 
 import torch
 import torch.nn as nn
 
 
 class TemporalChunkEmbedding(nn.Module):
-    """LPB의 proprio/action chunk encoder와 비슷한 1D 토큰 임베딩."""
+    """1D token embedding similar to LPB's proprio/action chunk encoder."""
 
     def __init__(self, in_chans: int, emb_dim: int):
         super().__init__()
@@ -28,9 +28,9 @@ class TemporalChunkEmbedding(nn.Module):
 
 class LatentDynamicsModel(nn.Module):
     """
-    기존 policy encoder가 만든 visual latent를 기준으로,
-    현재 latent/proprio와 미래 action chunk를 temporal transformer에 넣어
-    horizon 시점의 latent/proprio를 예측하는 OOD용 dynamics 모델.
+    Dynamics model for OOD that, based on the visual latent produced by the existing policy encoder,
+    feeds the current latent/proprio and the future action chunk into a temporal transformer
+    to predict the latent/proprio at the horizon time step.
     """
 
     def __init__(

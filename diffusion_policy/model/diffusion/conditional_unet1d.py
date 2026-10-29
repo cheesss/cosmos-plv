@@ -68,7 +68,7 @@ class ConditionalResidualBlock1D(nn.Module):
 # conditional U-Net -> FiLM
 class ConditionalUnet1D(nn.Module):
     def __init__(self, 
-        input_dim,   # action + obs 의 dimension
+        input_dim,   # dimension of action + obs
         local_cond_dim=None,
         global_cond_dim=None,
         diffusion_step_embed_dim=256,

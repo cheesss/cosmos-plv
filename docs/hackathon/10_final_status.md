@@ -11,13 +11,13 @@ Status values:
 | requirement | status | evidence |
 |---|---|---|
 | Genuinely working application | COMPLETE | `dashboard/app.py`; recorded live session `media/hackathon/demo.mp4`; `scripts/hackathon/smoke_test.sh` |
-| Runtime use of Nebius Token Factory | COMPLETE | 7,003 logged calls, 0 failures, served model `nvidia/Nemotron-3.5-Super-VL` (`results/hackathon/nebius_calls.jsonl`, `explore/nebius_calls_explore.jsonl`, `docs/hackathon/05_nebius_execution.md`) |
+| Runtime use of Nebius Token Factory | COMPLETE | 7,005 logged calls, 0 failures, served models `nvidia/Nemotron-3.5-Super-VL` (6,874) and `nvidia/Nemotron-3_5-Lightning` (131), log cutoff 2026-10-29T15:22:49Z (`results/hackathon/nebius_calls.jsonl`, `explore/nebius_calls_explore.jsonl`, `docs/hackathon/05_nebius_execution.md`) |
 | Uses at least one NVIDIA open model | COMPLETE | `nvidia/Cosmos3-Edge` @344d602b running locally (2,970 eval calls); `nvidia/Nemotron-3.5-Super-VL` and `nvidia/Nemotron-3_5-Lightning` on Nebius |
 | Real functional integration (not branding) | COMPLETE | `cosmos_plv/cosmos_backend.py`, `nebius_backend.py`, `visual_diagnostics.py`; Experiment 2 on 330 real rollouts |
 | Public repository with an OSS license | COMPLETE | https://github.com/cheesss/cosmos-plv (public, MIT). It is a sanitized export made by `scripts/hackathon/export_public_repo.sh`, which validates the export and scans it for sensitive strings. Created 2026-10-29 with the owner's approval. |
 | Setup / run / test instructions | COMPLETE | `README_HACKATHON.md` (exported as `README.md`) |
 | English project description | COMPLETE | `docs/hackathon/09_devpost_submission.md` |
-| Public/unlisted YouTube video ≤ 3 min | PARTIAL / OWNER | `media/hackathon/demo.mp4` (2:23, 1600x992, English captions). The upload needs the owner's YouTube account. |
+| Public YouTube video ≤ 3 min | OWNER ACTION REQUIRED | `submission/demo_final.mp4` (same file as `media/hackathon/demo.mp4`): 2:33, 1920x1080, 30 fps, English narration and captions. The rules require a **publicly visible** YouTube video, so upload it as Public from the owner's account. |
 | ≥ 1 min of key modules operating | COMPLETE | About 84 s of the 143 s video is real dashboard and rollout footage: live metric script, live Cosmos3-Edge, live Nebius call, the judge-audit panel, real simulator videos |
 | Feedback on Nebius / NVIDIA tools | COMPLETE | `09_devpost_submission.md` → "Feedback" |
 | New functionality after 2026-08-26 explained | COMPLETE | `08_original_vs_new_work.md` |

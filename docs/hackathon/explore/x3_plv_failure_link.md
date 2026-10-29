@@ -2,24 +2,24 @@
 
 **EXPLORATORY / POST-HOC.** Nothing here was pre-registered. No score was fitted on outcomes: every feature is used raw, with a direction fixed in advance (higher = worse). The "high" thresholds are outcome-free quantiles. Every number below comes from `results/hackathon/explore/x3_plv_failure_link.json`, as generated at 2026-10-28T20:02Z (UTC), or from its side CSVs.
 
-## 요약 (Korean TL;DR)
+## Summary (TL;DR)
 
-- **재계획 불일치가 높을 때 가장 먼저 의심할 실패는 no_grasp(파지 실패)입니다.** 특히 그리퍼 차원의 불일치가 높으면 no_grasp를 가리킵니다. 학습된(epoch>0) can 체크포인트에서 실패 에피소드만 놓고 dropped와 no_grasp를 비교한 결과입니다.
-  - 그리퍼 차원 overlap의 AUROC(dropped > no_grasp)는 0.13 [0.00, 0.21]입니다. 이는 no_grasp 쪽이 더 높다는 뜻이며, dev split에서도 0.15로 재현됐습니다.
-  - 위치 차원 불일치는 두 실패 유형을 구분하지 못합니다(0.37 [0.07, 0.89]).
-- **drop(놓침)에 앞서 불일치가 튀는 현상은 없습니다(음성 결과).** 비교는 세 가지로 했습니다.
-  - 같은 에피소드의 무작위 시점과 비교: p=0.95(단측)로 증가 없음.
-  - 같은 체크포인트의 성공 에피소드에서 의도적으로 놓는 순간과 비교(위상 매칭): within-checkpoint AUROC는 can 0.41, square 0.24입니다.
-  - 첫 들어올림 이전의 불일치만 사용: can 0.43 [0.25, 0.60]로 예측력이 없습니다.
-  - 그리퍼 불일치 spike는 성공 에피소드의 release와 lift 시점에도 똑같이 크게 나타납니다. 즉 실패의 전조가 아니라 그리퍼 전환 구간의 표지입니다.
-- **체크포인트 수준에서는 불일치가 클수록 실패 중 drop 비중이 낮습니다.** 학습된 can 체크포인트에서 평균 불일치와 실패 중 dropped 비율의 Spearman은 −0.79 [−0.95, −0.58]입니다.
-  - 불일치가 큰 초기 체크포인트는 주로 no_grasp로 실패합니다.
-  - 불일치가 낮은 후기 체크포인트에 남는 실패는 drop입니다. 이 drop은 PLV 불일치로는 보이지 않습니다.
-- **Nemotron을 drop 전용 질문과 타임스탬프 오버레이로 쓰면 PLV의 사각지대를 일부 메웁니다.** 같은 120개 에피소드에서 비교했습니다.
-  - drop 민감도는 기존 v2의 1/16에서 7/16으로 올랐습니다.
-  - 특이도는 1.00에서 0.94로 내려갔습니다.
-  - eval 180개 기준으로는 민감도 9/21(0.43 [0.24, 0.63]), 특이도 153/159(0.96 [0.92, 0.98])입니다.
-  - 다만 drop 시각 오차가 중앙값 2.75 s로 커서, drop 시점에 정렬하는 분석에는 아직 쓸 수 없습니다.
+- **When replanning disagreement is high, the first failure to suspect is no_grasp (grasp failure).** High disagreement in the gripper dimension in particular points to no_grasp. This comes from comparing dropped and no_grasp on failed episodes only, in trained (epoch>0) can checkpoints.
+  - The AUROC (dropped > no_grasp) of gripper-dimension overlap is 0.13 [0.00, 0.21]. This means no_grasp is higher, and it reproduced on the dev split as well, at 0.15.
+  - Position-dimension disagreement does not separate the two failure types (0.37 [0.07, 0.89]).
+- **There is no disagreement spike ahead of a drop (negative result).** I made three comparisons.
+  - Against random time points in the same episode: p=0.95 (one-sided), no increase.
+  - Against the moment of intentional release in successful episodes of the same checkpoint (phase-matched): within-checkpoint AUROC is 0.41 for can and 0.24 for square.
+  - Using only the disagreement before the first lift: can 0.43 [0.25, 0.60], no predictive power.
+  - The gripper disagreement spike appears just as strongly at release and lift in successful episodes. That is, it marks gripper transition phases, not an omen of failure.
+- **At the checkpoint level, the larger the disagreement, the smaller the share of drops among failures.** In trained can checkpoints, the Spearman between mean disagreement and the dropped fraction of failures is −0.79 [−0.95, −0.58].
+  - Early checkpoints with high disagreement fail mainly by no_grasp.
+  - The failures that remain in later checkpoints with low disagreement are drops. These drops are invisible to PLV disagreement.
+- **Using Nemotron with a drop-specific question and a timestamp overlay partly fills PLV's blind spot.** I compared on the same 120 episodes.
+  - Drop sensitivity rose from 1/16 with the existing v2 to 7/16.
+  - Specificity fell from 1.00 to 0.94.
+  - On the 180 eval episodes, sensitivity is 9/21 (0.43 [0.24, 0.63]) and specificity 153/159 (0.96 [0.92, 0.98]).
+  - However, the drop-time error is large (median 2.75 s), so it cannot yet be used for analyses aligned to the drop time.
 
 ## Question
 

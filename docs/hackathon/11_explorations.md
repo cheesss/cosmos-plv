@@ -2,7 +2,7 @@
 
 Everything on this page is **exploratory and post-hoc**. These studies came after
 the pre-registered Experiments 1–3 in `06_experiment_protocol.md` and do not
-replace them. Each study was implemented by one agent and checked by an
+replace them. Each study was implemented by one agent, and all except x0 (a deterministic rule) and w4 were checked by an
 independent adversarial verifier. The verifier re-ran the analysis and looked for
 leakage, wrong denominators, clustering and over-claiming. The verified (corrected)
 conclusions are quoted below. Full reports are in `docs/hackathon/explore/`, data in
@@ -12,7 +12,7 @@ conclusions are quoted below. Full reports are in `docs/hackathon/explore/`, dat
 |---|---|---|---|---|
 | x0 | Can local Cosmos filter calls to Nebius? | not separately verified (simple, deterministic) | partially (cost) | Rule: if local Cosmos says failure, accept it; if it says success, ask Nemotron. On the full eval split (n=330) it scores 0.952 [0.923, 0.970] against 0.964 for Nemotron alone, using 84% of the Nebius calls (16% fewer); false negatives rise from 3 to 8. An earlier n=150 snapshot (0.960 with 71% of the calls) overstated the saving. On dev it scores 0.917 with 56% of the calls. |
 | x1 | How many rollouts are needed to find a near-best checkpoint? | partially confirmed | partially | Adaptive allocation needs about 2–3x fewer rollouts than uniform allocation for the same excess regret (seed-bootstrap median ratio 3, 10–90% range 2–4). It uses the 50 training-time episodes per checkpoint: half as the pool, half held out. Absolute budgets are unstable as the pool grows. A noisy VLM judge raises the budget (Nemotron about 1.5x). Cosmos, once its within-checkpoint false-positive correlation is modelled, does not reach the target within 25N. A val-loss prior is worse than a random prior. A free "latest epoch" baseline is very strong in these short runs. |
-| x2 | Can rollouts be aborted early once failure is evident? | partially confirmed | partially | Failing episodes use 54% of robot time. Held-out abort rules save 16–20% of total robot time at 2/141 false aborts, with no change in ranking (leave-one-checkpoint-out fit). Nearly all of the safe saving comes from a shorter time horizon. Cosmos v7 adds +1.5 points outside epoch-0 checkpoints. Nemotron on 4-s prefixes reaches AUROC 0.85 (0.76 without epoch 0) and adds +4.4 points to a time cut outside epoch 0. |
+| x2 | Can rollouts be aborted early once failure is evident? | partially confirmed | partially | Failing episodes use 54% of robot time. Held-out abort rules save 16% (time limit only) to 20% (with privileged simulator state) of total robot time at 2/141 false aborts, with no change in ranking (leave-one-checkpoint-out fit). Nearly all of the safe saving comes from a shorter time horizon. Cosmos v7 adds +1.5 points outside epoch-0 checkpoints. Nemotron on 4-s prefixes reaches AUROC 0.85 (0.76 without epoch 0) and adds +4.4 points to a time cut outside epoch 0. |
 | x3 | Does high replanning disagreement (real feedback) point to specific failures? | partially confirmed | partially | Disagreement jumps at and after a drop, but shows no precursor before can drops. It is a post-hoc indicator, not an early warning. Gripper-dimension disagreement is higher for no_grasp than for drops (within-checkpoint AUROC 0.09, 11 pairs). Checkpoint-level disagreement adds nothing beyond epoch. |
 | x4 | Do other Nemotron modes classify failures better? | partially confirmed | no | No mode improved pooled failure-type accuracy significantly (best 0.441 vs 0.356, CI includes 0). Dropped recall improved but no_grasp recall fell. The verifier also found **clip-length leakage**: successful clips stop 0.8 s after success, so length alone separates outcomes. See the length-neutral check below. |
 | x5 | Do other Cosmos3-Edge modes help (ROI crop, 16 keyframes, frame pairs, reasoning)? | partially confirmed | no | None beat v6. ROI crop: +0.08 on dev (2 episodes), −0.077 on eval. Frame-pair failure types only match the majority-class baseline. Reasoning left 9/25 outputs unparsable. |
@@ -20,7 +20,7 @@ conclusions are quoted below. Full reports are in `docs/hackathon/explore/`, dat
 
 ## Length-neutral re-check (after the x4 finding)
 
-The frozen Nemotron v2 prompt was re-run on the 250 eval episodes with every clip
+The frozen Nemotron v2 prompt was first re-run on 250 eval episodes (the full 330 are below) with every clip
 padded to the timeout length, holding the final frame, and with a fixed stated
 duration (`eval_nebius_v2_pad201.jsonl`).
 
@@ -29,6 +29,7 @@ duration (`eval_nebius_v2_pad201.jsonl`).
 * Length-neutral condition: success accuracy 0.956 [0.923, 0.975], 10 false
   positives, 1 false negative.
 * 4/250 judgements changed between the two conditions.
+* On all 330 eval episodes: original 0.964 [0.938, 0.979] (FP 9, FN 3) vs length-neutral 0.961 [0.934, 0.977] (FP 12, FN 1); 5/330 judgements changed.
 
 Nemotron therefore does not exploit clip length. Two of the flips were square
 successes that were missed before and found after padding: the held final frames
@@ -46,7 +47,7 @@ show the nut settled. This fits the "clip ended too early" explanation.
 ## What we take from wave 1
 
 1. **Success detection from video works.** The NVIDIA VLMs judge success from
-   video alone with 0.90–0.96 accuracy. That matters most where no success
+   video alone with 0.92–0.96 accuracy (eval split). That matters most where no success
    detector exists, such as real robots.
 2. **Failure taxonomy does not work.** Every variant fails to beat a
    majority-class baseline on failure types.
@@ -96,7 +97,7 @@ show the nut settled. This fits the "clip ended too early" explanation.
 
 ## Running take-aways
 
-1. **Success detection from video works** (0.90–0.96 on the eval split, robust to clip length and image quality) **if the camera is chosen well**. Failure-type taxonomy does not work.
-2. **The biggest measured efficiency levers do not need a VLM**: adaptive rollout allocation (2–3x fewer rollouts) and early abort with a time horizon (16–20% robot time). VLM judges replace a privileged success detector at a modest budget cost; a local-first cascade cuts the Nebius calls.
+1. **Success detection from video works** (0.92–0.96 on the eval split, robust to clip length and image quality) **if the camera is chosen well**. Failure-type taxonomy does not work.
+2. **The biggest measured efficiency levers do not need a VLM**: adaptive rollout allocation (2–3x fewer rollouts) and early abort with a time limit (16% robot time; 20% with privileged simulator state). VLM judges replace a privileged success detector at a modest budget cost; a local-first cascade cuts the Nebius calls.
 3. **PLV in this pool measures training progress.** Every PLV metric, prior, learned combination and VLM-augmented score is indistinguishable from, or worse than, the free epoch baseline (y1, y2, y5, z2). Near the plateau even 50 rollouts per checkpoint cannot rank. A fair test needs runs where "later" is not better. In wave 4 (long low-data runs, 82 checkpoints) epoch is still the strongest signal on average (Spearman 0.56; the best PLV metric, open-loop smoothness, is 0.55).
 4. **Generated text must be checked against data.** Unconstrained LLM summaries contained false claims, so the application shows only measured values and authentic model outputs.

@@ -2,43 +2,76 @@
 
 **Nebius x NVIDIA Global AI Hackathon 2026 — Physical AI track**
 
-Cosmos-PLV helps a robotics researcher decide **which imitation-learning
-checkpoint to evaluate next, and why**. It combines lightweight offline
-checkpoint screening (PLV, Policy-in-the-Loop Latent Validation, from our prior
-research) with real simulator rollouts and physical-outcome judgements from NVIDIA
-models: **NVIDIA Cosmos3-Edge** on a local GPU, and **NVIDIA
-Nemotron-3.5-Super-VL** on **Nebius Token Factory**.
+**Cosmos-PLV helps a robot-learning researcher decide which imitation-learning checkpoint to evaluate next, and shows when the AI evaluator itself cannot be trusted.**
 
-**TL;DR**
-* **Workflow:** free offline PLV metrics pick which checkpoints get robot time.
-  Zero-shot NVIDIA judges then replace the hand-coded success detector, and every
-  call is logged.
-* **Measured:** on 330 recorded simulator rollouts, success accuracy is 0.964 for Nemotron on
-  Nebius and 0.918 for Cosmos3-Edge running locally, with no fine-tuning. Ranking
-  checkpoints with VLM verdicts is as good as with privileged simulator labels.
-  Adaptive allocation needs 2–3x fewer rollouts, and early abort saves 16–20% of
-  robot time.
-* **Not (yet):** it does not beat "pick the latest epoch" in these short runs, and
-  it does not classify failure types. It cannot yet replace rollouts with
-  predicted video. In an exploratory test, Cosmos3-Edge's trained Franka action
-  slot moved the generated gripper roughly along the recorded motion (cos ≈ 0.8 on
-  15 clips from 5 initial states; strong on Can, weak on Square). The motion is
-  compressed, though, and pixel fidelity is no better than a frozen frame
-  (Experiment 4b).
-* **Replanning audit (r1, pre-registered):** we restored the exact simulator state at 400
-  replanning boundaries and executed both the old and the new plan. Zero-shot judges
-  were at chance at telling when a replan helped. PLV's disagreement score flagged
-  fragile episodes, not the replan that mattered.
-* **Judge blind spot (c1, pre-registered):** zero-shot judges accept almost every failure
-  that ends at the goal bin, here a can in the wrong compartment, even when told the
-  compartment. Strong checkpoints fail mostly that way, so their judged success is
-  inflated.
-* **Self-training from judged successes (s1, s2, pre-registered):** this did not improve
-  the policy. Filtering by Nemotron made it 10 points *worse* than plain continued
-  training, because the blind spot let failures into the data. 36 extra human demos
-  gave +8 points.
+* **Who it is for.** Robot imitation-learning researchers and evaluation engineers who train many checkpoints, especially for robots without a programmable success detector.
+* **The problem.** Saving checkpoints is cheap; running each one on a robot is slow and expensive. Validation loss does not tell them apart, and on a real robot somebody has to judge every rollout.
+* **What you do in the app.**
+  1. Pick a training run and a checkpoint, and see its cheap PLV screening scores.
+  2. See the recommendation next to the free "latest epoch" baseline and each rule's measured regret.
+  3. Watch a real robosuite rollout.
+  4. Run NVIDIA **Cosmos3-Edge** on the local GPU, and NVIDIA **Nemotron-3.5-Super-VL** on **Nebius Token Factory**.
+  5. See whether each verdict matches the simulator, and whether the judge can be trusted for this checkpoint.
+* **What we found.**
+  * The judges are accurate overall (Nemotron 96.4% on 330 rollouts).
+  * They systematically accept near-goal failures, and training on their verdicts made a policy worse.
+  * See [Results at a glance](#results-at-a-glance).
 
-![architecture](media/hackathon/architecture.png)
+**▶ Demo video (2:45, narrated):** YouTube link to be added after upload (owner action). Local file: [`media/hackathon/demo.mp4`](media/hackathon/demo.mp4).
+
+**For judges, three ways to check the work:**
+1. Watch the video.
+2. Open the app in **recorded replay mode**. It needs no GPU and no API key, and shows only real recorded rollouts and model answers:
+   ```bash
+   source scripts/hackathon/envb.sh && COSMOS_PLV_REPLAY=1 streamlit run dashboard/app.py
+   ```
+3. Read the evidence:
+   * [`submission/claim_ledger.csv`](submission/claim_ledger.csv): every number traced to a result file;
+   * [`submission/figures/`](submission/figures);
+   * [`docs/hackathon/07_experiment_results.md`](docs/hackathon/07_experiment_results.md).
+
+*About the name.* Cosmos3-Edge is used here as a visual **judge**. Its world model, action-conditioned video generation, was explored (Experiment 4b) but does not drive checkpoint choice.
+
+![Cosmos-PLV](submission/cover.png)
+
+## Results at a glance
+
+![results at a glance](submission/results.png)
+
+![accurate overall, wrong where it matters](submission/figures/accuracy_vs_blind_spot.png)
+
+![a real failure that Nemotron called success](submission/figures/real_case_wrong_compartment.png)
+
+| | result | status |
+|---|---|---|
+| **Evaluation** | Nemotron judges rollout success with **96.4%** accuracy on 330 recorded rollouts (base rate 79.7%; balanced 92.7%), but still called **9 of 67 failures** a success. Cosmos3-Edge scores 91.8%. Failure *types* are not solved. | measured |
+| **Efficiency** | **2–3x fewer rollouts** than uniform allocation to reach excess regret ≤ 0.02 (adaptive allocation; post-hoc simulation on a 56-checkpoint snapshot with simulator labels; the epoch prior, not PLV, does the work). **16% less rollout execution time** (summed simulated robot time over 200 evaluation episodes) with a time-limit abort; 20% if privileged simulator state is used. **16% fewer Nebius calls** with a local-first cascade. These save evaluation effort, not training time. | exploratory, post-hoc |
+| **Reliability** | Nemotron called **32 of 33** "can in the wrong compartment" failures a success, and 24 of 33 even when told the compartment. | pre-registered (c1) |
+| **Consequence** | Self-training on Nemotron-filtered data **lowered** policy success by **10.4 points** vs continued training (95% CI −14.8 to −6.0). 36 human demos added +8.2. | pre-registered (s2), negative |
+| **Honest negative** | No PLV metric beat the free "pick the latest epoch" baseline in these nearly monotone runs. | measured |
+
+**Bottom line: a visual success judge can be accurate overall and still be unsafe as an unverified source of robot-learning labels.**
+All numbers trace to result files: [`submission/claim_ledger.csv`](submission/claim_ledger.csv) and [`docs/hackathon/final_claim_audit.md`](docs/hackathon/final_claim_audit.md).
+
+## How it works
+
+![architecture](submission/architecture.png)
+
+1. **Screen** every checkpoint with the original PLV scripts. This needs no rollouts.
+2. **Roll out** the shortlisted checkpoints in robosuite / MuJoCo, recording video, state and every action chunk.
+3. **Judge** each rollout video with Cosmos3-Edge (local) and Nemotron (Nebius).
+4. **Recommend** what to evaluate next. The free latest-epoch pick and each rule's measured regret are shown next to the recommendation, with a judge-trust warning for strong checkpoints.
+
+Simulator ground truth only scores the judges. It never chooses.
+
+| | |
+|---|---|
+| ![recommend](submission/screenshots/01_recommend_judge_trust_warning.png) | ![nemotron](submission/screenshots/05_nemotron_nebius_live.png) |
+| Recommendation with the free baseline and the judge-trust warning | Live Nemotron call on Nebius next to the simulator outcome |
+| ![audits](submission/screenshots/07_judge_audits_r1.png) | ![cosmos](submission/screenshots/04_cosmos3_edge_live.png) |
+| Judge-reliability audits (r1, c1) | Cosmos3-Edge per-keyframe perception (local GPU) |
+
+**Try it:** see [Install](#install), then run the [Smoke test](#smoke-test-one-command-2-min) and the [Demo](#demo-one-command).
 
 ## The problem
 
@@ -56,79 +89,20 @@ more reliable.
 The question for this hackathon: **can NVIDIA physical-AI models add useful
 diagnostic information beyond cheap offline metrics, at practical cost?**
 
-## Related work and what is new here
+## Prior work and what is new here
 
-Prior work this builds on:
-* **VLM success detection:** SuccessVQA ([Du et al. 2023](https://arxiv.org/abs/2303.07280)).
-* **Autonomous real-robot policy evaluation:** [AutoEval](https://arxiv.org/abs/2503.24278)
-  (CoRL 2025) fine-tunes a PaliGemma success classifier per scene on about 1,000
-  labelled images.
-* **Simulation as an evaluation proxy:** [SIMPLER](https://arxiv.org/abs/2405.05941).
-* **Policy evaluation inside learned world models:**
-  [WorldGym](https://arxiv.org/abs/2506.00613) and
-  [Ctrl-World](https://arxiv.org/abs/2510.10125), both trained on robot data.
-* **Failure reasoning, which these works find hard:**
-  [REFLECT](https://arxiv.org/abs/2306.15724), [AHA](https://arxiv.org/abs/2410.00371),
-  and RoboFail in [Cosmos-Reason1](https://arxiv.org/abs/2503.15558).
-* **Reliability of VLM judges:** [FailBench](https://arxiv.org/abs/2609.03611) (near
-  chance on contact-rich assembly, biased toward "success"),
-  [PathEval](https://arxiv.org/abs/2411.18711) (choosing between drawn paths),
-  [Robometer](https://arxiv.org/abs/2603.02115), and coverage shift in
-  [Guan et al. 2026](https://arxiv.org/abs/2610.24801) (better policies leave failures
-  that are harder to see).
-* **Chunk-consistency signals, the closest prior art to PLV Level 3:**
-  [Sentinel/STAC](https://arxiv.org/abs/2410.04640) (CoRL 2024),
-  [VLA-FAIL/ACC](https://arxiv.org/abs/2606.21386) (2026) and
-  [ActProbe/TCE](https://arxiv.org/abs/2606.08508) (2026). All three compare the
-  overlapping part of consecutive action chunks and raise runtime failure alarms.
-  None screens checkpoints. [SAFE](https://arxiv.org/abs/2506.09937) finds the
-  single-sample STAC variant weak on a real robot.
-* **Replan-or-keep rules:** [BID](https://arxiv.org/abs/2408.17355),
-  [SGAC](https://arxiv.org/abs/2510.12392) (Diffusion Policy on robomimic Can and Square),
-  [CARE](https://arxiv.org/abs/2609.32550) and [RTC](https://arxiv.org/abs/2506.07339).
-  They are evaluated by overall success, not per boundary.
-* **Same-state counterfactual evaluation:**
-  [Beyond Visual Quality](https://arxiv.org/abs/2609.24745),
-  [SVA](https://arxiv.org/abs/2607.03751), [CMA](https://arxiv.org/abs/2609.27247), and
-  the common-random-numbers vine estimator in [TRPO](https://arxiv.org/abs/1502.05477).
-* **Budget-aware policy selection:**
-  [Active Offline Policy Selection](https://arxiv.org/abs/2106.10251),
-  [Anwar et al. 2025](https://arxiv.org/abs/2502.09829),
-  [Snyder et al. 2025](https://arxiv.org/abs/2503.10966),
-  [RoboART](https://arxiv.org/abs/2502.06575).
-* **Rollout-free checkpoint ranking:** [WorldEval](https://arxiv.org/abs/2505.19017),
-  [RoboFQE](https://arxiv.org/abs/2610.18699), [CI-MSE](https://arxiv.org/abs/2606.29898).
+We do not claim the idea of a VLM success judge, a world-model evaluator, chunk-consistency monitoring, active evaluation or self-improvement.
+* Each has prior work: SuccessVQA, AutoEval, Sentinel/STAC, VLA-FAIL, Active Offline Policy Selection, SOAR, RoboCat, Large Reward Models, and Guan et al. 2026 on coverage shift.
+* Other hackathon projects also use Nemotron and Cosmos to judge rollout videos.
 
-We do not claim the idea of a VLM judge, a world-model evaluator, or a chunk-consistency
-signal. Other projects also use Nemotron and Cosmos to judge rollout videos. What is new:
-1. **Integration.** The judges sit after an offline checkpoint screen (PLV) in one
-   logged workflow, and that workflow runs in the app.
-2. **Zero-shot, open NVIDIA models.** There is no per-scene fine-tuning or labelling.
-   Note that this is simulation, while AutoEval runs on a real robot.
-3. **Effect on the decision itself.** We measure how zero-shot VLM verdicts change the
-   checkpoint pick at an equal rollout budget, not only judge accuracy. Budget-aware
-   selection itself is established (see above). What we add is VLM-judged outcomes in
-   place of privileged success labels.
-4. **Pitfalls that we found and controlled for.**
-   * Clip-length leakage.
-   * A goal-prompted model narrating its plan instead of the video ("judge, don't
-     plan").
-   * Camera choice mattering more than image quality.
-   * An untrained action slot in the released Cosmos3-Edge checkpoint.
-5. **A zero-shot check of Cosmos3-Edge action conditioning on another simulator's
-   robot** (Experiment 4b).
-6. **A same-state audit of the policy's own replans (r1).** We did not find prior work
-   that does all of the following:
-   * restores the exact simulator state at a replanning boundary;
-   * executes both the old plan's unexecuted tail and the new plan, with shared random
-     numbers;
-   * uses the outcome difference to score a chunk-consistency metric and zero-shot VLM
-     judges on the same events.
+What is new here:
+1. The integrated, logged workflow: PLV screen, rollouts, zero-shot NVIDIA judges, recommendation.
+2. Measuring the effect on the checkpoint *decision*, against the free baseline.
+3. Pre-registered audits of when the judges fail (r1, c1) and of what their errors do to self-training (s1, s2).
+4. A same-state audit of a policy's own replans (r1).
+5. A zero-shot check of Cosmos3-Edge action conditioning, including untrained action slots in the released checkpoint.
 
-   The result is negative for the judges (see Results).
-
-The earlier paper and its public site:
-[cheesss.github.io/plv-checkpoint-screening](https://cheesss.github.io/plv-checkpoint-screening/).
+The full list with links is in [docs/hackathon/related_work.md](docs/hackathon/related_work.md). Prior PLV research: [cheesss.github.io/plv-checkpoint-screening](https://cheesss.github.io/plv-checkpoint-screening/). What existed before 2026-08-26 is listed in [docs/hackathon/08_original_vs_new_work.md](docs/hackathon/08_original_vs_new_work.md).
 
 ## What the application does
 
@@ -162,6 +136,12 @@ model id + revision, Nebius request id, latency and token usage.
 
 ## NVIDIA and Nebius usage (exact)
 
+**Where Nebius Token Factory helped:**
+* It gave us a second, stronger judge without a second GPU. The local RTX 3090 was busy with training, rollouts and Cosmos3-Edge.
+* Nemotron-3.5-Super-VL judged each 20-second rollout video in about 3 s through the standard OpenAI client, with several requests in parallel.
+* That is how we could re-judge hundreds of rollouts per audit: 620 videos for c1, 400 each for s1 and s2, and 2,000 calls across r1's four judge variants.
+* Over 7,000 calls we saw 0 API errors, for an estimated cost of about $5 at list price.
+
 | Component | What | Where it runs | Purpose |
 |---|---|---|---|
 | `nvidia/Cosmos3-Edge` rev `344d602b128d1bbdacb43b08d0a3626f46343e29` (OpenMDW-1.1) | Reasoner tower, bf16, Transformers 5.21 | local RTX 3090 | per-keyframe physical state of the manipulated object |
@@ -177,7 +157,7 @@ Factory (catalog checked 2026-10-29); see
 
 All numbers are measured on this machine; details and CIs in
 [docs/hackathon/07_experiment_results.md](docs/hackathon/07_experiment_results.md).
-Demo video: `media/hackathon/demo.mp4` (2 min 23 s; the dashboard clips are real screen recordings).
+Demo video: `media/hackathon/demo.mp4` (2 min 45 s, English narration and subtitles; the dashboard clips are real screen recordings).
 
 **Pool.** 93 retrained Diffusion Policy checkpoints (Can PH seeds 1 and 2, Square
 PH seed 1), each with 50 training-time simulator rollouts (4,650 rollouts), plus
@@ -224,7 +204,7 @@ separate dev split)
 [docs/hackathon/11_explorations.md](docs/hackathon/11_explorations.md)):
 * adaptive rollout allocation needs about 2–3x fewer rollouts than uniform on this pool (the idea follows
   active policy evaluation such as [AOPS](https://arxiv.org/abs/2106.10251));
-* a time-horizon early abort saves 16–20% of robot time;
+* a time-limit early abort saves 16% of robot time at 2/141 false aborts (20% if privileged simulator state is also used);
 * a local-first cascade (accept local Cosmos failures, ask Nemotron otherwise) uses 16% fewer Nebius calls
   at a small accuracy cost (0.952 vs 0.964; missed successes 3 → 8);
 * camera placement matters, image quality does not;
@@ -246,123 +226,24 @@ separate dev split)
 
 ![E4b](media/hackathon/cosmos_fd_axis_sweep.png)
 
-**r1 — can a judge tell when a replan helps? (exploratory, pre-registered).**
+### Judge-reliability audits (pre-registered; amendments and deviations disclosed)
 
-*Setup.*
-* 300 replanning boundaries: the one with the largest disagreement in each eval
-  episode, plus 100 low-disagreement controls.
-* At each boundary we restore the exact simulator state.
-* Two branches:
-  * the new plan's 7 steps;
-  * the old plan's unexecuted 7 steps.
-* Each branch is continued 4 times with the same checkpoint and shared random numbers.
-* Benefit = success rate of the new branch − success rate of the old branch.
-* Protocol, amendments and disclosed deviations:
-  [r1 protocol](docs/hackathon/explore/r1_counterfactual_replan_protocol.md).
-
-*Results.*
-* **The pre-registered primary is negative.**
-  * The Nemotron perception rule does not beat PLV's own disagreement score d (AUROC 0.40
-    vs 0.79, difference −0.39 [−0.47, −0.30]).
-  * The 0.40 comes from intended releases after success. On the 223 boundaries whose
-    outcome was not already decided, it is 0.49, i.e. chance.
-  * Nemotron's event question (0.49) and the Cosmos rule (0.54) are at chance too.
-  * Asked to choose between the two drawn paths, Nemotron abstained on 29 of 52 events
-    that mattered. When it did choose, it was right 61% of the time; always taking the
-    new plan was right 70% of the time on those events.
-* **d does not localize the replan that matters.**
-  * In the same episodes, a low-d control boundary changed the outcome as often as the
-    max-d boundary (19 vs 18 of 100).
-  * d mostly flags fragile episodes: it predicts the recorded episode's failure at
-    AUROC 0.87.
-* **With 4 continuations per branch, good and bad replans are indistinguishable from
-  rollout noise for any method** (permutation test P = 0.26).
-* **One robust effect.** When all 8 continuations succeed, the new plan gets there
-  sooner in 80 vs 51 events (p = 0.014, about 3.5 steps).
-
-**c1 — do judges miss more failures of stronger checkpoints? (exploratory, pre-registered).**
-
-*Setup.* 620 new Can rollouts from 31 checkpoints in three quality strata.
-
-*Results.*
-* **The pre-registered primary is positive, but fragile.**
-  * Nemotron accepted 6/25, 14/27 and 13/22 failures as successes, from the weakest to the
-    strongest stratum.
-  * AUROC of checkpoint quality is 0.67 [0.56, 0.75] with checkpoint clusters. Cosmos:
-    8/25, 14/27, 19/22.
-  * With seed clusters the CI includes 0.5, because two initial states supply 23 of the
-    33 false successes.
-* **Cause: the failure mix shifts. Failures do not get harder to see.**
-  * The judges rejected every no-grasp failure (21/21). Those failures vanish as quality
-    rises (15, 6, 0).
-  * Failures that end at the goal bin are accepted at every quality level.
-  * All 33 Nemotron false successes ended at the goal bin; 32 were in the wrong
-    compartment.
-* **Telling Nemotron the compartment did not help.** It still accepted 24 of 33 such
-  cans. Only 2 of its rejections cited the compartment, although the difference is
-  visible in its 320 px input.
-* **Precision of judged successes rises with quality** (0.85 → 0.90 → 0.97).
-* **Rule we take from it:** judged success overstates true success by about the rate of
-  near-goal failures. Before trusting a gap between strong checkpoints, audit a sample of
-  accepted episodes.
-* Protocol, amendment and deviations:
-  [c1 protocol](docs/hackathon/explore/c1_coverage_shift_protocol.md).
-
-**s1 — can judged successes improve a plateaued policy? (exploratory, pre-registered).**
-
-*Setup.* A Can policy trained on 20% of the demos (success 0.885) was fine-tuned on its
-own 200 rollouts. The rollouts were selected by Nemotron, by simulator labels, or not
-filtered at all.
-
-*Results.*
-* **No gain:** all arms scored 0.875–0.89 on 200 paired seeds.
-  * Nemotron vs continuing on the original demos: −0.5 points [−4.0, +3.0].
-  * Simulator labels: +1.0 [−2.5, +4.5].
-* **No bug found.** Four verifiers checked the pipeline. The fine-tune changed behaviour
-  (weights moved 5–9%, and failure types shifted), but not success.
-* **It cannot rank label sources.** Even unfiltered data, with 32% failure frames, did not
-  hurt.
-
-**s2 — the same question, redesigned (exploratory, pre-registered).**
-
-*Setup.*
-* Base: an earlier checkpoint of the same run (success 0.656).
-* Positive control: 36 extra human demos.
-* Fine-tune with an annealed learning rate. 500 paired eval seeds.
-
-*Results.*
-
-| arm | success | vs continue [95% CI] |
+| study | question | result |
 |---|---|---|
-| continue on the 36 demos | 0.856 | — |
-| + 36 human demos (positive control) | **0.938** | +8.2 points [+5.2, +11.4] |
-| + own successes, simulator labels | 0.824 | −3.2 [−7.0, +0.6] |
-| + own episodes Nemotron calls successes | **0.752** | **−10.4 [−14.8, −6.0]** |
+| [r1](docs/hackathon/explore/r1_counterfactual_replan_protocol.md) | From the exact simulator state, does executing the new plan instead of the old plan's tail help, and can a judge tell? | Primary **negative**. Judges at chance (about 0.49 on undecided boundaries). PLV disagreement flags fragile episodes, not the replan that mattered: low-disagreement controls changed the outcome as often (19 vs 18 of 100). One robust effect: the new plan reaches success sooner (80 vs 51, p = 0.014). |
+| [c1](docs/hackathon/explore/c1_coverage_shift_protocol.md) | Do judges miss more failures of stronger checkpoints? | Positive under the pre-registered rule, but fragile: false successes rose 6/25, 14/27, 13/22; the seed-cluster CI includes 0.5. Mechanism: no-grasp failures (always caught) vanish with quality, while failures ending at the goal bin are accepted (32/33 in the wrong compartment). |
+| [s1](docs/hackathon/explore/s1_self_improve_protocol.md) | Can judged self-successes lift a plateaued policy (0.885)? | **Null** for every data source, including simulator labels. No bug found. |
+| [s2](docs/hackathon/explore/s2_self_improve_protocol.md) | Same question, redesigned: weaker base, human-demo positive control, 500 paired seeds | Human demos **+8.2** [+5.2, +11.4]. Own successes with simulator labels −3.2 [−7.0, +0.6]. Nemotron-filtered **−10.4** [−14.8, −6.0]: Nemotron accepted 58/149 failures, 44 of them in the wrong compartment. Caveats: one run per arm, dilution of the original demos, clip length follows the simulator's success signal. |
 
-* **The recipe can raise success, but the policy's own successes did not.** Human demos
-  did. With simulator labels the comparison stays inconclusive.
-* **Nemotron-filtered self-training was clearly worse.**
-  * Nemotron accepted 58 of 149 failures. 44 of those had the can in the wrong
-    compartment, the c1 blind spot. Kept whole, they were 40% of the self frames.
-  * Post hoc: the Nemotron arm ends 7.2 points below the simulator-labelled arm
-    [−11.2, −3.2]. Its extra eval failures are mostly cans in the wrong place in the goal
-    bin (46 vs 19).
-  * The protocol made this comparison interpretable only if simulator-labelled
-    self-training beat continue, which it did not.
-* **Caveats.**
-  * One training run per arm.
-  * A fixed step budget dilutes the original demos (10% of samples in the oracle arm).
-  * Judge clip length follows the simulator's success signal.
-* Protocol and results: [s2 protocol](docs/hackathon/explore/s2_self_improve_protocol.md).
-* Protocol and results: [s1 protocol](docs/hackathon/explore/s1_self_improve_protocol.md).
+Details are in [07 §C4–C5](docs/hackathon/07_experiment_results.md) and the protocols. ![s2](submission/figures/self_training_s2.png)
 
-| Figure | |
-|---|---|
-| ![B](media/hackathon/checkpoint_comparison.png) | B — cheap metrics vs measured success per run |
-| ![C](media/hackathon/robot_execution.png) | C — real rollouts with synchronized state |
-| ![D](media/hackathon/cosmos_example.png) | D — actual Cosmos / Nemotron inputs and outputs |
-| ![E](media/hackathon/cost_latency.png) | E — measured cost and latency |
+## Scientific limitations
 
+* **Scope.** Simulation only: robomimic Can and Square, three short training runs, one main camera. The 1,365-checkpoint PLV paper study was not re-run.
+* **Zero-shot judges.** We tested one simulator and one robot. Accuracy figures are for this evaluation set, not real-world generalization.
+* **Exploratory efficiency results.** These are post-hoc analyses of logged rollouts and were not pre-registered.
+* **Pre-registered audits.** Each has disclosed amendments and deviations, including an interim look in r1. s2 trains one run per arm.
+* **Cost.** The figure is an estimate from logged tokens at list price, not billing.
 
 ## Install
 
@@ -425,10 +306,15 @@ call.
 source scripts/hackathon/envb.sh && streamlit run dashboard/app.py
 ```
 
-Tabs: **Recommendation** (evaluate-next answer), **Checkpoint & cheap metrics**
-(re-run the original metric script live), **Rollouts & Cosmos** (watch real
-rollouts, record a new one, run Cosmos3-Edge, ask Nemotron on Nebius),
-**Compare**, **Cost & latency**.
+The six tabs:
+1. **Recommend**: the evaluate-next answer, the free latest-epoch baseline, measured regret and the judge-trust warning.
+2. **Cheap screening**: re-runs the original metric script live.
+3. **Rollouts & Cosmos**: real rollout videos, recording a new rollout, Cosmos3-Edge live, Nemotron on Nebius live.
+4. **Results**: Experiments 1–3.
+5. **Explorations**: the judge-reliability audits and every exploratory study.
+6. **Cost & provenance**: every logged Nebius call.
+
+Live buttons need the checkpoint pool, the local Cosmos weights or a Nebius key. Without them the app shows the recorded outputs and labels them as recorded.
 
 ## Reproduce the experiments
 
@@ -474,9 +360,10 @@ configs/hackathon/     dataset manifest, environment locks
 * Code in this repository: MIT (see `LICENSE`; upstream Diffusion Policy
   © 2023 Columbia AI and Robotics Lab). The hackathon additions are released
   under the same MIT terms.
-* Third-party components keep their own licenses: robomimic / robosuite (MIT),
-  MuJoCo (Apache-2.0), Diffusion Policy (MIT), datasets from robomimic (not
-  redistributed here).
+* Bundled third-party code keeps its own licenses and notices (Apache-2.0, MIT,
+  BSD-3-Clause), listed in [`NOTICE`](NOTICE). Dependencies (robomimic, robosuite,
+  MuJoCo) are installed by pip under their own licenses, and the robomimic datasets
+  are downloaded rather than redistributed.
 * Model weights are not redistributed. `nvidia/Cosmos3-Edge` and
   `nvidia/Nemotron-3.5-Super-VL` are used under OpenMDW-1.1 as published by NVIDIA.
 * Research: Hyun Joon Cho and Taehwan Yun, Sungkyunkwan University. Please cite

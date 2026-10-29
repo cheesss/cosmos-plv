@@ -39,16 +39,16 @@ class TrainDiffusionUnetHybridWorkspace(BaseWorkspace):
 
         # set seed
         seed = cfg.training.seed
-        # torch, numpy, random의 seed 고정 -> 같은 sequence의 난수 생성, 디버깅이 용이함
+        # fix the torch, numpy and random seeds -> the same random number sequence is generated, which makes debugging easier
         torch.manual_seed(seed)
         np.random.seed(seed)
         random.seed(seed)
 
-        # policy model 인스턴스 생성
+        # create the policy model instance
         # configure model
-        self.model: DiffusionUnetHybridImagePolicy = hydra.utils.instantiate(cfg.policy)   # cfg의 policy: 아래 긁어옴
+        self.model: DiffusionUnetHybridImagePolicy = hydra.utils.instantiate(cfg.policy)   # takes everything under policy: in cfg
 
-        # use_ema가 True이면 원본 모델 self.model을 copy함; ema는 최근 data에 지수적으로 큰 가중치로 평균을 매김, 추가적인 도구
+        # if use_ema is True, copy the original model self.model; EMA averages with exponentially larger weights on recent data, an extra tool
         self.ema_model: DiffusionUnetHybridImagePolicy = None
         if cfg.training.use_ema:
             self.ema_model = copy.deepcopy(self.model)
@@ -71,19 +71,19 @@ class TrainDiffusionUnetHybridWorkspace(BaseWorkspace):
                 print(f"Resuming from checkpoint {lastest_ckpt_path}")
                 self.load_checkpoint(path=lastest_ckpt_path)
 
-        # 데이터셋 다루는 부분 : pusht_image_dataset.py 보면됨
+        # dataset handling: see pusht_image_dataset.py
         # configure dataset 
-        dataset: BaseImageDataset   # BaseImageDataset을 상속한 Class의 인스턴스
-        dataset = hydra.utils.instantiate(cfg.task.dataset)   # config에서 task: dataset : 아래의 _targe_ Class가 호출되고 그 아래 파라미터들이 같이 들어감
+        dataset: BaseImageDataset   # an instance of a class that inherits from BaseImageDataset
+        dataset = hydra.utils.instantiate(cfg.task.dataset)   # the _targe_ class under task: dataset: in the config is called, with the parameters below it passed in
         assert isinstance(dataset, BaseImageDataset)
-        # training용 data를 loㅈad하는 인스턴스; torch.utils.data 찾아보기
-        train_dataloader = DataLoader(dataset, **cfg.dataloader)   # config에서 dataloader: 아래 변수들 가져옴
-        # data 정규화
+        # instance that loads the training data; see torch.utils.data
+        train_dataloader = DataLoader(dataset, **cfg.dataloader)   # takes the variables under dataloader: in the config
+        # data normalization
         normalizer = dataset.get_normalizer()
 
         # configure validation dataset
         val_dataset = dataset.get_validation_dataset()
-        # validation용 data를 load하는 인스턴스
+        # instance that loads the validation data
         val_dataloader = DataLoader(val_dataset, **cfg.val_dataloader)
 
         self.model.set_normalizer(normalizer)
@@ -180,7 +180,7 @@ class TrainDiffusionUnetHybridWorkspace(BaseWorkspace):
                             self.optimizer.zero_grad()
                             lr_scheduler.step()
                         
-                        # update ema; self.model의 가중치를 지수 이동 평균으로 update
+                        # update ema; update the weights of self.model as an exponential moving average
                         if cfg.training.use_ema:
                             ema.step(self.model)
 

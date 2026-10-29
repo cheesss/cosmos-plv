@@ -36,7 +36,7 @@ class PoseTrajectoryInterpolator:   # poses = [ [x,y,z,rx,ry,rz] ]
             self.single_step = False
             assert np.all(times[1:] >= times[:-1])
 
-            # 수정됨
+            # modified
             pos = poses[:,:3]
             # rot = st.Rotation.from_rotvec(poses[:,3:])
             rot = st.Rotation.from_rotvec(poses[:,3:6])
@@ -45,7 +45,7 @@ class PoseTrajectoryInterpolator:   # poses = [ [x,y,z,rx,ry,rz] ]
             self.pos_interp = si.interp1d(times, pos, 
                 axis=0, assume_sorted=True)
             self.rot_interp = st.Slerp(times, rot)
-            # 추가됨
+            # added
             self.gripper_interp = si.interp1d(times, gripper,
                 axis=0, assume_sorted=True)
 
@@ -61,7 +61,7 @@ class PoseTrajectoryInterpolator:   # poses = [ [x,y,z,rx,ry,rz] ]
         if self.single_step:
             return self._poses
         else:
-            # 수정됨
+            # modified
             n = len(self.times)
             poses = np.zeros((n, 7))
             poses[:,:3] = self.pos_interp.y   # pos
@@ -70,7 +70,7 @@ class PoseTrajectoryInterpolator:   # poses = [ [x,y,z,rx,ry,rz] ]
             poses[:,6] = self.gripper_interp.y   # gripper
             return poses
 
-    def trim(self,   # start_t에서 end_t까지의 구간을 잘라냄
+    def trim(self,   # cut out the segment from start_t to end_t
             start_t: float, end_t: float
             ) -> "PoseTrajectoryInterpolator":
         assert start_t <= end_t
@@ -84,7 +84,7 @@ class PoseTrajectoryInterpolator:   # poses = [ [x,y,z,rx,ry,rz] ]
         all_poses = self(all_times)
         return PoseTrajectoryInterpolator(times=all_times, poses=all_poses)
     
-    def drive_to_waypoint(self,   # 안씀
+    def drive_to_waypoint(self,   # unused
             pose, time, curr_time,
             max_pos_speed=np.inf, 
             max_rot_speed=np.inf

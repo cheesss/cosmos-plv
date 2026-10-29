@@ -9,12 +9,12 @@ Results are grouped by kind and the groups are not mixed:
 * (D) exploratory post-hoc studies, summarised in `11_explorations.md`;
 * (E) failed or blocked items.
 
-Every number below is read from a file in `results/hackathon/`.
+Numbers are read from files in `results/hackathon/`. Exceptions: §A quotes the paper (`main.tex`), and a few dev-pilot counts quoted from `data/outputs/` are marked as such. The machine-readable ledger is `submission/claim_ledger.csv`.
 
 ## A. Historical (paper, frozen 2026-08-25; not reproduced here)
 
-These come from the primary Diffusion Policy cohort of the paper's 1,365-checkpoint
-study (45 runs, 50 rollouts per checkpoint):
+These come from the paper's 1,365-checkpoint study (45 runs in all, 50 rollouts per
+checkpoint); its primary Diffusion Policy cohort is 24 runs:
 * PLV-1 smoothness: Spearman 0.556, Regret@30 0.006.
 * Action L1: Spearman 0.462, Regret@30 0.017.
 * Pooled open-loop smoothness: Regret@30 0.019.
@@ -81,14 +81,14 @@ What does not:
   * Accuracy on failed episodes is 0.31 for Nemotron, 0.36 with length-neutral
     clips, and 0.21 for the Cosmos 8-keyframe track.
   * All of these are below a constant "no_grasp" guess.
-  * Nemotron calls most missed grasps and drops "not_placed".
+  * Nemotron often calls missed grasps and drops "not_placed": 18 of 38 missed grasps (20 are correctly no_grasp) and 15 of 28 drops.
 * **Error analysis** (`experiment2_error_analysis.json`):
   * Cans dropped into the right bin's **wrong compartment** were called successes
     by both judges.
   * Square clips that end 0.8 s after success sometimes show a nut still sliding.
 * **Clip length:** successful clips stop early, so clip length alone separates the
   outcomes. Re-running Nemotron with every clip padded to the same length changed
-  4 of 250 judgements (first 250 episodes), so it does not rely on this cue.
+  5 of 330 judgements. Accuracy is similar (0.961 vs 0.964), but more failures are called success (12 vs 9 of 67; balanced accuracy 0.909 vs 0.927), so the length cue helps a little.
 * **Dev → eval:** both judges scored higher on eval than on dev (dev: local 0.806,
   Nemotron 0.861). Eval has more successes.
 
@@ -155,9 +155,9 @@ explanations, and reproduction.
 
 | stage | what | result |
 |---|---|---|
-| S0 positive control | model-card UMI example | reproduces the card's output (30.8 dB vs 26–27 dB between seeds); an action change moves pixels 12.6–16.7 vs 5.9 for a seed change (one scene) |
+| S0 positive control | model-card UMI example | reproduces the card's output (30.8 dB vs 26.2 dB for one pair of seeds); an action change moves pixels 12.6–16.7 vs 5.9 for a seed change (one scene) |
 | S1 axis sweep | ±x/y/z commands on 4 robomimic frames | each axis gives a sign-dependent gripper motion of 14–16 px in a consistent image direction (mean cos 0.87–0.94 over 12 probes, 3 trackers; next-best proper rotation 0.43–0.53). A reflection ties, so the 3-D frame is not identified. Unnormalised DROID encoding ≈ 0 px; untrained slots ≈ 2 px |
-| S3 recorded rollouts | actions from 22 recorded policy-rollout clips (11 episodes × starts 16/48; 5 initial-state families) | pre-registered test passes: on 15 moving clips, the drift-cancelled motion (main − time-reversed) points along the true gripper motion, cos 0.78 / 0.79 / 0.85, against 0.10–0.19 for mismatched clips |
+| S3 recorded rollouts | actions from 22 recorded policy-rollout clips (11 episodes × starts 16/48; 5 initial-state families) | pre-registered test passes: on 15 moving clips, the drift-cancelled motion (main − time-reversed) points along the true gripper motion, cos 0.78 / 0.79 / 0.85 |
 
 What weakens S3:
 * **Family-level evidence is limited.** The mean of the 5 family means is 0.67–0.84,
@@ -299,8 +299,8 @@ EGL artefact. Nemotron called all 16 failures, so its sensitivity on valid video
 ## D. Exploratory follow-ups (post-hoc; all but the deterministic cascade x0 adversarially verified)
 
 Summary in `11_explorations.md`:
-* **Adaptive allocation:** cuts rollouts about 2–3x versus uniform allocation.
-* **Early abort:** cuts robot time by 16–20%.
+* **Adaptive allocation:** cuts rollouts about 2–3x versus uniform allocation (post-hoc simulation on a 56-checkpoint snapshot of logged rollouts with simulator labels; median ratio 3, 10–90% range 2–4).
+* **Early abort:** cuts robot time by 16% with a time limit alone, 20% with privileged simulator state (leave-one-checkpoint-out, 2/141 false aborts).
 * **Local-first cascade:** 16% fewer Nebius calls (84% of calls) at accuracy 0.952 [0.923, 0.970]
   vs 0.964 for Nemotron alone; false negatives rise from 3 to 8 (`explore/x0_cascade.json`, n=330).
 * **Camera choice:** matters more than image quality.

@@ -1,150 +1,150 @@
-# z1_tier_triage 검증 (적대적 검증, EXPLORATORY / 사후 분석)
+# z1_tier_triage verification (adversarial verification, EXPLORATORY / post-hoc)
 
-> **판정: partially_confirmed.** 숫자는 재현된다. 다만 headline의 표현 몇 개가 숫자보다 강하고, 일부 수치는 MC 잡음이나 tie-break 때문에 생긴 값이다.
-> CPU만 썼고 Nebius나 GPU 호출은 없다. 기존 파일은 고치지 않았다.
-> - 스크립트: `scripts/hackathon/explore/z1_tier_triage_verify.py`, `z1_tier_triage_verify_frontier.py`
-> - 결과: `results/hackathon/explore/z1_tier_triage_verification.json`, `z1_tier_triage_verification_frontier.json`
-> - 재실행 산출물: `data/outputs/hackathon_explore/z1_tier_triage_verification/`
+> **Verdict: partially_confirmed.** The numbers reproduce. However, some of the headline wording is stronger than the numbers, and some figures are artifacts of MC noise or tie-breaking.
+> CPU only; no Nebius or GPU calls. No existing files were modified.
+> - Scripts: `scripts/hackathon/explore/z1_tier_triage_verify.py`, `z1_tier_triage_verify_frontier.py`
+> - Results: `results/hackathon/explore/z1_tier_triage_verification.json`, `z1_tier_triage_verification_frontier.json`
+> - Rerun outputs: `data/outputs/hackathon_explore/z1_tier_triage_verification/`
 
-## 0. 사용자 질문: Nemotron·Cosmos 출력이 저장되어 있나
+## 0. User question: are the Nemotron and Cosmos outputs saved?
 
-**저장되어 있다. 직접 확인했다.** 원본은 `data/outputs/hackathon_cosmos/`에 있고, 같은 파일의 사본이 `results/hackathon/raw_model_outputs/`에 있다. 사본 7개는 원본과 바이트 단위로 같다(`cmp`). 각 파일 설명은 `results/hackathon/raw_model_outputs/README.md`에 있다.
+**Yes. I checked directly.** The originals are in `data/outputs/hackathon_cosmos/`, and copies of the same files are in `results/hackathon/raw_model_outputs/`. The 7 copies are byte-identical to the originals (`cmp`). Each file is described in `results/hackathon/raw_model_outputs/README.md`.
 
-| 파일 | judge | 행 수 | 비고 |
+| File | judge | Rows | Notes |
 |---|---|---|---|
-| `eval_nebius_v2.jsonl` | Nemotron-3.5-Super-VL (Nebius), 영상 전체 | 330 (33 ckpt × 10) | raw_text 330/330, request_id 330/330 |
-| `eval_nebius_v2_pad201.jsonl` | 위와 같음, 길이를 맞춘 clip | 330 | raw_text 330/330, request_id 330/330 |
-| `eval_local_v6.jsonl` | Cosmos3-Edge (로컬), 마지막 frame | 330 | raw_text 330/330. 로컬 실행이라 request_id는 없다 |
-| `eval_local_v7.jsonl` | Cosmos3-Edge, keyframe 8개 | 330 | frame별 `track.frames[*].raw_text` |
-| `dev_prompt_selection.jsonl` | dev에서 시도한 모든 prompt 변형 | 228 | dev 36 episode |
+| `eval_nebius_v2.jsonl` | Nemotron-3.5-Super-VL (Nebius), full video | 330 (33 ckpt × 10) | raw_text 330/330, request_id 330/330 |
+| `eval_nebius_v2_pad201.jsonl` | Same as above, length-matched clip | 330 | raw_text 330/330, request_id 330/330 |
+| `eval_local_v6.jsonl` | Cosmos3-Edge (local), last frame | 330 | raw_text 330/330. Local run, so no request_id |
+| `eval_local_v7.jsonl` | Cosmos3-Edge, 8 keyframes | 330 | per-frame `track.frames[*].raw_text` |
+| `dev_prompt_selection.jsonl` | Every prompt variant tried on dev | 228 | dev 36 episodes |
 | `dev_nebius_v2_pad201.jsonl` | Nemotron pad201, dev | 36 | |
-| `dev_infra_failures.jsonl` | CUDA OOM으로 잃은 행 | 23 | 모델 출력이 아니다 |
-| `results/hackathon/nebius_calls.jsonl` | Nebius 호출 로그 | 772 | |
-| `results/hackathon/explore/nebius_calls_explore.jsonl` | 탐색 단계 Nebius 호출 로그 | 2380 | |
+| `dev_infra_failures.jsonl` | Rows lost to CUDA OOM | 23 | Not model outputs |
+| `results/hackathon/nebius_calls.jsonl` | Nebius call log | 772 | |
+| `results/hackathon/explore/nebius_calls_explore.jsonl` | Nebius call log from the exploration phase | 2380 | |
 
-- 각 행에는 `raw_text`, 파싱된 `cosmos_*` 필드, `truth_*` 라벨, latency와 token 수, model id가 있다.
-- z1이 언급하지 않은 파일도 있다. `data/outputs/hackathon_cosmos/*.orig.jsonl`은 settled-height로 다시 라벨링하기 전의 원본이다(eval v6/v2/v7은 150–152행).
-- 영상은 git-ignore된 `data/outputs/` 아래에 있다.
+- Each row has `raw_text`, the parsed `cosmos_*` fields, the `truth_*` labels, latency and token counts, and the model id.
+- There are also files z1 does not mention. `data/outputs/hackathon_cosmos/*.orig.jsonl` are the originals from before relabeling with the settled height (eval v6/v2/v7 have 150–152 rows).
+- The videos are under the git-ignored `data/outputs/`.
 
-## 1. 재현
+## 1. Reproduction
 
-- `z1_tier_triage.py --reps 250 --orders 8`을 다시 돌렸다. 결과는 기존 `z1_tier_triage.json`과 수치 차이가 0개다. 102초 걸렸고 exit 0이다.
-- iid 민감도 실행(`--reps 100 --world-judge iid`)도 기존 `z1_tier_triage_iidworld.json`과 차이가 0개다.
-- MC 없이 직접 계산한 값으로 독립 검산했다. World B는 binomial 합으로, World A는 hypergeometric으로 계산했고, sequential 규칙은 (K, k) 위 dynamic programming으로 계산했다.
+- Reran `z1_tier_triage.py --reps 250 --orders 8`. The result has 0 numeric differences from the existing `z1_tier_triage.json`. It took 102 s and exited 0.
+- The iid sensitivity run (`--reps 100 --world-judge iid`) also has 0 differences from the existing `z1_tier_triage_iidworld.json`.
+- Independently cross-checked against values computed directly, without MC. World B was computed as binomial sums and World A with the hypergeometric distribution; the sequential rule was computed by dynamic programming over (K, k).
 
-| 항목 | z1 (MC) | 검증 (정확 계산) |
+| Item | z1 (MC) | Verification (exact) |
 |---|---|---|
 | B perfect plug-in, K=10 / 25 / 50 | 0.814 / 0.876 / 0.925 | 0.813 / 0.876 / 0.925 |
 | A perfect plug-in, K=10 / 25 | 0.758 / 0.840 | 0.757 / 0.840 |
 | B sequential, flat prior, P≥0.9 | 0.916 @ 25.1 | 0.9155 @ 25.07 |
-| 같은 규칙, tier별 평균 rollout (BAD / OK / GOOD) | 8.9 / 25.1 / 28.8 | 9.0 / 25.1 / 28.8 |
+| Same rule, mean rollouts per tier (BAD / OK / GOOD) | 8.9 / 25.1 / 28.8 | 9.0 / 25.1 / 28.8 |
 | B Nemotron, qmarg-flat sequential | 0.873 @ 35.0 | 0.876 @ 34.9 |
 | B Cosmos, qmarg-flat sequential | 0.881 @ 42.9 | 0.883 @ 42.9 |
 | A sequential, flat prior | 0.836 @ 19.0 | 0.836 @ 19.0 |
-| 0.80–0.95 구간의 checkpoint 비율 | 39% | 36/93 = 38.7% |
+| Share of checkpoints in the 0.80–0.95 band | 39% | 36/93 = 38.7% |
 
-이 수치들 자체는 맞다. 문제는 아래와 같이 해석하고 표현한 방식에 있다.
+These numbers are themselves correct. The problem lies in how they were interpreted and worded, as set out below.
 
-## 2. 주장별 판정
+## 2. Verdict per claim
 
-| # | z1 주장 | 판정 | 근거 |
+| # | z1 claim | Verdict | Evidence |
 |---|---|---|---|
-| 1 | perfect detector는 고정 K로 약 30–36개가 필요하다(bootstrap median 30 [18, >50], 96% 도달) | **부분 확인, 하한은 과소** | 정확 곡선은 K=36에서 처음 0.9를 넘는다(0.901). 그러나 K=41–42에서 0.9 아래로 다시 내려가고, **K≥43부터 계속 0.9 이상**이다. K=30은 0.899다. 잡음 없는 ckpt bootstrap의 median은 **35 [25, 50]**이고, 100% replicate가 50 안에 도달한다. z1의 "30 [18, >50]"은 replicate마다 들어간 MC 잡음(order 8개) 때문에 '처음 넘는 K'가 앞당겨진 값이다. World A의 "14% replicate 도달"도 정확 계산으로는 0.9%다 |
-| 2 | Nemotron은 K=50에서도 0.878이고 50 안에 90%에 도달하지 못한다 | **judge 모형에 의존한다(경계선)** | 파라미터 draw 1500개 평균은 0.882, median 0.888, 5–95%는 [0.82, 0.92]다. draw의 35%는 K=50에서 0.9 이상이다. 다른 judge fit에서는 이렇다. point fit 0.897. can run 하나를 뺀 fit 0.908(K=48에서 도달) 또는 0.895. FPR 공변량을 50-ep 성공률로 바꾼 fit 0.907(K=40에서 도달). iid world 0.915(K=37에서 처음 넘지만 41–44에서 다시 아래). 정리하면 'K=50에서 0.88–0.91, 90%는 경계선'이다 |
-| 3 | Cosmos는 K≤50에서 90%에 도달하지 못한다 | **확인** | 모든 변형에서 미달이다. point fit 0.823, run 제외 fit 0.837/0.844, 공변량 p50 fit 0.850, iid world 0.880. 파라미터 draw 중 0.9 이상은 4.5%뿐이다 |
-| 4 | 비용이 큰 이유는 judge가 아니라 경계 근처 checkpoint 39%다 | **과장** | perfect와 Nemotron에는 맞다. Cosmos는 judge 자체가 크다. K=50에서 perfect 0.925, Cosmos 0.806이고, truth OK가 GOOD으로 판정되는 비율이 0.21 대 0.46이다 |
-| 5 | 경계에서 먼 74개만 보면 perfect 약 14, Nemotron 약 18이면 된다 | **수치는 확인, 실무 진술로는 부적절** | A perfect의 point 최소 K는 14다. 그러나 층화를 50-ep **결과**로 정의했고, 이 50 episode에 truth와 K rollout이 모두 들어 있다. 층화 폭에 따라 값이 크게 바뀐다. 제외 구간을 [0.48,0.52]∪[0.88,0.92]로 좁히면(82개) 20, [0.4,0.6]∪[0.8,1.0)로 넓히면(28개) 6이다. 결과를 모르는 상태에서는 어떤 checkpoint가 이 층에 드는지 알 수 없으므로 예산 규칙으로 쓸 수 없다 |
-| 6 | sequential은 같은 예산의 고정 K보다 약 4pt 높다 | **World B에서만 확인** | B에서 K=25 plug-in과 짝지어 비교하면 **+3.9pt [2.9, 4.9]**다. **World A에서는 +0.6pt [−0.7, +1.9]로 이득이 없다.** B에서는 rollout이 결정 모형과 같은 Bernoulli(p)로 생성되므로 sequential에 유리하다 |
-| 7 | epoch/PLV prior는 sequential 평균 rollout을 5–6% 줄인다 | **수치는 맞지만 비교 기준이 약한 규칙이다** | 아래 3절 참조. prog(tierflat 기반)와 tierflat은 flat-prior frontier보다 B에서 4–6pt 낮다. 같은 예산의 고정 K plug-in보다도 2–3pt 낮은 쪽이다(CI가 0을 살짝 포함). flat 기반에서는 prior가 frontier를 개선하지 않는다 |
-| 8 | prior만으로 K=0에서 0.56(tierflat 0.38), val_loss_logged는 0.43으로 더 나쁘다 | **tie-break 때문에 부풀려졌다** | prog prior는 79/93 ckpt에서 OK와 GOOD의 질량이 정확히 같다(설계상 50/50). argmax는 부동소수점 잡음으로 이 중 약 40%를 GOOD으로 부른다. tierflat은 같은 동점을 모두 OK로 부른다. tie를 일관되게 깨면 prog의 이득은 +18pt가 아니라 +6.5pt(tie→OK)에서 +10.8pt(tie→GOOD)다(50-ep truth 기준). val_loss_logged는 93/93이 동점이고 BAD를 하나도 부르지 않는다 |
-| 9 | quality-dependent FPR 모델이 constant 모델보다 낫다 | **확인(더 강한 검정에서도)** | can run 두 개에서 run 하나를 빼고 fit해도 q 모델이 낫다. log score는 Nemotron −10.2 대 −14.6, Cosmos −11.3 대 −16.9다. MAE는 0.035 대 0.044, 0.039 대 0.055다. square는 run이 하나뿐이라 이 검정을 할 수 없다 |
-| 10 | 실제 VLM의 tier 정확도가 시뮬레이션보다 높은 것은 can GOOD 4개의 '우연한' FP 때문이다 | **수치는 확인, '우연' 해석은 확립되지 않았다** | 아래 4절 참조 |
-| 11 | 혼동은 거의 전부 OK→GOOD이다. GOOD recall은 0.95–0.98이고, Cosmos의 BAD→OK는 0.23이다 | 확인 | 수치가 모두 json과 일치한다. square Cosmos의 FPR은 s=0.3에서 0.33이다 |
-| 12 | kde prior는 해롭다(B K=25에서 0.831, plug-in 0.876) | 확인 | |
-| 13 | constant-FPR 보정은 Cosmos에 해롭다(0.698). marginalised flat 보정은 0.890 | 확인 | |
+| 1 | A perfect detector needs about 30–36 at fixed K (bootstrap median 30 [18, >50], reached in 96%) | **Partially confirmed; the lower end is too low** | The exact curve first exceeds 0.9 at K=36 (0.901). But it falls back below 0.9 at K=41–42, and **stays at or above 0.9 from K≥43 on**. K=30 is 0.899. The median of the noise-free ckpt bootstrap is **35 [25, 50]**, and 100% of replicates reach it within 50. z1's "30 [18, >50]" is a value in which the 'first K that crosses' was pulled earlier by the MC noise (8 orders) included in each replicate. World A's "14% of replicates reach it" is also 0.9% by exact computation |
+| 2 | Nemotron is at 0.878 even at K=50 and does not reach 90% within 50 | **Depends on the judge model (borderline)** | Over 1500 parameter draws the mean is 0.882, the median 0.888 and the 5–95% range [0.82, 0.92]. 35% of draws are at or above 0.9 at K=50. Under other judge fits: point fit 0.897. Fit leaving out one can run 0.908 (reached at K=48) or 0.895. Fit with the FPR covariate replaced by the 50-ep success rate 0.907 (reached at K=40). iid world 0.915 (first crosses at K=37 but drops below again at 41–44). In short: 'at K=50 it is 0.88–0.91, and 90% is borderline' |
+| 3 | Cosmos does not reach 90% at K≤50 | **Confirmed** | Falls short in every variant. point fit 0.823, run-excluded fit 0.837/0.844, covariate p50 fit 0.850, iid world 0.880. Only 4.5% of parameter draws are at or above 0.9 |
+| 4 | The cost is high because of the 39% of checkpoints near the boundary, not because of the judge | **Overstated** | True for perfect and Nemotron. For Cosmos, the judge itself is a large factor. At K=50 perfect is 0.925 and Cosmos 0.806, and the rate at which truth OK is judged GOOD is 0.21 vs 0.46 |
+| 5 | Looking only at the 74 far from the boundary, perfect needs about 14 and Nemotron about 18 | **Numbers confirmed, inappropriate as a practical statement** | The point minimum K for A perfect is 14. But the stratification is defined by the 50-ep **outcome**, and these 50 episodes contain both the truth and the K rollouts. The value changes a lot with the stratification width. Narrowing the excluded band to [0.48,0.52]∪[0.88,0.92] (82 checkpoints) gives 20; widening it to [0.4,0.6]∪[0.8,1.0) (28 checkpoints) gives 6. Without knowing the outcome you cannot tell which checkpoints fall in this stratum, so it cannot be used as a budget rule |
+| 6 | sequential is about 4pt higher than fixed K at the same budget | **Confirmed only in World B** | In B, the paired comparison with K=25 plug-in gives **+3.9pt [2.9, 4.9]**. **In World A it is +0.6pt [−0.7, +1.9], so there is no gain.** In B the rollouts are generated from the same Bernoulli(p) as the decision model, which favors sequential |
+| 7 | The epoch/PLV prior cuts sequential mean rollouts by 5–6% | **Numbers correct, but the baseline of the comparison is a weak rule** | See section 3 below. prog (on a tierflat base) and tierflat are 4–6pt below the flat-prior frontier in B. They are also on the lower side of fixed-K plug-in at the same budget, by 2–3pt (the CI just includes 0). On a flat base, the prior does not improve the frontier |
+| 8 | The prior alone gives 0.56 at K=0 (tierflat 0.38), and val_loss_logged is worse at 0.43 | **Inflated by tie-breaking** | The prog prior puts exactly equal mass on OK and GOOD for 79/93 ckpt (50/50 by design). argmax calls about 40% of these GOOD because of floating-point noise. tierflat calls all of the same ties OK. With ties broken consistently, prog's gain is not +18pt but +6.5pt (tie→OK) to +10.8pt (tie→GOOD) (against 50-ep truth). val_loss_logged is tied for 93/93 and never calls BAD |
+| 9 | The quality-dependent FPR model beats the constant model | **Confirmed (also under a stronger test)** | Fitting with one of the two can runs left out, the q model is still better. The log score is −10.2 vs −14.6 for Nemotron and −11.3 vs −16.9 for Cosmos. The MAE is 0.035 vs 0.044 and 0.039 vs 0.055. square has only one run, so this test cannot be done there |
+| 10 | Real-VLM tier accuracy is higher than in simulation because of 'chance' FPs on the 4 can GOOD checkpoints | **Numbers confirmed; the 'chance' interpretation is not established** | See section 4 below |
+| 11 | The confusion is almost entirely OK→GOOD. GOOD recall is 0.95–0.98, and Cosmos BAD→OK is 0.23 | Confirmed | All numbers match the json. The square Cosmos FPR is 0.33 at s=0.3 |
+| 12 | The kde prior hurts (0.831 at B K=25, plug-in 0.876) | Confirmed | |
+| 13 | The constant-FPR correction hurts Cosmos (0.698). The marginalised flat correction gives 0.890 | Confirmed | |
 
-## 3. epoch/PLV prior: frontier로 보면 효과가 없다
+## 3. epoch/PLV prior: no effect when viewed as a frontier
 
-z1은 prog_epoch(tierflat 기반)과 tierflat을 비교해서 '5–6% 절감'을 보고했다. 정확 계산으로 짝지어 비교하면 B는 −6.3%(평균 rollout −1.27 [−1.55, −1.02], 정확도 +0.4pt), A는 −5.6%로 수치는 맞다. 하지만 두 규칙 모두 열등하다.
+z1 compared prog_epoch (on a tierflat base) with tierflat and reported a '5–6% saving'. In an exact paired comparison the numbers are right: B is −6.3% (mean rollouts −1.27 [−1.55, −1.02], accuracy +0.4pt) and A is −5.6%. But both rules are inferior.
 
-- **두 규칙은 flat-prior sequential의 frontier보다 낮다.** 같은 평균 rollout에서 B는 −4~−6pt, A는 −3~−4pt다(임계값 0.85–0.975).
-- **두 규칙은 고정 K plug-in보다도 낮은 쪽이다(CI가 0을 살짝 포함).**
-  - prog_epoch sequential은 18.9개 rollout에서 0.845다. 같은 예산(K=19)의 plug-in은 0.867이다. 짝지은 차이는 −2.2pt [−5.1, +0.6]다.
-  - tierflat sequential은 20.1개에서 0.841이다. K=20 plug-in은 0.871이고, 차이는 −3.0pt [−6.3, +0.1]다.
-  - z1 md 표의 "같은 평균 예산의 고정 K plug-in" 열(0.82)은 이름이 잘못 붙었다. 코드(`fixed_K_acc_at_same_mean_budget`)는 plug-in이 아니라 **같은 Bayes 규칙의 고정 K 곡선**을 보간한다.
-- **flat 기반에 P(BAD)만 붙이면(검증자 변형) 같은 frontier 위를 움직일 뿐이다.**
-  - B에서 평균 rollout은 −18%(25.1→20.4)이지만 정확도는 −1.7pt [−2.7, −0.8]다. A도 −17%, −1.7pt다.
-  - flat frontier와 비교한 이득은 임계값 0.85–0.975 전 구간에서 +0.7pt 이하다. 즉 임계값을 낮추는 것과 같은 효과이고, prior가 frontier를 개선하지 않는다.
-  - val_loss_logged로 같은 prior를 만들어도 −13%, −1.1pt로 거의 같다. 정보는 '학습 초반이면 BAD'라는 epoch 진행 정보뿐이다.
-- **예외로 아주 작은 예산(약 8 rollout)에서는 이득이 있다.** prog(tierflat)는 A에서 flat-seq보다 약 +5pt, B에서 약 +3pt 높다. B에서는 같은 예산의 고정 K plug-in(K=9에서 약 0.80)을 넘지 못한다.
+- **Both rules lie below the frontier of flat-prior sequential.** At the same mean rollouts, B is −4 to −6pt and A is −3 to −4pt (thresholds 0.85–0.975).
+- **Both rules are also on the lower side of fixed-K plug-in (the CI just includes 0).**
+  - prog_epoch sequential gives 0.845 at 18.9 rollouts. plug-in at the same budget (K=19) gives 0.867. The paired difference is −2.2pt [−5.1, +0.6].
+  - tierflat sequential gives 0.841 at 20.1. K=20 plug-in gives 0.871, and the difference is −3.0pt [−6.3, +0.1].
+  - The "fixed-K plug-in at the same mean budget" column (0.82) in the z1 md table is mislabeled. The code (`fixed_K_acc_at_same_mean_budget`) interpolates **the fixed-K curve of the same Bayes rule**, not plug-in.
+- **Adding only P(BAD) to a flat base (verifier variant) just moves along the same frontier.**
+  - In B, mean rollouts are −18% (25.1→20.4) but accuracy is −1.7pt [−2.7, −0.8]. A is also −17% and −1.7pt.
+  - The gain over the flat frontier is at most +0.7pt across the whole threshold range 0.85–0.975. That is, it has the same effect as lowering the threshold, and the prior does not improve the frontier.
+  - Building the same prior from val_loss_logged gives almost the same, −13% and −1.1pt. The only information is epoch progress: 'BAD if early in training'.
+- **The exception is a gain at very small budgets (about 8 rollouts).** prog (tierflat) is about +5pt above flat-seq in A and about +3pt in B. In B it does not beat fixed-K plug-in at the same budget (about 0.80 at K=9).
 
-**결론.** "PLV/epoch prior가 sequential 예산을 5–6% 줄인다"는 실무 진술로 쓰면 안 된다. 정확한 진술은 이렇다. *K≥10 예산에서 epoch/PLV prior는 정확도와 rollout의 frontier를 개선하지 않는다. PLV 지표는 epoch과 구분되지 않는다(prog_epoch과 prog_replan_overlap_h16의 결과가 소수점 넷째 자리까지 같다).* 이 결론은 z1과 y1의 "PLV는 epoch 이상의 정보가 없다"를 오히려 더 강하게 지지한다.
+**Conclusion.** "The PLV/epoch prior cuts the sequential budget by 5–6%" must not be used as a practical statement. The accurate statement is this: *at budgets of K≥10, the epoch/PLV prior does not improve the accuracy-vs-rollout frontier. The PLV metric is indistinguishable from epoch (prog_epoch and prog_replan_overlap_h16 give results that agree to the fourth decimal place).* If anything, this conclusion supports z1's and y1's "PLV carries no information beyond epoch" even more strongly.
 
-## 4. World R: near-plateau FP는 '우연'보다 구조로 보인다
+## 4. World R: the near-plateau FPs look structural rather than 'chance'
 
-- 수치는 확인했다. K=10에서 맞힌 checkpoint 수는 perfect 25/33, Nemotron 31/33, Cosmos 30/33이다.
-- perfect와 Nemotron의 판정이 갈린 checkpoint는 6개이고, 6개 모두 Nemotron 쪽이 맞았다. can GOOD 4개, square_s1_e0030(FP 1개로 4/10→5/10, 즉 OK가 됨), square_s1_e0060(FN 2개)이다.
-- can GOOD 4개의 실패 episode는 모두 `truth_failure_type = dropped`이고, grasped·lifted·dropped가 전부 True다. **두 VLM이 모두 성공으로 판정했다.** Nemotron은 4개 모두 "can을 오른쪽 bin 칸에 놓았고 끝까지 남아 있다"고 설명했다.
-- **FP는 episode의 성질에 따라 생긴다.**
-  - Nemotron FP 9개는 전부 grasp와 lift가 일어난 실패(dropped 8, not_placed 1)다. no_grasp 실패 38개 중에는 FP가 0개다.
-  - Nemotron FP 9개 중 8개는 Cosmos도 FP다. 두 judge가 서로 독립이라면 기대값은 2.8개다. P(Nemotron FP | Cosmos FP)는 0.38이고 기저율은 0.13이다.
-- **해석.**
-  - GOOD checkpoint의 드문 실패는 거의 성공에 가까운 실패여서 영상에서 성공처럼 보인다. 이렇게 보면 "4/4 FP는 우연(모형 예측 약 0.44⁴ ≈ 0.04)"보다 실패 유형에서 오는 구조적 효과라는 설명이 데이터와 더 잘 맞는다.
-  - 시뮬레이터는 실패마다 독립인 동전을 던지고, 그 확률은 checkpoint 품질에만 의존한다. 이 가정이 episode 수준에서 틀렸다.
-  - 이 구조가 tier 정확도에 미치는 방향은 checkpoint 구성에 따라 다르다. GOOD checkpoint에서는 도움이 되고, 0.84–0.90의 OK checkpoint에서는 GOOD으로 부풀리는 쪽으로 해가 된다(can_s2_e0060: Cosmos FP→오판). 따라서 "시뮬레이터가 보수적"이라는 말은 이 33개 표본에 한해서만 맞다.
-- 라벨 정의는 일관된다. eval truth와 training-time 결과 모두 robosuite의 success check를 쓴다(06 protocol). 따라서 이 차이는 라벨 버그가 아니라 시각적 모호성으로 보인다. 다만 영상을 직접 보지는 않았다.
+- The numbers are confirmed. At K=10 the number of checkpoints called correctly is perfect 25/33, Nemotron 31/33, Cosmos 30/33.
+- perfect and Nemotron disagree on 6 checkpoints, and Nemotron is right on all 6: the 4 can GOOD, square_s1_e0030 (1 FP takes it from 4/10→5/10, i.e. it becomes OK) and square_s1_e0060 (2 FNs).
+- The failure episodes of the 4 can GOOD checkpoints all have `truth_failure_type = dropped`, with grasped, lifted and dropped all True. **Both VLMs judged them as successes.** For all 4, Nemotron explained that "the can was placed in a compartment of the right bin and stays there until the end".
+- **The FPs arise from properties of the episode.**
+  - All 9 Nemotron FPs are failures in which a grasp and a lift happened (dropped 8, not_placed 1). Among the 38 no_grasp failures there are 0 FPs.
+  - 8 of the 9 Nemotron FPs are also Cosmos FPs. If the two judges were independent the expected count would be 2.8. P(Nemotron FP | Cosmos FP) is 0.38, against a base rate of 0.13.
+- **Interpretation.**
+  - The rare failures of GOOD checkpoints are failures that come close to success, so in the video they look like successes. Seen this way, a structural effect that comes from the failure type fits the data better than "4/4 FPs are chance (model prediction about 0.44⁴ ≈ 0.04)".
+  - The simulator flips an independent coin for each failure, with a probability that depends only on checkpoint quality. This assumption is wrong at the episode level.
+  - The direction in which this structure moves tier accuracy depends on the checkpoint mix. It helps on GOOD checkpoints, and hurts on OK checkpoints at 0.84–0.90 by inflating them to GOOD (can_s2_e0060: Cosmos FP→wrong call). So "the simulator is conservative" holds only for this sample of 33.
+- The label definition is consistent. Both the eval truth and the training-time outcomes use robosuite's success check (06 protocol). So this difference looks like visual ambiguity, not a label bug. However, I did not look at the videos myself.
 
-## 5. 누설, held-out 처리, 독립성, 다중비교
+## 5. Leakage, held-out handling, independence, multiple comparisons
 
-- **누설.**
-  - prior는 leave-one-run-out이다. 코드에서 `other = run_idx != run_idx[c]`를 확인했다. 지표 percentile은 결과를 쓰지 않는다.
-  - World A에서 truth는 held-out 25, K rollout은 나머지 25에서 뽑는다. judge fit은 eval seed(200000+)를 쓰고, World R의 판정 규칙은 leave-one-checkpoint-out이다.
-  - 명백한 누설은 없다. 남은 약한 누설은 두 가지다. ① judge fit에 쓴 33 ckpt가 분석 대상과 겹친다(seed는 다름). ② q 모델 자체를 y1 검증에서 같은 eval 데이터로 골랐다.
-  - 경계 층화(5절 주장 5)는 결과로 정의한 층이다.
+- **Leakage.**
+  - The prior is leave-one-run-out. I checked `other = run_idx != run_idx[c]` in the code. The metric percentiles do not use outcomes.
+  - In World A the truth is drawn from the held-out 25 and the K rollouts from the other 25. The judge fit uses eval seeds (200000+), and the World R decision rule is leave-one-checkpoint-out.
+  - There is no obvious leakage. Two weak leaks remain. ① The 33 ckpt used for the judge fit overlap with the analysis targets (with different seeds). ② The q model itself was chosen on the same eval data during the y1 verification.
+  - The boundary stratification (section 5, claim 5) is a stratum defined by outcome.
 - **CI.**
-  - bootstrap은 run 안에서 checkpoint를 다시 뽑는다. 따라서 run이나 task 사이의 분산(run 3개, task 2개)은 CI에 들어가지 않는다.
-  - 같은 run의 인접 epoch은 서로 상관되어 있으므로 checkpoint를 독립으로 보는 bootstrap은 불확실성을 과소평가한다.
-  - z1의 replicate CI에는 MC 잡음도 섞여 있다. MC 잡음은 구간을 넓히기도 하지만 '처음 넘는 K' 같은 통계량은 앞쪽으로 치우치게 만든다(주장 1).
-- **다중비교.**
-  - 규칙 약 46개 × K를 비교했고 보정은 없다. headline의 "sequential 0.916"은 여러 규칙 중 최고 규칙의 값이다.
-  - 다만 flat prior는 사전에 정한 기본값이고, 정확 계산으로 다시 확인했다.
-- **경계 규칙.**
-  - 50-ep 성공률이 정확히 0.90인 checkpoint가 4개 있다(can_s1_e0035, can_s1_e0050, can_s2_e0060, square_s1_e0120). truth는 OK다. K가 무한히 커져도 이들의 정확도는 0.5로 수렴하므로 B의 이론적 상한은 0.978이다.
-  - 판정 규칙을 GOOD: k/K ≥ 0.9로 바꾸면 B plug-in 정확도가 K=10에서 0.813→0.770, K=40에서 0.915→0.888, K=50에서 0.925→0.902로 떨어진다. 'GOOD 경계 규칙 하나가 정확도를 수 포인트 바꾼다'는 주장은 확인된다.
-- **사소한 표기 오류.**
-  - GOOD 비율이 findings에는 52%, md에는 53%로 적혀 있다. World A 기준으로 51.7%이고, World B(50-ep) 기준으로는 46%다.
-  - log score 차이가 findings에는 "7–8 nat", md에는 "7–10 nat"이다(10은 pad201 포함).
-  - "tierflat OK recall 0.43–0.53"에서 Cosmos는 0.40이다.
+  - The bootstrap resamples checkpoints within a run. So the variance across runs or tasks (3 runs, 2 tasks) is not in the CI.
+  - Adjacent epochs of the same run are correlated, so a bootstrap that treats checkpoints as independent underestimates the uncertainty.
+  - z1's replicate CIs also contain MC noise. MC noise can widen intervals, but it biases statistics such as the 'first K that crosses' toward earlier values (claim 1).
+- **Multiple comparisons.**
+  - About 46 rules × K were compared, with no correction. The headline "sequential 0.916" is the value of the best of several rules.
+  - However, the flat prior is a default fixed in advance, and it was rechecked by exact computation.
+- **Boundary rule.**
+  - There are 4 checkpoints with a 50-ep success rate of exactly 0.90 (can_s1_e0035, can_s1_e0050, can_s2_e0060, square_s1_e0120). Their truth is OK. Even as K grows without bound their accuracy converges to 0.5, so the theoretical ceiling for B is 0.978.
+  - Changing the decision rule to GOOD: k/K ≥ 0.9 lowers B plug-in accuracy from 0.813→0.770 at K=10, from 0.915→0.888 at K=40 and from 0.925→0.902 at K=50. The claim that 'a single GOOD boundary rule changes accuracy by several points' is confirmed.
+- **Minor reporting errors.**
+  - The GOOD share is given as 52% in findings and 53% in the md. It is 51.7% in World A and 46% in World B (50-ep).
+  - The log score difference is "7–8 nat" in findings and "7–10 nat" in the md (10 includes pad201).
+  - In "tierflat OK recall 0.43–0.53", Cosmos is at 0.40.
 
-## 6. 수정된 headline
+## 6. Corrected headline
 
-> 이 pool에서 BAD/OK/GOOD tier를 90%로 맞히는 비용은 크고, 그 크기는 경계 규칙과 checkpoint 분포에 좌우된다.
+> In this pool, getting the BAD/OK/GOOD tier right 90% of the time is expensive, and how expensive depends on the boundary rule and the checkpoint distribution.
 >
-> - **perfect detector, 고정 K plug-in(World B, 정확 계산):** K=36에서 처음 0.9를 넘는다. K≥43부터는 계속 0.9 이상이다(ckpt bootstrap median 35 [25, 50]).
-> - **sequential(flat prior, P≥0.9):** 평균 25.1개로 0.916이다. 같은 예산의 고정 K보다 +3.9pt [2.9, 4.9] 높지만, 이 이득은 World B에서만 나타난다(World A에서는 +0.6 [−0.7, 1.9]).
-> - **Nemotron:** K=50 plug-in 정확도가 judge 모형에 따라 0.88–0.91이라 90% 도달 여부는 경계선이다. sequential은 35개에서 0.876이다.
-> - **Cosmos3-Edge:** 모든 judge 모형 변형에서 K=50 정확도가 0.88 이하다. Cosmos에서는 judge 자체도 비용의 주요 원인이다(truth OK의 46%가 GOOD으로 판정됨).
-> - **epoch/PLV prior:** K≥10에서 정확도–rollout frontier를 개선하지 않는다. z1이 보고한 5–6% 절감은 flat frontier보다 4–6pt 낮은 규칙과 비교한 수치다.
-> - **'경계에서 먼 checkpoint는 14–18개'라는 진술:** 결과로 정의한 층에 대한 조건부 진술이다. 층의 폭에 따라 6에서 20까지 바뀐다.
+> - **perfect detector, fixed-K plug-in (World B, exact):** first exceeds 0.9 at K=36. Stays at or above 0.9 from K≥43 on (ckpt bootstrap median 35 [25, 50]).
+> - **sequential (flat prior, P≥0.9):** 0.916 at a mean of 25.1. It is +3.9pt [2.9, 4.9] above fixed K at the same budget, but this gain appears only in World B (in World A it is +0.6 [−0.7, 1.9]).
+> - **Nemotron:** K=50 plug-in accuracy is 0.88–0.91 depending on the judge model, so whether it reaches 90% is borderline. sequential gives 0.876 at 35.
+> - **Cosmos3-Edge:** K=50 accuracy is at most 0.88 under every judge-model variant. For Cosmos the judge itself is also a major source of cost (46% of truth OK judged GOOD).
+> - **epoch/PLV prior:** does not improve the accuracy–rollout frontier at K≥10. The 5–6% saving z1 reported is measured against a rule that is 4–6pt below the flat frontier.
+> - **The statement 'checkpoints far from the boundary need 14–18':** a statement conditional on a stratum defined by outcome. It ranges from 6 to 20 depending on the width of the stratum.
 
-## 7. 아직 열려 있는 위험
+## 7. Risks still open
 
-- run 3개, task 2개뿐이다. GOOD은 전부 can이다. 모든 정확도는 tier 구성에 크게 좌우된다.
-- judge 오류 모델은 실패 67개(고품질 구간은 9개)로 fit했다. FP가 실패 유형에 따라 생긴다는 점(4절)은 모형화되어 있지 않다. square는 run 단위로 교차검증할 수 없다.
-- 실로봇 예산으로 옮기려면 near-plateau checkpoint에서 checkpoint당 30개 이상의 녹화와 판정이 필요하다. 이를 위한 Nebius 호출은 사용자 승인이 있어야 한다.
-- y1 검증에서 지적된 문제가 여전히 남아 있다. `*_h10` 열과 `*_h16` 열이 93/93행에서 같다. 따라서 replan_overlap_h16을 H=16 고유의 지표로 해석하면 안 된다.
+- There are only 3 runs and 2 tasks. All GOOD checkpoints are can. Every accuracy depends heavily on the tier mix.
+- The judge error model was fit on 67 failures (9 in the high-quality range). The fact that FPs depend on the failure type (section 4) is not modeled. square cannot be cross-validated by run.
+- Carrying this over to a real-robot budget would need 30 or more recordings and judgments per checkpoint at near-plateau checkpoints. The Nebius calls for that require user approval.
+- An issue raised in the y1 verification still stands. The `*_h10` and `*_h16` columns are identical in 93/93 rows. So replan_overlap_h16 must not be interpreted as a metric specific to H=16.
 
-## 재실행
+## Rerun
 
 ```
 cd /path/to/repo
 PY="env PYTHONNOUSERSITE=1 ~/.venvs/cosmos-plv/bin/python"
-# z1 재현 (기존 결과와 수치 차이 0)
+# z1 reproduction (0 numeric differences from the existing results)
 $PY scripts/hackathon/explore/z1_tier_triage.py --reps 250 --orders 8 \
     --out data/outputs/hackathon_explore/z1_tier_triage_verification/rerun_main.json --fig ""
 $PY scripts/hackathon/explore/z1_tier_triage.py --reps 100 --orders 8 --world-judge iid \
     --out data/outputs/hackathon_explore/z1_tier_triage_verification/rerun_iid.json --fig ""
-# 독립 정확 계산 (약 50초) + frontier (약 2분; import하면서 verify를 다시 실행)
+# independent exact computation (about 50 s) + frontier (about 2 min; importing it reruns verify)
 $PY scripts/hackathon/explore/z1_tier_triage_verify.py
 $PY scripts/hackathon/explore/z1_tier_triage_verify_frontier.py
 ```

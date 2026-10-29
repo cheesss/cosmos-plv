@@ -1,113 +1,153 @@
 [
  {
-  "kind": "card",
-  "seconds": 7,
-  "title": "Cosmos-PLV",
-  "body": "Which robot-learning checkpoint should I evaluate next, and why?\nNebius x NVIDIA Global AI Hackathon 2026 - Physical AI track\n\nDashboard clips are real screen recordings of the running application\n(live metric script, live Cosmos3-Edge, live Nebius call); speed-ups are labelled."
- },
- {
-  "kind": "image",
-  "path": "media/hackathon/checkpoint_comparison.png",
-  "seconds": 8,
-  "caption": "Problem: offline losses do not tell checkpoints apart, and every closed-loop rollout costs robot time. 93 retrained Diffusion Policy checkpoints, 4,650 simulator rollouts."
- },
- {
-  "kind": "image",
-  "path": "media/hackathon/architecture.png",
-  "seconds": 8,
-  "caption": "Pipeline: cheap PLV screening -> real robosuite rollouts -> NVIDIA Cosmos3-Edge (local GPU) + NVIDIA Nemotron-3.5-Super-VL served by Nebius Token Factory."
- },
- {
-  "kind": "clip",
-  "path": "data/outputs/hackathon_demo/session.webm",
-  "start": 12.65,
-  "end": 24.72,
-  "speed": 1.0,
-  "caption": "Live dashboard: the pick, the free latest-epoch baseline, each rule's measured regret, and a judge-trust warning for strong checkpoints (from the pre-registered c1 audit)."
- },
- {
-  "kind": "clip",
-  "path": "data/outputs/hackathon_demo/session.webm",
-  "start": 27.39,
-  "end": 44.26,
-  "speed": 2.5,
-  "caption": "Cheap screening runs the ORIGINAL PLV script on this checkpoint (Action L1, open-loop smoothness) - live, 2.5x speed."
- },
- {
   "kind": "sidebyside",
   "paths": [
    "data/outputs/hackathon_rollouts_eval/can_s1_e0000/videos/seed200000.mp4",
    "data/outputs/hackathon_rollouts_eval/can_s2_e0100/videos/seed200008.mp4"
   ],
   "labels": [
-   "epoch 0: never grasps (sim label: no_grasp)",
-   "epoch 100: picks and places (sim label: success)"
+   "epoch 0: never grasps (simulator: failure)",
+   "epoch 100: picks and places (simulator: success)"
   ],
-  "seconds": 8,
-  "caption": "Real simulator rollouts recorded by the pipeline (robosuite / MuJoCo, 10 fps, 2x speed); privileged labels are used only as ground truth."
+  "seconds": 9.3,
+  "tag": "REAL robosuite / MuJoCo rollouts recorded by the pipeline",
+  "caption": ""
+ },
+ {
+  "kind": "card",
+  "seconds": 7.92,
+  "title": "Cosmos-PLV",
+  "body": "Which robot checkpoint should I evaluate next - and can I trust the AI judge?\n\nFor robot-learning researchers who train many imitation-learning checkpoints.\nNebius x NVIDIA Global AI Hackathon 2026 - Physical AI track\n\nDashboard clips are real screen recordings of the running application;\nspeed-ups are labelled in the top-left corner.",
+  "caption": ""
+ },
+ {
+  "kind": "image",
+  "path": "submission/figures/system_architecture.png",
+  "seconds": 10.67,
+  "tag": "system architecture",
+  "caption": ""
  },
  {
   "kind": "clip",
   "path": "data/outputs/hackathon_demo/session.webm",
-  "start": 51.92,
-  "end": 69.75,
-  "speed": 1.5,
-  "caption": "Rollout viewer: real episode video, verified simulator outcome, and Cosmos3-Edge's per-keyframe answers to the task-free question 'where is the can?' (1.5x)."
- },
- {
-  "kind": "clip",
-  "path": "data/outputs/hackathon_demo/session.webm",
-  "start": 69.75,
-  "end": 93.55,
-  "speed": 2.0,
-  "caption": "Live: NVIDIA Cosmos3-Edge on the local RTX 3090 (load + 8 keyframes, 2x speed). A fixed rule turns visual states into grasp / drop / success."
- },
- {
-  "kind": "clip",
-  "path": "data/outputs/hackathon_demo/session.webm",
-  "start": 96.65,
-  "end": 108.49,
-  "speed": 1.5,
-  "caption": "Live: the same episode goes to NVIDIA Nemotron-3.5-Super-VL on Nebius Token Factory; request id, latency and tokens are logged as evidence."
- },
- {
-  "kind": "clip",
-  "path": "data/outputs/hackathon_demo/session.webm",
-  "start": 112.0,
-  "end": 128.1,
-  "speed": 1.4,
-  "caption": "Results on 330 real rollouts: Nemotron judges success with 0.964 accuracy, Cosmos3-Edge 0.918. Failure TYPES are not solved (below a majority baseline)."
- },
- {
-  "kind": "clip",
-  "path": "data/outputs/hackathon_demo/session.webm",
-  "start": 131.56,
-  "end": 145.62,
+  "start": 12.72,
+  "end": 25.1,
   "speed": 1.0,
-  "caption": "When can you trust the judge? Pre-registered audits: judges cannot tell when a replan helps (r1), and they accept failures that end at the goal bin, so strong checkpoints look better than they are (c1)."
+  "tag": "LIVE screen recording - 1x",
+  "caption": ""
+ },
+ {
+  "kind": "clip",
+  "path": "data/outputs/hackathon_demo/session.webm",
+  "start": 27.51,
+  "end": 44.87,
+  "speed": 2.4,
+  "tag": "LIVE - original PLV metric script - 2.4x",
+  "caption": ""
+ },
+ {
+  "kind": "clip",
+  "path": "data/outputs/hackathon_demo/session.webm",
+  "start": 52.56,
+  "end": 70.38,
+  "speed": 1.9,
+  "tag": "LIVE screen recording - recorded rollout video - 1.9x",
+  "caption": ""
+ },
+ {
+  "kind": "clip",
+  "path": "data/outputs/hackathon_demo/session.webm",
+  "start": 70.38,
+  "end": 96.33,
+  "speed": 3.0,
+  "tag": "LIVE - NVIDIA Cosmos3-Edge on the local RTX 3090 - 3x while waiting",
+  "caption": ""
+ },
+ {
+  "kind": "clip",
+  "path": "data/outputs/hackathon_demo/session.webm",
+  "start": 96.33,
+  "end": 100.53,
+  "speed": 1.0,
+  "tag": "LIVE - Cosmos3-Edge answer - 1x",
+  "caption": ""
+ },
+ {
+  "kind": "clip",
+  "path": "data/outputs/hackathon_demo/session.webm",
+  "start": 99.83,
+  "end": 112.83,
+  "speed": 2.0,
+  "tag": "LIVE - request to Nebius Token Factory - 2x while waiting",
+  "caption": ""
+ },
+ {
+  "kind": "clip",
+  "path": "data/outputs/hackathon_demo/session.webm",
+  "start": 112.83,
+  "end": 118.23,
+  "speed": 1.0,
+  "tag": "LIVE - Nemotron-3.5-Super-VL verdict from Nebius (request id, latency, tokens) - 1x",
+  "caption": ""
+ },
+ {
+  "kind": "clip",
+  "path": "data/outputs/hackathon_demo/session.webm",
+  "start": 121.24,
+  "end": 137.36,
+  "speed": 1.7,
+  "tag": "LIVE screen recording - 1.7x",
+  "caption": ""
  },
  {
   "kind": "image",
-  "path": "media/hackathon/c1_wrong_compartment.png",
-  "seconds": 7,
-  "caption": "The blind spot: a can in the wrong compartment (left) is a simulator failure, but Nemotron calls it a success - and still accepts 24 of 33 such cans when the prompt states the compartment."
+  "path": "submission/figures/judge_accuracy.png",
+  "seconds": 8.92,
+  "tag": "measured: 330 recorded rollouts",
+  "caption": ""
  },
  {
   "kind": "image",
-  "path": "media/hackathon/self_training_s2.png",
-  "seconds": 9,
-  "caption": "Using the verdicts to self-train (s2, pre-registered): 36 human demos add +8 points; Nemotron-filtered self-data costs 10 points, because the blind spot let 58 failures into the training set."
+  "path": "submission/figures/evaluation_efficiency.png",
+  "seconds": 11.47,
+  "tag": "EXPLORATORY, post-hoc",
+  "caption": ""
+ },
+ {
+  "kind": "clip",
+  "path": "data/outputs/hackathon_demo/session.webm",
+  "start": 140.83,
+  "end": 154.9,
+  "speed": 1.15,
+  "tag": "LIVE screen recording - pre-registered audits - 1.15x",
+  "caption": ""
+ },
+ {
+  "kind": "image",
+  "path": "submission/figures/real_case_wrong_compartment.png",
+  "seconds": 8.2,
+  "tag": "real c1 episode and Nemotron's recorded answer",
+  "caption": ""
+ },
+ {
+  "kind": "image",
+  "path": "submission/figures/accuracy_vs_blind_spot.png",
+  "seconds": 15.85,
+  "tag": "pre-registered s2 study",
+  "caption": ""
  },
  {
   "kind": "image",
   "path": "media/hackathon/cost_latency.png",
-  "seconds": 6,
-  "caption": "Measured cost: about 2-3 s per episode per judge. All 7,003 logged Nebius calls of the project cost about $5 at the catalog price."
+  "seconds": 5.75,
+  "tag": "measured from the call logs",
+  "caption": ""
  },
  {
   "kind": "card",
-  "seconds": 14,
-  "title": "What we learned (all measured)",
-  "body": "+ Zero-shot NVIDIA judges replace a privileged success detector: 0.92-0.96 accuracy from video.\n+ Adaptive allocation needs 2-3x fewer rollouts; early abort saves 16-20% robot time.\n- No PLV metric beats the free 'latest epoch' pick in these runs.\n- Judges miss near-goal failures, so strong checkpoints look better than they are.\n- Self-training on their verdicts cost 10 points: audit the judge before you train on it.\nModels: nvidia/Cosmos3-Edge (local), nvidia/Nemotron-3.5-Super-VL (Nebius Token Factory)."
+  "seconds": 11.65,
+  "title": "Audit the judge before you train on it",
+  "body": "+ Zero-shot NVIDIA judges replace a privileged success detector (91.8-96.4% accuracy).\n+ Adaptive evaluation cuts rollouts (exploratory); the free 'latest epoch' pick\n   was not beaten by PLV metrics in these runs.\n- Judges miss near-goal failures; self-training on their labels cost 10 points.\n\ngithub.com/cheesss/cosmos-plv\nNVIDIA Cosmos3-Edge (local GPU) - NVIDIA Nemotron-3.5-Super-VL on Nebius Token Factory",
+  "caption": ""
  }
 ]

@@ -7,17 +7,17 @@
 `results/hackathon/explore/x6_visual_plan_critic.json`, which I reproduced bit for bit. I changed none of x6's
 files. I made **0 new Nebius calls** and **no GPU runs**. Every VLM result was re-scored from the saved raw rows.
 
-> 요약 (KO): x6의 **핵심 음성 결론은 유지됩니다.** 초기 plan 하나에 VLM 판정을 붙인 visual plan critic은 checkpoint screening에 쓸모가 없고, 공짜 epoch baseline에 집니다. `x6_analyze.py`를 출력 경로만 바꿔 다시 돌리면 결과 JSON이 **0개 leaf 차이로 완전히 재현**됩니다. 누출은 없습니다. 맞춘 점수가 없고, geometric heads는 threshold 0–5 cm에서 Spearman이 같으며, 두 필드와 두 변형을 모두 보고했습니다. 분석된 Nemotron 375행 모두 깨끗한 overlay 이미지와 SHA-256이 일치합니다. 투영과 초기 state 동일성도 확인했습니다.
-> 다만 다음은 고쳐야 합니다.
-> (1) **plan3는 "24 step 실제 rollout"이 아닙니다.** 실제로 실행된 것은 **16 step**(2 chunk, plan_t = 0, 8, 16)입니다.
-> (2) **"geometric heads는 epoch≥10에서 전부 1.0"은 틀립니다.** `square_s1_e0010`은 0.8입니다. 본문의 epoch≥20 서술은 맞습니다.
-> (3) **"VLM heads가 geometric heads보다 못하다"는 점추정일 뿐입니다.** 차이의 paired bootstrap CI는 [−0.29, +0.71] / [−0.21, +0.81]로 0을 포함합니다.
-> (4) **"VLM 지표는 학습 진행도의 proxy일 뿐"은 입증되지 않았습니다.** epoch≥20에서 epoch를 통제한 VLM heads의 partial Spearman은 +0.41 [−0.47, +0.89] (permutation p=0.066) / +0.21 (p=0.26)입니다. 부가 정보가 있다는 증거도, 없다는 증거도 아닙니다. 또 epoch≥20에서는 epoch가 VLM heads보다 낫다는 차이도 유의하지 않습니다(can_s1 [−0.02, +0.92], can_s2 [−0.15, +0.56]). 전체 epoch 기준으로만 유의합니다.
-> (5) **η² 수치는 task 효과와 섞여 있습니다.** task 내부로 계산하면 reaches의 seed η²는 0.77/0.81, checkpoint η²는 0.047/0.038(chance 약 0.19)입니다. 결론은 오히려 강해집니다. 그리고 plan 기하 자체가 seed로 0.86–0.98 결정됩니다. seed 지배는 VLM의 결함이 아니라 plan의 성질이고, CRN 때문에 seed는 장면과 sampling noise를 함께 뜻합니다.
-> (6) **test-retest heads 0.95에는 항상 True인 square 10쌍이 섞여 있습니다.** can만 보면 9/10 [0.60, 0.98]이고, 뒤집힌 1건은 애매한 seed 210000입니다.
-> (7) **square에서 "closer=better의 부호가 반대"라는 말은 과장입니다.** +0.33 [−0.24, +0.71]로 CI가 0을 포함하고, square의 3D 최소 거리는 epoch drift가 없습니다(epoch와 +0.16).
-> (8) 이 밖에 raw control의 prompt가 다르다는 점, 퇴화한 bootstrap CI, task limit 표기 오류(800인데 400으로 적음) 등 사소한 문제가 있습니다.
-> 현재 pool(70개)에서도 epoch baseline은 +0.91 / +0.84 / +0.76입니다. 다만 square는 epoch≥20에서 +0.67 [+0.24, +0.90]으로 약해지는 중입니다.
+> Summary: x6's **core negative conclusion holds.** The visual plan critic, which attaches a VLM verdict to one initial plan, is useless for checkpoint screening and loses to the free epoch baseline. Rerunning `x6_analyze.py` with only the output paths changed **reproduces the results JSON completely, with 0 leaf differences**. There is no leakage. No score was fitted, the geometric heads give the same Spearman for thresholds 0–5 cm, and both fields and both variants were reported. All 375 analyzed Nemotron rows match the clean overlay images by SHA-256. I also confirmed the projection and the identity of the initial states.
+> However, the following need fixing.
+> (1) **plan3 is not a "24-step real rollout".** What actually ran was **16 steps** (2 chunks, plan_t = 0, 8, 16).
+> (2) **"Geometric heads are all 1.0 at epoch≥10" is wrong.** `square_s1_e0010` is 0.8. The body's epoch≥20 statement is correct.
+> (3) **"VLM heads is worse than geometric heads" is only a point estimate.** The paired bootstrap CIs of the difference are [−0.29, +0.71] / [−0.21, +0.81] and include 0.
+> (4) **"The VLM metric is only a proxy for training progress" is not established.** At epoch≥20, the partial Spearman of VLM heads controlling for epoch is +0.41 [−0.47, +0.89] (permutation p=0.066) / +0.21 (p=0.26). This is evidence neither that it adds information nor that it does not. Also, at epoch≥20 the difference by which epoch beats VLM heads is not significant either (can_s1 [−0.02, +0.92], can_s2 [−0.15, +0.56]). It is significant only over all epochs.
+> (5) **The η² figures are mixed with the task effect.** Computed within task, the seed η² of reaches is 0.77/0.81 and the checkpoint η² is 0.047/0.038 (chance about 0.19). The conclusion actually becomes stronger. And the plan geometry itself is 0.86–0.98 determined by seed. Seed dominance is a property of the plan, not a defect of the VLM, and because of CRN, seed means the scene and the sampling noise together.
+> (6) **The test-retest heads 0.95 includes 10 square pairs that are always True.** On can alone it is 9/10 [0.60, 0.98], and the 1 flipped case is the ambiguous seed 210000.
+> (7) **On square, "the sign of closer=better is reversed" is an overstatement.** It is +0.33 [−0.24, +0.71], a CI that includes 0, and square's minimum 3D distance has no epoch drift (+0.16 with epoch).
+> (8) Beyond these there are minor issues: the raw control uses a different prompt, a degenerate bootstrap CI, and a wrong task-limit figure (written as 400 when it is 800).
+> On the current pool (70) the epoch baseline is still +0.91 / +0.84 / +0.76. But square is weakening at epoch≥20, to +0.67 [+0.24, +0.90].
 
 ## 1. What I checked and how
 
@@ -102,7 +102,7 @@ that have x6 plans, so it is unaffected.
    * So there is no evidence of added information, and no proof that there is none, at n = 14–16 with 3
      distinct score values.
    * Also, in the epoch ≥ 20 regime the epoch-minus-VLM-heads difference is **not significant**: can_s1
-     [−0.02, +0.92], can_s2 [−0.15, +0.56]. "크게 밀립니다" holds only for all epochs.
+     [−0.02, +0.92], can_s2 [−0.15, +0.56]. "Falls far behind" holds only for all epochs.
    * For `reaches`, the proxy reading is fair. The partial is negative (−0.25 / −0.52), which means it has the
      wrong sign beyond epoch.
 6. **The η² figures are confounded with task.** x6 groups "seed" as seed × task (10 groups). Checkpoints are
@@ -120,7 +120,7 @@ that have x6 plans, so it is unaffected.
    But the attribution needs correcting. The plan geometry itself is 86–98 % seed-determined, so the VLM is
    faithfully reading plans that barely differ between trained checkpoints. This is a property of one
    initial plan, not a VLM failure. Also, the sampling seed equals the env seed (common random numbers), so
-   "seed" means scene **plus** diffusion noise. The report's "장면(seed)" cannot separate the two.
+   "seed" means scene **plus** diffusion noise. The report's "scene (seed)" cannot separate the two.
 7. **The test-retest "heads 0.95" is padded.** 10 of the 20 pairs are square images, where `heads` is always True
    (base 10/10 True). On can, heads agrees **9/10 (Wilson [0.60, 0.98])**, and the one flip
    (`can_s1_e0040`, seed 210000) is on the ambiguous seed that drives most of the per-checkpoint `heads`

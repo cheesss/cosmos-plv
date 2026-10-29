@@ -1,4 +1,4 @@
-"""OOD 계산에서 공통으로 쓰는 관측 인코딩, 거리 계산, 점수 정규화 유틸리티."""
+"""Observation-encoding, distance and score-normalization utilities shared by the OOD computations."""
 
 from typing import Dict, List, Tuple
 

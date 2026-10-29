@@ -1,0 +1,136 @@
+{
+ "voice": "am_michael",
+ "note": "Synthetic English narration made locally with Kokoro-82M (Apache-2.0). 'text' is what the subtitles show; 'say' is the same sentence spelled for the speech model (names and numbers written out). 'segments' are indices into configs/hackathon/demo_plan.json; a line starts 0.3 s into its first segment and must end before its last one ends. Every number is in submission/claim_ledger.csv.",
+ "lines": [
+  {
+   "segments": [
+    0
+   ],
+   "text": "Robot checkpoints are cheap to save but expensive to evaluate, and even an accurate AI judge can be confidently wrong.",
+   "say": "Robot checkpoints are cheap to save, but expensive to evaluate. And even an accurate AI judge can be confidently wrong.",
+   "speed": 1.1
+  },
+  {
+   "segments": [
+    1
+   ],
+   "text": "Cosmos-PLV picks which robot checkpoint to test next, and shows when its AI judge can be trusted.",
+   "say": "Cosmos P L V picks which robot checkpoint to test next, and shows when its AI judge can be trusted.",
+   "speed": 1.1
+  },
+  {
+   "segments": [
+    2
+   ],
+   "text": "PLV screening, rollouts and NVIDIA Cosmos run on one local GPU; NVIDIA Nemotron runs on Nebius Token Factory.",
+   "say": "P L V screening, rollouts, and NVIDIA Cosmos run on one local GPU. NVIDIA Nemotron runs on Nebius Token Factory.",
+   "speed": 1.1
+  },
+  {
+   "segments": [
+    3
+   ],
+   "text": "The dashboard recommends what to test next, beside the free latest-epoch baseline and each rule's measured regret, and warns when strong checkpoints may fool the judge.",
+   "say": "The dashboard recommends what to test next, beside the free latest epoch baseline and each rule's measured regret, and warns when strong checkpoints may fool the judge.",
+   "speed": 1.1
+  },
+  {
+   "segments": [
+    4
+   ],
+   "text": "Cheap screening re-runs the original PLV metric script, live, with no rollouts.",
+   "say": "Cheap screening re-runs the original P L V metric script, live, with no rollouts.",
+   "speed": 1.1
+  },
+  {
+   "segments": [
+    5
+   ],
+   "text": "Shortlisted checkpoints run in a real robosuite simulation. Cosmos reports, frame by frame, where the can is.",
+   "say": "Shortlisted checkpoints run in a real robo-suite simulation. Cosmos reports, frame by frame, where the can is.",
+   "speed": 1.1
+  },
+  {
+   "segments": [
+    6,
+    7
+   ],
+   "text": "This is a live call to NVIDIA Cosmos3-Edge on the local GPU. It reads eight keyframes, and a fixed rule turns its answers into grasp, drop or success.",
+   "say": "This is a live call to NVIDIA Cosmos 3 Edge, on the local GPU. It reads eight key frames, and a fixed rule turns its answers into grasp, drop, or success.",
+   "speed": 1.1
+  },
+  {
+   "segments": [
+    8,
+    9
+   ],
+   "text": "Now the same video goes to NVIDIA Nemotron on Nebius Token Factory. The live verdict comes back with its request ID, latency and token count.",
+   "say": "Now the same video goes to NVIDIA Nemotron, on Nebius Token Factory. The live verdict comes back with its request I D, latency, and token count.",
+   "speed": 1.1
+  },
+  {
+   "segments": [
+    10
+   ],
+   "text": "The results tab scores both judges against verified simulator outcomes on 330 recorded rollouts.",
+   "say": "The results tab scores both judges against verified simulator outcomes, on 330 recorded rollouts.",
+   "speed": 1.1
+  },
+  {
+   "segments": [
+    11
+   ],
+   "text": "Nemotron was right on 96.4% of them, but it still called 9 of 67 failures a success.",
+   "say": "Nemotron was right on 96 point 4 percent of them. But it still called 9 of 67 failures a success.",
+   "speed": 1.1
+  },
+  {
+   "segments": [
+    12
+   ],
+   "text": "Exploratory analyses: adaptive allocation, not PLV, cut rollouts two- to threefold; a time limit saved 16% of rollout time.",
+   "say": "Exploratory analyses: adaptive allocation, not P L V, cut rollouts two to three fold. A time limit saved 16 percent of rollout time.",
+   "speed": 1.1
+  },
+  {
+   "segments": [
+    13
+   ],
+   "text": "But can we trust the judge? Our pre-registered audits say: not always. The judges could not tell when a replan helped, and they accept failures that end in the goal bin.",
+   "say": "But can we trust the judge? Our pre-registered audits say: not always. The judges could not tell when a re-plan helped, and they accept failures that end in the goal bin.",
+   "speed": 1.1
+  },
+  {
+   "segments": [
+    14
+   ],
+   "text": "Here the can is in the wrong compartment. The simulator says failure. Nemotron says it was placed correctly.",
+   "say": "Here, the can is in the wrong compartment. The simulator says failure. Nemotron says it was placed correctly.",
+   "speed": 1.1
+  },
+  {
+   "segments": [
+    15
+   ],
+   "text": "It is systematic: Nemotron let 58 of 149 failures into a self-training set, and the resulting policy reached 75% success, versus 86% with plain continued training.",
+   "say": "It is systematic. Nemotron let 58 of 149 failures into a self-training set, and the resulting policy reached 75 percent success, versus 86 percent with plain continued training.",
+   "speed": 1.1
+  },
+  {
+   "segments": [
+    16
+   ],
+   "text": "About 7,000 Nebius calls cost an estimated five dollars.",
+   "say": "About seven thousand Nebius calls cost an estimated five dollars.",
+   "speed": 1.1
+  },
+  {
+   "segments": [
+    17
+   ],
+   "text": "Faster robot evaluation matters. But before trusting AI-generated labels to train robots, audit what the judge systematically misses.",
+   "say": "Faster robot evaluation matters. But before trusting AI generated labels to train robots, audit what the judge systematically misses.",
+   "speed": 1.1
+  }
+ ]
+}

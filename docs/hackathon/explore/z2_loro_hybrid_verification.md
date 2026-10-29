@@ -1,49 +1,49 @@
-# z2_loro_hybrid 적대적 검증 (EXPLORATORY, 사후 분석)
+# z2_loro_hybrid adversarial verification (EXPLORATORY, post-hoc analysis)
 
-**판정: partially_confirmed (부분 확인).**
+**Verdict: partially_confirmed.**
 
-- **확인된 것.** 핵심 음성 결과는 유지되고, 오히려 더 강해졌다. 학습 조합도, VLM K=10 특징도 이 풀에서 epoch과 구별되지 않는다.
-  - 원 스크립트를 다시 돌린 결과가 bit 단위로 같았다. `z2_loro_hybrid.json`의 숫자 16,985개를 비교했고 max abs diff는 0이다. 입력 sha256도 같다.
-  - z2 코드를 import하지 않은 독립 구현(로그 parser, 기대 Spearman, ridge, backtracking Newton으로 푼 pairwise-logit, 중첩 λ, unitweight, select)이 held-out run별 ρ를 정확히 재현했다. all93 36개, eval33 53개, late93 36개 method 전부 차이 0이고, swap도 같다.
-  - 누출은 찾지 못했다. fit과 inner CV는 훈련 run의 HA만 쓴다. held-out run의 HB는 채점에만 쓴다.
-  - **새로 확인한 것.** 무작위 25/25 seed 분할 400개에서 epoch보다 평균 Δ가 양수인 method는 세 풀 모두 0개다.
-- **반박되거나 약해진 것.**
-  1. **헤드라인의 +0.009는 운 좋은 분할 하나의 값이다.** pairlogit_rank[all]의 +0.009는 400개 무작위 분할 분포의 98번째 백분위수다. 분할 평균 Δ는 −0.016이고, P(Δ>0)는 0.09다. ridge_rank[all]도 97번째 백분위수(평균 −0.018)다. RA(epoch, L1)는 95번째 백분위수(평균 −0.012)다. 원래 HB 절반은 epoch에게도 유리하다(epoch ρ가 88번째 백분위수).
-  2. **plateau에서 Action L1 "+0.064, 3/3 run"은 분할 운이다.** 무작위 분할에서 이 값은 95번째 백분위수이고, 평균 Δ는 −0.025, P(Δ>0)는 0.32다. 50개 에피소드 전체를 타깃으로 쓰면 Δ는 −0.044 [−0.136, +0.056]이고, 3개 run 중 1개에서만 이긴다. 게다가 late can run의 타깃은 거의 퇴화되어 있다. can_seed2는 11개 중 10개, can_seed1은 21개 중 17개 체크포인트가 HB=1.0이다.
-  3. **"모든 +vlm 모델이 VLM 없는 짝과 같거나 낮다"는 틀렸다.** 8쌍 중 3쌍에서 +vlm이 더 높다. pairlogit_rank[all] +0.015, ridge_rank[small] +0.010, unitweight[small] +0.004이고 1쌍은 같다. "+vlm 모델 0.815–0.833"도 틀렸고, 실제 범위는 0.793–0.833이다. 다만 결론(epoch을 넘지 못함)은 유지된다.
-  4. **절대 ρ의 bootstrap CI는 유효한 CI가 아니다.** 블록 bootstrap에서는 36개 method 중 26개의 점추정치가 자기 95% CI 밖에 있다. epoch은 0.825인데 CI가 [0.370, 0.816]이다. 에피소드-only bootstrap에서도 20/36이 밖에 있다(epoch [0.637, 0.824]). 학습 모델의 −0.4 왼쪽 꼬리는 재표본 설계 탓이다(5절).
-  5. **검정력 산술이 낙관적이다.** "8–17 run"은 대략 검정력 50%에 해당하는 수(9–18)다. 양측 α=0.05에서 검정력 80%를 얻으려면 17–34 run이 필요하다. 그런데 분할 평균 Δ가 음수라서 이 계산 자체가 의미가 없다.
-  6. 작은 과장 몇 가지가 있다.
-     - "run-level 95% CI"는 3개 fold의 [min, max]다. 모집단 중앙값을 덮을 확률은 75%뿐이다.
-     - "pairlogit_z[all] = epoch 순위(3 fold 모두)"는 정확하지 않다. can_seed2에서 epoch 140과 160이 뒤바뀐다. 둘 다 HB=1.0이라 ρ는 같다.
-     - late93 학습 모델 범위 "0.05–0.17"의 실제 값은 0.042–0.174다(unitweight는 0.025–0.145).
+- **What is confirmed.** The core negative result holds, and in fact becomes stronger. Neither the learned combinations nor the VLM K=10 features are distinguishable from epoch in this pool.
+  - Rerunning the original script gave bit-identical results. We compared 16,985 numbers in `z2_loro_hybrid.json` and the max abs diff is 0. The input sha256 values are also the same.
+  - An independent implementation that does not import z2 code (log parser, expected Spearman, ridge, pairwise-logit solved with backtracking Newton, nested λ, unitweight, select) reproduced the per-held-out-run ρ exactly. All 36 all93 methods, 53 eval33 methods and 36 late93 methods differ by 0, and swap is also the same.
+  - We found no leakage. The fit and inner CV use only HA of the training runs. HB of the held-out run is used only for scoring.
+  - **Newly confirmed.** Over 400 random 25/25 seed splits, the number of methods with a positive mean Δ over epoch is 0 in all three pools.
+- **What is refuted or weakened.**
+  1. **The headline +0.009 is the value of one lucky split.** The +0.009 of pairlogit_rank[all] is the 98th percentile of the distribution over 400 random splits. The split-mean Δ is −0.016, and P(Δ>0) is 0.09. ridge_rank[all] is also at the 97th percentile (mean −0.018). RA(epoch, L1) is at the 95th percentile (mean −0.012). The original HB half is also favorable to epoch (epoch ρ is at the 88th percentile).
+  2. **The plateau Action L1 "+0.064, 3/3 runs" is split luck.** Over random splits this value is at the 95th percentile, the mean Δ is −0.025, and P(Δ>0) is 0.32. Using all 50 episodes as the target, Δ is −0.044 [−0.136, +0.056], and it wins in only 1 of the 3 runs. Moreover, the targets of the late can runs are nearly degenerate. 10 of 11 checkpoints in can_seed2 and 17 of 21 in can_seed1 have HB=1.0.
+  3. **"Every +vlm model is equal to or lower than its pair without VLM" is wrong.** In 3 of 8 pairs, +vlm is higher: pairlogit_rank[all] +0.015, ridge_rank[small] +0.010, unitweight[small] +0.004, and 1 pair is equal. "+vlm models 0.815–0.833" is also wrong; the actual range is 0.793–0.833. The conclusion (does not beat epoch) still holds.
+  4. **The bootstrap CIs of absolute ρ are not valid CIs.** In the block bootstrap, for 26 of 36 methods the point estimate lies outside its own 95% CI. Epoch is 0.825, yet its CI is [0.370, 0.816]. Even in the episode-only bootstrap, 20/36 lie outside (epoch [0.637, 0.824]). The −0.4 left tail of the learned models is caused by the resampling design (Section 5).
+  5. **The power arithmetic is optimistic.** "8–17 runs" corresponds roughly to the number for 50% power (9–18). Getting 80% power at two-sided α=0.05 requires 17–34 runs. But because the split-mean Δ is negative, this calculation itself is meaningless.
+  6. There are a few small overstatements.
+     - The "run-level 95% CI" is the [min, max] of 3 folds. Its probability of covering the population median is only 75%.
+     - "pairlogit_z[all] = epoch ranking (all 3 folds)" is not exact. In can_seed2, epochs 140 and 160 are swapped. Both have HB=1.0, so ρ is the same.
+     - The late93 learned-model range "0.05–0.17" is actually 0.042–0.174 (unitweight is 0.025–0.145).
 
-## 0. 사용자 질문에 대한 확인: "네모트론이나 코스모스 아웃풋 저장해놓은 거 있어?"
+## 0. Check of the user's question: "Do we have the Nemotron or Cosmos outputs saved anywhere?"
 
-z2가 답한 내용을 직접 확인했고 맞다.
+We checked z2's answer directly, and it is correct.
 
-- 위치: `data/outputs/hackathon_cosmos/`
-  - `eval_local_v6.jsonl`: Cosmos3-Edge, 마지막 프레임, 330행
-  - `eval_local_v7.jsonl`: Cosmos3-Edge, 8 keyframe, 330행
-  - `eval_nebius_v2.jsonl`: Nemotron(Nebius), 전체 영상, 330행
-  - `eval_nebius_v2_pad201.jsonl`: Nemotron, 길이 중립 클립, 330행
-- 이 밖에 `dev_prompt_selection.jsonl`, `dev_nebius_v2_pad201.jsonl`, `dev_infra_failures.jsonl`, 그리고 라벨 갱신 전 사본인 `*.orig.jsonl`(150/152/150/330행)이 있다.
-- 각 행에는 다음 필드가 있다: `raw_text`, `cosmos_task_success`, `cosmos_failure_type`, `cosmos_explanation`, `latency_s`, `model_id`/`model_revision`, `request_id`, `truth_*`.
-- `results/hackathon/raw_model_outputs/`에 사본 7개와 README가 있다. sha256이 원본과 모두 같다.
-- Nebius 호출 로그는 `results/hackathon/nebius_calls.jsonl`(772행)과 `results/hackathon/explore/nebius_calls_explore.jsonl`(2380행)이다.
-- Cosmos 모드 탐색 출력은 `results/hackathon/explore/x5_cosmos_modes_episodes.jsonl`(297행)이다.
+- Location: `data/outputs/hackathon_cosmos/`
+  - `eval_local_v6.jsonl`: Cosmos3-Edge, last frame, 330 rows
+  - `eval_local_v7.jsonl`: Cosmos3-Edge, 8 keyframes, 330 rows
+  - `eval_nebius_v2.jsonl`: Nemotron (Nebius), full video, 330 rows
+  - `eval_nebius_v2_pad201.jsonl`: Nemotron, length-neutral clip, 330 rows
+- Besides these there are `dev_prompt_selection.jsonl`, `dev_nebius_v2_pad201.jsonl`, `dev_infra_failures.jsonl`, and the pre-label-refresh copies `*.orig.jsonl` (150/152/150/330 rows).
+- Each row has the following fields: `raw_text`, `cosmos_task_success`, `cosmos_failure_type`, `cosmos_explanation`, `latency_s`, `model_id`/`model_revision`, `request_id`, `truth_*`.
+- `results/hackathon/raw_model_outputs/` holds 7 copies and a README. All sha256 values match the originals.
+- The Nebius call logs are `results/hackathon/nebius_calls.jsonl` (772 rows) and `results/hackathon/explore/nebius_calls_explore.jsonl` (2380 rows).
+- The Cosmos mode-exploration output is `results/hackathon/explore/x5_cosmos_modes_episodes.jsonl` (297 rows).
 
-## 1. 방법 (CPU만 사용, GPU와 Nebius 호출 없음)
+## 1. Method (CPU only, no GPU or Nebius calls)
 
-| ID | 무엇을 | 스크립트 / 출력 |
+| ID | What | Script / output |
 |---|---|---|
-| R | 원 명령을 그대로 재실행(`--n-boot 1000`)하고 JSON 전체를 수치 비교 | `data/outputs/hackathon_explore/z2_loro_hybrid_verify/rerun_main.json` |
-| V1 | 독립 재구현으로 고정 HA/HB 분할과 swap의 점추정치를 구해 z2와 비교 | `scripts/hackathon/explore/z2_loro_hybrid_verify.py` |
-| V2 | 50개 seed를 무작위로 25/25 분할(400회)하고, 분할마다 중첩 λ를 포함한 LORO 전체를 다시 fit | 같은 스크립트, `V2_random_splits` |
-| V3 | LORO-50: 훈련 run은 50 에피소드로 fit하고, held-out run은 자기 50 에피소드로 채점. held-out 결과는 fit에 쓰지 않는다 | `V1_V3_point.*.loro50_*` |
-| V4 | fit이 없는 점수를 50 에피소드 타깃에 대고, seed 군집 bootstrap(2000회)으로 Δ CI를 계산. refit이 없어 percentile CI를 쓸 수 있다 | `V4_free_scores_full50` |
-| V5 | z2 JSON에서 bootstrap 편향을 진단하고, moving-block 끝점 효과를 측정. z2의 블록 bootstrap을 같은 RNG로 400회 다시 돌려 fold별 원인을 분해 | `V5_bootstrap_bias`, `z2_loro_hybrid_verify_blocktail.py` → `z2_loro_hybrid_verification_blocktail.json` |
-| V6 | 주장과 산술 점검: 범위, +vlm 짝 비교, 검정력 | `V6_claims` |
+| R | Rerun the original command as is (`--n-boot 1000`) and compare the whole JSON numerically | `data/outputs/hackathon_explore/z2_loro_hybrid_verify/rerun_main.json` |
+| V1 | Compute point estimates for the fixed HA/HB split and the swap with an independent reimplementation, and compare with z2 | `scripts/hackathon/explore/z2_loro_hybrid_verify.py` |
+| V2 | Split the 50 seeds randomly 25/25 (400 times), and refit the whole LORO, including nested λ, for each split | same script, `V2_random_splits` |
+| V3 | LORO-50: fit training runs on 50 episodes, and score the held-out run on its own 50 episodes. Held-out results are not used in the fit | `V1_V3_point.*.loro50_*` |
+| V4 | Apply fit-free scores to the 50-episode target and compute Δ CIs with a seed-cluster bootstrap (2000 times). With no refit, percentile CIs can be used | `V4_free_scores_full50` |
+| V5 | Diagnose bootstrap bias from the z2 JSON and measure the moving-block endpoint effect. Rerun z2's block bootstrap 400 times with the same RNG and decompose the causes per fold | `V5_bootstrap_bias`, `z2_loro_hybrid_verify_blocktail.py` → `z2_loro_hybrid_verification_blocktail.json` |
+| V6 | Check claims and arithmetic: ranges, +vlm pair comparisons, power | `V6_claims` |
 
 ```
 cd /path/to/repo
@@ -53,23 +53,23 @@ PYTHONNOUSERSITE=1 ~/.venvs/cosmos-plv/bin/python -W ignore scripts/hackathon/ex
 PYTHONNOUSERSITE=1 ~/.venvs/cosmos-plv/bin/python -W ignore scripts/hackathon/explore/z2_loro_hybrid_verify_blocktail.py                              # exit 0, 62 s
 ```
 
-첫 verify 실행(400 분할)은 exit 0으로 끝났다. 하지만 late93의 V2/V4 요약이 NaN이었다. 일부 분할에서 can_seed2 late 타깃이 상수가 되어 ρ가 정의되지 않았기 때문이다. 정의된 run에 대해서만 평균하도록 고친 뒤 위 명령으로 다시 생성했다. all93와 eval33 수치는 바뀌지 않았다.
+The first verify run (400 splits) finished with exit 0. But the late93 V2/V4 summaries were NaN. In some splits the can_seed2 late target became constant, so ρ was undefined. We fixed this to average only over runs where ρ is defined, and regenerated the outputs with the commands above. The all93 and eval33 numbers did not change.
 
-## 2. 재현 (R, V1)
+## 2. Reproduction (R, V1)
 
-- 재실행 JSON과 원본 JSON은 숫자 16,985개가 모두 같다(max abs diff 0). 입력 sha256도 같다.
-- 독립 구현과 비교하면 held-out run별 ρ의 차이가 0인 method는 all93 36/36, eval33 53/53, late93 36/36이다. swap 평균 차이도 0이다.
-- select_best_on_train의 선택도 z2 보고와 같다.
+- The rerun JSON and the original JSON agree on all 16,985 numbers (max abs diff 0). The input sha256 values are also the same.
+- Compared with the independent implementation, the methods whose per-held-out-run ρ differs by 0 are all93 36/36, eval33 53/53, late93 36/36. The swap mean difference is also 0.
+- The selections of select_best_on_train also match the z2 report.
   - all93: RA(epoch,replan), RA(epoch,TF-MSE), RA(epoch,TF-MSE)
   - eval33: RA(epoch,dyn), plv1, RA(epoch,dyn)
   - late93: RA(epoch,replan), TF-MSE, epoch
-- 보고서 표의 수치(Δ, run CI, block CI, P(Δ>0), swap)를 JSON과 대조했다. 5.1, 5.2, 5.3절 모두 일치한다. 예외는 아래 4절의 범위 표현이다.
+- We checked the numbers in the report tables (Δ, run CI, block CI, P(Δ>0), swap) against the JSON. Sections 5.1, 5.2 and 5.3 all match. The exception is the range statements in Section 4 below.
 
-## 3. 핵심: 고정 분할 하나 대신 무작위 분할 400개 (V2)
+## 3. Key point: 400 random splits instead of one fixed split (V2)
 
-held-out ρ(HB 대신 무작위 25 에피소드)의 run 평균 Δ를 epoch과 비교했다. "원 분할 pct"는 z2가 쓴 분할의 Δ가 400개 분포에서 차지하는 백분위수다.
+We compared the run-mean Δ of held-out ρ (25 random episodes instead of HB) against epoch. "Original split pct" is the percentile that the Δ of the split z2 used occupies in the distribution of 400.
 
-| pool | method | z2 원 분할 Δ | 원 분할 pct | 분할 평균 Δ | 중앙값 Δ | P(Δ>0) | 2.5–97.5% |
+| pool | method | z2 original split Δ | original split pct | split-mean Δ | median Δ | P(Δ>0) | 2.5–97.5% |
 |---|---|---|---|---|---|---|---|
 | all93 | pairlogit_rank[all] | +0.009 | 0.98 | −0.016 | −0.012 | 0.09 | [−0.060, +0.006] |
 | all93 | ridge_rank[all] | +0.008 | 0.97 | −0.018 | −0.011 | 0.12 | [−0.075, +0.009] |
@@ -85,24 +85,24 @@ held-out ρ(HB 대신 무작위 25 에피소드)의 run 평균 Δ를 epoch과 �
 | late93 | RA(epoch, L1) | +0.064 | 0.97 | −0.010 | −0.011 | 0.35 | [−0.083, +0.064] |
 | late93 | ridge_rank[small] | −0.193 | 0.22 | −0.106 | −0.020 | 0.36 | [−0.745, +0.160] |
 
-- 평균 Δ가 0보다 큰 method 수는 all93 0/12, eval33 0/24, late93 0/12다. 가장 좋은 것은 train_loss(epoch과 사실상 같은 순서, −0.0004)다.
-- "small 모델이 3/3 run 모두 승리"는 분할 400개 중 4–8%에서만 다시 나온다.
-- late93에서는 13개 분할에서 run 하나의 타깃이 상수였다. 그 분할에서는 정의된 run만 평균했다.
-- **해석.** z2의 "구별되지 않는다"는 맞다. 다만 고정 분할은 학습 조합에 유리한 쪽 꼬리였다. 분할을 평균하면 학습 조합은 epoch보다 약간(−0.004 ~ −0.018) 낮다.
+- The number of methods with mean Δ above 0 is all93 0/12, eval33 0/24, late93 0/12. The best is train_loss (effectively the same ordering as epoch, −0.0004).
+- "The small models win in all 3/3 runs" recurs in only 4–8% of the 400 splits.
+- In late93, one run's target was constant in 13 splits. In those splits we averaged only over the runs where ρ is defined.
+- **Interpretation.** z2's "not distinguishable" is correct. But the fixed split was in the tail favorable to the learned combinations. Averaged over splits, the learned combinations are slightly (−0.004 to −0.018) below epoch.
 
-## 4. 50 에피소드 타깃 (V3, V4)
+## 4. 50-episode target (V3, V4)
 
-**V3: LORO-50.** 훈련 run 50 에피소드로 fit하고 held-out run 50 에피소드로 채점했다.
+**V3: LORO-50.** Fit on the 50 episodes of the training runs and scored on the 50 episodes of the held-out run.
 
-| pool | epoch | 최고 non-epoch | pairlogit_rank[all] | ridge_rank[all] | RA(epoch, L1) | L1 |
+| pool | epoch | best non-epoch | pairlogit_rank[all] | ridge_rank[all] | RA(epoch, L1) | L1 |
 |---|---|---|---|---|---|---|
 | all93 | 0.815 | pairlogit_z[small] +0.003 | −0.023 | −0.022 | −0.015 | −0.043 |
-| eval33 | 0.854 | epoch을 넘는 것 없음. pairlogit_z[all+vlm] −0.015, ridge_rank[all+vlm] −0.011, RA(epoch,Nemotron) −0.032 | — | — | — | — |
+| eval33 | 0.854 | nothing beats epoch. pairlogit_z[all+vlm] −0.015, ridge_rank[all+vlm] −0.011, RA(epoch,Nemotron) −0.032 | — | — | — | — |
 | late93 | 0.333 | unitweight[small] +0.010 | −0.182 | −0.227 | −0.015 | −0.044 |
 
-**V4: fit 없는 점수, 50 에피소드 타깃, seed bootstrap 95% CI.**
+**V4: fit-free scores, 50-episode target, seed-bootstrap 95% CI.**
 
-| pool | score | Δ vs epoch | run별 Δ | 95% CI | P(Δ>0) |
+| pool | score | Δ vs epoch | per-run Δ | 95% CI | P(Δ>0) |
 |---|---|---|---|---|---|
 | all93 | RA(epoch, L1) | −0.015 | −0.002 / −0.014 / −0.030 | [−0.033, +0.010] | 0.14 |
 | eval33 | RA(epoch, L1) | −0.052 | −0.043 / −0.042 / −0.071 | [−0.077, −0.011] | 0.01 |
@@ -110,79 +110,79 @@ held-out ρ(HB 대신 무작위 25 에피소드)의 run 평균 Δ를 epoch과 �
 | late93 | Action L1 | −0.044 | +0.050 / −0.095 / −0.087 | [−0.136, +0.056] | 0.27 |
 | late93 | RA(epoch, L1) | −0.015 | +0.054 / −0.082 / −0.016 | [−0.079, +0.042] | 0.33 |
 
-**late93 타깃의 퇴화.** late can run에서 HB 값은 서로 다른 값이 2개뿐이다. can_seed2는 11개 중 10개, can_seed1은 21개 중 17개가 1.0이다. 그래서 plateau Spearman은 can run에서 1–4개 체크포인트가 결정한다. z2는 이 사실을 보고하지 않았다. 50 에피소드 타깃에서는 "3/3 승리"가 "1/3 승리"로 바뀐다.
+**Degeneracy of the late93 target.** In the late can runs, HB takes only 2 distinct values. 10 of 11 in can_seed2 and 17 of 21 in can_seed1 are 1.0. So the plateau Spearman in the can runs is decided by 1–4 checkpoints. z2 did not report this. With the 50-episode target, "3/3 wins" becomes "1/3 wins".
 
-## 5. bootstrap 진단 (V5)
+## 5. Bootstrap diagnostics (V5)
 
-**절대 ρ CI는 편향되어 있다.**
-- 블록 bootstrap(all93): 점추정치가 자기 95% CI 밖에 있는 method가 26/36이다.
+**The absolute-ρ CIs are biased.**
+- Block bootstrap (all93): for 26/36 methods the point estimate lies outside its own 95% CI.
   - epoch: 0.825, CI [0.370, 0.816]
   - pairlogit_rank[all]: 0.834, CI [0.095, 0.785]
-- 에피소드-only bootstrap(all93): 20/36이 CI 밖이다. epoch은 [0.637, 0.824]다. 복원추출한 타깃이 Spearman을 깎기 때문이다.
-- 따라서 `z2_loro_hybrid_tables.txt`의 "held-out rho [CI]" 열은 CI로 읽으면 안 된다.
+- Episode-only bootstrap (all93): 20/36 lie outside the CI. Epoch is [0.637, 0.824]. This is because the target resampled with replacement lowers the Spearman.
+- So the "held-out rho [CI]" column of `z2_loro_hybrid_tables.txt` must not be read as a CI.
 
-**블록 bootstrap의 −0.4 꼬리는 설계에서 나온다.**
-- 비순환 moving block은 끝점을 덜 뽑는다. can_seed1에서 첫 체크포인트의 기대 복사 수는 0.18이고, 가운데 체크포인트는 1.21이다. can_seed2는 0.34 대 1.17, square는 0.28 대 1.11이다.
-- z2 블록 bootstrap을 같은 RNG로 400회 다시 돌렸다(fold 1,200개).
-  - 56%의 fold에서 훈련 run 중 하나가 처음 10% epoch을 통째로 잃는다.
-  - 그런 fold에서 학습 모델의 평균 Δ는 −0.089 ~ −0.099다(Δ<−0.1 비율 21–27%).
-  - 두 훈련 run이 모두 초반 체크포인트를 가진 fold에서는 −0.013 ~ −0.037이다(Δ<−0.1 비율 7–17%).
-  - fit이 없는 RA(epoch, L1)는 두 경우 모두 +0.005로 영향을 받지 않는다.
-- 즉 z2가 limitation에 적은 추측(초반 학습곡선이 빠진 훈련 run)이 맞다. 그 꼬리는 학습 모델의 성질이라기보다 재표본 설계의 산물이다.
-- 그래도 결론은 바뀌지 않는다. 중복과 블록이 없는 무작위 분할(V2)에서도 P(Δ>0)는 0.09–0.47이다.
+**The −0.4 tail of the block bootstrap comes from the design.**
+- A non-circular moving block under-samples the endpoints. In can_seed1 the expected number of copies of the first checkpoint is 0.18, versus 1.21 for a middle checkpoint. can_seed2 is 0.34 vs 1.17, and square is 0.28 vs 1.11.
+- We reran z2's block bootstrap 400 times with the same RNG (1,200 folds).
+  - In 56% of folds, one of the training runs loses its first 10% of epochs entirely.
+  - In those folds the mean Δ of the learned models is −0.089 to −0.099 (share with Δ<−0.1: 21–27%).
+  - In folds where both training runs keep their early checkpoints, it is −0.013 to −0.037 (share with Δ<−0.1: 7–17%).
+  - The fit-free RA(epoch, L1) is unaffected, at +0.005 in both cases.
+- So the guess z2 wrote in its limitations (a training run missing the early learning curve) is correct. That tail is more an artifact of the resampling design than a property of the learned models.
+- Still, the conclusion does not change. Even in random splits with no duplication and no blocks (V2), P(Δ>0) is 0.09–0.47.
 
-**Δ CI의 위치.** 블록 bootstrap에서 학습 모델의 Δ 중앙값은 점추정치보다 낮다(pairlogit_rank[all]: 점 +0.009, 중앙값 −0.033). 그런데 V2의 분할 평균(−0.016)은 bootstrap 중앙값 쪽에 더 가깝다. 이 bootstrap의 위치 편향은 대체로 "원 분할이 운이 좋았다"는 사실을 반영한다.
+**Location of the Δ CI.** In the block bootstrap, the median Δ of the learned models is lower than the point estimate (pairlogit_rank[all]: point +0.009, median −0.033). Yet the V2 split mean (−0.016) is closer to the bootstrap median. This location bias of the bootstrap largely reflects the fact that "the original split was lucky".
 
-## 6. 주장과 산술 점검 (V6)
+## 6. Claim and arithmetic checks (V6)
 
-| z2 주장 | 확인 결과 |
+| z2 claim | Check result |
 |---|---|
-| all93 epoch 0.825 (0.853/0.838/0.784), Regret@30 = top-1 = 0 | 맞음. 다만 can run은 41개 중 21개, 21개 중 12개가 HB 최대값(1.0)에 동률이라 사실상 자명하다. 정보가 있는 run은 square(31개 중 5개)뿐이다 |
-| 최고 학습 조합 0.834 (+0.009), run CI [−0.005, +0.030], block [−0.41, +0.06], P 0.24 | 수치는 맞음. 원 분할이 98번째 백분위수이고, 분할 평균은 −0.016 |
-| swap 시 모든 학습 모델 0.669–0.686 < epoch 0.690 | 맞음. 단, fit 없는 RA(epoch, replan)는 swap에서 0.697로 epoch보다 높다 |
-| eval33 "+vlm 모델 0.815–0.833, VLM 없는 짝과 같거나 낮음" | **틀림.** 범위는 0.793–0.833이고, 8쌍 중 3쌍은 +vlm이 더 높다 |
-| eval33 pairlogit_z[all] = epoch 순위 | ρ는 같다. 순서는 can_seed2에서 140/160이 뒤바뀐다(동률 타깃) |
-| late93 L1 0.431, Δ +0.064, 3/3 | 수치는 맞음. 분할 95번째 백분위수이고, 50 에피소드 타깃에서는 −0.044, 1/3 |
-| late93 학습 모델 0.05–0.17 | 0.042–0.174 (unitweight 0.025–0.145) |
-| 고정 λ cosine 0.96–0.99, val_loss·support_drift 부호 불안정(0.34–0.84), λ가 그리드 양 끝을 오감 | 맞음 |
-| 3/3 단측 부호검정 p = 0.125 | 맞음 |
-| "run-level 95% CI" | 3개 fold의 [min, max]다. 모집단 중앙값을 덮을 확률은 0.75다. 95%라는 이름은 과장이다 |
-| 필요 run 수 "8–17" | fold Δ 3개(sd 추정 자체가 매우 불안정)로 계산하면 검정력 50%에 9–18, 80%에 17–34 run이 필요하다(pairlogit_rank/ridge_rank[all]). 분할 평균 Δ가 음수라서 의미가 없다 |
+| all93 epoch 0.825 (0.853/0.838/0.784), Regret@30 = top-1 = 0 | Correct. But in the can runs 21 of 41 and 12 of 21 are tied at the HB maximum (1.0), so it is effectively trivial. The only informative run is square (5 of 31) |
+| best learned combination 0.834 (+0.009), run CI [−0.005, +0.030], block [−0.41, +0.06], P 0.24 | Numbers correct. The original split is at the 98th percentile, and the split mean is −0.016 |
+| under swap all learned models 0.669–0.686 < epoch 0.690 | Correct. However, the fit-free RA(epoch, replan) is 0.697 under swap, higher than epoch |
+| eval33 "+vlm models 0.815–0.833, equal to or lower than their pairs without VLM" | **Wrong.** The range is 0.793–0.833, and in 3 of 8 pairs +vlm is higher |
+| eval33 pairlogit_z[all] = epoch ranking | ρ is the same. The ordering has 140/160 swapped in can_seed2 (tied targets) |
+| late93 L1 0.431, Δ +0.064, 3/3 | Numbers correct. 95th percentile over splits, and −0.044, 1/3 with the 50-episode target |
+| late93 learned models 0.05–0.17 | 0.042–0.174 (unitweight 0.025–0.145) |
+| fixed λ cosine 0.96–0.99, val_loss·support_drift sign unstable (0.34–0.84), λ moves between both ends of the grid | Correct |
+| 3/3 one-sided sign test p = 0.125 | Correct |
+| "run-level 95% CI" | It is the [min, max] of 3 folds. Its probability of covering the population median is 0.75. Calling it 95% is an overstatement |
+| required number of runs "8–17" | Computed from 3 fold Δs (the sd estimate itself is very unstable), 50% power needs 9–18 runs and 80% needs 17–34 (pairlogit_rank/ridge_rank[all]). Meaningless because the split-mean Δ is negative |
 
-## 7. 점검 항목별 정리
+## 7. Summary by check item
 
-- **누출.** 없다.
-  - fit, inner λ, unitweight 부호, select는 모두 `yA[tr]`만 쓴다. 채점은 `yB[te]`로 한다.
-  - within-run 정규화는 결과를 쓰지 않는다(transductive라는 점은 z2가 밝혔다).
-  - 사소한 점이 하나 있다. eval33 select_best 후보에 특권 정보인 `k10_sim`과 `RA(epoch,k10_sim)`이 들어 있다. eval seed 200000+의 실제 결과라서 HB 누출은 아니다. 또 어느 fold에서도 선택되지 않아 수치에는 영향이 없다.
-- **held-out 처리.** 올바르다. 훈련 run 2개로 하는 inner LORO도 HA만 쓴다.
-- **군집과 독립성.** 결과 단위는 run이고 run은 3개뿐이다. 이 점을 z2는 정직하게 밝혔다. 같은 env seed가 체크포인트끼리, run끼리 공유되므로 seed를 같이 재표본한 것은 맞다. 그런데 블록 bootstrap에는 위의 끝점 편향이 있다.
-- **다중비교.** 풀마다 36–53개 점수를 보고 최고치를 강조했다. 결론이 영가설 쪽이라 해는 작다. 다만 late93의 L1처럼 "35개 중 최고 + 3/3"인 경우가 선택 효과 그 자체라는 것이 V2와 V4로 확인됐다.
-- **judge 타당성.**
-  - VLM K=10 특징은 eval seed에서 나온 독립 결과 측정치다. Cosmos는 FP 21/67, Nemotron은 FP 9/67이다.
-  - 무작위 분할(V2)에서도, 50 에피소드 타깃(V3·V4)에서도 이득이 없다. "VLM 특징이 epoch을 넘지 못함"은 견고하다.
-  - "짝보다 항상 낮다"는 표현만 틀렸다.
-- **수치보다 강한 주장.** 위 1–6번(반박 목록)에 정리했다.
+- **Leakage.** None.
+  - The fit, inner λ, unitweight signs and select all use only `yA[tr]`. Scoring uses `yB[te]`.
+  - Within-run normalization does not use outcomes (z2 disclosed that it is transductive).
+  - There is one minor point. The eval33 select_best candidates include the privileged `k10_sim` and `RA(epoch,k10_sim)`. These are actual outcomes on eval seeds 200000+, so they are not HB leakage. They are also never selected in any fold, so the numbers are unaffected.
+- **Held-out handling.** Correct. The inner LORO over the 2 training runs also uses only HA.
+- **Clustering and independence.** The outcome unit is the run, and there are only 3 runs. z2 disclosed this honestly. The same env seeds are shared across checkpoints and across runs, so resampling seeds jointly is correct. But the block bootstrap has the endpoint bias described above.
+- **Multiple comparisons.** Each pool reports 36–53 scores and highlights the best. Since the conclusion is on the null side, the harm is small. However, V2 and V4 confirmed that cases like late93 L1, "best of 35 + 3/3", are the selection effect itself.
+- **Judge validity.**
+  - The VLM K=10 features are independent outcome measurements from eval seeds. Cosmos has FP 21/67 and Nemotron FP 9/67.
+  - There is no gain either in random splits (V2) or with the 50-episode target (V3·V4). "VLM features do not beat epoch" is robust.
+  - Only the wording "always lower than its pair" is wrong.
+- **Claims stronger than the numbers.** Listed in items 1–6 above (the refutation list).
 
-## 정정 헤드라인
+## Corrected headline
 
-학습 조합도, VLM K=10 특징도 이 풀에서 epoch을 넘지 못한다. 재현은 bit 단위로 같았고, 독립 구현으로도 확인했다. z2의 최고값 +0.009(pairlogit_rank[all], held-out ρ 0.834 vs 0.825)는 z2가 고른 HA/HB 분할에서만 나온 값이다. 그 분할은 무작위 25/25 분할 400개의 98번째 백분위수에 해당한다. 분할을 평균하면 모든 학습 조합이 epoch보다 약간 낮다(pairlogit_rank[all] Δ −0.016, P(Δ>0) = 0.09; small 모델 −0.004 ~ −0.005). 50 에피소드 전체로 LORO를 하면 최고치는 +0.003이다. plateau에서 Action L1이 보인 +0.064(3/3)도 분할 운이다. 50 에피소드 타깃에서는 −0.044(1/3)이다. eval33의 +vlm 모델은 0.793–0.833으로 epoch(0.852) 아래다. 다만 VLM 없는 짝보다 항상 낮은 것은 아니다(8쌍 중 3쌍은 더 높다). 절대 ρ의 bootstrap CI는 점추정치를 담지 못하므로 쓰면 안 된다. 블록 bootstrap의 −0.4 꼬리는 moving-block의 끝점 under-sampling에서 나온 산물이다.
+Neither the learned combinations nor the VLM K=10 features beat epoch in this pool. The reproduction was bit-identical and was also confirmed with an independent implementation. z2's best value +0.009 (pairlogit_rank[all], held-out ρ 0.834 vs 0.825) appears only on the HA/HB split z2 chose. That split corresponds to the 98th percentile of 400 random 25/25 splits. Averaged over splits, every learned combination is slightly below epoch (pairlogit_rank[all] Δ −0.016, P(Δ>0) = 0.09; small models −0.004 to −0.005). With LORO over all 50 episodes, the best value is +0.003. The +0.064 (3/3) of Action L1 on the plateau is also split luck. With the 50-episode target it is −0.044 (1/3). The eval33 +vlm models are at 0.793–0.833, below epoch (0.852). But they are not always below their pairs without VLM (in 3 of 8 pairs they are higher). The bootstrap CIs of absolute ρ do not contain the point estimates and must not be used. The −0.4 tail of the block bootstrap is an artifact of moving-block endpoint under-sampling.
 
-## 남은 위험 (열린 상태)
+## Remaining risks (open)
 
-- run 3개, task 2개다. 모든 run-level 추론은 원리적으로 검정력이 없다.
-- 훈련이 짧고 거의 단조롭다. plateau 타깃은 거의 퇴화되어 있다(can late HB 값이 2종류뿐이다).
-- 고정 HA/HB 분할은 y1 검증에서도 유리한 쪽으로 치우쳐 있었다. 다른 z/y 결과도 고정 분할 하나에 기대고 있다면 무작위 분할로 다시 확인해야 한다.
+- 3 runs, 2 tasks. All run-level inference has no power in principle.
+- Training is short and nearly monotonic. The plateau target is nearly degenerate (can late HB takes only 2 values).
+- The fixed HA/HB split was also skewed in the favorable direction in the y1 verification. If other z/y results also rely on one fixed split, they should be rechecked with random splits.
 
-## 파일
+## Files
 
-- 스크립트:
+- Scripts:
   - `scripts/hackathon/explore/z2_loro_hybrid_verify.py`
   - `scripts/hackathon/explore/z2_loro_hybrid_verify_blocktail.py`
-- 결과:
+- Results:
   - `results/hackathon/explore/z2_loro_hybrid_verification.json`
   - `results/hackathon/explore/z2_loro_hybrid_verification_blocktail.json`
-- 재실행 사본과 로그: `data/outputs/hackathon_explore/z2_loro_hybrid_verify/`
+- Rerun copies and logs: `data/outputs/hackathon_explore/z2_loro_hybrid_verify/`
   - `rerun_main.json`
   - `rerun_main.log`
   - `verify_run2.log`

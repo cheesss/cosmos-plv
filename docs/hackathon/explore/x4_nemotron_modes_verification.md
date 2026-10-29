@@ -2,12 +2,12 @@
 
 **Status: PARTIALLY CONFIRMED. EXPLORATORY / POST-HOC.** This note checks the x4 report (`docs/hackathon/explore/x4_nemotron_modes.md`). Every new number below comes from `results/hackathon/explore/x4_nemotron_modes_verification.json`, which `scripts/hackathon/explore/x4_nemotron_modes_verify.py` produces. I changed none of x4's files.
 
-> 요약 (KO): x4의 수치는 저장된 원시 응답에서 다시 파싱해 독립 코드로 계산해도 **전부 그대로 재현됩니다** (파싱/정답 불일치 0건). 주요 음성 결론, 즉 "어떤 변형도 실패 유형 정확도를 유의하게 올리지 못함"도 유지됩니다. 다만 다음 다섯 가지는 고쳐야 합니다.
-> (1) **클립 길이 누출.** 성공 에피소드는 성공 16스텝 뒤에 끝나고 실패는 항상 201프레임입니다. 그래서 "길이 < 201프레임이면 성공"이라는 무비용 규칙이 eval 220/220, dev 36/36으로 완벽합니다. 세 프롬프트 모두 길이를 텍스트로 알려 줍니다. VLM의 성공 정확도(0.92–0.95)와 체크포인트 Spearman(0.89)은 이 규칙(1.0)보다 낮습니다. 다만 성공 영상 20개를 20 s로 늘려 넣은 탐침에서는 판정이 0/20 바뀌었습니다. 모델이 길이를 이용한다는 증거는 없습니다.
-> (2) **"잘못된 칸 5/5 vs 1/5"는 eval 정답을 보고 설계한 결과입니다.** 5건 중 4건이 x4 이전의 eval 오류 분석(experiment2_error_analysis.json)에 이미 있었고, 칸 어휘는 그 분석에서 나왔습니다. 그 분석에 없던 사례는 eval 1건과 dev 2건뿐이고 결과는 3/3 vs 0/3입니다.
-> (3) **검증 중에 정답 라벨이 바뀌었습니다** (커밋 baa3967, 정착 높이 수정). 현재 공식 라벨로는 A_track8_r2 0.441 vs v2 0.356 (+0.085 [−0.085, 0.254])이고 여전히 유의하지 않습니다. x4의 `score`를 지금 다시 돌리면 v2 행은 새 라벨, 변형 행은 옛 라벨로 섞여 계산됩니다.
-> (4) **합산한 무효 결과 안에 방향이 반대인 효과가 섞여 있습니다.** dropped 재현율은 A·C 모두 8/20, v2는 1/20입니다 (p=0.039, 다중비교 미보정). 반대로 C의 no_grasp 재현율은 10/28로 v2의 20/28보다 낮습니다 (p=0.002). 실패 59건 중 30건이 epoch 0 체크포인트 세 개에서 나옵니다.
-> (5) 정사각 너트 'other' 라벨이 아티팩트라는 지적은 맞습니다. 하지만 "건드리지 않았다/움직이지 않았다"는 과장입니다. 11건 중 6건은 잡히지 않은 채 xy로 5 cm 넘게 밀렸습니다.
+> Summary: x4's numbers **all reproduce unchanged** when the saved raw responses are re-parsed and recomputed with independent code (0 parse/ground-truth mismatches). The main negative conclusion, "no variant significantly raises failure-type accuracy", also holds. However, the following five points need fixing.
+> (1) **Clip-length leak.** Successful episodes end 16 steps after success, while failures are always 201 frames. So the zero-cost rule "success if length < 201 frames" is perfect: eval 220/220, dev 36/36. All three prompts state the length in text. The VLMs' success accuracy (0.92–0.95) and checkpoint Spearman (0.89) are below this rule (1.0). But in a probe where 20 success videos were padded to 20 s, 0/20 judgments changed. There is no evidence that the model uses the length.
+> (2) **"Wrong compartment 5/5 vs 1/5" was designed after seeing the eval ground truth.** 4 of the 5 cases were already in the pre-x4 eval error analysis (experiment2_error_analysis.json), and the compartment vocabulary came from that analysis. The only cases not in that analysis are 1 eval and 2 dev cases, and the result there is 3/3 vs 0/3.
+> (3) **The ground-truth labels changed during verification** (commit baa3967, settled-height fix). With the current official labels it is A_track8_r2 0.441 vs v2 0.356 (+0.085 [−0.085, 0.254]), still not significant. If x4's `score` is rerun now, the v2 rows are computed with the new labels and the variant rows with the old labels, mixed together.
+> (4) **The pooled null result hides effects in opposite directions.** Dropped recall is 8/20 for both A and C, and 1/20 for v2 (p=0.039, not corrected for multiple comparisons). Conversely, C's no_grasp recall is 10/28, below v2's 20/28 (p=0.002). 30 of the 59 failures come from three epoch 0 checkpoints.
+> (5) The point that the square-nut 'other' labels are an artifact is correct. But "never touched / never moved" is an overstatement. 6 of the 11 cases were pushed more than 5 cm in xy without being grasped.
 
 ## What I checked and how
 

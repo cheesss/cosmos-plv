@@ -83,12 +83,22 @@ def main():
             mark("video_play")
             pg.wait_for_timeout(10500); mark("video_done")
             scroll(600, 4500); mark("keyframes_shown")
+            def finished(spinner, timeout):
+                # wait for the live call's own spinner to come and go; earlier saved results on the page carry the same
+                # header text, so waiting for that text alone fired seconds before the live answer was drawn
+                sp = pg.get_by_text(spinner).first
+                try:
+                    sp.wait_for(state="visible", timeout=15_000)
+                except Exception:
+                    pass
+                sp.wait_for(state="hidden", timeout=timeout)
+
             pg.get_by_role("button", name="▶ Run Cosmos3-Edge now (local GPU)").click(); mark("cosmos_start")
-            pg.get_by_text("Cosmos3-Edge (nvidia/Cosmos3-Edge").wait_for(timeout=600_000); mark("cosmos_done")
-            pg.wait_for_timeout(1500); scroll(400, 4000)
+            finished("loading NVIDIA Cosmos3-Edge", 600_000); mark("cosmos_done")
+            pg.wait_for_timeout(4000); scroll(400, 4000)
             pg.get_by_role("button", name="▶ Ask Nemotron-3.5-Super-VL on Nebius").click(); mark("nebius_start")
-            pg.get_by_text("Nebius Token Factory ·").wait_for(timeout=300_000); mark("nebius_done")
-            pg.wait_for_timeout(1000); scroll(500, 5000)
+            finished("calling Nebius Token Factory", 300_000); mark("nebius_done")
+            pg.wait_for_timeout(1500); scroll(500, 7000)
             pg.mouse.wheel(0, -4000); pg.wait_for_timeout(800)
             tab("④ Results"); mark("results")
             pg.wait_for_timeout(3000); scroll(700, 4500); scroll(700, 4500); scroll(700, 4000); mark("results_done")

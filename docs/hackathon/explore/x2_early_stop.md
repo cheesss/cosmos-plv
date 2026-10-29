@@ -8,7 +8,7 @@
 > 90 Cosmos v7 rows (can only), and 299 Nemotron calls. Rollouts and v7 rows are still arriving.
 > Re-run the analysis with the command at the bottom.
 
-**한 줄 요약 (KR):** 실패가 확실해진 시점에 롤아웃을 끊으면 이론상 로봇 시간의 54%까지 줄일 수 있다. 실제로 held-out 기준으로 얻은 절감은 19–30%였고, 그 대가로 성공 에피소드 4–7%를 잘못 끊었다. Nemotron 고신뢰 실패 판정은 거의 오판 없이(1/121) 20%를 줄였지만, 그중 대부분은 epoch-0 체크포인트에서 나왔다. 시간 컷은 square 최상위 체크포인트의 성공률을 1.0에서 0.5–0.7로 떨어뜨려 top-1 랭킹을 바꿀 수 있다.
+**One-line summary:** Cutting a rollout off once failure is certain could in theory save up to 54% of robot time. The savings actually obtained on held-out data were 19–30%, at the cost of wrongly aborting 4–7% of successful episodes. Nemotron high-confidence failure calls saved 20% with almost no misjudgments (1/121), but most of those savings came from epoch-0 checkpoints. A time cut can drop the success rate of the top square checkpoint from 1.0 to 0.5–0.7 and so change the top-1 ranking.
 
 ## 1. Question
 

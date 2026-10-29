@@ -2,29 +2,29 @@
 
 **Status: PARTIALLY CONFIRMED.** EXPLORATORY / post-hoc, like the work it checks. No GPU runs and no new Nebius calls (0 of the 30 allowed). Every number below comes from `results/hackathon/explore/x3_plv_failure_link_verification.json`, made by `scripts/hackathon/explore/x3_plv_failure_link_verify.py`, or from the explorer's own JSON.
 
-## 요약 (Korean TL;DR)
+## Summary (TL;DR)
 
-- **재현은 완벽합니다.** 분석 스크립트를 다시 돌리면 AUROC, CI, 체크포인트 상관 690+행이 모두 같습니다(max |diff| 0.0). 에피소드 특징 246개도 explorer CSV와 같습니다. 프롬프트 해시 252/252 일치, dev→eval 호출 순서, 파서 fallback, 프레임 정렬(frame k = step 2k)도 모두 확인했습니다. 누설(outcome으로 점수를 만들어 같은 outcome에서 평가)은 없습니다.
-- **헤드라인 1 (no_grasp > dropped, 그리퍼 차원 불일치): 방향은 맞지만 주장보다 약합니다.**
-  - 학습된 can에서 no_grasp 5개는 체크포인트 3개에서 나왔고, 그중 4개가 epoch 20입니다.
-  - 체크포인트 내부 비교 쌍은 11개뿐입니다. within-ckpt AUROC 0.09, permutation p = 0.036, dev exact p = 0.05입니다.
-  - 이 값은 400 step 전체 평균, 즉 실패 *이후* 행동입니다. 처음 80 step에서는 within-ckpt 0.36(p = 0.34), dev 0.37(p = 0.30)로 유의하지 않습니다. 사후 설명 변수이지 조기 경보가 아닙니다.
-- **헤드라인 2 (drop 전조 없음): can에서는 맞고, square는 판단 불가이며, 근거로 든 p = 0.95는 무효입니다.**
-  - 무작위 시점 null의 평균 73%가 drop *이후* 시점이라 검정이 편향돼 있습니다. drop 이전 시점만 쓴 null로 바꾸면 p = 0.009로 뒤집힙니다(대신 위상 교란이 있음).
-  - 위상 일치 대조(같은 체크포인트 성공 에피소드의 '첫 lift 후 같은 지연')로 보면 can은 0.58 [0.42, 0.71]로 전조가 없습니다.
-  - square는 0.78 [0.52, 0.93](체크포인트 4개)로, 원래 보고된 0.24와 방향이 반대입니다.
-  - 불일치는 drop *순간과 직후*에 크게 튑니다(can, 직후 0.96 [0.85, 1.00]). 따라서 "drops leave no trace"는 틀린 표현입니다.
-- **헤드라인 3 (Nemotron drop timer, 1/16 → 7/16): 숫자는 맞지만 drop을 구분하지 못합니다.**
-  - 실패(400 step) 에피소드 안에서만 보면 민감도 9/21, 특이도 3/9로 balanced accuracy 0.38입니다. 우연보다 낮습니다.
-  - 특이도 0.96은 짧은 성공 클립을 성공으로 맞힌 결과입니다(149/150). 프롬프트에 클립 길이도 적혀 있습니다.
-  - "클립이 400 step까지 갔으면 drop"이라는 outcome-free 규칙은 민감도 21/21, 특이도 0.94, PPV 0.70으로 drop timer보다 낫습니다.
-  - 체크포인트 수준에서도 실패율 자체가 sim drop rate를 더 잘 따라갑니다(can ρ 0.99 vs drop timer 0.60).
-  - v2 대비 늘어난 drop 6개에는 오경보 6개가 함께 붙습니다(McNemar 각각 p = 0.031).
-- **체크포인트 수준(R4):** ρ 0.91과 −0.79는 재현됩니다. 하지만 epoch을 통제하면 0.53 [−0.42, 0.89], −0.23 [−0.98, 0.86]이 됩니다. 학습 진행도 이상의 정보는 보이지 않습니다.
-  - dropped share 8개 값 중 5개는 실패 1개로 만든 1.0입니다.
-  - 새 체크포인트 하나(can_s2_e0180)만 더해도 0.91이 0.78로 떨어집니다.
-- **Cosmos v7 '7/12 drop 포착'은 drop에만 나타나는 신호가 아닙니다.** 같은 held→not-held 전환이 학습된 can no_grasp 5/5, can 성공 24/83, square 성공 28/28에서도 나타납니다.
-- **데이터 변경:** 실행 도중(05:15) `refresh_truth.py`와 새 annotator가 square 라벨 17개(eval 12, dev 5)를 바꿨습니다. 검증은 explorer가 쓴 라벨로 했고, 현재 라벨 결과는 별도로 기록했습니다.
+- **Reproduction is perfect.** Rerunning the analysis script gives identical values for all 690+ rows of AUROCs, CIs and checkpoint correlations (max |diff| 0.0). The 246 episode features also match the explorer CSV. I also confirmed prompt hashes (252/252 match), the dev→eval call order, the parser fallback and the frame alignment (frame k = step 2k). There is no leakage (building a score from the outcome and evaluating it on the same outcome).
+- **Headline 1 (no_grasp > dropped, gripper-dimension disagreement): the direction is right, but it is weaker than claimed.**
+  - In trained can, the 5 no_grasp episodes come from 3 checkpoints, and 4 of them are epoch 20.
+  - There are only 11 within-checkpoint comparison pairs. Within-ckpt AUROC 0.09, permutation p = 0.036, dev exact p = 0.05.
+  - This value is the mean over all 400 steps, i.e. behaviour *after* the failure. In the first 80 steps it is not significant: within-ckpt 0.36 (p = 0.34), dev 0.37 (p = 0.30). It is a post-hoc explanatory variable, not an early warning.
+- **Headline 2 (no drop precursor): right for can, undecidable for square, and the p = 0.95 cited as evidence is invalid.**
+  - On average 73% of the random-time null points fall *after* the drop, so the test is biased. Switching to a null that uses only pre-drop time points reverses it to p = 0.009 (at the cost of a phase confound).
+  - With a phase-matched control ('the same delay after the first lift' in successful episodes of the same checkpoint), can is 0.58 [0.42, 0.71], no precursor.
+  - Square is 0.78 [0.52, 0.93] (4 checkpoints), the opposite direction from the originally reported 0.24.
+  - Disagreement spikes strongly *at and right after* the drop (can, right after: 0.96 [0.85, 1.00]). So "drops leave no trace" is a wrong statement.
+- **Headline 3 (Nemotron drop timer, 1/16 → 7/16): the numbers are right, but it does not discriminate drops.**
+  - Within failed (400-step) episodes only, sensitivity is 9/21 and specificity 3/9, a balanced accuracy of 0.38. That is below chance.
+  - The 0.96 specificity comes from calling short success clips successes (149/150). The clip length is also written in the prompt.
+  - The outcome-free rule "drop if the clip ran to 400 steps" has sensitivity 21/21, specificity 0.94 and PPV 0.70, better than the drop timer.
+  - At the checkpoint level too, the failure rate itself tracks the sim drop rate better (can ρ 0.99 vs drop timer 0.60).
+  - The 6 extra drops relative to v2 come with 6 false alarms (McNemar p = 0.031 each).
+- **Checkpoint level (R4):** ρ 0.91 and −0.79 reproduce. But controlling for epoch gives 0.53 [−0.42, 0.89] and −0.23 [−0.98, 0.86]. No information beyond training progress is visible.
+  - 5 of the 8 dropped-share values are a 1.0 made from 1 failure.
+  - Adding just one new checkpoint (can_s2_e0180) drops 0.91 to 0.78.
+- **Cosmos v7's '7/12 drops caught' is not a drop-specific signal.** The same held→not-held transition also appears in 5/5 trained can no_grasp, 24/83 can successes and 28/28 square successes.
+- **Data change:** mid-run (05:15), `refresh_truth.py` and the new annotator changed 17 square labels (eval 12, dev 5). The verification used the labels the explorer used, and the results with the current labels are recorded separately.
 
 ## What was checked and how
 

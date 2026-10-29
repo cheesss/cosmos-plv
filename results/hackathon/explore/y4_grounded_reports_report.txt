@@ -9,14 +9,15 @@ already seen the per-checkpoint simulator outcome counts while checking data cov
 from results/hackathon/explore/y4_grounded_reports.json, except the manual-audit counts in section 5.3, which are
 the author's reading of the listed reports.
 
-KR 요약: Nemotron-3.5-Lightning에 측정된 사실만 담은 fact sheet를 주면 숫자는 거의 지어내지 않았다
-(test에서 시트에 없는 숫자 1/723개). 지배적 실패 유형 필드도 62/62로 맞았다. 하지만 (1) 출처를 섞은 문장
-("Nemotron이 10개 모두 no_grasp로 판정", 실제 9개)과 시트에 없는 파생 개수("다른 체크포인트 3개", 실제 9개)가
-나왔고, (2) 추천 로직이 쓸모없었다. "롤아웃을 더 쓸까?"에 62/62 모두 "no"라고 답했으며, 미리 정한 규칙과의
-일치율 0.516은 규칙의 "no" 비율(32/62)과 같다. (3) 런 단위 선택은 6번 중 4번만 규칙과 일치했고, 한 번은 템플릿
-문자열을 그대로 반환했다. 자동 검증기의 실패 유형 플래그는 대부분 오탐이었다(수동 확인 13개 중 11개).
-결론: 숫자 grounding은 쓸 만하지만 판단(추천)은 LLM에 맡기면 안 된다. 결정은 규칙으로 만들고, LLM은 그 결정을
-fact sheet에 근거해 설명하는 용도로만 쓰는 게 맞다.
+Summary: Given a fact sheet holding only measured facts, Nemotron-3.5-Lightning almost never made up numbers
+(1/723 numbers on test were not on the sheet). The dominant-failure-type field was also right on 62/62. However, (1) it
+produced sentences that mixed sources ("Nemotron judged all 10 as no_grasp", actually 9) and derived counts not on the
+sheet ("3 other checkpoints", actually 9), and (2) its recommendation logic was useless. It answered "no" to "spend more
+rollouts?" on all 62/62, and its agreement of 0.516 with the pre-set rule equals the rule's "no" rate (32/62). (3) The
+run-level choice agreed with the rule only 4 times out of 6, and once it returned the template string verbatim. Most
+of the automatic checker's failure-type flags were false positives (11 of the 13 checked by hand).
+Conclusion: number grounding is usable, but judgment (recommendations) must not be left to the LLM. Make the decisions
+with rules, and use the LLM only to explain those decisions based on the fact sheet.
 
 ## 1. Question
 

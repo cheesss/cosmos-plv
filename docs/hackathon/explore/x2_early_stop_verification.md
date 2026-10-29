@@ -13,12 +13,12 @@ numbers support:
 - one detail about the false failure calls is wrong;
 - the side finding's implied impact on experiment 2 is nil.
 
-**한 줄 요약 (KR):** x2의 숫자는 전부 정확히 재현된다(차이 0건). 누수, 클립 길이 누수, 프레임 정렬 문제는 없었다. 다만 다음 주장들은 데이터보다 강하다.
-- 신뢰구간이 체크포인트 내 상관을 무시해서 실제보다 약 2배 좁다.
-- Cosmos의 +4.5pt 이득은 대부분 epoch-0에서 나온다. epoch-0을 빼면 +1.5pt다.
-- privileged state의 dev→eval +3pt는 CI가 0을 포함한다.
-- 4–7% 오중단과 square top-1 뒤집힘은 작은 피팅 세트 때문이다. 다른 19개 체크포인트로 피팅(LOCO)하면 16–20% 절감, 오중단 2/141, 랭킹 변화 없음이다.
-- square 라벨 오류는 사실이지만, 다시 라벨링해도 Nebius failure-type 정확도는 그대로다.
+**One-line summary:** Every x2 number reproduces exactly (0 differences). There was no leakage, no clip-length leakage and no frame-alignment problem. However, the following claims are stronger than the data.
+- The confidence intervals ignore within-checkpoint correlation, so they are about 2x narrower than they should be.
+- Most of Cosmos's +4.5pt gain comes from epoch-0. Without epoch-0 it is +1.5pt.
+- The CI of the privileged-state dev→eval +3pt includes 0.
+- The 4–7% false aborts and the square top-1 flip come from the small fitting sets. Fitting on the other 19 checkpoints (LOCO) gives 16–20% savings, 2/141 false aborts and no ranking change.
+- The square label error is real, but relabeling leaves the Nebius failure-type accuracy unchanged.
 
 Scope and budget: CPU only. No GPU runs and **0 new Nebius calls** were made. Everything VLM-related was
 re-scored from the saved raw outputs.
