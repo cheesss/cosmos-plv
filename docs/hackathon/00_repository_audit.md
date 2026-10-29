@@ -27,7 +27,7 @@ deduced from reading code, without running it.
 ## 2. Current vs superseded documents
 
 **Current paper:** *"Cheap Metrics First, Replanning Diagnostics Second: Offline Checkpoint Screening for Robot
-Imitation Learning"*, by Hyun Joon Cho and Taehwan Yun (Sungkyunkwan University).
+Imitation Learning"*, by Hyun Joon Cho (Sungkyunkwan University).
 
 **README.md is an older research-workspace description**, last changed 2026-07-14. Its framing ("PLV should rank checkpoints better than validation loss"), its Machine A/B training split, its status text and its document list all predate the paper's final claims. Do not use it as a description of the results.
 

@@ -7,8 +7,8 @@ what was built during the hackathon.
 ## Before the hackathon (not claimed as hackathon work)
 
 * **Research:** "Cheap Metrics First, Replanning Diagnostics Second: Offline
-  Checkpoint Screening for Robot Imitation Learning", by Hyun Joon Cho and Taehwan
-  Yun (Sungkyunkwan University). The evidence was frozen on 2026-08-25: 1,365
+  Checkpoint Screening for Robot Imitation Learning", by Hyun Joon Cho
+  (Sungkyunkwan University). The evidence was frozen on 2026-08-25: 1,365
   checkpoints across 45 runs, 50 simulator rollouts each in the primary cohort.
 * **Code:** a fork of Diffusion Policy (Chi et al., MIT license) with the PLV
   metric scripts under `diffusion_policy/scripts/`: Action L1, open-loop

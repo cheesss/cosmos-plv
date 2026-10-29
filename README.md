@@ -366,5 +366,5 @@ configs/hackathon/     dataset manifest, environment locks
   are downloaded rather than redistributed.
 * Model weights are not redistributed. `nvidia/Cosmos3-Edge` and
   `nvidia/Nemotron-3.5-Super-VL` are used under OpenMDW-1.1 as published by NVIDIA.
-* Research: Hyun Joon Cho and Taehwan Yun, Sungkyunkwan University. Please cite
+* Research and hackathon work: Hyun Joon Cho, Sungkyunkwan University. Please cite
   Diffusion Policy (Chi et al., RSS 2023) and robomimic (Mandlekar et al., CoRL 2021).
