@@ -1,0 +1,182 @@
+{
+ "label": "EXPLORATORY; pre-registered in docs/hackathon/explore/s2_self_improve_protocol.md",
+ "success_rate": {
+  "base": 0.656,
+  "continue": 0.856,
+  "nemotron": 0.752,
+  "oracle": 0.824,
+  "human": 0.938
+ },
+ "failure_types_by_arm": {
+  "base": {
+   "no_grasp": 88,
+   "dropped": 82,
+   "not_placed": 2
+  },
+  "continue": {
+   "no_grasp": 39,
+   "dropped": 32,
+   "not_placed": 1
+  },
+  "nemotron": {
+   "dropped": 57,
+   "no_grasp": 62,
+   "not_placed": 5
+  },
+  "oracle": {
+   "no_grasp": 49,
+   "dropped": 38,
+   "not_placed": 1
+  },
+  "human": {
+   "dropped": 20,
+   "no_grasp": 10,
+   "not_placed": 1
+  }
+ },
+ "paired": {
+  "primary_nemotron_minus_continue": {
+   "diff": -0.104,
+   "ci95": [
+    -0.148,
+    -0.06
+   ],
+   "discordant": [
+    39,
+    91
+   ],
+   "mcnemar_exact_p": 5.876389856455313e-06
+  },
+  "human_minus_continue": {
+   "diff": 0.082,
+   "ci95": [
+    0.052,
+    0.114
+   ],
+   "discordant": [
+    55,
+    14
+   ],
+   "mcnemar_exact_p": 6.921916920059638e-07
+  },
+  "oracle_minus_continue": {
+   "diff": -0.032,
+   "ci95": [
+    -0.07,
+    0.006
+   ],
+   "discordant": [
+    40,
+    56
+   ],
+   "mcnemar_exact_p": 0.12534569718849248
+  },
+  "nemotron_minus_oracle": {
+   "diff": -0.072,
+   "ci95": [
+    -0.112,
+    -0.032
+   ],
+   "discordant": [
+    33,
+    69
+   ],
+   "mcnemar_exact_p": 0.00046860434916208907
+  },
+  "continue_minus_base": {
+   "diff": 0.2,
+   "ci95": [
+    0.156,
+    0.244
+   ],
+   "discordant": [
+    123,
+    23
+   ],
+   "mcnemar_exact_p": 1.0273868726367439e-17
+  },
+  "nemotron_minus_base": {
+   "diff": 0.096,
+   "ci95": [
+    0.048,
+    0.144
+   ],
+   "discordant": [
+    105,
+    57
+   ],
+   "mcnemar_exact_p": 0.00020125940483564815
+  },
+  "oracle_minus_base": {
+   "diff": 0.168,
+   "ci95": [
+    0.122,
+    0.216
+   ],
+   "discordant": [
+    117,
+    33
+   ],
+   "mcnemar_exact_p": 3.206401775087398e-12
+  },
+  "human_minus_base": {
+   "diff": 0.282,
+   "ci95": [
+    0.238,
+    0.326
+   ],
+   "discordant": [
+    151,
+    10
+   ],
+   "mcnemar_exact_p": 1.7749265939716998e-33
+  }
+ },
+ "primary_positive": false,
+ "positive_control_passed": true,
+ "h2_interpretable": false,
+ "collection_success_rate": 0.6275,
+ "nemotron_labels": {
+  "precision": 0.8122977346278317,
+  "recall": 1.0,
+  "false_successes": 58,
+  "failures": 149,
+  "false_success_failure_types": {
+   "no_grasp": 4,
+   "dropped": 53,
+   "not_placed": 1
+  },
+  "false_success_final_place": {
+   "goal_bin_other_compartment": 44,
+   "elsewhere": 14
+  },
+  "contamination_frames": 0.3982832618025751,
+  "contamination_episodes": 0.18770226537216828
+ },
+ "training_data": {
+  "continue": {
+   "added_episodes": 0,
+   "of_which_sim_failures": 0,
+   "self_frames": 0,
+   "failure_frames": 0
+  },
+  "human": {
+   "added_episodes": 36,
+   "of_which_sim_failures": 0,
+   "self_frames": 0,
+   "failure_frames": 0
+  },
+  "nemotron": {
+   "added_episodes": 309,
+   "of_which_sim_failures": 58,
+   "self_frames": 58250,
+   "failure_frames": 23200
+  },
+  "oracle": {
+   "added_episodes": 251,
+   "of_which_sim_failures": 0,
+   "self_frames": 35050,
+   "failure_frames": 0
+  }
+ }
+}

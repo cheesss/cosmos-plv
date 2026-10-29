@@ -282,6 +282,18 @@ with tab_rec:
                             st.info(f"In this pool the two-stage rule beats the latest-epoch pick: {msg}")
                     if q0 is not None and abs(q - q0) > 1e-9:
                         st.caption(f"The measured regrets are for q = {q0}; the slider is at q = {q:.1f}.")
+                # c1 (pre-registered): judges accept near-goal failures, which dominate the failures of strong
+                # checkpoints, so judged success is inflated exactly where checkpoints are hard to tell apart
+                c1p = ROOT / "results/hackathon/explore/c1_coverage_shift.json"
+                picked = g[g.checkpoint_id == rec["recommended_checkpoint"]]
+                judged = float(picked[vlm_col].iloc[0]) if (vlm_col and len(picked) and pd.notna(picked[vlm_col].iloc[0])) else None
+                if c1p.exists() and judged is not None and judged >= 0.9 and str(run).startswith("can"):  # c1 is Can-only
+                    c1 = json.loads(c1p.read_text())
+                    jb = c1["nemotron" if bk == "nebius" else "cosmos"]["by_stratum"]["T"]
+                    st.warning(f"**Judge trust:** this pick's judged success is {judged:.0%}. For checkpoints this strong, "
+                               f"the judges accepted {jb['false_successes']}/{jb['failures']} of the real failures as successes "
+                               "(c1, pre-registered: cans left in the wrong compartment of the goal bin). Audit a sample of "
+                               "accepted episodes before trusting a gap between strong checkpoints.")
                 if show_truth:
                     best = g.success.max()
                     got = float(g[g.checkpoint_id == rec["recommended_checkpoint"]].success.iloc[0])
@@ -550,6 +562,66 @@ with tab_res:
 
 # ------------------------------------------------------------------ explorations
 with tab_exp:
+    st.markdown("#### When can you trust the judge? Two pre-registered audits")
+    r1p = ROOT / "results/hackathon/explore/r1_counterfactual_replan_eval.json"
+    if r1p.exists():
+        r1 = json.loads(r1p.read_text())
+        st.markdown("**r1 — does a judge know when a replan helps?** Ground truth: from the exact simulator state at a "
+                    "replanning boundary, the new plan and the old plan's unexecuted tail were both executed "
+                    "(4 continuations each, shared random numbers).")
+        ph = r1["post_hoc_after_verification"]
+        und = ph["HIGH_excluding_determined"]
+        names = {"j1b_rule": "Nemotron perception rule (primary)", "j1_necessity": "Nemotron event question",
+                 "cosmos_rule": "Cosmos3-Edge perception rule", "d_all": "PLV replan disagreement d",
+                 "privileged": "privileged sim event (reference)"}
+        aur = pd.DataFrame([{"score": names[k], "AUROC": und[k]["auroc"], "lo": und[k]["ci"][0], "hi": und[k]["ci"][1]}
+                            for k in names])
+        base = alt.Chart(aur).encode(y=alt.Y("score:N", sort="-x", title=None, axis=alt.Axis(labelLimit=320)))
+        st.altair_chart((base.mark_rule().encode(x=alt.X("lo:Q", scale=alt.Scale(domain=[0.3, 1]),
+                                                         title="AUROC, helpful replan vs rest (0.5 = chance)"), x2="hi:Q")
+                         + base.mark_point(filled=True, size=70).encode(x="AUROC:Q", tooltip=["score", "AUROC", "lo", "hi"])
+                         + alt.Chart(pd.DataFrame({"x": [0.5]})).mark_rule(strokeDash=[4, 4]).encode(x="x:Q")
+                         ).properties(height=240), use_container_width=True)
+        hc = ph["HIGH_vs_CONTROL_consequential"]
+        steps = r1["secondary_outcomes_HIGH_not_determined"]["steps_to_success_all_8_succeed"]
+        c = st.columns(3)
+        c[0].metric("Replans that changed the outcome", f"{und['helpful'] + und['harmful']} / {und['n']}",
+                    help="max-disagreement boundaries whose outcome was not already decided")
+        c[1].metric("Low-d controls, same episodes", f"{hc['paired_CONTROL']} vs {hc['paired_HIGH']} of {hc['paired_episodes']}",
+                    help="a small replan changed the outcome as often as the largest one: d does not localize it")
+        c[2].metric("New plan reaches success sooner", f"{steps['new_faster']} vs {steps['old_faster']}",
+                    help=f"sign test p = {steps['sign_test_p']:.3f}; the one robust replanning effect")
+        st.caption("Pre-registered primary: negative. With 4 continuations per branch, helpful vs harmful replans are "
+                   f"indistinguishable from rollout noise (permutation P = {ph['permutation_null_HIGH']['consequential']['p_ge_observed']:.2f}). "
+                   "Protocol and disclosed deviations: docs/hackathon/explore/r1_counterfactual_replan_protocol.md")
+    c1p = ROOT / "results/hackathon/explore/c1_coverage_shift.json"
+    st.markdown("**c1 — coverage shift: do judges miss more failures of stronger checkpoints?** "
+                "False successes among simulator-verified failures, by checkpoint quality (Can).")
+    if c1p.exists():
+        c1 = json.loads(c1p.read_text())
+        lab = {"nemotron": "Nemotron (frozen v2)", "cosmos": "Cosmos3-Edge (frozen v6)",
+               "nemotron_v2c_compartment": "Nemotron, compartment stated (A1)"}
+        rows = [{"judge": lab[j], "stratum": s, "rate": v["rate"], "lo": v["wilson"][0], "hi": v["wilson"][1],
+                 "false successes": f"{v['false_successes']}/{v['failures']}"}
+                for j in lab if j in c1 for s, v in c1[j].get("by_stratum", {}).items()]
+        if rows:
+            cf = pd.DataFrame(rows)
+            order = ["M", "U", "T"]
+            b2 = alt.Chart(cf).encode(x=alt.X("stratum:N", sort=order, title="checkpoint quality (M 0.38–0.70, U 0.80–0.92, T ≥ 0.94)"),
+                                      color="judge:N", xOffset="judge:N")
+            st.altair_chart((b2.mark_bar().encode(y=alt.Y("rate:Q", title="false-success rate among failures"),
+                                                  tooltip=["judge", "stratum", "false successes", "lo", "hi"])
+                             + b2.mark_rule().encode(y="lo:Q", y2="hi:Q")).properties(height=260), use_container_width=True)
+        pr = c1["primary"]
+        st.caption(f"Primary (Nemotron): AUROC of checkpoint quality for false success = {pr['auroc_q']:.2f} "
+                   f"[{pr['ci'][0]:.2f}, {pr['ci'][1]:.2f}], T failures {pr['T_failures']}"
+                   + (" (underpowered)" if pr["underpowered"] else "") + ". Where each failure ended: "
+                   + ", ".join(f"{k}: {v['false_successes']}/{v['failures']}"
+                               for k, v in c1["nemotron"]["false_success_by_final_place"].items())
+                   + ". Protocol: docs/hackathon/explore/c1_coverage_shift_protocol.md")
+    else:
+        st.info("c1 is running (pre-registered; results appear here when the analysis finishes).")
+    st.divider()
     p = ROOT / "docs/hackathon/11_explorations.md"
     st.markdown(p.read_text() if p.exists() else "unavailable")
 

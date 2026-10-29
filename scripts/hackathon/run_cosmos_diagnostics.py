@@ -79,6 +79,9 @@ def main():
                     help="length-neutral videos: pad with the final frame to this many frames (nebius only)")
     ap.add_argument("--checkpoint-filter", default="")
     ap.add_argument("--seeds", default="", help="comma list or a:b range of env seeds to include")
+    ap.add_argument("--episodes", default="", help="JSON file with a list of [checkpoint_id, env_seed] pairs to include")
+    ap.add_argument("--evidence", default="results/hackathon/nebius_calls.jsonl",
+                    help="Nebius call log (exploratory studies use results/hackathon/explore/nebius_calls_explore.jsonl)")
     args = ap.parse_args()
 
     seed_filter = None
@@ -97,6 +100,8 @@ def main():
             r = json.loads(line)
             done.add((r["checkpoint_id"], r["env_seed"], r["variant"], r["backend"], bool(r["reasoning"])))
 
+    episode_filter = ({(c, int(e)) for c, e in json.loads(Path(args.episodes).read_text())}
+                      if args.episodes else None)
     reasoning = not args.no_reasoning
     if args.backend == "local":
         from cosmos_plv.cosmos_backend import CosmosReasonerLocal
@@ -106,13 +111,15 @@ def main():
     else:
         from cosmos_plv.nebius_backend import NebiusVLMClient
 
-        model = NebiusVLMClient(evidence_path=str(ROOT / "results/hackathon/nebius_calls.jsonl"))
+        model = NebiusVLMClient(evidence_path=str(ROOT / args.evidence))
 
     n = 0
     for ep_dir, ep in iter_episodes(args.rollouts):
         if args.checkpoint_filter and args.checkpoint_filter not in ep["checkpoint_id"]:
             continue
         if seed_filter is not None and int(ep["env_seed"]) not in seed_filter:
+            continue
+        if episode_filter is not None and (ep["checkpoint_id"], int(ep["env_seed"])) not in episode_filter:
             continue
         key = (ep["checkpoint_id"], ep["env_seed"], args.variant + (f"_pad{args.pad_to_frames}" if args.pad_to_frames else ""),
                args.backend, not args.no_reasoning)

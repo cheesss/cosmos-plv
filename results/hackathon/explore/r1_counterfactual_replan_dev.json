@@ -68,6 +68,13 @@
     0.5461718749999999
    ]
   },
+  "d_rot": {
+   "auroc": 0.20535714285714285,
+   "ci": [
+    0.004464285714285714,
+    0.46090615354938275
+   ]
+  },
   "d_grip": {
    "auroc": 0.45982142857142855,
    "ci": [
@@ -90,10 +97,10 @@
    ]
   },
   "cosmos_rule": {
-   "auroc": NaN,
+   "auroc": 0.3660714285714286,
    "ci": [
-    NaN,
-    NaN
+    0.23985937499999999,
+    0.5246305418719213
    ]
   },
   "privileged": {
@@ -138,6 +145,13 @@
     0.45079856834975335
    ]
   },
+  "lex_minus_d_all": {
+   "diff": 0.0,
+   "ci": [
+    0.0,
+    0.0
+   ]
+  },
   "lex_b_minus_d_all": {
    "diff": -0.13392857142857142,
    "ci": [
@@ -146,10 +160,10 @@
    ]
   },
   "cosmos_rule_minus_d_all": {
-   "diff": NaN,
+   "diff": 0.06696428571428575,
    "ci": [
-    NaN,
-    NaN
+    -0.1823061337994597,
+    0.28806863102840113
    ]
   }
  },
@@ -176,6 +190,13 @@
     0.5953262786596115
    ]
   },
+  "d_rot": {
+   "auroc": 0.2849002849002849,
+   "ci": [
+    0.07317073170731707,
+    0.5173951182303584
+   ]
+  },
   "d_grip": {
    "auroc": 0.5584045584045584,
    "ci": [
@@ -198,10 +219,10 @@
    ]
   },
   "cosmos_rule": {
-   "auroc": NaN,
+   "auroc": 0.41452991452991456,
    "ci": [
-    NaN,
-    NaN
+    0.3023255813953488,
+    0.5512896825396826
    ]
   },
   "privileged": {
@@ -237,10 +258,11 @@
   "j1b_rule": 0.4636363636363636,
   "d_all": 0.5232323232323233,
   "d_pos": 0.49696969696969695,
+  "d_rot": 0.34949494949494947,
   "d_grip": 0.6545454545454545,
   "j1_necessity": 0.5,
   "j1_flag": 0.5,
-  "cosmos_rule": NaN,
+  "cosmos_rule": 0.41515151515151516,
   "privileged": 0.4696969696969697,
   "privileged_raw": 0.4090909090909091,
   "lex": 0.5232323232323233,
@@ -290,6 +312,227 @@
   "j2": 1.0,
   "j2s": 1.0,
   "j1b": 1.0,
-  "cosmos": 0.0
+  "cosmos": 1.0,
+  "j1b_regex_repaired_frames": 15,
+  "cosmos_regex_repaired_frames": 0
+ },
+ "secondary_outcomes_HIGH_not_determined": {
+  "steps_to_success_all_8_succeed": {
+   "n": 4,
+   "new_faster": 2,
+   "old_faster": 1,
+   "ties": 1,
+   "mean_steps_saved_by_new": -1.25,
+   "sign_test_p": 1.0,
+   "auroc_d_all_new_faster": 0.75
+  },
+  "stage40_mean_new_minus_old": {
+   "n": 34,
+   "mean": 0.056451612903225805,
+   "new_higher": 8,
+   "old_higher": 4,
+   "sign_test_p": 1.0,
+   "note": "stage 0 none / 1 grasped / 2 lifted > 2 cm / 3 success; lift cut chosen post hoc"
+  }
+ },
+ "post_hoc_after_verification": {
+  "label": "POST HOC (after verification); not pre-registered",
+  "determined_events": {
+   "HIGH": 2,
+   "CONTROL": 0,
+   "consequential_among_determined": 0
+  },
+  "HIGH_excluding_determined": {
+   "n": 34,
+   "helpful": 8,
+   "harmful": 5,
+   "j1b_rule": {
+    "auroc": 0.3076923076923077,
+    "ci": [
+     0.21153846153846154,
+     0.4
+    ]
+   },
+   "d_all": {
+    "auroc": 0.28365384615384615,
+    "ci": [
+     0.020689655172413793,
+     0.5517531498673739
+    ]
+   },
+   "d_grip": {
+    "auroc": 0.4326923076923077,
+    "ci": [
+     0.1904017857142857,
+     0.6825396825396826
+    ]
+   },
+   "cosmos_rule": {
+    "auroc": 0.35096153846153844,
+    "ci": [
+     0.21996875,
+     0.5132574023199021
+    ]
+   },
+   "j1_necessity": {
+    "auroc": 0.5,
+    "ci": [
+     0.5,
+     0.5
+    ]
+   },
+   "privileged": {
+    "auroc": 0.46153846153846156,
+    "ci": [
+     0.4074074074074074,
+     0.5
+    ]
+   },
+   "privileged_raw": {
+    "auroc": 0.4230769230769231,
+    "ci": [
+     0.35,
+     0.48214285714285715
+    ]
+   },
+   "j1b_rule_minus_d_all": {
+    "diff": 0.024038461538461564,
+    "ci": [
+     -0.27777777777777773,
+     0.2945266180830036
+    ]
+   }
+  },
+  "j1b_rule_regex_frames_as_missing": {
+   "n": 26,
+   "auroc": 0.3409090909090909
+  },
+  "j1b_flags_on_determined": {
+   "flags_HIGH": 11,
+   "flags_on_determined": 1
+  },
+  "helpful_vs_harmful_consequential_HIGH": {
+   "n": 13,
+   "helpful": 8,
+   "abs_benefit_counts": {
+    "0.25": 10,
+    "0.5": 2,
+    "0.75": 1
+   },
+   "d_all": {
+    "auroc": 0.25,
+    "ci_episode": [
+     0.0,
+     0.5714285714285714
+    ],
+    "ci_checkpoint": [
+     0.0,
+     0.5
+    ]
+   },
+   "d_grip": {
+    "auroc": 0.2,
+    "ci_episode": [
+     0.0,
+     0.5
+    ],
+    "ci_checkpoint": [
+     0.0,
+     0.75
+    ]
+   },
+   "j1b_rule": {
+    "auroc": 0.2,
+    "ci_episode": [
+     0.0,
+     0.5
+    ],
+    "ci_checkpoint": [
+     0.0,
+     0.5
+    ]
+   },
+   "cosmos_rule": {
+    "auroc": 0.4625,
+    "ci_episode": [
+     0.21666666666666665,
+     0.6666666666666666
+    ],
+    "ci_checkpoint": [
+     0.25,
+     0.75
+    ]
+   }
+  },
+  "full_flips": {
+   "n": 0,
+   "helpful": 0,
+   "j1b_flagged": 0,
+   "cosmos_flagged": 0,
+   "j2_combined": {},
+   "keys": []
+  },
+  "consequential_vs_neutral_HIGH_d_all": {
+   "auroc": 0.4080267558528428,
+   "ci": [
+    0.21269345238095239,
+    0.6127445887445885
+   ]
+  },
+  "HIGH_vs_CONTROL_consequential": {
+   "rates": {
+    "HIGH": 0.3611111111111111,
+    "CONTROL": 0.16666666666666666
+   },
+   "counts": {
+    "HIGH": [
+     13,
+     36
+    ],
+    "CONTROL": [
+     2,
+     12
+    ]
+   },
+   "fisher_p": 0.2919491710184082,
+   "paired_episodes": 12,
+   "paired_HIGH": 5,
+   "paired_CONTROL": 2,
+   "discordant_HIGH_only": 4,
+   "discordant_CONTROL_only": 1,
+   "mcnemar_exact_p": 0.375,
+   "median_d": {
+    "HIGH": 0.5420633806965598,
+    "CONTROL": 0.09227254721789382
+   }
+  },
+  "d_all_within_checkpoint_concordance_consequential": 0.5408805031446541,
+  "d_all_predicts_recorded_episode_failure_HIGH": 0.8412698412698413,
+  "permutation_null_HIGH": {
+   "consequential": {
+    "observed": 13,
+    "null_mean": 12.3036,
+    "p_ge_observed": 0.4058
+   },
+   "helpful": {
+    "observed": 8,
+    "null_mean": 6.1472,
+    "p_ge_observed": 0.2272
+   },
+   "sum_abs_benefit": {
+    "observed": 4.25,
+    "null_mean": 3.6183,
+    "p_ge_observed": 0.2236
+   }
+  },
+  "j2_combined_decided_consequential_HIGH": {
+   "coverage": "2/13",
+   "accuracy": 1.0,
+   "always_new_accuracy_same_events": 1.0,
+   "label_1_share_all_events": {
+    "J2": 0.8125,
+    "J2s": 0.8333333333333334
+   }
+  }
  }
 }

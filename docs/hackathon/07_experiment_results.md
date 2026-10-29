@@ -179,6 +179,123 @@ What weakens S3:
 **Meaning:** zero-shot, Cosmos3-Edge carries a coarse directional action signal for this
 robot. It is not a faithful rollout, and it cannot yet replace rollouts as a PLV stage.
 
+## C4. r1 — counterfactual replanning (exploratory, pre-registered with amendments)
+
+**Sources.**
+* Protocol and disclosed deviations: `explore/r1_counterfactual_replan_protocol.md`
+* Results: `results/hackathon/explore/r1_counterfactual_replan_eval.json` (pre-registered
+  block plus `post_hoc_after_verification`), and the events CSV.
+* Verification: 4 independent lenses (branch construction, analysis code, interpretation,
+  pre-registration). All headline numbers were reproduced exactly.
+
+**Design.**
+* 300 eval episodes (30 checkpoints × 10 seeds, epoch 0 excluded).
+* HIGH = the boundary with the largest replan disagreement d in each episode.
+* CONTROL = a below-median-d boundary in 100 of those episodes.
+* At each boundary the exact simulator state is restored (replay error 0.0 on 800/800
+  branch units).
+* Branches: the NEW plan's 7 steps vs the OLD plan's unexecuted 7 steps. Each is then
+  continued K=4 times closed-loop with shared random numbers.
+* Benefit b = p_NEW − p_OLD.
+
+| HIGH events (n=300) | AUROC, helpful vs rest [95% CI] |
+|---|---|
+| Nemotron J1b perception rule (**primary**) | 0.404 [0.340, 0.477] |
+| PLV d (all dims) | 0.790 [0.710, 0.861] |
+| J1b − d | −0.387 [−0.465, −0.303] → primary **negative** |
+| Nemotron J1 event / necessity | 0.491 |
+| Cosmos3-Edge perception rule | 0.543 |
+| privileged sim reference (A1.3 / raw) | 0.489 / 0.315 |
+| d_pos / d_rot / d_grip | 0.607 / 0.626 / 0.774 |
+
+**Outcome counts.**
+* HIGH: 30 helpful, 22 harmful, 248 neutral.
+* CONTROL: 11 / 8 / 81.
+
+**Post hoc, after verification.**
+* **Decided events.** 77 of the 300 HIGH boundaries were already decided by
+  construction: a post-success boundary in the recorder's 16-step hold, or success inside
+  the bit-exact NEW segment. Excluding them, J1b is 0.486 [0.42, 0.55], d is 0.745
+  [0.66, 0.82] and J1b − d is −0.26 [−0.34, −0.17]. J1b's below-chance score comes from
+  intended releases: 57 of its 92 HIGH flags fall on decided events.
+* **No localization.**
+  * Consequential rates are HIGH 17.3% vs CONTROL 19.0% (Fisher p 0.76).
+  * In 100 paired episodes: 18 vs 19 consequential, discordant 11 vs 12, McNemar p 1.0.
+  * d predicts recorded episode failure at AUROC 0.867.
+  * Within-checkpoint concordance for consequential events is 0.59.
+* **Replicate noise.** Reshuffling the 8 outcomes between the branches gives:
+  * consequential 50.2 expected vs 52 observed, P 0.26;
+  * helpful 25.0 vs 30, P 0.11.
+  * Helpful vs harmful among consequential events: d 0.571 [0.41, 0.73], n 52. The
+    design cannot resolve it.
+* **Full flips.** There were 3 (4/4 vs 0/4), all helpful. No judge flagged any of them.
+* **J2.** It abstained on 29 of 52 consequential events. On the decided ones it scored
+  0.61, vs 0.70 for always-new. It chose label "1" in 78–82% of answers.
+
+**Pre-registered secondaries that were missing in the first output.**
+* **Steps to success** (all 8 continuations succeed, decided events excluded): NEW is
+  faster in 80 events vs 51 (sign test p 0.014), saving about 3.5 steps. d does not
+  predict it (0.47).
+* **Stage at 40 steps:** NEW − OLD averages +0.08; 30 events favour NEW vs 14 OLD
+  (p 0.11).
+* **lex − d:** −0.010 [−0.022, −0.002].
+
+**Meaning.**
+* Zero-shot NVIDIA judges cannot tell, from the camera, when a diffusion policy's replan
+  helps.
+* PLV's d marks fragile episodes and weak checkpoints. It does not mark which replan
+  mattered.
+* The only robust benefit of replanning in this pool is speed.
+
+## C5. c1 — coverage shift (exploratory, pre-registered with amendment A1)
+
+**Sources.**
+* Protocol: `explore/c1_coverage_shift_protocol.md` (A1, erratum, deviations).
+* Results: `results/hackathon/explore/c1_coverage_shift.json`.
+* Four verifier lenses reproduced every number: data and analysis, mechanism and
+  geometry, visual check of the judge inputs, pre-registration.
+
+| | M (q 0.38–0.70) | U (0.80–0.92) | T (≥ 0.94) |
+|---|---|---|---|
+| episodes / failures | 60 / 25 | 160 / 27 | 400 / 22 |
+| failure types | no grasp 15, dropped 10 | 6 / 21 | 0 / 22 |
+| Nemotron v2 false successes | 6/25 | 14/27 | 13/22 |
+| Cosmos v6 false successes | 8/25 | 14/27 | 19/22 |
+| Nemotron v2c (compartment stated) | 4/25 | 12/27 | 9/22 |
+| Nemotron precision of claimed success | 0.854 | 0.898 | 0.965 |
+
+**Primary.**
+* AUROC of q for false success is 0.673 [0.556, 0.750] (checkpoint clusters) → positive.
+* Fisher T vs M p = 0.019.
+* Post-hoc sensitivity: the seed-cluster CI [0.399, 0.922] and the crossed bootstrap
+  [0.354, 0.950] include 0.5.
+* Leaving out seed 600011 gives 0.589 [0.439, 0.694].
+* On the seeds shared by all strata: M 6/25, U 13/26, T 10/10.
+
+**Mechanism.**
+* Where the failed episodes ended:
+
+  | judge | failures that ended outside the goal bin | ended in the wrong compartment | ended on a rim or divider |
+  |---|---|---|---|
+  | Nemotron | 0/40 accepted | 32/33 accepted | 1/1 accepted |
+  | Cosmos | 7/40 accepted | 33/33 accepted | 1/1 accepted |
+
+* Within "dropped" failures, the AUROC of q is 0.49.
+* The wrong-compartment rate per episode falls with quality: 11.7% / 8.1% / 3.3%.
+* v2c rejects 9 of the 33 wrong-compartment cans, but only 2 of those rejections cite the
+  compartment. The rest claim the can is still held.
+
+**Data issue.** 16 T-stratum success videos at seed 600003 are black after frame 0, an
+EGL artefact. Nemotron called all 16 failures, so its sensitivity on valid videos is
+0.981. Cosmos called them successes.
+
+**Meaning.**
+* The judges cannot tell "reached the goal bin" from "placed correctly".
+* As checkpoints improve, their remaining failures are mostly of that kind, so judged
+  success is inflated for strong checkpoints.
+* This is a property of the judges and the rubric, not a sign that failures become
+  subtler within a type.
+
 ## D. Exploratory follow-ups (post-hoc; all but the deterministic cascade x0 adversarially verified)
 
 Summary in `11_explorations.md`:

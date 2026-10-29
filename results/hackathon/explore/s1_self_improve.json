@@ -1,0 +1,162 @@
+{
+ "label": "EXPLORATORY; pre-registered in docs/hackathon/explore/s1_self_improve_protocol.md",
+ "success_rate": {
+  "base": 0.885,
+  "continue": 0.88,
+  "nemotron": 0.875,
+  "oracle": 0.89,
+  "all": 0.88,
+  "nemotron_v2c": 0.875
+ },
+ "paired": {
+  "primary_nemotron_minus_continue": {
+   "diff": -0.005,
+   "ci95": [
+    -0.04,
+    0.03
+   ],
+   "discordant": [
+    6,
+    7
+   ],
+   "mcnemar_exact_p": 1.0
+  },
+  "oracle_minus_continue": {
+   "diff": 0.01,
+   "ci95": [
+    -0.025,
+    0.045
+   ],
+   "discordant": [
+    7,
+    5
+   ],
+   "mcnemar_exact_p": 0.7744140625
+  },
+  "nemotron_minus_oracle": {
+   "diff": -0.015,
+   "ci95": [
+    -0.045,
+    0.015
+   ],
+   "discordant": [
+    3,
+    6
+   ],
+   "mcnemar_exact_p": 0.5078125
+  },
+  "v2c_minus_nemotron": {
+   "diff": 0.0,
+   "ci95": [
+    -0.035,
+    0.035
+   ],
+   "discordant": [
+    6,
+    6
+   ],
+   "mcnemar_exact_p": 1.0
+  },
+  "all_minus_continue": {
+   "diff": 0.0,
+   "ci95": [
+    -0.035,
+    0.035
+   ],
+   "discordant": [
+    6,
+    6
+   ],
+   "mcnemar_exact_p": 1.0
+  },
+  "continue_minus_base": {
+   "diff": -0.005,
+   "ci95": [
+    -0.04,
+    0.03
+   ],
+   "discordant": [
+    6,
+    7
+   ],
+   "mcnemar_exact_p": 1.0
+  },
+  "v2c_minus_continue": {
+   "diff": -0.005,
+   "ci95": [
+    -0.03,
+    0.02
+   ],
+   "discordant": [
+    3,
+    4
+   ],
+   "mcnemar_exact_p": 1.0
+  }
+ },
+ "primary_positive": false,
+ "collection_success_rate": 0.86,
+ "labels": {
+  "nemotron": {
+   "precision": 0.9447513812154696,
+   "recall": 0.9941860465116279,
+   "false_successes": 10,
+   "failures": 28,
+   "false_success_failure_types": {
+    "dropped": 10
+   },
+   "false_success_final_place": {
+    "elsewhere": 2,
+    "goal_bin_other_compartment": 8
+   }
+  },
+  "nemotron_v2c": {
+   "precision": 0.9548022598870056,
+   "recall": 0.9825581395348837,
+   "false_successes": 8,
+   "failures": 28,
+   "false_success_failure_types": {
+    "dropped": 8
+   },
+   "false_success_final_place": {
+    "elsewhere": 1,
+    "goal_bin_other_compartment": 7
+   }
+  },
+  "cosmos": {
+   "precision": 0.945054945054945,
+   "recall": 1.0,
+   "false_successes": 10,
+   "failures": 28,
+   "false_success_failure_types": {
+    "dropped": 10
+   },
+   "false_success_final_place": {
+    "elsewhere": 2,
+    "goal_bin_other_compartment": 8
+   }
+  }
+ },
+ "training_data": {
+  "continue": {
+   "self_episodes": 0,
+   "of_which_sim_failures": 0
+  },
+  "nemotron": {
+   "self_episodes": 181,
+   "of_which_sim_failures": 10
+  },
+  "oracle": {
+   "self_episodes": 172,
+   "of_which_sim_failures": 0
+  },
+  "all": {
+   "self_episodes": 200,
+   "of_which_sim_failures": 28
+  },
+  "nemotron_v2c": {
+   "self_episodes": 177,
+   "of_which_sim_failures": 8
+  }
+ }
+}

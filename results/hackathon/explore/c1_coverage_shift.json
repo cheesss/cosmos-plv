@@ -1,0 +1,511 @@
+{
+ "label": "EXPLORATORY; pre-registered in docs/hackathon/explore/c1_coverage_shift_protocol.md",
+ "n_episodes": 620,
+ "n_checkpoints": 31,
+ "episodes_by_stratum": {
+  "M": 60,
+  "T": 400,
+  "U": 160
+ },
+ "success_by_stratum": {
+  "M": 0.583,
+  "T": 0.945,
+  "U": 0.831
+ },
+ "parse_rates": {
+  "nemotron": 1.0,
+  "cosmos": 1.0,
+  "nemotron_v2c": 0.30483870967741933
+ },
+ "nemotron": {
+  "n_failures": 74,
+  "false_successes": 33,
+  "auroc_q": 0.6729490022172949,
+  "ci_checkpoint": [
+   0.5562811371279113,
+   0.7502788220551379
+  ],
+  "ci_seed": [
+   0.39866770382395383,
+   0.9221611047699146
+  ],
+  "by_stratum": {
+   "M": {
+    "false_successes": 6,
+    "failures": 25,
+    "rate": 0.24,
+    "wilson": [
+     0.11496157730326725,
+     0.43430059955238565
+    ],
+    "failure_types": {
+     "no_grasp": 15,
+     "dropped": 10
+    },
+    "distinct_seeds": 11
+   },
+   "T": {
+    "false_successes": 13,
+    "failures": 22,
+    "rate": 0.5909090909090909,
+    "wilson": [
+     0.38734477382893806,
+     0.7674444033117963
+    ],
+    "failure_types": {
+     "dropped": 22
+    },
+    "distinct_seeds": 7
+   },
+   "U": {
+    "false_successes": 14,
+    "failures": 27,
+    "rate": 0.5185185185185185,
+    "wilson": [
+     0.3398532458621043,
+     0.6925704935029092
+    ],
+    "failure_types": {
+     "dropped": 21,
+     "no_grasp": 6
+    },
+    "distinct_seeds": 7
+   }
+  },
+  "fisher_T_vs_M_p": 0.01932216197281488,
+  "dropped_only": {
+   "n": 53,
+   "false_successes": 33,
+   "auroc_q": 0.4916666666666667,
+   "ci_checkpoint": [
+    0.37288357715081855,
+    0.5847110307621671
+   ]
+  },
+  "false_success_by_final_place": {
+   "elsewhere": {
+    "failures": 41,
+    "false_successes": 1
+   },
+   "goal_bin_other_compartment": {
+    "failures": 33,
+    "false_successes": 32
+   }
+  },
+  "precision_of_claimed_success": {
+   "all": 0.9403254972875226,
+   "M": 0.8536585365853658,
+   "T": 0.9653333333333334,
+   "U": 0.8978102189781022
+  },
+  "sensitivity_on_successes": 0.9523809523809523
+ },
+ "cosmos": {
+  "n_failures": 74,
+  "false_successes": 41,
+  "auroc_q": 0.7387287509238729,
+  "ci_checkpoint": [
+   0.5959847432452973,
+   0.8366274583692218
+  ],
+  "ci_seed": [
+   0.5534685840482026,
+   0.9272321428571426
+  ],
+  "by_stratum": {
+   "M": {
+    "false_successes": 8,
+    "failures": 25,
+    "rate": 0.32,
+    "wilson": [
+     0.17204987516891143,
+     0.5159008626542329
+    ],
+    "failure_types": {
+     "no_grasp": 15,
+     "dropped": 10
+    },
+    "distinct_seeds": 11
+   },
+   "T": {
+    "false_successes": 19,
+    "failures": 22,
+    "rate": 0.8636363636363636,
+    "wilson": [
+     0.6666458812053,
+     0.9525108273576373
+    ],
+    "failure_types": {
+     "dropped": 22
+    },
+    "distinct_seeds": 7
+   },
+   "U": {
+    "false_successes": 14,
+    "failures": 27,
+    "rate": 0.5185185185185185,
+    "wilson": [
+     0.3398532458621043,
+     0.6925704935029092
+    ],
+    "failure_types": {
+     "dropped": 21,
+     "no_grasp": 6
+    },
+    "distinct_seeds": 7
+   }
+  },
+  "fisher_T_vs_M_p": 0.000285508651758366,
+  "dropped_only": {
+   "n": 53,
+   "false_successes": 41,
+   "auroc_q": 0.5467479674796748,
+   "ci_checkpoint": [
+    0.415537128037128,
+    0.6921886837121213
+   ]
+  },
+  "false_success_by_final_place": {
+   "elsewhere": {
+    "failures": 41,
+    "false_successes": 8
+   },
+   "goal_bin_other_compartment": {
+    "failures": 33,
+    "false_successes": 33
+   }
+  },
+  "precision_of_claimed_success": {
+   "all": 0.9301533219761499,
+   "M": 0.813953488372093,
+   "T": 0.9521410579345088,
+   "U": 0.9047619047619048
+  },
+  "sensitivity_on_successes": 1.0
+ },
+ "nemotron_v2c_compartment": {
+  "n_failures": 74,
+  "false_successes": 25,
+  "auroc_q": 0.6395918367346939,
+  "ci_checkpoint": [
+   0.4894226441983149,
+   0.7302312119648429
+  ],
+  "ci_seed": [
+   0.3775527686403509,
+   0.8646482465786901
+  ],
+  "by_stratum": {
+   "M": {
+    "false_successes": 4,
+    "failures": 25,
+    "rate": 0.16,
+    "wilson": [
+     0.06403347608577989,
+     0.34654013980238163
+    ],
+    "failure_types": {
+     "no_grasp": 15,
+     "dropped": 10
+    },
+    "distinct_seeds": 11
+   },
+   "T": {
+    "false_successes": 9,
+    "failures": 22,
+    "rate": 0.4090909090909091,
+    "wilson": [
+     0.23255559668820378,
+     0.6126552261710619
+    ],
+    "failure_types": {
+     "dropped": 22
+    },
+    "distinct_seeds": 7
+   },
+   "U": {
+    "false_successes": 12,
+    "failures": 27,
+    "rate": 0.4444444444444444,
+    "wilson": [
+     0.2758559767007283,
+     0.6268728052042312
+    ],
+    "failure_types": {
+     "dropped": 21,
+     "no_grasp": 6
+    },
+    "distinct_seeds": 7
+   }
+  },
+  "fisher_T_vs_M_p": 0.1008772859703937,
+  "dropped_only": {
+   "n": 53,
+   "false_successes": 25,
+   "auroc_q": 0.48214285714285715,
+   "ci_checkpoint": [
+    0.30915354938271605,
+    0.6232463219148001
+   ]
+  },
+  "false_success_by_final_place": {
+   "elsewhere": {
+    "failures": 41,
+    "false_successes": 1
+   },
+   "goal_bin_other_compartment": {
+    "failures": 33,
+    "false_successes": 24
+   }
+  },
+  "precision_of_claimed_success": {
+   "all": 0.8148148148148148,
+   "M": 0.8947368421052632,
+   "T": 0.8085106382978723,
+   "U": 0.76
+  },
+  "sensitivity_on_successes": 0.9565217391304348,
+  "note": "all failures + 40 sampled successes per stratum; precision is not comparable to the other judges because successes are subsampled"
+ },
+ "primary": {
+  "judge": "nemotron",
+  "auroc_q": 0.6729490022172949,
+  "ci": [
+   0.5562811371279113,
+   0.7502788220551379
+  ],
+  "positive": true,
+  "T_failures": 22,
+  "underpowered": false
+ },
+ "post_hoc_after_verification": {
+  "label": "POST HOC (after verification); not pre-registered",
+  "black_videos": {
+   "n": 16,
+   "strata": {
+    "T": 16
+   },
+   "seeds": [
+    600003
+   ],
+   "all_true_successes": true,
+   "judged_success": {
+    "nemotron": 0,
+    "cosmos": 16
+   }
+  },
+  "sensitivity_valid_videos": {
+   "nemotron": 0.9811320754716981,
+   "cosmos": 1.0
+  },
+  "failures_by_place_and_stratum": {
+   "elsewhere": {
+    "M": {
+     "failures": 18,
+     "nemotron_fs": 0,
+     "cosmos_fs": 1
+    },
+    "T": {
+     "failures": 9,
+     "nemotron_fs": 0,
+     "cosmos_fs": 6
+    },
+    "U": {
+     "failures": 13,
+     "nemotron_fs": 0,
+     "cosmos_fs": 0
+    }
+   },
+   "goal_bin_other_compartment": {
+    "M": {
+     "failures": 7,
+     "nemotron_fs": 6,
+     "cosmos_fs": 7
+    },
+    "T": {
+     "failures": 13,
+     "nemotron_fs": 13,
+     "cosmos_fs": 13
+    },
+    "U": {
+     "failures": 13,
+     "nemotron_fs": 13,
+     "cosmos_fs": 13
+    }
+   },
+   "goal_bin_rim_or_divider": {
+    "U": {
+     "failures": 1,
+     "nemotron_fs": 1,
+     "cosmos_fs": 1
+    }
+   }
+  },
+  "failure_types_by_stratum": {
+   "M": {
+    "dropped": 10,
+    "no_grasp": 15
+   },
+   "T": {
+    "dropped": 22,
+    "no_grasp": 0
+   },
+   "U": {
+    "dropped": 21,
+    "no_grasp": 6
+   }
+  },
+  "wrong_compartment_rate_per_episode": {
+   "M": 0.11666666666666667,
+   "T": 0.0325,
+   "U": 0.08125
+  },
+  "false_successes_by_seed_nemotron": {
+   "600002": 15,
+   "600011": 8,
+   "600008": 3,
+   "600001": 2,
+   "600014": 1,
+   "600021": 1,
+   "600013": 1,
+   "600004": 1,
+   "600018": 1
+  },
+  "leave_one_seed_out_nemotron": {
+   "600002": {
+    "auroc_q": 0.72289972899729,
+    "ci_checkpoint": [
+     0.6119516594516595,
+     0.7949776785714285
+    ]
+   },
+   "600006": {
+    "auroc_q": 0.6542207792207793,
+    "ci_checkpoint": [
+     0.4751310483870968,
+     0.7657155727155728
+    ]
+   },
+   "600011": {
+    "auroc_q": 0.5892307692307692,
+    "ci_checkpoint": [
+     0.43909469696969694,
+     0.6938857879334069
+    ]
+   },
+   "600010": {
+    "auroc_q": 0.6464646464646464,
+    "ci_checkpoint": [
+     0.5039303480779663,
+     0.7412914518796871
+    ]
+   },
+   "600024": {
+    "auroc_q": 0.7874196510560147,
+    "ci_checkpoint": [
+     0.6629759125636672,
+     0.8685107282763533
+    ]
+   },
+   "600001": {
+    "auroc_q": 0.6634125636672326,
+    "ci_checkpoint": [
+     0.558688808497537,
+     0.7372699375092993
+    ]
+   }
+  },
+  "common_seeds_600000_600011": {
+   "M": {
+    "failures": 25,
+    "nemotron_fs": 6
+   },
+   "T": {
+    "failures": 10,
+    "nemotron_fs": 10
+   },
+   "U": {
+    "failures": 26,
+    "nemotron_fs": 13
+   }
+  },
+  "two_way_bootstrap_nemotron": [
+   0.3539229804825156,
+   0.9499178161739738
+  ]
+ },
+ "exploratory_eval330_can": {
+  "nemotron": {
+   "n_failures": 38,
+   "false_successes": 5,
+   "auroc_q": 0.9575757575757575,
+   "ci_checkpoint": [
+    0.787608225108225,
+    1.0
+   ],
+   "ci_seed": [
+    0.9375,
+    1.0
+   ],
+   "dropped_only": {
+    "n": 13,
+    "false_successes": 5,
+    "auroc_q": 0.8875,
+    "ci_checkpoint": [
+     0.5664583333333333,
+     1.0
+    ]
+   },
+   "false_success_by_final_place": {
+    "elsewhere": {
+     "failures": 33,
+     "false_successes": 0
+    },
+    "goal_bin_other_compartment": {
+     "failures": 5,
+     "false_successes": 5
+    }
+   },
+   "precision_of_claimed_success": {
+    "all": 0.9732620320855615
+   },
+   "sensitivity_on_successes": 1.0
+  },
+  "cosmos": {
+   "n_failures": 38,
+   "false_successes": 8,
+   "auroc_q": 0.9187500000000001,
+   "ci_checkpoint": [
+    0.6923076923076923,
+    1.0
+   ],
+   "ci_seed": [
+    0.6606617647058823,
+    0.985576923076923
+   ],
+   "dropped_only": {
+    "n": 13,
+    "false_successes": 8,
+    "auroc_q": 0.75,
+    "ci_checkpoint": [
+     0.4,
+     1.0
+    ]
+   },
+   "false_success_by_final_place": {
+    "elsewhere": {
+     "failures": 33,
+     "false_successes": 3
+    },
+    "goal_bin_other_compartment": {
+     "failures": 5,
+     "false_successes": 5
+    }
+   },
+   "precision_of_claimed_success": {
+    "all": 0.9578947368421052
+   },
+   "sensitivity_on_successes": 1.0
+  }
+ }
+}

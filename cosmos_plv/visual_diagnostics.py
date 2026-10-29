@@ -76,6 +76,12 @@ REASONING_SUFFIX = (
 )
 
 
+# c1 amendment A1: the simulator's Can success needs the front-right compartment; v2's sentence does not say so
+END_STATE_COMPARTMENT = {
+    "can": ("Success means that at the END of the attempt the red can rests inside the FRONT-RIGHT compartment of the "
+            "dark wooden bin on the right, the compartment with the small grey can-shaped marker. A can resting in any "
+            "other compartment of that bin is a failure (not_placed)."),
+}
 END_STATE = {
     "can": "Success means that at the END of the attempt the red can rests inside the dark wooden bin on the right.",
     "square": "Success means that at the END of the attempt the square nut sits around the square peg, low on the peg.",
@@ -86,6 +92,7 @@ OBJECT_NAME = {"can": "red can", "square": "square nut"}
 PROMPT_VARIANTS = (
     "v1_task_first",
     "v2_evidence_first",
+    "v2c_compartment",
     "v3_evidence_lastframe",
     "v4_keyframes",
     "v5_endstate",
@@ -176,6 +183,7 @@ def build_prompt(
     v2_evidence_first    warns that attempts often fail, asks the model to check the
                          object's start/end position and whether it was carried
                          before judging; success is defined by the end state.
+    v2c_compartment      v2 with the compartment-explicit Can end state (c1 amendment A1).
     v3_evidence_lastframe  v2 + an extra still image of the final frame is attached
                          (the caller adds the image; the text refers to it).
     """
@@ -206,7 +214,7 @@ def build_prompt(
             "Many attempts fail. Judge only from what is visible in the frames; do not assume that the "
             "robot did what it was supposed to do.\n"
             f"Intended goal of the attempt: {TASK_DESCRIPTIONS[task]}\n"
-            f"{END_STATE[task]}\n\n"
+            f"{END_STATE_COMPARTMENT.get(task, END_STATE[task]) if variant == 'v2c_compartment' else END_STATE[task]}\n\n"
             f"Before answering, check: (1) where the {obj} is in the first frame; (2) whether the gripper "
             f"fingers ever close around the {obj}; (3) whether the {obj} is ever carried in the air, clearly "
             f"above the bin floor; (4) where the {obj} is in the last frame.\n"

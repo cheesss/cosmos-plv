@@ -34,7 +34,9 @@ Cosmos-PLV is a working checkpoint-evaluation application for robot learning res
 1. **Screens every checkpoint cheaply** with the original PLV metrics. These are
    Action L1, open-loop smoothness, PLV-1 model-feedback smoothness and
    execution-matched replanning, each read from the checkpoint's own chunking
-   configuration.
+   configuration. The replanning metric is a single-sample relative of the
+   chunk-consistency scores used for runtime failure detection (Sentinel's STAC,
+   VLA-FAIL's ACC). PLV uses it offline to screen checkpoints.
 2. **Runs real robot simulations** in robosuite/MuJoCo. Each rollout records
    synchronized video, simulator state and every action chunk the policy planned,
    and labels the outcome automatically: success, missed grasp, dropped,
@@ -142,7 +144,61 @@ Everything was measured on one RTX 3090. Details are in `docs/hackathon/07_exper
   * a time-horizon early abort saves 16–20% of robot time;
   * a local-Cosmos-first cascade uses 16% fewer Nebius calls at a small accuracy cost (0.952 vs 0.964 on 330 episodes; missed successes 3 → 8).
 * **Cosmos world model (exploratory, Experiment 4b).** Through the trained Franka action slot, ±x/y/z commands move the generated gripper in a consistent direction per axis. On recorded policy rollouts, the action-dependent part of the generated motion points along the true motion (cos 0.78–0.85, 15 clips, 5 initial states). Can is strong; Square is weak.
-* **Cost.** All Nebius calls in the study (3,152, 0 failed) used about 8.8 M input tokens and 0.46 M output tokens. That is about $3 at the public catalog price; this is an upper bound, since some exploratory calls went to the cheaper Lightning model.
+* **Can a judge tell when a replan helps? (exploratory, pre-registered; r1).**
+  * Setup:
+    * At 400 replanning boundaries we restored the exact simulator state.
+    * We executed both the new plan and the old plan's unexecuted tail.
+    * Each branch was continued 4 times with shared random numbers.
+  * The pre-registered primary was negative. Nemotron and Cosmos were at chance at
+    predicting when the new plan helped (AUROC 0.49–0.54 on boundaries whose outcome was
+    not already decided).
+  * Choosing between the two drawn paths did worse than always replanning.
+  * PLV's disagreement score flagged fragile episodes, not the replan that mattered. A
+    low-disagreement boundary in the same episode changed the outcome just as often.
+  * With 4 continuations, good and bad replans could not be told apart from rollout noise
+    by any method.
+  * The one robust effect: replanning reaches success about 3.5 steps sooner (80 vs 51
+    events, p = 0.014).
+  * We did not find prior work that audits a policy's own replans this way. The closest
+    are same-state branching studies (Beyond Visual Quality, SVA, CMA).
+* **Judge blind spot on strong checkpoints (exploratory, pre-registered; c1).**
+  * Setup: 620 new Can rollouts from 31 checkpoints in three quality strata.
+  * The share of failures Nemotron called "success" rose from 6/25 to 14/27 to 13/22.
+    That is positive under the pre-registered rule, but fragile: two initial states
+    supply most of the effect.
+  * The cause is a change in the failure mix:
+    * The judges never miss a failed grasp (21/21 caught).
+    * They accept almost every failure that ends at the goal bin. All 33 Nemotron false
+      successes ended there, 32 of them with the can in the wrong compartment.
+    * Strong checkpoints fail mostly that way, so their judged success is inflated.
+  * Telling Nemotron the compartment did not fix it (24/33 still accepted), although the
+    difference is visible in its input.
+  * Rule for users: before trusting a judged-success gap between strong checkpoints,
+    audit a sample of accepted episodes for near-goal failures.
+* **Self-training from judged successes did not improve a plateaued policy
+  (exploratory, pre-registered; s1).**
+  * We fine-tuned a 0.885-success Can policy on its own rollouts, selected by Nemotron,
+    by simulator labels, or not filtered at all.
+  * All arms stayed at 0.875–0.89 on 200 paired seeds: Nemotron −0.5 points
+    [−4.0, +3.0], simulator labels +1.0 [−2.5, +4.5].
+  * Four verifiers found no bug. The recipe did change the policy's behaviour, but not
+    its success, so this run cannot rank label sources.
+* **The redesigned follow-up (s2, pre-registered).**
+  * Setup: weaker base (0.656), a human-demo positive control, an annealed fine-tune and
+    500 paired seeds.
+  * Results against continued training on the original demos:
+    * 36 extra human demos: 0.938, +8.2 points [+5.2, +11.4]. So the recipe works.
+    * The policy's own simulator-verified successes: 0.824, −3.2 [−7.0, +0.6].
+    * The episodes Nemotron called successes: 0.752, −10.4 [−14.8, −6.0].
+  * Nemotron accepted 58 of 149 failures, 44 of them with the can in the wrong
+    compartment. Those whole failed episodes became 40% of the self-collected frames.
+  * Post hoc, the Nemotron arm finished 7.2 points below the simulator-labelled arm, mostly
+    through extra cans left in the wrong place in the goal bin.
+  * Caveats: one training run per arm, dilution of the original demos under a fixed step
+    budget, and judge clip lengths that follow the simulator's success signal.
+  * Lesson: audit a zero-shot judge's false successes before using its verdicts as a
+    training filter.
+* **Cost.** All Nebius calls in the study (7,003, 0 failed) used about 14.6 M input tokens and 0.78 M output tokens. That is about $4.96 at the public catalog price; this is an upper bound, since some exploratory calls went to the cheaper Lightning model.
 
 ### Limitations
 
@@ -150,7 +206,9 @@ Everything was measured on one RTX 3090. Details are in `docs/hackathon/07_exper
 * Both NVIDIA models were used **zero-shot**, with no fine-tuning on our tasks. The scope tested is one simulator (robosuite), one robot (Franka Panda, which is common in robot-learning datasets, so not an unseen embodiment), two tasks and one main camera. We did not test whether this transfers to other robots or to real-robot video.
 * VLM-based diagnosis still needs rollouts to produce videos. It replaces the success *detector*, not the rollouts.
 * Rollout-free world-model feedback is not ready. Through its trained Franka slot, Cosmos3-Edge moves the generated gripper roughly along the recorded motion: cos ≈ 0.8 on 15 clips from 5 initial states, strong on Can and weak on Square. But the motion is compressed and pixel fidelity is no better than a frozen frame (exploratory Experiment 4b).
-* Prompt variants were chosen on a small development split (36 episodes). The exploratory studies are post-hoc.
+* Prompt variants were chosen on a small development split (36 episodes). The exploratory studies are post-hoc, except r1 and c1, which were pre-registered (r1 with disclosed amendments and an interim look).
+* VLM success judging is known to degrade on contact-rich assembly and to lean toward "success" when evidence is ambiguous (FailBench, 2026). Square is such a task.
+* Prior art. PLV's replanning metric is close to published chunk-consistency monitors (Sentinel's STAC, 2024; VLA-FAIL's ACC and ActProbe's TCE, 2026). Our use differs: offline checkpoint screening, not runtime alarms.
 * Cosmos runs locally, not on Nebius: no Cosmos model is served on Token Factory, and we did not provision paid AI Cloud GPUs.
 
 ### What's next
@@ -201,7 +259,7 @@ only as history. Details: `docs/hackathon/08_original_vs_new_work.md`.
 * What worked:
   * The OpenAI-compatible API worked on the first try with the standard `openai` SDK. We moved from key to first successful call in minutes.
   * The public model catalog endpoint (`/api/public/models_info`) let us check model ids, licenses, regions and prices programmatically.
-  * Video input as a `video_url` data URI worked for 20-second MP4 clips, with about 3 s latency for Nemotron-3.5-Super-VL. Over about 3,150 calls we saw 0 API errors.
+  * Video input as a `video_url` data URI worked for 20-second MP4 clips, with about 3 s latency for Nemotron-3.5-Super-VL. Over 7,003 calls we saw 0 API errors.
 * What could be better:
   * For a Physical AI track, the main gap is that no Cosmos model is served. The catalog lists Cosmos3-Super-Reasoner as retired on 2026-08-31, so we had to run Cosmos locally.
   * The VL model sometimes returned invalid JSON. For example, it left a string value unquoted in 6 of 36 image calls. A JSON-schema or structured-output mode would help.

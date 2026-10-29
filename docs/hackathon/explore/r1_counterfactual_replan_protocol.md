@@ -130,3 +130,50 @@ Extra Nemotron calls: about 400 (J2s) + 800 (J1b) on eval.
    `explanation` is unquoted (15 of 96 dev J1b answers), `object_location` and
    `held_by_gripper` are read by regex, and the repair is recorded. A remaining parse
    failure is missing data for that predictor.
+
+## Deviations and provenance (recorded 2026-10-29, after the adversarial verification)
+
+An independent verification (four reviewers, from the session transcript, file mtimes and
+call logs) found these departures. None changed code, prompts or rules after eval labels
+were seen. All of them are disclosed here.
+
+* **Provenance.** The protocol above the Amendments section was written at 13:58:07 KST.
+  A1.1–A1.3 were added at 14:16:17 and A1.4 at 14:20:25. The first eval Nebius call was
+  at 14:21:58. Git has no copy of the unamended text: the first commit (ad37d8a,
+  14:28:14) already contains A1.
+* **"Before any branch label was read" is true for eval labels only.** At 14:04:05 one
+  uninformative dev smoke unit was printed (NEW == OLD).
+* **The dev pilot did not fully precede eval.** Eval branch rollouts started at 14:04:58,
+  before the dev units finished (14:14–14:21). The dev checkpoints are other epochs of the
+  same training runs as eval (Can seed 2, Square seed 1), so the two splits are not
+  independent.
+* **A1.3 also used eval base rates.** It was written 2 minutes after the eval privileged
+  base rate (outcome-free) was printed. The amended rule also reads recorded success in
+  `[T, T+16]`, outside the original window. The original rule is reported next to it
+  (`privileged_raw`).
+* **Interim look.** At 14:32 an analysis of 309 of 400 eval events was run and shown to the
+  user. At that point most eval judge calls (part of J2, all of J2s, J1b, Cosmos) had not
+  yet been made. No code, rule or prompt changed afterwards (script mtimes ≤ 14:20:25;
+  dev and eval prompt hashes are identical).
+* **Omissions, now fixed in `r1_analyze.py`.** Three pre-registered outputs were missing
+  and are now reported: the steps-to-success and stage@40 secondaries, the rotation
+  subgroup `d_rot`, and the lex-vs-`d` comparison.
+* **J2 ties.** The protocol does not say how a "no meaningful difference" answer is
+  scored. The combined accuracy scores ties as wrong. Coverage and accuracy on decided
+  events are reported too.
+* **Rule wording.** The Cosmos / J1b rule implements the A1.1 wording. The original
+  Predictors wording gives Cosmos 0.537 and J1b 0.415 (verifier recomputation).
+* **Bootstrap.** On HIGH each episode cluster holds one event, so the cluster bootstrap is
+  an event bootstrap. A checkpoint-level bootstrap gives the same primary verdict.
+
+**Post-hoc analyses.** These were added after verification and are labelled as such in
+`post_hoc_after_verification`.
+* **Selection defect.** The recorder keeps stepping 16 steps after success, and the
+  selection did not exclude those boundaries. Events with recorded success at or before
+  `T+7` are therefore decided by construction (77 of 300 HIGH). Sensitivity results
+  exclude them.
+* **Replicate noise.** The 8 outcomes of each event are reshuffled between the branches
+  (permutation null).
+* **Localization.** HIGH and CONTROL events from the same episode are compared.
+* **Helpful vs harmful.** Among consequential events, with confidence intervals.
+* **J2.** Accuracy on decided events and the label-position bias.

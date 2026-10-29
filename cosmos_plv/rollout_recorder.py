@@ -38,6 +38,7 @@ class RecorderConfig:
     batch_size: int = 20
     sampling_seed: int = 0
     device: str = "cuda:0"
+    save_obs: bool = False  # also store the policy's low-dim observation vectors (s1 self-training data)
 
 
 def _make_env(
@@ -135,7 +136,8 @@ def record_checkpoint(
             probes.append(make_probe(task, env.env.env))
             hist.append(deque([obs], maxlen=n_obs + 1))
             s0 = probes[-1].sample()
-            traces.append({k: [v] for k, v in s0.items()} | {"action": [], "t": [0]})
+            traces.append({k: [v] for k, v in s0.items()} | {"action": [], "t": [0]}
+                          | ({"obs": [np.asarray(obs, dtype=np.float32)]} if cfg.save_obs else {}))
             frames.append([_render(env)] if seed in video_seeds else [])
             plans.append({"t": [], "action_pred": []})
             done.append(False)
@@ -174,6 +176,8 @@ def record_checkpoint(
                     for key, val in s.items():
                         traces[i][key].append(val)
                     traces[i]["action"].append(env_action[i, k].astype(np.float32))
+                    if cfg.save_obs:
+                        traces[i]["obs"].append(np.asarray(obs, dtype=np.float32))
                     traces[i]["t"].append(t)
                     if batch[i] in video_seeds and t % cfg.steps_per_frame == 0:
                         frames[i].append(_render(env))
